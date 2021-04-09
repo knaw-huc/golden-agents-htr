@@ -4,6 +4,8 @@
 Index data from the Stadsarchief Amsterdam (https://archief.amsterdam/indexen/persons) coming from the http://alleamsterdamseakten.nl/ project. 
 * Person names (with coordinates)
   * `personnamesNA.py` - Queries all personnames from the Notarial Archives in the Golden Agents endpoint for which scan coordinate information is available. Results saved in [`personnamesNA_20201204.csv`](https://surfdrive.surf.nl/files/index.php/s/egNI4cKrZ1Kb0rA) (external). 
+* Person names
+  * [`personnamesSAA_2020.csv`](https://surfdrive.surf.nl/files/index.php/s/2lHJ5MDkztHWq4u) (external) - All person names and their frequencies from 12 relevant indices.
 * Location descriptions
 * Dates
 * Deed types

@@ -133,5 +133,41 @@ we eventually adopt which strategy)
 At the same time we can learn more about what Republic is doing and coordinate
 with Marijn Koolen (#5).
 
+------------------------------------------------------------------
 
+## Advice from Rutger and Marijn
 
+We spoke with Rutger van Koert and Marijn Koolen about the project and the
+approach to extract entities.
+
+Some recommendations we received:
+
+* Use document structure, parse into logical blocks.
+    * We can use indentation cues, as well as vertical whitespace, to identify blocks that describe a single item.
+    * When using document structure, rely mainly on the baseline information in the Page XML, text lines may be slanted upward/downward.
+    * The Page Region information can be mostly ignored, or should at least not be taken to be too accurate.
+    * Bottom line: study the document structure well and make use of it
+* Marijn's approach in Republic (which I [listed](entity-recognition-plan.md) as strategy #5) relies on fuzzy-search of formulaic phrases
+  that are indicative of certain entities (e.g. names).
+    * This is embedded in an iterative approach where a transformation of physical structure to logical units (paragraphs, sections) is attempted
+    * Marijn has a [fuzzy-search](https://github.com/marijnkoolen/fuzzy-search) tool and a [parsing library](https://github.com/HuygensING/republic-project/tree/master/republic/parser) for PageXML.
+        * It works great, especially with longer phrases.
+    * Focus on high-precision first and slowly improve recall (again an iterative procedure)
+        * Focus on the low-hanging fruit first (e.g. bedsheets, pillows, etc)
+        * Researchers tend to get frustrated when tools produce a fair amount of noise (Harm)
+    * We could use locations like "in the voorhuis" as indicative phrases (Leon)
+        * This grouping by rooms is seen later in time whereas older text tent to use more material adjectives (Harm)
+    * Variant matches contextualize and strengthen eachother
+
+### Suggestion 2
+
+There are aspects which are very specific to the data collection (or parts of
+it), and there are generic aspects (such as doing variant matching).  In my
+explorations of strategy #6 I'm departing from the very generic viewpoint
+(efficient variant matching/identification that scales). I would recommend we
+similtaneously start explorations from the very specific end of things,
+processing the physical document structure into logical units, and divide our
+manpower here as these are initially independent endeauvours. We can then meet
+ideally in the middle and tie these systems together: apply the improved variant
+matching suggested in #6 on the logical blocks of data that is extracted from
+a preprocessing pipeline.

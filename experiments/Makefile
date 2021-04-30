@@ -121,5 +121,6 @@ checkdeps:
 	python3 -c 'import SPARQLWrapper'
 	python3 -c 'import pandas'
 
-
-
+.PHONY: help
+help:
+	@cat README.md

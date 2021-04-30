@@ -1,6 +1,6 @@
 # Golden Agents Experiments
 
-This repository holds experimental output. The main point of entry for the experiments is the ``Makefile``, which can generate the following targets (not exhaustive):
+This repository holds experimental output. The main point of entry for the experiments is the ``Makefile``, to be invoked using ``make``. It can generate the following targets for you (not exhaustive):
 
 * ``texts``
     * ``htr.txt`` - The extracted text of all HTR data

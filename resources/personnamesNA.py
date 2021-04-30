@@ -38,7 +38,7 @@ if __name__ == "__main__":
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     SELECT ?person ?literalName ?givenName ?surnamePrefix ?baseSurname ?scan ?xywh WHERE {
 
-      # Needs a GRAPH <> when we add more data to the endpoint, now the 20201204 version is used. 
+      # Needs a GRAPH <> when we add more data to the endpoint, now the 20201204 version is used.
 
       ?person pnv:hasName ?personName .
       FILTER(CONTAINS(STR(?person), 'archief'))
@@ -52,10 +52,10 @@ if __name__ == "__main__":
 
       ?annotation oa:hasBody ?personName ;
                   oa:hasTarget [ oa:hasSource ?source ; oa:hasSelector/rdf:value ?xywh ]
-    
+
       BIND(STRAFTER(STR(?source), 'scan/') AS ?scan)
     }
     """
 
     df = query(q, URL)
-    df.to_csv('personnamesNA_20201204.csv', index=False)
+    df.to_csv('personnamesNA.csv', index=False)

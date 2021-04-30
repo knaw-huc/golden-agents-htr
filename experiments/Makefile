@@ -57,6 +57,14 @@ htr-normalised-against-groundtruth.analiticcl.t0.7.tsv: htr.tok.lexicon.tsv grou
 	#This takes the htr lexicon and finds for each entry all variants in the groundtruth lexicon (above a certain score threshold)
 	cat htr.tok.lexicon.tsv | cut -f 1 | analiticcl query --score-threshold 0.7 --progress --alphabet simple.alphabet.tsv --lexicon groundtruth.tok.lexicon.tsv > htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
 
+personnamesNA.csv:
+	#This is static dump of a query from the Notarial Archives using the Golden Agents endpoint (should ideally replaced by an actual query here)
+	curl https://surfdrive.surf.nl/files/index.php/s/egNI4cKrZ1Kb0rA/download -o personnamesNA.csv
+
+first_names_lexicon.tsv: personnamesNA.csv
+	cut -d "," -f 3  personnamesNA.csv | sort | grep -v -E "[\.\t\s]" | uniq -c | sort -rn | awk '{ print $2"\t"$1; }'  > first_names_lexicon.tsv
+
+
 .PHONY: exp1
 exp1: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv
 

@@ -53,6 +53,15 @@ endif
 %.lexicon.tsv: %.colibri.patternmodel %.colibri.cls
 	colibri-patternmodeller -u -i $*.colibri.patternmodel -c $*.colibri.cls --print -l 1 -t 2 | tail --lines="+2" | sort -r -n -k 2 | cut -f 1,2 > $@
 
+htr-normalised-against-groundtruth.analiticcl.t0.7.tsv: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv
+	#This takes the htr lexicon and finds for each entry all variants in the groundtruth lexicon (above a certain score threshold)
+	cat htr.tok.lexicon.tsv | cut -f 1 | analiticcl query --score-threshold 0.7 --progress --alphabet simple.alphabet.tsv --lexicon groundtruth.tok.lexicon.tsv > htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
+
+.PHONY: exp1
+exp1: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv
+
+.PHONY: exp2
+exp2: htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
 
 .PHONY: checkdeps
 checkdeps:

@@ -66,6 +66,10 @@ streetnamesAdamlink.csv:
 	#query the AdamLink
 	python3 "$(REPOROOT)/scripts/sparql_streetnamesAdamlink.py"
 
+buildingsAdamlink.csv:
+	#query the AdamLink
+	python3 "$(REPOROOT)/scripts/sparql_buildingsAdamlink.py"
+
 first_names_lexicon.tsv: personnamesNA.csv
 	#Extract first names
 	cut -d "," -f 3  personnamesNA.csv | sed '/^$$/d' | sort | grep -v -E "[\.\t\s]" | uniq -c | sort -rn | awk '{ print $$2"\t"$$1; }'  > first_names_lexicon.tsv
@@ -73,6 +77,10 @@ first_names_lexicon.tsv: personnamesNA.csv
 streetnames_lexicon.tsv: streetnamesAdamlink.csv
 	#Extract street names
 	cut -d "," -f 2  streetnamesAdamlink.csv | sed '/^$$/d' | tr -d '"' | sort | uniq  > streetnames_lexicon.tsv
+
+buildings_lexicon.tsv: buildingsAdamlink.csv
+	#Extract street names
+	cut -d "," -f 2  buildingsAdamlink.csv | sed '/^$$/d' | tr -d '"' | sort | uniq  > buildings_lexicon.tsv
 
 objects.tsv:
 	#Get some objects

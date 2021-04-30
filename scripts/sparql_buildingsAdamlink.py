@@ -14,11 +14,11 @@ if __name__ == "__main__":
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
     SELECT ?street ?label WHERE {
 
-      ?street a hg:Street ;
+      ?street a hg:Building ;
         skos:altLabel ?label .
 
     }
     """
 
     df = query(q, URL)
-    df.to_csv('streetnamesAdamlink.csv', index=False)
+    df.to_csv('buildingsAdamlink.csv', index=False)

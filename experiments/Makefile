@@ -62,7 +62,7 @@ personnamesNA.csv:
 	curl https://surfdrive.surf.nl/files/index.php/s/egNI4cKrZ1Kb0rA/download -o personnamesNA.csv
 
 first_names_lexicon.tsv: personnamesNA.csv
-	cut -d "," -f 3  personnamesNA.csv | sort | grep -v -E "[\.\t\s]" | uniq -c | sort -rn | awk '{ print $2"\t"$1; }'  > first_names_lexicon.tsv
+	cut -d "," -f 3  personnamesNA.csv | sort | grep -v -E "[\.\t\s]" | uniq -c | sort -rn | awk '{ print $$2"\t"$$1; }'  > first_names_lexicon.tsv
 
 
 .PHONY: exp1

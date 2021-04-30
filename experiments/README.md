@@ -2,11 +2,15 @@
 
 This repository holds experimental output. The main point of entry for the experiments is the ``Makefile``, which can generate the following targets (not exhaustive):
 
-* ``htr.txt`` - The extracted text of all HTR data
-* ``groundtruth.txt`` - The extracted text of all Ground Truth data
-* ``htr.tok.lexicon.tsv`` - A simple corpus-extracted lexicon with frequency count from all HTR data
-* ``groundtruth.tok.lexicon.tsv`` - A simple corpus-extracted lexicon with frequency count from all Ground Truth data
-* ``first_names_lexicon.tsv`` - Build  a simple first names lexicon,
+* ``texts``
+    * ``htr.txt`` - The extracted text of all HTR data
+    * ``groundtruth.txt`` - The extracted text of all Ground Truth data
+* ``lexicons``
+    * ``htr.tok.lexicon.tsv`` - A simple corpus-extracted lexicon with frequency count from all HTR data
+    * ``groundtruth.tok.lexicon.tsv`` - A simple corpus-extracted lexicon with frequency count from all Ground Truth data
+    * ``first_names_lexicon.tsv`` - Extract a simple first names lexicon (from Golden Agents Notariële Akten)
+    * ``streetnames_lexicon.tsv`` - Extract a simple street names lexicon (from AdamLink)
+    * ``buildings_lexicon.tsv`` - Extract a simple first names lexicon (from AdamLink)
 * ``exp1`` - **Experiment 1** - Extracts simple lexicons for HTR and Groundtruth
 * ``exp2`` - **Experiment 2** - Matches the HTR lexicon against the groundtruth lexicon using
     [analiticcl](https://github.com/proycon/analiticcl), finding all variants above a

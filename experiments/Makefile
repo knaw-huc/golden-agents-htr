@@ -35,6 +35,9 @@ endif
 %.txt: %.index
 	cat $< | xargs "$(REPOROOT)/scripts/extract-text.py" | "$(REPOROOT)/scripts/dehyphenize.py" > $@
 
+.PHONY: texts
+texts: groundtruth.txt htr.txt
+
 # ------------------- Tokenisation ---------------------------
 
 %.tok.txt:  %.txt
@@ -85,6 +88,10 @@ buildings_lexicon.tsv: buildingsAdamlink.csv
 objects.tsv:
 	#Get some objects
 	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > objects.tsv
+
+.PHONY: lexicons
+lexicons: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv first_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv objects.tsv
+
 
 # ------------------- Variant matching ---------------------------
 

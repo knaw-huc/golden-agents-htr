@@ -171,3 +171,49 @@ manpower here as these are initially independent endeauvours. We can then meet
 ideally in the middle and tie these systems together: apply the improved variant
 matching suggested in #6 on the logical blocks of data that is extracted from
 a preprocessing pipeline.
+
+------------------------------------------------------------------
+
+## Initial feasibility report regarding Strategy #6
+
+*(May 4, 2021)*
+
+These past weeks, I've been working on [Analiticcl](https://github.com/proycon/analiticcl), which implements the ideas
+suggested for stategy #6, inspired on techniques researched by Martin Reynaert. As mentioned, I'm working at the very
+generic end of things here. Bram has been recruited into the project to work on the more specific end.
+
+Analiticcl allows efficient approximate string matching against one or more lexicons. Given an input string that may
+contain HTR errors or historical variants, the closest matching items from the lexicon are returned. See the
+[Analiticcl git repository](https://github.com/proycon/analiticcl) for a more complete overview of features and
+abilities.
+
+Multiple lexicons may be passed to analiticcl, optionally including frequency information. Lexicons can be quite large
+(as in a few hundred thousand items) and the actual matching of a variant and returning of candidates occurs in a
+fraction of a second. Initial loading of lexicons and building time of the search indices is a matter of a few seconds
+to a minute. Lexicon entries that match can be returned along with the lexicon they were found it, allowing us to use
+this as a simple form of tagging if we use different lexicons for names, locations, inventory items, etc...
+
+I conducted some initial [experiments](https://github.com/knaw-huc/golden-agents-htr/tree/master/experiments). An initial impression of the output can be found in [htr.matchedvariants.json](https://download.anaproy.nl/htr.matchedvariants.json) (WARNING: 580MB!). This came about as follows:
+
+* I first derived a lexicon of all words in the HTR data of our collection. Note that this is based on a very
+rough extraction from the Page XML and a very rough tokenisation, with total disregard for the actual document structure.
+* I did the same for the ground truth portion of the data.
+* I extracted some reference lexicons for first names, surnames and street names from the Linked Data collections
+  described in ``resources/``.
+* I matched all types in the HTR-derived lexicon against several reference lexicons.
+
+The first conclusion here is that the matching strategy works well and scales. The quality is very dependent on the quality of
+the reference lexicons and the weights assigned to the different metrics.
+
+There are two related major components to implement in a second stage still: actual matching on (untokenised) running
+text and handling of n-grams so we can handle split/merges and handle a bit of context information. These are not trivial but are important.
+
+Implementation of this new tool has been a significant time-sink (but a very fun and worthwhile effort I'd say),
+implementation of the second stage will likely be similar.
+
+
+
+
+
+
+

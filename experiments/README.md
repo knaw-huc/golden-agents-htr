@@ -20,3 +20,7 @@ This repository holds experimental output. The main point of entry for the exper
 Pass the root directory containing the Page XML data using ``make DATADIR=/path/to/data``.
 
 Run ``make checkdeps`` to check if you have all necessary dependencies. A [LaMachine](https://proycon.github.io/LaMachine) installation is an easy way to get all dependencies installed.
+
+## Other experiments
+
+* `NA_word2vec_experiment.ipynb` - Training a word2vec model on all HTR data with some examples of similar words. Data not included.

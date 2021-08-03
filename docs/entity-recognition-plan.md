@@ -212,8 +212,23 @@ Implementation of this new tool has been a significant time-sink (but a very fun
 implementation of the second stage will likely be similar.
 
 
+## Current status
 
+*(Aug 3, 2021)*
 
+I have picked up work again on the second stage of analiticcl, the matching on untokenised running text and handling of
+n-grams and consideration of context. This is a complicated matter which I describe in further detail in [this issue](https://github.com/proycon/analiticcl/issues/2).
 
+The use-case I descibe there may seem more like classical spelling detection and correction than the specific entity
+recognition problem we are dealing with in Golden Agents, but that is the approach we have chosen: we are tackling the
+spelling variation and entity-detection problem in one.
 
+We may need to slowly start thinking about how to set up the full tagging pipeline. The pipeline takes PageXML, does
+parsing and selection (Bram's part), passes text snippets it has determined to be useful units to analitticl for
+detection and tagging (parameterised by a whole bunch of input/background lexicons) and the scripts pick up the results
+and handle storage somewhere. The main difficulty here, which has a direct effect on the accuracy of the detected entities,
+is selecting the right combination of input/background lexicons, confusions lists, etc.. for analiticcl. This requires
+considerable experimentation.
 
+We will need some manually tagged subset of the data for evaluation purposes, I think Harm already did some work to that
+end, and I think there are already parts of the data that already have some entity detection?

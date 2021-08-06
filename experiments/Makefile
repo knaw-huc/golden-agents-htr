@@ -22,6 +22,13 @@ endif
 	echo "" > groundtruth.index
 	cat "$(REPOROOT)/resources/werkvoorraad.csv" | grep -E ";GT" | awk -F ';' '{ print $$4"" }' | xargs -L 1 -I"{}" find "$(DATADIR)/{}" -name "*.xml" >> groundtruth.index || [ -s groundtruth.index ]
 
+%.index:
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	find "$(DATADIR)" -name "$(basename $@).xml" > $@
+
 # ------------------- Plain text extracted from the Page XML ---------------------------
 
 all.txt:
@@ -111,6 +118,9 @@ exp1: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv
 
 .PHONY: exp2
 exp2: htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
+
+.PHONY: exp3
+exp3: objects.tsv
 
 # ------------------- Dependency check ---------------------------
 

@@ -120,7 +120,9 @@ exp1: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv
 exp2: htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
 
 .PHONY: exp3
-exp3: objects.tsv
+exp3: objects.tsv family_names_lexicon.tsv first_names_lexicon.tsv streetnames_lexicon.tsv A16098000033.txt
+	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon family_names_lexicon.tsv --lexicon first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv --corpus groundtruth.tok.lexicon.tsv -N 1 -n 25 -T 1.4 --output-lexmatch < A16098000033.txt > exp3.out.txt 2> exp3.log
+
 
 # ------------------- Dependency check ---------------------------
 

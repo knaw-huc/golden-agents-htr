@@ -82,11 +82,11 @@ buildingsAdamlink.csv:
 
 first_names_lexicon.tsv: personnamesNA.csv
 	#Extract first names
-	cut -d "," -f 3  personnamesNA.csv | sed '/^$$/d' | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > first_names_lexicon.tsv
+	cut -d "," -f 3  personnamesNA.csv | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > first_names_lexicon.tsv
 
 family_names_lexicon.tsv: personnamesNA.csv
 	#Extract last names
-	cut -d "," -f 4,5  personnamesNA.csv | tr "," " " | sed '/^\s*$$/d' | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > family_names_lexicon.tsv
+	cut -d "," -f 4,5  personnamesNA.csv | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > family_names_lexicon.tsv
 
 streetnames_lexicon.tsv: streetnamesAdamlink.csv
 	#Extract street names

@@ -47,7 +47,7 @@ we do not require it at this stage:
 
 * **Dates** - Names of days, months
 * **Institutions**
-* **Professions**
+* **Occupations**
 * **Paintings** (titles)
 * **Ships** (names)
 * **Book titles**

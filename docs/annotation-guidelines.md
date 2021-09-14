@@ -40,6 +40,7 @@ We aim to annotate the following named entities:
     * **Product group**
 * **Materials** - Notarial deeds often mention materials (wooden, bronze, etc). Tagging these may help finding objects.
 * **Numerals** - No digits
+* **Occupations**
 
 Though our detection will probably only use/need the first levels (in bold), I suggest we annotate more precisely
 so that the data is usable for more exact purposes in the future. In a similar vein, it *might* be worth also to annotate the following even though
@@ -47,7 +48,6 @@ we do not require it at this stage:
 
 * **Dates** - Names of days, months
 * **Institutions**
-* **Occupations**
 * **Paintings** (titles)
 * **Ships** (names)
 * **Book titles**

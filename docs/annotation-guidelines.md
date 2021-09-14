@@ -25,17 +25,21 @@ things you can't make heads or tails of.
 We aim to annotate the following named entities:
 
 * **Persons**
-    * first name
-    * family name (including any particles like 'van der')
+    * given name
+    * surname prefix
+    * base surname
+    * patroniem (optional)
 * **Locations**
     * street (do not include house numbers)
     * building ('spinhuis'), names of buildings only, no street/house numbers
-    * quarter ('Jordaan')
+    * quarter ('Jordaan', 'Wijk 6')
     * room ('voorhuis', 'achterhuis','gang','keuken')
     * city (or village)
     * country (also province/region) or abstractions like 'Amerika'.
 * **Objects**  - A wide range of objects (nouns), especially those that occur in notarial deeds. Tag only the noun or noun phrase, keep as small as possible.
+    * **Product group**
 * **Materials** - Notarial deeds often mention materials (wooden, bronze, etc). Tagging these may help finding objects.
+* **Numerals** - No digits
 
 Though our detection will probably only use/need the first levels (in bold), I suggest we annotate more precisely
 so that the data is usable for more exact purposes in the future. In a similar vein, it *might* be worth also to annotate the following even though
@@ -46,6 +50,7 @@ we do not require it at this stage:
 * **Professions**
 * **Paintings** (titles)
 * **Ships** (names)
+* **Book titles**
 
 ## Annotation Tool
 

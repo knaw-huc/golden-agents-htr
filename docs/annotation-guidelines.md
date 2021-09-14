@@ -20,6 +20,8 @@ Do **NOT** look at the original scans. If it's not clear for a human from the
 HTR output, it won't be clear for an automated system either. Just don't tag
 things you can't make heads or tails of.
 
+Quantity wise, we're aiming for about 10 deeds to start with.
+
 ## Named Entity Classes
 
 We aim to annotate the following named entities:

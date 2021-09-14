@@ -43,8 +43,8 @@ We aim to annotate the following named entities:
 * **Occupations**
 
 Though our detection will probably only use/need the first levels (in bold), I suggest we annotate more precisely
-so that the data is usable for more exact purposes in the future. In a similar vein, it *might* be worth also to annotate the following even though
-we do not require it at this stage:
+so that the data is usable for more exact purposes in the future. In a similar vein, we decided it's also worth to
+annotate the following for possible future project, even though we don't need it for our own evaluation.
 
 * **Dates** - Names of days, months
 * **Institutions**

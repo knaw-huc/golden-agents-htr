@@ -51,6 +51,7 @@ we do not require it at this stage:
 * **Paintings** (titles)
 * **Ships** (names)
 * **Book titles**
+* **Relations**
 
 ## Annotation Tool
 

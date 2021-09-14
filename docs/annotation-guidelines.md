@@ -26,7 +26,7 @@ We aim to annotate the following named entities:
 
 * **Persons**
     * first name
-    * family name
+    * family name (including any particles like 'van der')
 * **Locations**
     * street (do not include house numbers)
     * building ('spinhuis'), names of buildings only, no street/house numbers
@@ -49,5 +49,5 @@ we do not require it at this stage:
 
 ## Annotation Tool
 
-We will be annotating using [Recogito](https://recogito.pelagios.org/). The tags should be pre-loaded, place the corrected/normalized spelling in the *comment* field (or just leave it empty if it's already identical to the form in the document).
+We will be annotating using [Recogito](https://recogito.pelagios.org/). The tags should be pre-loaded, place the corrected/normalized spelling in the *comment* field (or just leave it empty if it's already identical to the form in the document). Do not use the Person/Location/Event buttons in the recogito interface.
 

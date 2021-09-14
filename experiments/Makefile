@@ -100,8 +100,14 @@ objects.tsv:
 	#Get some objects
 	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > objects.tsv
 
+sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
+	./sanitize_lexicon.py first_names_lexicon.tsv > sanitized_first_names_lexicon.tsv
+
+sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
+	./sanitize_lexicon.py family_names_lexicon.tsv > sanitized_family_names_lexicon.tsv
+
 .PHONY: lexicons
-lexicons: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv first_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv objects.tsv
+lexicons: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv objects.tsv
 
 
 # ------------------- Variant matching ---------------------------

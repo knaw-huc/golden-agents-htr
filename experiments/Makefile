@@ -106,6 +106,11 @@ sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
 sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
 	"$(REPOROOT)/sanitize_lexicon.py" family_names_lexicon.tsv > sanitized_family_names_lexicon.tsv
 
+int_lemma_hist_variants.tsv: int_historisch_lexicon.tsv
+	#Extract a variant list from the INT historisch lexicon
+	#Note: INT HIstorisch lexicon itself is not provided in this repo due to copyright restrictions,
+	#       you need to get it yourself.
+	"$(REPOROOT)/inthistlex2variantlist.py" $< > $@
 
 .PHONY: lexicons
 lexicons: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv objects.tsv

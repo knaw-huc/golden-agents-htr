@@ -101,7 +101,7 @@ objects.tsv:
 	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > objects.tsv
 
 sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
-	./sanitize_lexicon.py first_names_lexicon.tsv > sanitized_first_names_lexicon.tsv
+	"$(REPOROOT)/sanitize_lexicon.py" first_names_lexicon.tsv > sanitized_first_names_lexicon.tsv
 
 sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
 	./sanitize_lexicon.py family_names_lexicon.tsv > sanitized_family_names_lexicon.tsv

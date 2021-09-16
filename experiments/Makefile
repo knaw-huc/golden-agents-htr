@@ -82,29 +82,29 @@ buildingsAdamlink.csv:
 
 first_names_lexicon.tsv: personnamesNA.csv
 	#Extract first names
-	cut -d "," -f 3  personnamesNA.csv | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > first_names_lexicon.tsv
+	cut -d "," -f 3 $< | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > $@
 
 family_names_lexicon.tsv: personnamesNA.csv
 	#Extract last names
-	cut -d "," -f 4,5  personnamesNA.csv | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > family_names_lexicon.tsv
+	cut -d "," -f 4,5 $< | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > $A
 
 streetnames_lexicon.tsv: streetnamesAdamlink.csv
 	#Extract street names
-	cut -d "," -f 2  streetnamesAdamlink.csv | sed '/^$$/d' | tr -d '"' | sort | uniq  > streetnames_lexicon.tsv
+	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > $@
 
 buildings_lexicon.tsv: buildingsAdamlink.csv
 	#Extract street names
-	cut -d "," -f 2  buildingsAdamlink.csv | sed '/^$$/d' | tr -d '"' | sort | uniq  > buildings_lexicon.tsv
+	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > $@
 
 objects.tsv:
 	#Get some objects
-	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > objects.tsv
+	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > $@
 
 sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
-	"$(REPOROOT)/sanitize_lexicon.py" first_names_lexicon.tsv > sanitized_first_names_lexicon.tsv
+	"$(REPOROOT)/sanitize_lexicon.py" $< > $@
 
 sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
-	"$(REPOROOT)/sanitize_lexicon.py" family_names_lexicon.tsv > sanitized_family_names_lexicon.tsv
+	"$(REPOROOT)/sanitize_lexicon.py" $< > $@
 
 int_lemma_hist_variants.tsv: int_historisch_lexicon.tsv
 	#Extract a variant list from the INT historisch lexicon

@@ -106,14 +106,24 @@ sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
 sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
 	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > $@
 
-int_lemma_hist_variants.tsv: int_historisch_lexicon.tsv
+#Note: INT Historisch lexicon itself is not provided in this repo due to copyright restrictions, you need to get it yourself!
+int_historisch_lexicon.wordforms.lst: int_historisch_lexicon.tsv
+	#Extract wordforms from the INT historical lexicon
+	cat $< | awk '($$1 == "simple") { print $$7 }' | sort | uniq > $@
+
+int_historisch_lexicon.wordforms.freq.tsv: int_historisch_lexicon.wordforms.lst groundtruth.txt
+	#Compute frequencies on the ground truth data for all INT Historical Lexicon wordforms
+	lexmatch -l int_historisch_lexicon.wordforms.lst -t groundtruth.txt > $@
+
+int_lemma_hist_variants.tsv: int_historisch_lexicon.wordforms.freq.tsv
 	#Extract a variant list from the INT historisch lexicon
-	#Note: INT HIstorisch lexicon itself is not provided in this repo due to copyright restrictions,
-	#       you need to get it yourself.
-	"$(REPOROOT)/scripts/inthistlex2variantlist.py" $< > $@
+	lexmatch -l int_historisch_lexicon.tsv -t groundtruth.txt > int_hist_variants.freq.tsv
+	"$(REPOROOT)/scripts/inthistlex2variantlist.py" int_historisch_lexicon.tsv int_historisch_lexicon.wordforms.freq.lst > $@
+
 
 .PHONY: lexicons
 lexicons: htr.tok.lexicon.tsv groundtruth.tok.lexicon.tsv sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv objects.tsv
+
 
 
 # ------------------- Variant matching ---------------------------
@@ -146,6 +156,8 @@ checkdeps:
 	which ucto
 	which colibri-classencode
 	which colibri-patternmodeller
+	which analiticcl
+	which lexmatch
 	python3 -c 'import SPARQLWrapper'
 	python3 -c 'import pandas'
 

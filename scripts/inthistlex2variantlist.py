@@ -12,7 +12,7 @@ FIELD_FORM = 6
 data = defaultdict(set)
 freqlist = defaultdict(int)
 
-if sys.argv.len() != 3:
+if len(sys.argv) != 3:
     print("Usage: inthistlex2variantlist.py int_historisch_lexicon.tsv freqlist.tsv",file=sys.stderr)
 
 with open(sys.argv[1],'r',encoding='utf-8') as f:

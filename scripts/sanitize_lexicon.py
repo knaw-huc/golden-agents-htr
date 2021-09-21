@@ -23,7 +23,7 @@ class EntityName:
 def sanitize_lexicon(lexicon):
     with open(lexicon, encoding='utf-8') as f:
         reader = csv.reader(f, delimiter='\t')
-        names = [EntityName(r[0], int(r[1])) for r in reader]
+        names = [EntityName(r[0].strip(), int(r[1])) for r in reader]
 
     variants = defaultdict(list)
     for name in names:
@@ -34,7 +34,8 @@ def sanitize_lexicon(lexicon):
     for v in sorted(variants):
         preferred = max(variants[v], key=lambda x: x.frequency).original
         total_frequency = sum(x.frequency for x in variants[v])
-        print(f"{preferred}\t{total_frequency}")
+        if total_frequency >= 10: #threshold
+            print(f"{preferred}\t{total_frequency}")
 
 
 if __name__ == "__main__":

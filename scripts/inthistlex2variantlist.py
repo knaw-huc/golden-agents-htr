@@ -30,7 +30,9 @@ with open(sys.argv[2],'r',encoding='utf-8') as f:
 
 for key, forms in sorted(data.items()):
     for keypart in key.split("|"):
-        print(f"{keypart}", end="")
+        freq = freqlist[keypart]
+        if freq == 0: freq = 1
+        print(f"{keypart}\t{freq}", end="")
         if forms:
             for form in sorted([form for form in forms if form != keypart]):
                 freq = freqlist[form]

@@ -40,7 +40,8 @@ endif
 	find "$(DATADIR)" -name "*.xml" | xargs "$(REPOROOT)/scripts/extract-text.py" | "$(REPOROOT)/scripts/dehyphenize.py" > all.txt
 
 %.txt: %.index
-	cat $< | xargs "$(REPOROOT)/scripts/extract-text.py" | "$(REPOROOT)/scripts/dehyphenize.py" > $@
+	cat $< | xargs "$(REPOROOT)/scripts/extract-text.py" | "$(REPOROOT)/scripts/dehyphenize.py" > "$@" || (rm "$@" && false)
+	                                                                                                   #^-- this final clause ensures output is not empty
 
 .PHONY: texts
 texts: groundtruth.txt htr.txt
@@ -82,43 +83,45 @@ buildingsAdamlink.csv:
 
 first_names_lexicon.tsv: personnamesNA.csv
 	#Extract first names
-	cut -d "," -f 3 $< | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > $@
+	cut -d "," -f 3 $< | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > "$@" || (rm "$@" && false)
+	                                #^-- this final clause ensures output is not empty
 
 family_names_lexicon.tsv: personnamesNA.csv
 	#Extract last names
-	cut -d "," -f 4,5 $< | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > $A
+	cut -d "," -f 4,5 $< | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > "$@" || (rm "$@" && false)
 
 streetnames_lexicon.tsv: streetnamesAdamlink.csv
 	#Extract street names
-	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > $@
+	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > "$@" || (rm "$@" && false)
 
 buildings_lexicon.tsv: buildingsAdamlink.csv
 	#Extract street names
-	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > $@
+	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > "$@" || (rm "$@" && false)
+
 
 objects.tsv:
 	#Get some objects
-	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > $@
+	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > "$@" || (rm "$@" && false)
 
 sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
-	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > $@
+	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
+
 
 sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
-	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > $@
+	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
 
 #Note: INT Historisch lexicon itself is not provided in this repo due to copyright restrictions, you need to get it yourself!
 int_historisch_lexicon.wordforms.lst: int_historisch_lexicon.tsv
 	#Extract wordforms from the INT historical lexicon
-	cat $< | awk '($$1 == "simple") { print $$7 }' | sort | uniq > $@
+	cat $< | awk '($$1 == "simple") { print $$7 }' | sort | uniq > "$@" || (rm "$@" && false)
 
 int_historisch_lexicon.wordforms.freq.tsv: int_historisch_lexicon.wordforms.lst groundtruth.txt
 	#Compute frequencies on the ground truth data for all INT Historical Lexicon wordforms
-	lexmatch -l int_historisch_lexicon.wordforms.lst -t groundtruth.txt > $@
+	lexmatch -M -l int_historisch_lexicon.wordforms.lst -t groundtruth.txt > "$@" || (rm "$@" && false)
 
 int_lemma_hist_variants.tsv: int_historisch_lexicon.wordforms.freq.tsv
 	#Extract a variant list from the INT historisch lexicon
-	lexmatch -l int_historisch_lexicon.tsv -t groundtruth.txt > int_hist_variants.freq.tsv
-	"$(REPOROOT)/scripts/inthistlex2variantlist.py" int_historisch_lexicon.tsv int_historisch_lexicon.wordforms.freq.lst > $@
+	"$(REPOROOT)/scripts/inthistlex2variantlist.py" int_historisch_lexicon.tsv int_historisch_lexicon.wordforms.freq.tsv > "$@" || (rm "$@" && false)
 
 
 .PHONY: lexicons
@@ -144,6 +147,12 @@ exp2: htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
 .PHONY: exp3
 exp3: objects.tsv family_names_lexicon.tsv first_names_lexicon.tsv streetnames_lexicon.tsv A16098000033.txt
 	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon family_names_lexicon.tsv --lexicon first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv --corpus groundtruth.tok.lexicon.tsv -N 1 -n 25 -T 1.4 --output-lexmatch < A16098000033.txt > exp3.out.txt 2> exp3.log
+
+%.exp4.json: %.txt sanitized_family_names_lexicon.tsv sanitized_first_names_lexicon.tsv objects.tsv
+	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon sanitized_family_names_lexicon.tsv --lexicon sanitized_first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
+
+%.exp5.json: %.txt sanitized_family_names_lexicon.tsv sanitized_first_names_lexicon.tsv objects.tsv int_lemma_hist_variants.tsv
+	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon sanitized_family_names_lexicon.tsv --lexicon sanitized_first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv --errors int_lemma_hist_variants.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
 
 
 # ------------------- Dependency check ---------------------------

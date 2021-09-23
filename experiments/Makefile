@@ -149,10 +149,10 @@ exp3: objects.tsv family_names_lexicon.tsv first_names_lexicon.tsv streetnames_l
 	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon family_names_lexicon.tsv --lexicon first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv --corpus groundtruth.tok.lexicon.tsv -N 1 -n 25 -T 1.4 --output-lexmatch < A16098000033.txt > exp3.out.txt 2> exp3.log
 
 %.exp4.json: %.txt sanitized_family_names_lexicon.tsv sanitized_first_names_lexicon.tsv objects.tsv
-	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon sanitized_family_names_lexicon.tsv --lexicon sanitized_first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
+	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon sanitized_first_names_lexicon.tsv --lexicon sanitized_family_names_lexicon.tsv --lexicon streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
 
 %.exp5.json: %.txt sanitized_family_names_lexicon.tsv sanitized_first_names_lexicon.tsv objects.tsv int_lemma_hist_variants.tsv
-	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --lexicon sanitized_family_names_lexicon.tsv --lexicon sanitized_first_names_lexicon.tsv --lexicon streetnames_lexicon.tsv --errors int_lemma_hist_variants.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
+	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon objects.tsv --errors int_lemma_hist_variants.tsv --lexicon sanitized_first_names_lexicon.tsv --lexicon sanitized_family_names_lexicon.tsv  --lexicon streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
 
 
 # ------------------- Dependency check ---------------------------

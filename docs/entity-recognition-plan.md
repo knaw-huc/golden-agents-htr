@@ -232,3 +232,37 @@ considerable experimentation.
 
 We will need some manually tagged subset of the data for evaluation purposes, I think Harm already did some work to that
 end, and I think there are already parts of the data that already have some entity detection?
+
+## Current status
+
+*(Oct 18, 2021)*
+
+Significant work has been performed on analiticcl in the past three months, culminating in the
+[v0.3.0](https://github.com/proycon/analiticcl/releases/tag/v0.3.0) release. The release notes describe the changes in
+more technical detail, and the [README](https://github.com/proycon/analiticcl/blob/master/README.md) provides an
+up-to-date overview of the possibilities so-far. A Python binding is released and is used to invoke analiticcl for the
+collection-specific parts of the pipeline developed by Bram.
+
+The scoring mechanism has been revised and handling of n-grams and context has been implemented as described in
+[issue #2](https://github.com/proycon/analiticcl/issues/2). Context consideration is implemented using a simple n-gram
+language model that scores the top-n hypotheses that emerge from the variant model, for the entire input.
+This effectively combines two models (variant model and language model), and that always brings the challenge of
+weighing the scores of these components in such a way to get the best results. That is not a trivial matter nor an exact science,
+and striking the right balance should ideally be done empirically, which leads us to the next issue:
+
+As I suggested in the last status, a small gold-standard set is needed to evaluate the performance of analiticcl (and
+surrounding pipeline). The annotation task has been fully set up now and the annotations can start annotating according
+to [these annotation
+guidelines](https://github.com/knaw-huc/golden-agents-htr/blob/master/docs/annotation-guidelines.md).
+
+As also indicated earlier, the quality of the output is very dependent on the quality of the input lexicons, and a decent
+general background lexicon is an important component in that equation. After all, analiticcl will eagerly attempt to
+match what it sees at test time to anything in the lexicon. If the lexicon has poor coverage, than the change of false
+positives increases. We have some ground to gain in doing some lexicon curation (either semi-automatically or in part
+manually). I've done some initial experiments using an outdated version of the INT Historical Lexicon (a new version has
+been requested) ([example output](https://github.com/knaw-huc/golden-agents-htr/blob/master/docs/annotation-guidelines.md)), some experiments with TICCLAT as input lexicon will also be conducted soon.
+
+
+
+
+

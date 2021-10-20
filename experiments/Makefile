@@ -103,6 +103,10 @@ objects.tsv:
 	#Get some objects
 	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tr '[:upper:]' '[:lower:]' | tail --lines="+2" > "$@" || (rm "$@" && false)
 
+keywords.tsv:
+	#keywords that may be indicative of an object
+	cut -d "," -f 1 "$(REPOROOT)/resources/keywords.csv" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
 sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
 	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
 

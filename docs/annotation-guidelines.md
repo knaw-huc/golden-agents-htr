@@ -54,6 +54,7 @@ annotate the following for possible future project, even though we don't need it
 * **Ships** (names)
 * **Book titles**
 * **Relations** (relations between people, family relations)
+* **Deed types / document types**
 
 ## Annotation Tool
 

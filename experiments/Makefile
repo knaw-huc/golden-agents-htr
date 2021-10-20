@@ -101,7 +101,7 @@ buildings_lexicon.tsv: buildingsAdamlink.csv
 
 objects.tsv:
 	#Get some objects
-	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tail --lines="+2" > "$@" || (rm "$@" && false)
+	cut -d "," -f 1 "$(REPOROOT)/resources/objects.csv" | tr '[:upper:]' '[:lower:]' | tail --lines="+2" > "$@" || (rm "$@" && false)
 
 sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
 	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)

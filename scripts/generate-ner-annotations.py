@@ -24,7 +24,7 @@ def process_pagexml(file: str) -> list:
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Perform NER on a PageXML file using Analiticcl, export resulst as Web Annotations",
+        description="Perform NER on a PageXML file using Analiticcl, export results as Web Annotations",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument("pagexmlfile",
                         help="The PageXML file to extract NER annotations from",

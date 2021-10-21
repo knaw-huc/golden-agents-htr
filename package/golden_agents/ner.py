@@ -11,36 +11,30 @@ LOCATION_LEXICON = "resources/lexicons/locations.tsv"
 OCCUPATION_LEXICON = "resources/lexicons/occupations.tsv"
 
 
-def create_variant_model() -> VariantModel:
-    model = VariantModel("resources/simple.alphabet.tsv", Weights(), debug=False)
-    model.read_lexicon(OBJECT_LEXICON)
-    model.read_lexicon(LOCATION_LEXICON)
-    model.read_lexicon(OCCUPATION_LEXICON)
-    model.build()
-    return model
-
-
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
 
 
-def do_ner_on_line(text_line: PageXMLTextLine, model: VariantModel):
-    return model.find_all_matches(text_line.text, SearchParameters(max_edit_distance=3, max_ngram=1))
-
-
 class NER:
     def __init__(self):
-        self.model = create_variant_model()
         self.category_dict = {
             OBJECT_LEXICON: "object",
             LOCATION_LEXICON: "location",
             OCCUPATION_LEXICON: "occupation"
         }
+        self.model = VariantModel("resources/simple.alphabet.tsv", Weights(), debug=False)
+        self.model.read_lexicon(OBJECT_LEXICON)
+        self.model.read_lexicon(LOCATION_LEXICON)
+        self.model.read_lexicon(OCCUPATION_LEXICON)
+        self.model.build()
+
+    def process_line(self, text_line: PageXMLTextLine):
+        return self.model.find_all_matches(text_line.text, SearchParameters(max_edit_distance=3, max_ngram=1))
 
     def create_web_annotations(self, scan, version_base_uri: str) -> List[dict]:
         annotations = []
         for tl in [l for l in scan.get_lines() if l.text]:
-            ner_results = do_ner_on_line(tl, self.model)
+            ner_results = self.process_line(tl)
             for result in ner_results:
                 if (
                         len(result['variants']) > 0

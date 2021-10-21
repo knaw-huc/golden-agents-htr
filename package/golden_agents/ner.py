@@ -1,3 +1,5 @@
+import json
+import os.path
 import uuid
 from datetime import datetime
 from typing import List
@@ -5,10 +7,6 @@ from typing import List
 from analiticcl import VariantModel, Weights, SearchParameters
 from icecream import ic
 from pagexml.parser import PageXMLTextLine, parse_pagexml_file
-
-OBJECT_LEXICON = "resources/lexicons/objects.tsv"
-LOCATION_LEXICON = "resources/lexicons/locations.tsv"
-OCCUPATION_LEXICON = "resources/lexicons/occupations.tsv"
 
 
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
@@ -22,18 +20,20 @@ def create_scan_id(file) -> str:
 
 
 class NER:
-    def __init__(self):
+    def __init__(self, configfile: str):
         """Instantiates a NER tagger with variantmodel; loads all lexicons"""
-        self.category_dict = {
-            OBJECT_LEXICON: "object",
-            LOCATION_LEXICON: "location",
-            OCCUPATION_LEXICON: "occupation"
-        }
-        self.params = SearchParameters(max_edit_distance=3, max_ngram=1)
-        self.model = VariantModel("resources/simple.alphabet.tsv", Weights(), debug=False)
-        self.model.read_lexicon(OBJECT_LEXICON)
-        self.model.read_lexicon(LOCATION_LEXICON)
-        self.model.read_lexicon(OCCUPATION_LEXICON)
+        self.config = json.load(configfile)
+        for key in ("lexicons","searchparameters","alphabet","weights"):
+            raise ValueError("Missing required key in configuration file: ", key)
+        self.category_dict = { filepath: category for category,filepath in self.config['lexicons'].items() }
+        self.params = SearchParameters(**self.config['searchparameters'])
+        abcfile = self.config['alphabet']
+        if abcfile[0] != '/':
+            #relative path:
+            abcfile = os.path.join( os.path.dirname(configfile), abcfile)
+        self.model = VariantModel(abcfile, Weights(**self.config['weights']), debug=0)
+        for filepath in self.config['lexicons'].values():
+            self.model.read_lexicon(filepath)
         self.model.build()
 
     def process_pagexml(self, file: str) -> list:

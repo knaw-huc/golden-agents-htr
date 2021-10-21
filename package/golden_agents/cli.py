@@ -8,13 +8,14 @@ def main():
     parser = argparse.ArgumentParser(
         description="Perform NER on a PageXML file using Analiticcl, export results as Web Annotations",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument('--config','-c',type=str, help="Configuration file", action='store', required=True)
     parser.add_argument("pagexmlfiles",
                         nargs="*",
                         help="The PageXML file(s) to extract NER annotations from",
                         type=str)
     args = parser.parse_args()
 
-    ner = NER()
+    ner = NER(args.config)
 
     if args.pagexmlfiles:
         for pagexmlfile in args.pagexmlfiles:

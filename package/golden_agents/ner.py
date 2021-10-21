@@ -23,6 +23,7 @@ def create_scan_id(file) -> str:
 
 class NER:
     def __init__(self):
+        """Instantiates a NER tagger with variantmodel; loads all lexicons"""
         self.category_dict = {
             OBJECT_LEXICON: "object",
             LOCATION_LEXICON: "location",
@@ -36,16 +37,20 @@ class NER:
         self.model.build()
 
     def process_pagexml(self, file: str) -> list:
+        """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
         scan = parse_pagexml_file(file)
         if not scan.id:
             scan.id = create_scan_id(file)
+        #TODO: remove hardcoded urls
         scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
         return self.create_web_annotations(scan, "http://localhost:8080/textrepo/versions/x")
 
     def process_line(self, text_line: PageXMLTextLine):
+        """Invokes analiticcl on a text line from the pagexml"""
         return self.model.find_all_matches(text_line.text, self.params)
 
     def create_web_annotations(self, scan, version_base_uri: str) -> List[dict]:
+        """Find lines in the scan and pass them to the tagger, producing web-annotations"""
         annotations = []
         for tl in [l for l in scan.get_lines() if l.text]:
             ner_results = self.process_line(tl)
@@ -62,6 +67,7 @@ class NER:
 
     def create_web_annotation(self, scan_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
                               version_base_uri):
+        """Convert analiticcl's output to web annotation"""
         top_variant = ner_result['variants'][0]
         # ic(top_variant)
         lexicons = top_variant['lexicons']

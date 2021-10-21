@@ -18,6 +18,12 @@ def create_scan_id(file) -> str:
     scan_id = path_parts[-1].replace('.xml', '')
     return f"urn:golden-agents:{archive_id}:scan={scan_id}"
 
+def fixpath(filepath: str, configfile: str) -> str:
+    """Turns a relative path relative to the config file into a relative path relative to the caller"""
+    if filepath[0] != '/':
+        #relative path:
+        filepath = os.path.join( os.path.dirname(configfile), filepath)
+    return filepath
 
 class NER:
     def __init__(self, configfile: str):
@@ -27,7 +33,7 @@ class NER:
         for key in ("lexicons","searchparameters","alphabet","weights"):
             if key not in self.config:
                 raise ValueError(f"Missing required key in configuration file: {key}")
-        self.category_dict = { filepath: category for category,filepath in self.config['lexicons'].items() }
+        self.category_dict = { fixpath(filepath,configfile): category for category,filepath in self.config['lexicons'].items() }
         self.params = SearchParameters(**self.config['searchparameters'])
         abcfile = self.config['alphabet']
         if abcfile[0] != '/':
@@ -35,6 +41,7 @@ class NER:
             abcfile = os.path.join( os.path.dirname(configfile), abcfile)
         self.model = VariantModel(abcfile, Weights(**self.config['weights']), debug=0)
         for filepath in self.config['lexicons'].values():
+            filepath = fixpath(filepath, configfile)
             if not os.path.exists(filepath):
                 raise FileNotFoundError(filepath)
             self.model.read_lexicon(filepath)

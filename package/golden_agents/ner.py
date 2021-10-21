@@ -4,7 +4,7 @@ from typing import List
 
 from analiticcl import VariantModel, Weights, SearchParameters
 from icecream import ic
-from pagexml.parser import PageXMLTextLine
+from pagexml.parser import PageXMLTextLine, parse_pagexml_file
 
 OBJECT_LEXICON = "resources/lexicons/objects.tsv"
 LOCATION_LEXICON = "resources/lexicons/locations.tsv"
@@ -13,6 +13,12 @@ OCCUPATION_LEXICON = "resources/lexicons/occupations.tsv"
 
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
+
+def create_scan_id(file) -> str:
+    path_parts = file.split('/')
+    archive_id = path_parts[-2]
+    scan_id = path_parts[-1].replace('.xml', '')
+    return f"urn:golden-agents:{archive_id}:scan={scan_id}"
 
 
 class NER:
@@ -28,6 +34,13 @@ class NER:
         self.model.read_lexicon(LOCATION_LEXICON)
         self.model.read_lexicon(OCCUPATION_LEXICON)
         self.model.build()
+
+    def process_pagexml(self, file: str) -> list:
+        scan = parse_pagexml_file(file)
+        if not scan.id:
+            scan.id = create_scan_id(file)
+        scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
+        return self.create_web_annotations(scan, "http://localhost:8080/textrepo/versions/x")
 
     def process_line(self, text_line: PageXMLTextLine):
         return self.model.find_all_matches(text_line.text, self.params)

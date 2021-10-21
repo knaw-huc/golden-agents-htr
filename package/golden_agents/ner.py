@@ -22,9 +22,11 @@ def create_scan_id(file) -> str:
 class NER:
     def __init__(self, configfile: str):
         """Instantiates a NER tagger with variantmodel; loads all lexicons"""
-        self.config = json.load(configfile)
+        with open(configfile,'rb') as f:
+            self.config = json.load(f)
         for key in ("lexicons","searchparameters","alphabet","weights"):
-            raise ValueError("Missing required key in configuration file: ", key)
+            if key not in self.config:
+                raise ValueError(f"Missing required key in configuration file: {key}")
         self.category_dict = { filepath: category for category,filepath in self.config['lexicons'].items() }
         self.params = SearchParameters(**self.config['searchparameters'])
         abcfile = self.config['alphabet']
@@ -33,6 +35,8 @@ class NER:
             abcfile = os.path.join( os.path.dirname(configfile), abcfile)
         self.model = VariantModel(abcfile, Weights(**self.config['weights']), debug=0)
         for filepath in self.config['lexicons'].values():
+            if not os.path.exists(filepath):
+                raise FileNotFoundError(filepath)
             self.model.read_lexicon(filepath)
         self.model.build()
 

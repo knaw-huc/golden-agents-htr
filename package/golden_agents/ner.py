@@ -22,6 +22,7 @@ class NER:
             LOCATION_LEXICON: "location",
             OCCUPATION_LEXICON: "occupation"
         }
+        self.params = SearchParameters(max_edit_distance=3, max_ngram=1)
         self.model = VariantModel("resources/simple.alphabet.tsv", Weights(), debug=False)
         self.model.read_lexicon(OBJECT_LEXICON)
         self.model.read_lexicon(LOCATION_LEXICON)
@@ -29,7 +30,7 @@ class NER:
         self.model.build()
 
     def process_line(self, text_line: PageXMLTextLine):
-        return self.model.find_all_matches(text_line.text, SearchParameters(max_edit_distance=3, max_ngram=1))
+        return self.model.find_all_matches(text_line.text, self.params)
 
     def create_web_annotations(self, scan, version_base_uri: str) -> List[dict]:
         annotations = []

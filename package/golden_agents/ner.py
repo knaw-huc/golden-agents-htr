@@ -29,12 +29,13 @@ def do_ner_on_line(text_line: PageXMLTextLine, model: VariantModel):
 
 
 class NER:
-    model = create_variant_model()
-    category_dict = {
-        OBJECT_LEXICON: "object",
-        LOCATION_LEXICON: "location",
-        OCCUPATION_LEXICON: "occupation"
-    }
+    def __init__(self):
+        self.model = create_variant_model()
+        self.category_dict = {
+            OBJECT_LEXICON: "object",
+            LOCATION_LEXICON: "location",
+            OCCUPATION_LEXICON: "occupation"
+        }
 
     def create_web_annotations(self, scan, version_base_uri: str) -> List[dict]:
         annotations = []

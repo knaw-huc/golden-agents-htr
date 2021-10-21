@@ -27,7 +27,7 @@ def fixpath(filepath: str, configfile: str) -> str:
 
 class NER:
     def __init__(self, configfile: str):
-        """Instantiates a NER tagger with variantmodel; loads all lexicons"""
+        """Instantiates a NER tagger with variantmodel; loads all lexicons specified in the configuration (and parameters)"""
         with open(configfile,'rb') as f:
             self.config = json.load(f)
         for key in ("lexicons","searchparameters","alphabet","weights"):

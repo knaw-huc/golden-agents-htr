@@ -91,6 +91,7 @@ class NER:
         top_variant = ner_result['variants'][0]
         # ic(top_variant)
         lexicons = top_variant['lexicons']
+        #note: categories starting with an underscore will not be propagated to output (useful for background lexicons)
         categories = [self.category_dict[l] for l in lexicons if self.category_dict[l][0] != "_" ]
         if not categories:
             return None

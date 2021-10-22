@@ -81,7 +81,8 @@ class NER:
                     xywh = f"{tl.coords.x},{tl.coords.y},{tl.coords.w},{tl.coords.h}"
                     wa = self.create_web_annotation(scan.id, tl, result, iiif_url=scan.transkribus_uri, xywh=xywh,
                                                     version_base_uri=version_base_uri)
-                    annotations.append(wa)
+                    if wa:
+                        annotations.append(wa)
         return annotations
 
     def create_web_annotation(self, scan_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
@@ -90,7 +91,9 @@ class NER:
         top_variant = ner_result['variants'][0]
         # ic(top_variant)
         lexicons = top_variant['lexicons']
-        categories = [self.category_dict[l] for l in lexicons]
+        categories = [self.category_dict[l] for l in lexicons if self.category_dict[l][0] != "_" ]
+        if not categories:
+            return None
         if len(categories) == 1:
             categories = categories[0]
         return {

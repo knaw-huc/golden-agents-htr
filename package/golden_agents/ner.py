@@ -76,7 +76,7 @@ class NER:
             for result in ner_results:
                 if (
                         len(result['variants']) > 0
-                        and result['variants'][0]['score'] > 0.8
+                        and result['variants'][0]['score'] > self.config.get('scorethreshold', 0.8)
                 ):
                     xywh = f"{tl.coords.x},{tl.coords.y},{tl.coords.w},{tl.coords.h}"
                     wa = self.create_web_annotation(scan.id, tl, result, iiif_url=scan.transkribus_uri, xywh=xywh,

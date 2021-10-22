@@ -34,6 +34,8 @@ class NER:
             if key not in self.config:
                 raise ValueError(f"Missing required key in configuration file: {key}")
         self.category_dict = { fixpath(filepath,configfile): category for category,filepath in self.config['lexicons'].items() }
+        if 'variantlists' in self.config:
+            self.category_dict.update({ fixpath(filepath,configfile): category for category,filepath in self.config['variantlists'].items() })
         self.params = SearchParameters(**self.config['searchparameters'])
         abcfile = self.config['alphabet']
         if abcfile[0] != '/':
@@ -45,6 +47,12 @@ class NER:
             if not os.path.exists(filepath):
                 raise FileNotFoundError(filepath)
             self.model.read_lexicon(filepath)
+        if 'variantlists' in self.config:
+            for filepath in self.config['variantlists'].values():
+                filepath = fixpath(filepath, configfile)
+                if not os.path.exists(filepath):
+                    raise FileNotFoundError(filepath)
+                self.model.read_variants(filepath, True)
         self.model.build()
 
     def process_pagexml(self, file: str) -> list:

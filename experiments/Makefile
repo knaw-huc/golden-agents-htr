@@ -42,7 +42,13 @@ endif
 
 %.txt: %.index
 	cat $< | xargs "$(REPOROOT)/scripts/extract-text.py" | "$(REPOROOT)/scripts/dehyphenize.py" > "$@" || (rm "$@" && false)
-	                                                                                                   #^-- this final clause ensures output is not empty
+
+%.xml:
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	find "$(DATADIR)" -name "$@" | xargs -I _ ln -s _ "$@"
 
 .PHONY: texts
 texts: groundtruth.txt htr.txt
@@ -90,11 +96,14 @@ exp2: htr-normalised-against-groundtruth.analiticcl.t0.7.tsv
 exp3: lexicons A16098000033.txt
 	analiticcl --debug 1 search --single-thread --alphabet $(RESOURCEDIR)/simple.alphabet.tsv --lexicon $(RESOURCEDIR)/object_lexicon.tsv --lexicon $(RESOURCEDIR)/family_names_lexicon.tsv --lexicon $(RESOURCEDIR)/first_names_lexicon.tsv --lexicon $(RESOURCEDIR)/streetnames_lexicon.tsv --corpus groundtruth.tok.lexicon.tsv -N 1 -n 25 -T 1.4 --output-lexmatch < A16098000033.txt > exp3.out.txt 2> exp3.log
 
-%.exp4.json: lexicons %.txt
-	analiticcl --debug 1 search --single-thread --alphabet $(RESOURCEDIR)/simple.alphabet.tsv --lexicon $(RESOURCEDIR)/object_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_first_names_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_family_names_lexicon.tsv --lexicon $(RESOURCEDIR)/streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
+%.exp4.json: %.txt lexicons
+	analiticcl --debug 1 search --single-thread --alphabet $(RESOURCEDIR)/simple.alphabet.tsv --lexicon $(RESOURCEDIR)/object_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_first_names_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_family_names_lexicon.tsv --lexicon $(RESOURCEDIR)/streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < $< > "$@" || (rm "$@" && false)
 
-%.exp5.json: lexicons %.txt
-	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon $(RESOURCEDIR)/object_lexicon.tsv --errors $(RESOURCEDIR)/int_lemma_hist_variants.tsv --lexicon $(RESOURCEDIR)/sanitized_first_names_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_family_names_lexicon.tsv  --lexicon $(RESOURCEDIR)/streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < A16098000033.txt > "$@" || (rm "$@" && false)
+%.exp5.json: %.txt lexicons
+	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon $(RESOURCEDIR)/object_lexicon.tsv --errors $(RESOURCEDIR)/int_lemma_hist_variants.tsv --lexicon $(RESOURCEDIR)/sanitized_first_names_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_family_names_lexicon.tsv  --lexicon $(RESOURCEDIR)/streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < $< > "$@" || (rm "$@" && false)
+
+%.exp6.json: %.xml lexicons
+	golden-agents-ner --config nerconfig.exp6.json "$<" > "$@" || (rm "$@" && false)
 
 .PHONY: lexicons
 lexicons:
@@ -115,6 +124,7 @@ checkdeps:
 	which lexmatch
 	python3 -c 'import SPARQLWrapper'
 	python3 -c 'import pandas'
+	which golden-agents-htr
 
 .PHONY: help
 help:

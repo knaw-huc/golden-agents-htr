@@ -1,3 +1,4 @@
+import sys
 import json
 import os.path
 import uuid
@@ -14,7 +15,11 @@ def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
 
 def create_scan_id(file) -> str:
     path_parts = file.split('/')
-    archive_id = path_parts[-2]
+    if len(path_parts) >= 2:
+        archive_id = path_parts[-2]
+    else:
+        archive_id = "unknown"
+        print(f"WARNING: No archive component could be extracted for {file} because input file as no archive directory component",file=sys.stderr)
     scan_id = path_parts[-1].replace('.xml', '')
     return f"urn:golden-agents:{archive_id}:scan={scan_id}"
 

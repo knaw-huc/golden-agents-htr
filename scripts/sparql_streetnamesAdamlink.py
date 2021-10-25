@@ -12,10 +12,14 @@ if __name__ == "__main__":
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     PREFIX hg: <http://rdf.histograph.io/>
     PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+    PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
     SELECT ?street ?label WHERE {
 
       ?street a hg:Street ;
-        skos:altLabel ?label .
+        skos:altLabel ?label ;
+        sem:hasEarliestBeginTimeStamp ?beginDate .
+    
+    FILTER(YEAR(?beginDate) <= 1811)
 
     }
     """

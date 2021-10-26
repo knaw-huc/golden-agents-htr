@@ -16,7 +16,7 @@ the contents of the deeds and the historical language.
 * Put the object in the first column, in some form of normalised spelling, preferably closest to contemporary
 * Put spelling variants in subsequent columns (optional), no need to be exhaustive here because the system is designed to find spelling variants, focus on forms that deviate further from the normal form (larger edit distance) and don't bother with minor spelling variants.
 * Entries without further spelling variants are fine too (first column only)
-* Different forms of the object (singular, plural) should be different entries (different rows). Diminuitives (-je) are considered a sspelling variant rather than separate entries, unless the dimuinitive version of an object is a significantly different thing.
+* Different forms of the object (singular, plural) should be different entries (different rows). Diminutives (-je) are considered a spelling variant rather than separate entries, unless the diminutive version of an object is a significantly different thing.
 * Mind proper casing, use lowercase except for titles/names etc
 * You may include multi-word entries (without determiners unless they're intrinsic part of a title/name)
 * You may include compound nouns

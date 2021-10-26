@@ -11,12 +11,16 @@ the contents of the deeds and the historical language.
 
 ## Guidelines
 
-* We use a tab seperated format, one object per row, columns separated by spaces.
+* We use a tab seperated format, one object per row.
+
+* columns separated by spaces.
     * You can use CSV import/export in a spreadsheet program to edit
-* Put the object in the first column, in some form of normalised spelling, preferably closest to contemporary
+* Put the lemma of the object in the first column, in some form of normalised spelling, preferably closest to contemporary
+* Put the word form of the object in the second column, in some form of normalised spelling, preferably closest to contemporary
 * Put spelling variants in subsequent columns (optional), no need to be exhaustive here because the system is designed to find spelling variants, focus on forms that deviate further from the normal form (larger edit distance) and don't bother with minor spelling variants.
-* Entries without further spelling variants are fine too (first column only)
-* Different forms of the object (singular, plural) should be different entries (different rows). Diminutives (-je) are considered a spelling variant rather than separate entries, unless the diminutive version of an object is a significantly different thing.
+    * If you don't want to use multiple columns for variants it's also fine to use a single column with semicolon separated fields.
+* Entries without further spelling variants are fine too (first and second column only)
+* Different forms of the object (singular, plural) should be different entries (different rows). Diminuitives (-je) are considered a sspelling variant rather than separate entries, unless the dimuinitive version of an object is a significantly different thing.
 * Mind proper casing, use lowercase except for titles/names etc
 * You may include multi-word entries (without determiners unless they're intrinsic part of a title/name)
 * You may include compound nouns
@@ -25,11 +29,11 @@ the contents of the deeds and the historical language.
 Example:
 
 ```tsv
-beddekleed	beddecleet
-bed	bedde	bedje
-bedden	bedjes
-borduurwerk	borduerwerck
-borduurwerken	borduerwercken
+bed	bed	bedde	bedje
+bed	bedden	bedjes	beddekes
+beddekleed	beddekleed	beddecleet
+borduurwerk	borduurwerk	borduerwerck
+borduurwerk	borduurwerken	borduerwercken
 ```
 
 

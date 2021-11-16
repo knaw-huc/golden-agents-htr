@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 import argparse
 import json
+import os.path
 
 from golden_agents.ner import NER
+
 
 def main():
     parser = argparse.ArgumentParser(
         description="Perform NER on a PageXML file using Analiticcl, export results as Web Annotations",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument('--config','-c',type=str, help="Configuration file", action='store', required=True)
+    parser.add_argument('--config', '-c', type=str, help="Configuration file", action='store', required=True)
+    parser.add_argument('--destinationdir', '-d', type=str, help="Directory for output files", action='store',
+                        required=False)
     parser.add_argument("pagexmlfiles",
                         nargs="*",
                         help="The PageXML file(s) to extract NER annotations from",
@@ -18,9 +22,24 @@ def main():
     ner = NER(args.config)
 
     if args.pagexmlfiles:
+        out_root = "."
+        if args.destinationdir:
+            os.makedirs(args.destinationdir, exist_ok=True)
+            out_root = args.destinationdir
+
         for pagexmlfile in args.pagexmlfiles:
-            annotations = ner.process_pagexml(pagexmlfile)
-            print(json.dumps(annotations, indent=4))
+            (annotations, plain_text) = ner.process_pagexml(pagexmlfile)
+            basename = os.path.splitext(os.path.basename(pagexmlfile))[0]
+
+            json_file = os.path.join(out_root, f"{basename}.json")
+            print(f'writing to {json_file}')
+            with open(json_file, 'w', encoding='utf8') as f:
+                json.dump(obj=annotations, fp=f, indent=4)
+
+            text_file = os.path.join(out_root, f"{basename}.txt")
+            print(f'writing to {text_file}')
+            with open(text_file, 'w', encoding='utf8') as f:
+                f.write(plain_text)
 
 
 if __name__ == '__main__':

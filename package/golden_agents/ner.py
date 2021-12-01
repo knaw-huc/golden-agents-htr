@@ -119,8 +119,34 @@ class NER:
         categories = [self.category_dict[l] for l in lexicons if self.category_dict[l][0] != "_"]
         if not categories:
             return None
-        if len(categories) == 1:
-            categories = categories[0]
+        tag_bodies = []
+        for cat in categories:
+            body = {
+                "type": "TextualBody",
+                "value": cat,
+                "modified": datetime.today().isoformat(),
+                "purpose": "tagging"
+            }
+            tag_bodies.append(body)
+        bodies = [
+            *tag_bodies,
+            {
+                "type": "TextualBody",
+                "value": top_variant['text'],
+                "modified": datetime.today().isoformat(),
+                "purpose": "commenting",
+            },
+            {"type": "TextualBody", "value": categories, "purpose": "classifying"},
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": ner_result['input'],
+                    "match_variant": top_variant['text'],
+                    "match_score": top_variant['score'],
+                    "category": categories,
+                },
+            },
+        ]
         return {
             "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
             "id": str(uuid.uuid4()),
@@ -132,34 +158,8 @@ class NER:
                 "type": "Software",
                 "name": "GoldenAgentsNER"
             },
-            "body": [
-                {
-                    "type": "TextualBody",
-                    "value": categories,
-                    "modified": datetime.today().isoformat(),
-                    "purpose": "tagging"
-                },
-                {
-                    "type": "TextualBody",
-                    "value": top_variant['text'],
-                    "modified": datetime.today().isoformat(),
-                    "purpose": "commenting"
-                },
-                {
-                    "type": "TextualBody",
-                    "value": categories,
-                    "purpose": "classifying"
-                },
-                {
-                    "type": "Dataset",
-                    "value": {
-                        "match_phrase": ner_result['input'],
-                        "match_variant": top_variant['text'],
-                        "match_score": top_variant['score'],
-                        "category": categories
-                    }
-                }],
-            "target": [
+            "body": bodies,
+            "target":
                 {
                     "source": f'{scan_urn}',
                     "selector": [{
@@ -171,44 +171,44 @@ class NER:
                         "exact": ner_result['input']
                     }
                     ]
-                },
-                {
-                    "source": f'{scan_urn}:textline={text_line.id}',
-                    "selector": [{
-                        "type": "TextPositionSelector",
-                        "start": ner_result['offset']['begin'],
-                        "end": ner_result['offset']['end']
-                    }, {
-                        "type": "TextQuoteSelector",
-                        "exact": ner_result['input']
-
-                    }, {
-                        "type": "FragmentSelector",
-                        "conformsTo": "http://tools.ietf.org/rfc/rfc5147",
-                        "value": f"char={ner_result['offset']['begin']},{ner_result['offset']['end']}"
-                    }
-                    ]
-                },
-                {
-                    "source": f'{version_base_uri}/contents',
-                    "type": "xml",
-                    "selector": {
-                        "type": "FragmentSelector",
-                        "conformsTo": "http://tools.ietf.org/rfc/rfc3023",
-                        "value": f"xpointer(id({text_line.id})/TextEquiv/Unicode)"
-                    }
-                },
-                {
-                    "source": f"{version_base_uri}/chars/{ner_result['offset']['begin']}/{ner_result['offset']['end']}"
-                },
-                {
-                    "source": iiif_url,
-                    "type": "image",
-                    "selector": {
-                        "type": "FragmentSelector",
-                        "conformsTo": "http://www.w3.org/TR/media-frags/",
-                        "value": f"xywh={xywh}"
-                    }
                 }
-            ]
+            # {
+            #     "source": f'{scan_urn}:textline={text_line.id}',
+            #     "selector": [{
+            #         "type": "TextPositionSelector",
+            #         "start": ner_result['offset']['begin'],
+            #         "end": ner_result['offset']['end']
+            #     }, {
+            #         "type": "TextQuoteSelector",
+            #         "exact": ner_result['input']
+            #
+            #     }, {
+            #         "type": "FragmentSelector",
+            #         "conformsTo": "http://tools.ietf.org/rfc/rfc5147",
+            #         "value": f"char={ner_result['offset']['begin']},{ner_result['offset']['end']}"
+            #     }
+            #     ]
+            # },
+            # {
+            #     "source": f'{version_base_uri}/contents',
+            #     "type": "xml",
+            #     "selector": {
+            #         "type": "FragmentSelector",
+            #         "conformsTo": "http://tools.ietf.org/rfc/rfc3023",
+            #         "value": f"xpointer(id({text_line.id})/TextEquiv/Unicode)"
+            #     }
+            # },
+            # {
+            #     "source": f"{version_base_uri}/chars/{ner_result['offset']['begin']}/{ner_result['offset']['end']}"
+            # },
+            # {
+            #     "source": iiif_url,
+            #     "type": "image",
+            #     "selector": {
+            #         "type": "FragmentSelector",
+            #         "conformsTo": "http://www.w3.org/TR/media-frags/",
+            #         "value": f"xywh={xywh}"
+            #     }
+            # }
+            # ]
         }

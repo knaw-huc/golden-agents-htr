@@ -28,14 +28,14 @@ ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
 	@false
 endif
-	jq --raw-output 'map(.segments)' $(REPOROOT)/analiticcl-evaluation-tool/init/recogito_selection.json > $@
+	jq --raw-output 'map(.segments)' $(REPOROOT)/analiticcl-evaluation-tool/init/recogito_selection.json | grep "\"" | tr -d '",' | sed 's/^[ \t]*//' > $@ || (rm "$@" && false)
 
 devset.index: devset.lst
 ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
 	@false
 endif
-	grep "\"" devset.lst | tr -d '",' | sed 's/^[ \t]*//' | xargs -L 1 -I"{}" find "$(DATADIR)/" -name "{}.xml" > "$@"
+	cat devset.lst | xargs -I"{}" find "$(DATADIR)/" -name "{}.xml" > "$@"
 
 %.index:
 ifeq ($(strip $(DATADIR)),)
@@ -121,6 +121,15 @@ exp3: lexicons A16098000033.txt
 
 %.exp7.json: %.xml lexicons
 	golden-agents-ner --stdout --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
+
+.PHONY: exp7
+exp7: devset.lst lexicons
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	#recursive make procesisng the whole development set
+	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.exp7.json"
 
 .PHONY: lexicons
 lexicons:

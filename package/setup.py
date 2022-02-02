@@ -8,7 +8,7 @@ with open('README.md', encoding='utf8') as f:
 
 setup(
     name='golden_agents',
-    version='0.0.1',
+    version='0.0.2',
 
     description='NER pipeline and utility functions for the Golden Agents project',
     long_description=readme,

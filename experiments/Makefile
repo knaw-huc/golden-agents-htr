@@ -117,10 +117,10 @@ exp3: lexicons A16098000033.txt
 	analiticcl --debug 1 search --single-thread --alphabet $(REPOROOT)/resources/simple.alphabet.tsv --lexicon $(RESOURCEDIR)/object_lexicon.tsv --errors $(RESOURCEDIR)/int_lemma_hist_variants.tsv --lexicon $(RESOURCEDIR)/sanitized_first_names_lexicon.tsv --lexicon $(RESOURCEDIR)/sanitized_family_names_lexicon.tsv  --lexicon $(RESOURCEDIR)/streetnames_lexicon.tsv -n 25 -T 1.4 --output-lexmatch --json < $< > "$@" || (rm "$@" && false)
 
 %.exp6.json: %.xml lexicons
-	golden-agents-ner --config nerconfig.exp6.json "$<" > "$@" || (rm "$@" && false)
+	golden-agents-ner --stdout --config nerconfig.exp6.json "$<" > "$@" || (rm "$@" && false)
 
 %.exp7.json: %.xml lexicons
-	golden-agents-ner --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
+	golden-agents-ner --stdout --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
 
 .PHONY: lexicons
 lexicons:

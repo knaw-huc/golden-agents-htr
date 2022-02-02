@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import argparse
 import json
 import os.path
@@ -13,6 +14,7 @@ def main():
     parser.add_argument('--config', '-c', type=str, help="Configuration file", action='store', required=True)
     parser.add_argument('--destinationdir', '-d', type=str, help="Directory for output files", action='store',
                         required=False)
+    parser.add_argument('--stdout','-o',help="Output JSON to standard output", action='store_true', required=False)
     parser.add_argument("pagexmlfiles",
                         nargs="*",
                         help="The PageXML file(s) to extract NER annotations from",
@@ -31,15 +33,18 @@ def main():
             (annotations, plain_text) = ner.process_pagexml(pagexmlfile)
             basename = os.path.splitext(os.path.basename(pagexmlfile))[0]
 
-            json_file = os.path.join(out_root, f"{basename}.json")
-            print(f'writing to {json_file}')
-            with open(json_file, 'w', encoding='utf8') as f:
-                json.dump(obj=annotations, fp=f, indent=4)
+            if args.stdout:
+                json.dump(obj=annotations, fp=sys.stdout, indent=4)
+            else:
+                json_file = os.path.join(out_root, f"{basename}.json")
+                print(f'writing to {json_file}',file=sys.stderr)
+                with open(json_file, 'w', encoding='utf8') as f:
+                    json.dump(obj=annotations, fp=f, indent=4)
 
-            text_file = os.path.join(out_root, f"{basename}.txt")
-            print(f'writing to {text_file}')
-            with open(text_file, 'w', encoding='utf8') as f:
-                f.write(plain_text)
+                text_file = os.path.join(out_root, f"{basename}.txt")
+                print(f'writing to {text_file}',file=sys.stderr)
+                with open(text_file, 'w', encoding='utf8') as f:
+                    f.write(plain_text)
 
 
 if __name__ == '__main__':

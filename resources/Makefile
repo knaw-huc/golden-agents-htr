@@ -31,8 +31,12 @@ buildings_lexicon.tsv: buildingsAdamlink.csv
 	#Extract street names
 	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > "$@" || (rm "$@" && false)
 
+object_variant_list.tsv: boedeltermen.csv
+	#Curated object lexicon (variant list)
+	awk -F"," '($$2 == "voorwerp") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
 object_lexicon.tsv:
-	#Extract object lexicon
+	#Uncurated object lexicon
 	cut -d "," -f 1 "$(RESOURCEDIR)/objects.csv" | tr '[:upper:]' '[:lower:]' | tail --lines="+2" > "$@" || (rm "$@" && false)
 
 keyword_lexicon.tsv:

@@ -6,7 +6,8 @@ import "@recogito/recogito-js/dist/recogito.min.css";
 
 // Theming only
 import "semantic-ui-css/semantic.min.css";
-import { Container, Header, Segment, Button, Icon } from "semantic-ui-react";
+import { Container, Header, Segment } from "semantic-ui-react";
+// import { Container, Header, Segment, Button, Icon } from "semantic-ui-react";
 
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
@@ -25,9 +26,9 @@ interface DocumentProps {
   // setText: (text: string) => void;
 }
 
-const basenames:string[] = require("./ga-selection-basenames.json");
+const basenames: string[] = require("./ga-selection-basenames.json");
 const annotations0:{}[] = require("./annotations.json");
-const text0:string = '';
+const text0: string = '';
 const doc0={text:text0,annotations:annotations0};
 
 class TextSelector extends Component<{selection:string, onChange}> {
@@ -162,32 +163,46 @@ class Document extends Component<DocumentProps> {
   }
 }
 
+const apiBase = "http://localhost:8000"; // development
+// const apiBase = "/api"; // production
+
 const App = () => {
   const [doc, setDoc] = useState(doc0);
   const [selection, setSelection] = useState(basenames[0]);
   const [loading, setLoading] = useState(false);
 
-  const fetchText = async (selected:string) => {
-    const res = await fetch(selected+".txt", {
+  const fetchPageData = async (selected:string) => {
+    const res = await fetch(apiBase +"/pagedata/"+selected, {
       headers: {
-        "Content-Type": "text/plain",
-        Accept: "text/plain",
+        "Content-Type": "text/json",
+        Accept: "text/json",
       },
     });
-    const text = await res.text();
-    return text;
+    const data = await res.json();
+    return data;
   }
 
-  const fetchAnnotations = async (selected:string) => {
-    const res = await fetch(selected+".json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-    });
-    const annotations = await res.json();
-    return annotations;
-  }
+  // const fetchText = async (selected:string) => {
+  //   const res = await fetch(selected+".txt", {
+  //     headers: {
+  //       "Content-Type": "text/plain",
+  //       Accept: "text/plain",
+  //     },
+  //   });
+  //   const text = await res.text();
+  //   return text;
+  // }
+
+  // const fetchAnnotations = async (selected:string) => {
+  //   const res = await fetch(selected+".json", {
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //     },
+  //   });
+  //   const annotations = await res.json();
+  //   return annotations;
+  // }
 
   const putAnnotations = (basename:string, annotations:{}[]) => {
     console.debug("TODO: PUT http://backend.com/documents/"+basename+"/annotations");
@@ -200,8 +215,9 @@ const App = () => {
     setSelection(newSelection);
     var newText;
     var newAnnotations;
-    await fetchText(newSelection).then(t => newText = t);
-    await fetchAnnotations(newSelection).then(a => newAnnotations = a);
+    await fetchPageData(newSelection).then(pd => {newText = pd.text; newAnnotations=pd.annotations});
+    // await fetchText(newSelection).then(t => newText = t);
+    // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
     const newDoc = {text:newText,annotations:newAnnotations};
 
     setDoc(newDoc);
@@ -230,20 +246,6 @@ const App = () => {
 
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-        <Button primary icon className="downloadbutton">
-          <a
-            href={`data:text/json;charset=utf-8,${encodeURIComponent(
-              JSON.stringify(doc.annotations, null, 2)
-            )}`}
-            download="annotations.json"
-          >
-            {`Download Json`}
-          </a>{" "}
-          <Icon name="download" />
-        </Button>
-        </div>
-
-        <div>
         Tag Legend: &nbsp;
         <span className="tag-firstname">firstname</span>  &nbsp;
         <span className="tag-familyname">familyname</span>  &nbsp;

@@ -16,13 +16,13 @@ all: help
 build: .make/.build
 
 .make/.docker: .make docker/Dockerfile public/* src/* package.json
-	docker build -t ga-analiticcl-evaluate:latest -f docker/Dockerfile .
+	docker build -t ga-analiticcl-evaluate-front:latest -f docker/Dockerfile .
 	@touch .make/.docker
 
 docker-image: .make/.docker
 
 .make/.push: .make docker-image
-	docker tag ga-analiticcl-evaluate:latest registry.diginfra.net/tt/ga-analiticcl-evaluate:latest
+	docker tag ga-analiticcl-evaluate-front:latest registry.diginfra.net/tt/ga-analiticcl-evaluate-front:latest
 	docker push registry.diginfra.net/tt/ga-analiticcl-evaluate:latest
 	@touch .make/.push
 

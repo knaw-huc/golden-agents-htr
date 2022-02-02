@@ -92,7 +92,7 @@ class NER:
         plain_text = ''
         for tl in [l for l in scan.get_lines() if l.text]:
             text = tl.text
-            if self.htr_corrector:
+            if hasattr(self, 'htr_corrector') and self.htr_corrector:
                 text = self.htr_corrector.correct(text)
             ner_results = self.model.find_all_matches(text, self.params)
             for result in ner_results:

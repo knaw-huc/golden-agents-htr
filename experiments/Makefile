@@ -105,6 +105,9 @@ exp3: lexicons A16098000033.txt
 %.exp6.json: %.xml lexicons
 	golden-agents-ner --config nerconfig.exp6.json "$<" > "$@" || (rm "$@" && false)
 
+%.exp7.json: %.xml lexicons
+	golden-agents-ner --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
+
 .PHONY: lexicons
 lexicons:
 	cd $(RESOURCEDIR) && make all

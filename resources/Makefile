@@ -91,7 +91,7 @@ int_lemma_hist_variants.tsv: int_historisch_lexicon.wordforms.freq.tsv
 
 
 .PHONY: all
-all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_lexicon.tsv int_lemma_hist_variants.tsv
+all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_lexicon.tsv int_lemma_hist_variants.tsv boedeltermen
 
 .PHONY: boedeltermen
 boedeltermen: object_variants.tsv property_variants.tsv material_variants.tsv picture_variants.tsv category_variants.tsv room_variants.tsv currency_variants.tsv

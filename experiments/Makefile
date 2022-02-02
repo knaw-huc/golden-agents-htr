@@ -23,6 +23,20 @@ endif
 	echo "" > groundtruth.index
 	cat "$(REPOROOT)/resources/werkvoorraad.csv" | grep -E ";GT" | awk -F ';' '{ print $$4"" }' | xargs -L 1 -I"{}" find "$(DATADIR)/{}" -name "*.xml" >> groundtruth.index || [ -s groundtruth.index ]
 
+devset.lst:
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	jq --raw-output 'map(.segments)' $(REPOROOT)/analiticcl-evaluation-tool/init/recogito_selection.json > $@
+
+devset.index: devset.lst
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	grep "\"" devset.lst | tr -d '",' | sed 's/^[ \t]*//' | xargs -L 1 -I"{}" find "$(DATADIR)/" -name "{}.xml" > "$@"
+
 %.index:
 ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
@@ -125,6 +139,7 @@ checkdeps:
 	which colibri-patternmodeller
 	which analiticcl
 	which lexmatch
+	which jq
 	python3 -c 'import SPARQLWrapper'
 	python3 -c 'import pandas'
 	which golden-agents-htr

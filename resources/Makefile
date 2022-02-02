@@ -31,9 +31,33 @@ buildings_lexicon.tsv: buildingsAdamlink.csv
 	#Extract street names
 	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > "$@" || (rm "$@" && false)
 
-object_variant_list.tsv: boedeltermen.csv
-	#Curated object lexicon (variant list)
+object_variants.tsv: boedeltermen.csv
+	#Curated object lexicon (variant list) from curated boedeltermen
 	awk -F"," '($$2 == "voorwerp") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+room_variants.tsv: boedeltermen.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "vertrek") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+material_variants.tsv: boedeltermen.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "stofnaam") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+property_variants.tsv: boedeltermen.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "eigenschap") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+picture_variants.tsv: boedeltermen.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "voorstelling") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+category_variants.tsv: boedeltermen.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "categorie") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+currency_variants.tsv: boedeltermen.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "munt") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
 object_lexicon.tsv:
 	#Uncurated object lexicon
@@ -69,6 +93,12 @@ int_lemma_hist_variants.tsv: int_historisch_lexicon.wordforms.freq.tsv
 .PHONY: all
 all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_lexicon.tsv int_lemma_hist_variants.tsv
 
+.PHONY: boedeltermen
+boedeltermen: object_variants.tsv property_variants.tsv material_variants.tsv picture_variants.tsv category_variants.tsv room_variants.tsv currency_variants.tsv
+
+.PHONY: clean
+clean:
+	rm *_variants.tsv sanitized_*.tsv object_lexicon.tsv *_lexicon.tsv
 
 .PHONY: checkdeps
 checkdeps:

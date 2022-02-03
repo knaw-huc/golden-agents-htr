@@ -12,6 +12,9 @@ import { Container, Header, Segment } from "semantic-ui-react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
+const apiBase = "http://localhost:2081"; // development
+// const apiBase = "/api"; // production
+
 // interface Doc {
 //   text: string;
 //   annotations: {}[];
@@ -155,9 +158,6 @@ class Document extends Component<DocumentProps> {
     );
   }
 }
-
-const apiBase = "http://localhost:8000"; // development
-// const apiBase = "/api"; // production
 
 const App = () => {
   const [doc, setDoc] = useState(doc0);

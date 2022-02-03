@@ -14,7 +14,7 @@ services:
     shm_size: 1g
 
   back :
-    container_name: ga-analiticcl-evaluate-front
+    container_name: ga-analiticcl-evaluate-back
     environment:
       - VIRTUAL_HOST=api-ga-ae.tt.di.huc.knaw.nl
       - VIRTUAL_PORT=8000
@@ -30,4 +30,3 @@ networks:
   nginxproxynetwork:
     external:
       name: nginxproxynetwork
-

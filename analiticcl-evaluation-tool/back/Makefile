@@ -18,7 +18,7 @@ install: .make/.install
 
 docker-image: .make/.docker
 
-.make/.push: .make docker-image
+.make/.push: .make/.docker
 	docker tag $(tag):latest registry.diginfra.net/tt/$(tag):latest
 	docker push registry.diginfra.net/tt/$(tag):latest
 	@touch .make/.push

@@ -9,7 +9,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost",
-    "http://localhost:3000"
+    "http://localhost:2080"
 ]
 
 app.add_middleware(
@@ -22,7 +22,7 @@ app.add_middleware(
 
 @app.get("/")
 async def root():
-    return {"message": "Hello World"}
+    return {"message": "This is the backend for the analiticcl-evaluation-tool"}
 
 @app.get("/basenames")
 async def get_basenames():

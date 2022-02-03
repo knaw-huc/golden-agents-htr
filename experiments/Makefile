@@ -122,6 +122,9 @@ exp3: lexicons A16098000033.txt
 %.exp7.json: %.xml lexicons
 	golden-agents-ner --stdout --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
 
+%.exp7.raw.json: %.xml lexicons
+	golden-agents-ner --rawout --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
+
 .PHONY: exp7
 exp7: devset.lst lexicons
 ifeq ($(strip $(DATADIR)),)

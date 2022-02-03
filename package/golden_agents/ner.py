@@ -77,7 +77,7 @@ class NER:
                 corrections_dict = json.load(f)
             self.htr_corrector = Corrector(corrections_dict)
 
-    def process_pagexml(self, file: str) -> (list, str):
+    def process_pagexml(self, file: str) -> (list, str, list):
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
         scan = parse_pagexml_file(file)
         if not scan.id:
@@ -86,16 +86,18 @@ class NER:
         scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
         return self.create_web_annotations(scan, "http://localhost:8080/textrepo/versions/x")
 
-    def create_web_annotations(self, scan, version_base_uri: str) -> (List[dict], str):
+    def create_web_annotations(self, scan, version_base_uri: str) -> (List[dict], str, List[dict]):
         """Find lines in the scan and pass them to the tagger, producing web-annotations"""
         annotations = []
         plain_text = ''
+        raw_results = []
         for tl in [l for l in scan.get_lines() if l.text]:
             text = tl.text
             if hasattr(self, 'htr_corrector') and self.htr_corrector:
                 text = self.htr_corrector.correct(text)
             ner_results = self.model.find_all_matches(text, self.params)
             for result in ner_results:
+                raw_results.append(result)
                 if (
                         len(result['variants']) > 0
                         and result['variants'][0]['score'] >= self.config.get('score-threshold', 0)
@@ -106,7 +108,7 @@ class NER:
                     if wa:
                         annotations.append(wa)
             plain_text += f"{text}\n"
-        return (annotations, plain_text)
+        return (annotations, plain_text, raw_results)
 
     def create_web_annotation(self, scan_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
                               version_base_uri, line_offset: int):

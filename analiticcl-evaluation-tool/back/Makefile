@@ -1,23 +1,19 @@
 all: help
-tag = ga-analiticcl-evaluate-front
+tag = ga-analiticcl-evaluate-back
 
-.PHONY: build docker-image start help push
+.PHONY: docker-image start help push install
 
 .make:
 	mkdir -p .make
 
-.make/.install: .make package.json tsconfig.json
-	yarn install
+.make/.install: .make requirements.txt
+	pip install -r requirements.txt
 	@touch .make/.install
 
-.make/.build: .make .make/.install src/* public/*
-	yarn build
-	@touch .make/.build
+install: .make/.install
 
-build: .make/.build
-
-.make/.docker: .make docker/Dockerfile public/* src/* package.json
-	docker build -t $(tag):latest -f docker/Dockerfile .
+.make/.docker: .make Dockerfile data/ main.py requirements.txt
+	docker build -t $(tag):latest .
 	@touch .make/.docker
 
 docker-image: .make/.docker
@@ -30,12 +26,12 @@ docker-image: .make/.docker
 push: .make/.push
 
 start:
-	yarn start
+	python main.py
 
 help:
 	@echo "make-tools for $(tag)"
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  build           to build the app for deployment"
-	@echo "  start           to run the app in development mode"
 	@echo "  docker-image    to build the docker image of the app, running in nginx"
 	@echo "  push            to push the docker image to registry.diginfra.net"
+	@echo "  install         to install the dependencies"
+	@echo "  start           to start the app"

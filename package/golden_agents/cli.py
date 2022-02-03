@@ -15,6 +15,7 @@ def main():
     parser.add_argument('--destinationdir', '-d', type=str, help="Directory for output files", action='store',
                         required=False)
     parser.add_argument('--stdout','-o',help="Output JSON to standard output", action='store_true', required=False)
+    parser.add_argument('--rawout','-r',help="Output raw results from analiticcl to standard output (as JSON)", action='store_true', required=False)
     parser.add_argument("pagexmlfiles",
                         nargs="*",
                         help="The PageXML file(s) to extract NER annotations from",
@@ -30,10 +31,12 @@ def main():
             out_root = args.destinationdir
 
         for pagexmlfile in args.pagexmlfiles:
-            (annotations, plain_text) = ner.process_pagexml(pagexmlfile)
+            (annotations, plain_text, raw_results) = ner.process_pagexml(pagexmlfile)
             basename = os.path.splitext(os.path.basename(pagexmlfile))[0]
 
-            if args.stdout:
+            if args.rawout:
+                json.dump(obj=raw_results, fp=sys.stdout, indent=4)
+            elif args.stdout:
                 json.dump(obj=annotations, fp=sys.stdout, indent=4)
             else:
                 json_file = os.path.join(out_root, f"{basename}.json")

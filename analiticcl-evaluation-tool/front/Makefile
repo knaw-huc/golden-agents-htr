@@ -36,4 +36,4 @@ help:
 	@echo "  build           to build the app for deployment"
 	@echo "  start           to run the app in development mode"
 	@echo "  docker-image    to build the docker image of the app, running in nginx"
-	@echo "  push    		 to push the docker image to registry.diginfra.net"
+	@echo "  push            to push the docker image to registry.diginfra.net"

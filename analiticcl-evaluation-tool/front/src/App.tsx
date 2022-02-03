@@ -27,7 +27,7 @@ interface DocumentProps {
 }
 
 const basenames: string[] = require("./ga-selection-basenames.json");
-const annotations0:{}[] = require("./annotations.json");
+const annotations0:{}[] = [];
 const text0: string = 'Please select a text';
 const doc0={text:text0,annotations:annotations0};
 
@@ -165,7 +165,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchPageData = async (selected:string) => {
-    const res = await fetch(apiBase +"/pagedata/"+selected, {
+    const res = await fetch(apiBase + "/pagedata/" + selected, {
       headers: {
         "Content-Type": "text/json",
         Accept: "text/json",
@@ -174,6 +174,11 @@ const App = () => {
     const data = await res.json();
     return data;
   }
+
+//   const fetchBaseNames = async () => {
+//     return await fetch(apiBase + "/basenames")
+//       .then(res => res.json());
+//   }
 
   // const fetchText = async (selected:string) => {
   //   const res = await fetch(selected+".txt", {
@@ -229,6 +234,7 @@ const App = () => {
   const legend = VOCABULARY.map(voc => (
          <><span className={"tag-"+voc.label}>{voc.label}</span><span> | </span></>
         ));
+
   return (
     <div className="App">
       <Container>
@@ -240,7 +246,7 @@ const App = () => {
           <PuffLoader color={color} css={override} loading={loading} size={20} />
         </div>
 
-        <div>Tag Legend: &nbsp; {legend}</div>
+        <div>Tag Legend: | {legend}</div>
 
         <Segment>
           <Document doc={doc} setDoc={setDoc} />

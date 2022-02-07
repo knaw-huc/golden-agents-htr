@@ -7,7 +7,7 @@ services:
       - VIRTUAL_HOST=localhost
     image: localhost/ga-analiticcl-evaluate-front:latest
     ports:
-      - 8080:80
+      - 2080:80
     restart: unless-stopped
     shm_size: 1g
 
@@ -15,10 +15,10 @@ services:
     container_name: ga-analiticcl-evaluate-back
     environment:
       - VIRTUAL_HOST=localhost
-      - VIRTUAL_PORT=8000
+      - VIRTUAL_PORT=2081
     image: localhost/ga-analiticcl-evaluate-back:latest
     ports:
-      - 8000:8000
+      - 2081:80
     restart: unless-stopped
     shm_size: 1g
 

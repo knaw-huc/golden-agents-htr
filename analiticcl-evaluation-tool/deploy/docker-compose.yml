@@ -5,6 +5,7 @@ services:
     container_name: ga-analiticcl-evaluate-front
     environment:
       - VIRTUAL_HOST=ga-analiticcl-evaluate.tt.di.huc.knaw.nl
+      - BACKEND_URL=http://ga-analiticcl-evaluate-back
     image: registry.diginfra.net/tt/ga-analiticcl-evaluate-front:latest
     networks:
       - nginxproxynetwork
@@ -15,14 +16,9 @@ services:
 
   back :
     container_name: ga-analiticcl-evaluate-back
-    environment:
-      - VIRTUAL_HOST=api-ga-ae.tt.di.huc.knaw.nl
-      - VIRTUAL_PORT=8000
     image: registry.diginfra.net/tt/ga-analiticcl-evaluate-back:latest
     networks:
       - nginxproxynetwork
-    ports:
-      - 8000:8000
     restart: unless-stopped
     shm_size: 1g
 

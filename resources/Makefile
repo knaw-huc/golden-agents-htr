@@ -35,41 +35,82 @@ object_variants.tsv: boedeltermen.csv
 	#Curated object lexicon (variant list) from curated boedeltermen
 	awk -F"," '($$2 == "voorwerp") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
+object_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+object_wordforms.freq.tsv: object_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
+
 room_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "vertrek") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+room_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+room_wordforms.freq.tsv: room_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 material_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "stofnaam") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
+material_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+material_wordforms.freq.tsv: material_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
+
 property_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "eigenschap") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+property_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+property_wordforms.freq.tsv: property_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 picture_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "voorstelling") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
+picture_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+picture_wordforms.freq.tsv: picture_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
+
 category_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "categorie") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+category_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+category_wordforms.freq.tsv: category_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 currency_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "munt") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
-object_lexicon.tsv:
-	#Uncurated object lexicon
+currency_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+currency_wordforms.freq.tsv: currency_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
+
+object_uncurated_lexicon.tsv:
+	#Uncurated object lexicon (obsolete!)
 	cut -d "," -f 1 "$(RESOURCEDIR)/objects.csv" | tr '[:upper:]' '[:lower:]' | tail --lines="+2" > "$@" || (rm "$@" && false)
 
-keyword_lexicon.tsv:
-	#Keyword lexicon; keywords that may be indicative of an object
+keyword_uncurated_lexicon.tsv:
+	#Keyword lexicon; keywords that may be indicative of an object (obsolete!)
 	cut -d "," -f 1 "$(RESOURCEDIR)/keywords.csv" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
 sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
 	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
-
 
 sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
 	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
@@ -91,10 +132,10 @@ int_lemma_hist_variants.tsv: int_historisch_lexicon.wordforms.freq.tsv
 
 
 .PHONY: all
-all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_lexicon.tsv int_lemma_hist_variants.tsv boedeltermen
+all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_lemma_hist_variants.tsv boedeltermen
 
 .PHONY: boedeltermen
-boedeltermen: object_variants.tsv property_variants.tsv material_variants.tsv picture_variants.tsv category_variants.tsv room_variants.tsv currency_variants.tsv
+boedeltermen: object_variants.tsv object_wordforms.freq.tsv property_variants.tsv property_wordforms.freq.tsv material_variants.tsv material_wordforms.freq.tsv picture_variants.tsv picture_wordforms.freq.tsv category_variants.tsv category_wordforms.freq.tsv room_variants.tsv room_wordforms.freq.tsv currency_variants.tsv currency_wordforms.freq.tsv
 
 .PHONY: clean
 clean:

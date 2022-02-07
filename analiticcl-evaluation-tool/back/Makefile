@@ -28,6 +28,9 @@ push: .make/.push
 start:
 	python main.py
 
+clean:
+	rm -rf .make
+
 help:
 	@echo "make-tools for $(tag)"
 	@echo "Please use \`make <target>' where <target> is one of"
@@ -35,3 +38,4 @@ help:
 	@echo "  push            to push the docker image to registry.diginfra.net"
 	@echo "  install         to install the dependencies"
 	@echo "  start           to start the app"
+	@echo "  clean           to remove generated files"

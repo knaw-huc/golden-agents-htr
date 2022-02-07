@@ -12,8 +12,8 @@ import { Container, Header, Segment } from "semantic-ui-react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-const apiBase = "http://localhost:2081"; // development
-// const apiBase = "/api"; // production
+// const apiBase = "http://localhost:2081"; // development
+const apiBase = "/api"; // production; proxied to back-end in nginx.conf
 
 // interface Doc {
 //   text: string;

@@ -24,9 +24,10 @@ with open(sys.argv[1],'r',encoding='utf-8') as f:
 
 with open(sys.argv[2],'r',encoding='utf-8') as f:
     for line in f:
+        line = line.strip()
         if line:
-            line = line.strip()
-            freqlist[line] += 1
+            key, freq = line.split("\t")
+            freqlist[key] = max(freqlist[key], int(freq))
 
 for key, forms in sorted(data.items()):
     for keypart in key.split("|"):

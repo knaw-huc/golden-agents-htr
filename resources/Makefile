@@ -48,18 +48,12 @@ room_variants.tsv: boedeltermen.csv
 room_wordforms.lst: boedeltermen.csv
 	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
 
-room_wordforms.freq.tsv: room_wordforms.lst
-	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
-
 material_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "stofnaam") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
 material_wordforms.lst: boedeltermen.csv
 	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
-
-material_wordforms.freq.tsv: material_wordforms.lst
-	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 property_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
@@ -68,18 +62,12 @@ property_variants.tsv: boedeltermen.csv
 property_wordforms.lst: boedeltermen.csv
 	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
 
-property_wordforms.freq.tsv: property_wordforms.lst
-	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
-
 picture_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "voorstelling") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
 picture_wordforms.lst: boedeltermen.csv
 	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
-
-picture_wordforms.freq.tsv: picture_wordforms.lst
-	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 category_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
@@ -88,18 +76,12 @@ category_variants.tsv: boedeltermen.csv
 category_wordforms.lst: boedeltermen.csv
 	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
 
-category_wordforms.freq.tsv: category_wordforms.lst
-	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
-
 currency_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "munt") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
 currency_wordforms.lst: boedeltermen.csv
 	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
-
-currency_wordforms.freq.tsv: currency_wordforms.lst
-	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 object_uncurated_lexicon.tsv:
 	#Uncurated object lexicon (obsolete!)
@@ -126,9 +108,27 @@ int_historisch_lexicon.wordforms.freq.tsv: int_historisch_lexicon.wordforms.lst
 	cd -
 	lexmatch -M -l int_historisch_lexicon.wordforms.lst -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
-int_lemma_hist_variants.tsv: int_historisch_lexicon.wordforms.freq.tsv
-	#Extract a variant list from the INT historisch lexicon
+int_historisch_lexicon_variants.tsv:
+	#Extract a variant list from the INT historisch lexicon (without frequency information)
+	"$(REPOROOT)/scripts/inthistlex2variantlist.py" int_historisch_lexicon.tsv > "$@" || (rm "$@" && false)
+
+int_historisch_lexicon_variants.freq.tsv: int_historisch_lexicon.wordforms.freq.tsv
+	#Extract a variant list from the INT historisch lexicon (with frequency information)
 	"$(REPOROOT)/scripts/inthistlex2variantlist.py" int_historisch_lexicon.tsv int_historisch_lexicon.wordforms.freq.tsv > "$@" || (rm "$@" && false)
+
+%_wordforms.freq.tsv: %_wordforms.lst
+	cd $(EXPDIR) && make groundtruth.txt
+	cd -
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
+
+%_variants.freq.tsv: %_variants.tsv %_wordforms.freq.tsv
+	#Enrich a variant list with frequency information
+	"$(REPOROOT)/scripts/freqvariantlist.py" "$*_variants.tsv" "$*_wordforms.freq.tsv" > "$@" || (rm "$@" && false)
+
+%_wordforms.freq.tsv: %_wordforms.lst
+	cd $(EXPDIR) && make groundtruth.txt
+	cd -
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
 
 .PHONY: all

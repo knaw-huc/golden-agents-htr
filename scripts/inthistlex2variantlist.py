@@ -22,12 +22,13 @@ with open(sys.argv[1],'r',encoding='utf-8') as f:
             if fields[FIELD_TYPE] == "simple":
                     data[fields[FIELD_LEMMA]].add(fields[FIELD_FORM])
 
-with open(sys.argv[2],'r',encoding='utf-8') as f:
-    for line in f:
-        line = line.strip()
-        if line:
-            key, freq = line.split("\t")
-            freqlist[key] = max(freqlist[key], int(freq))
+if len(sys.argv) >= 3:
+    with open(sys.argv[2],'r',encoding='utf-8') as f:
+        for line in f:
+            line = line.strip()
+            if line:
+                key, freq = line.split("\t")
+                freqlist[key] = max(freqlist[key], int(freq))
 
 for key, forms in sorted(data.items()):
     for keypart in key.split("|"):

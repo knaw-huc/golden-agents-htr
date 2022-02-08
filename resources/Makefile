@@ -41,6 +41,16 @@ object_wordforms.lst: boedeltermen.csv
 object_wordforms.freq.tsv: object_wordforms.lst
 	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
 
+occupation_variants.tsv: boedeltermen.csv
+	#Curated occupation lexicon (variant list) from curated boedeltermen
+	awk -F"," '($$2 == "beroep") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
+
+occupation_wordforms.lst: boedeltermen.csv
+	awk -F"," '($$2 == "beroep") { print $$3"\n"$$4 }' < boedeltermen.csv | tr '[:upper:]' '[:lower:]' | sort | uniq > "$@" || (rm "$@" && false)
+
+occupation_wordforms.freq.tsv: occupation_wordforms.lst
+	lexmatch -M -l "$<" -t $(EXPDIR)/groundtruth.txt > "$@" || (rm "$@" && false)
+
 room_variants.tsv: boedeltermen.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "vertrek") { print $$3"\t"$$4 }' < boedeltermen.csv | "$(REPOROOT)/scripts/merge-tsv-rows.py" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)

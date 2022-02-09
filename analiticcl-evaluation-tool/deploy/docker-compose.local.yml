@@ -5,7 +5,8 @@ services:
     container_name: ga-analiticcl-evaluate-front
     environment:
       - VIRTUAL_HOST=localhost
-      - BACKEND_URL=http://localhost:2081
+      - BACKEND_URL=http://host.containers.internal:2081
+        #the above works for podman, on docker you may want host.docker.internal instead
     image: localhost/ga-analiticcl-evaluate-front:latest
     ports:
       - 2080:80

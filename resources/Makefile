@@ -33,7 +33,8 @@ buildings_lexicon.tsv: buildingsAdamlink.csv
 
 boedeltermen.autoexpanded.csv: boedeltermen.csv
 	#Expands boedeltermen with variants found in the INT Historical Lexicon
-	"$(REPOROOT)/scripts/expandwithinthistlex.py" > "$@" || (rm "$@" && false)
+	cp -f "$<" "$@" || (rm "$@" && false)
+	"$(REPOROOT)/scripts/expandwithinthistlex.py" >> "$@" || (rm "$@" && false)
 
 object_variants.tsv: boedeltermen.autoexpanded.csv
 	#Curated object lexicon (variant list) from curated boedeltermen

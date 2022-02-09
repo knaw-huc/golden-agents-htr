@@ -147,7 +147,7 @@ ifeq ($(strip $(DATADIR)),)
 	@false
 endif
 	#process the whole development set without extra overhead
-	golden-agents-ner --stdout --config nerconfig.exp8.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
+	golden-agents-ner --infix exp8 --config nerconfig.exp8.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
 
 .PHONY: lexicons
 lexicons:

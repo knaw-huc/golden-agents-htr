@@ -72,7 +72,7 @@ class NER:
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
-            print(f"using htr corrections from {corrections_file}")
+            print(f"using htr corrections from {corrections_file}",file=sys.stderr)
             with open(corrections_file) as f:
                 corrections_dict = json.load(f)
             self.htr_corrector = Corrector(corrections_dict)

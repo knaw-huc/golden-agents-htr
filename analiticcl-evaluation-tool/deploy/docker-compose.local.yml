@@ -5,6 +5,7 @@ services:
     container_name: ga-analiticcl-evaluate-front
     environment:
       - VIRTUAL_HOST=localhost
+      - BACKEND_URL=http://localhost:2081
     image: localhost/ga-analiticcl-evaluate-front:latest
     ports:
       - 2080:80
@@ -13,9 +14,6 @@ services:
 
   back :
     container_name: ga-analiticcl-evaluate-back
-    environment:
-      - VIRTUAL_HOST=localhost
-      - VIRTUAL_PORT=2081
     image: localhost/ga-analiticcl-evaluate-back:latest
     ports:
       - 2081:80

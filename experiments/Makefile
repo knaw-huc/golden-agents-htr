@@ -125,6 +125,12 @@ exp3: lexicons A16098000033.txt
 %.exp7.raw.json: %.xml lexicons
 	golden-agents-ner --rawout --config nerconfig.exp7.json "$<" > "$@" || (rm "$@" && false)
 
+%.exp8.json: %.xml lexicons
+	golden-agents-ner --stdout --config nerconfig.exp8.json "$<" > "$@" || (rm "$@" && false)
+
+%.exp8.raw.json: %.xml lexicons
+	golden-agents-ner --rawout --config nerconfig.exp8.json "$<" > "$@" || (rm "$@" && false)
+
 .PHONY: exp7
 exp7: devset.lst lexicons
 ifeq ($(strip $(DATADIR)),)
@@ -133,6 +139,15 @@ ifeq ($(strip $(DATADIR)),)
 endif
 	#recursive make procesisng the whole development set
 	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.exp7.json"
+
+.PHONY: exp8
+exp8: devset.lst lexicons
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	#recursive make procesisng the whole development set
+	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.exp8.json"
 
 .PHONY: lexicons
 lexicons:

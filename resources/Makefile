@@ -149,7 +149,7 @@ int_historisch_lexicon_variants.freq.tsv: int_historisch_lexicon.wordforms.freq.
 all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_lemma_hist_variants.tsv boedeltermen
 
 .PHONY: boedeltermen
-boedeltermen: object_variants.tsv object_wordforms.freq.tsv property_variants.tsv property_wordforms.freq.tsv material_variants.tsv material_wordforms.freq.tsv picture_variants.tsv picture_wordforms.freq.tsv category_variants.tsv category_wordforms.freq.tsv room_variants.tsv room_wordforms.freq.tsv currency_variants.tsv currency_wordforms.freq.tsv
+boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv
 
 .PHONY: clean
 clean:

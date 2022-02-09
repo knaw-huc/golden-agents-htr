@@ -141,18 +141,26 @@ endif
 	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.exp7.json"
 
 .PHONY: exp8
-exp8: devset.lst lexicons
+exp8: linkdevlist devset.lst lexicons
 ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
 	@false
 endif
-	#recursive make procesisng the whole development set
-	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.exp8.json"
+	#process the whole development set without extra overhead
+	golden-agents-ner --stdout --config nerconfig.exp8.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
 
 .PHONY: lexicons
 lexicons:
 	cd $(RESOURCEDIR) && make all
 	cd -
+
+.PHONY: linkdevlist
+linkdevlist: devset.lst
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.xml"
 
 # ------------------- Dependency check ---------------------------
 

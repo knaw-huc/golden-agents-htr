@@ -3,6 +3,9 @@ RESOURCEDIR := $(REPOROOT)/resources/
 EXPDIR := $(REPOROOT)/experiments/
 DATADIR =
 
+htr_corrections.json: ${EXPDIR}/htr_verbeterd_1.tsv $(REPOROOT)/scripts/process-htr-corrections.py
+	python3 "$(REPOROOT)/scripts/process-htr-corrections.py"
+
 personnamesNA.csv:
 	#query the Notarial Archives using the Golden Agents endpoint
 	python3 "$(REPOROOT)/scripts/sparql_personnamesNA.py"

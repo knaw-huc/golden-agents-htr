@@ -11,6 +11,7 @@ tag = ga-analiticcl-evaluate-front
 	@touch .make/.install
 
 .make/.build: .make .make/.install src/* public/*
+	echo '{"version":"'$(date  +%Y.%m.%d)'"}' > src/config.json
 	yarn build
 	@touch .make/.build
 

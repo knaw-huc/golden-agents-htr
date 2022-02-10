@@ -30,6 +30,7 @@ interface DocumentProps {
 }
 
 const basenames: string[] = require("./ga-selection-basenames.json");
+const config: {} = require("./config.json")
 const annotations0:{}[] = [];
 const text0: string = 'Please select a text';
 const doc0={text:text0,annotations:annotations0};
@@ -63,7 +64,8 @@ const VOCABULARY = [
     { label: "material", uri: "http://vocab.getty.edu/aat/300010358" },
     { label: "property", uri: "http://vocab.getty.edu/aat/300008347" },
     { label: "object",   uri: "http://vocab.getty.edu/aat/300311889" },
-    { label: "picture", uri: "http://vocab.getty.edu/aat/300008347" },
+    { label: "picture",  uri: "http://vocab.getty.edu/aat/300008347" },
+    { label: "animal",   uri: "http://vocab.getty.edu/aat/300008347" },
 
     { label: "currency", uri: "http://vocab.getty.edu/aat/300008347" },
 
@@ -228,8 +230,7 @@ const App = () => {
     border-color: black;
   `;
 
-  const dateTime = new Date();
-  const version = "v"+dateTime.getFullYear()+"-"+(dateTime.getMonth()+1)+"-"+dateTime.getDate();
+  const version = config["version"]
 
   const legend = VOCABULARY.map(voc => (
          <><span className={"tag-"+voc.label}>{voc.label}</span><span> | </span></>

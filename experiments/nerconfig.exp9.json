@@ -1,0 +1,36 @@
+{
+    "alphabet": "../resources/simple.alphabet.tsv",
+    "lexicons": {
+        "firstname": "../resources/sanitized_first_names_lexicon.tsv",
+        "familyname": "../resources/sanitized_family_names_lexicon.tsv",
+        "streetname": "../resources/streetnames_lexicon.tsv"
+    },
+    "variantlists": {
+        "object": "../resources/object_variants.freq.tsv",
+        "material": "../resources/material_variants.freq.tsv",
+        "property": "../resources/property_variants.freq.tsv",
+        "picture": "../resources/picture_variants.freq.tsv",
+        "currency": "../resources/currency_variants.freq.tsv",
+        "category": "../resources/category_variants.freq.tsv",
+        "room": "../resources/room_variants.freq.tsv",
+        "animal": "../resources/animal_variants.freq.tsv",
+        "_background": "../resources/int_historisch_lexicon_variants.freq.tsv"
+    },
+    "searchparameters": {
+        "max_edit_distance": "0.7;5",
+        "max_anagram_distance": "0.7;5",
+        "max_ngram": 3,
+        "cutoff_threshold": 1.4,
+        "score_threshold": 0.5,
+        "max_matches": 20,
+        "freq_weight": 0.25
+    },
+    "weights": {
+        "ld": 0.525,
+        "lcs": 0.125,
+        "prefix": 0.125,
+        "suffix": 0.125,
+        "case": 0.100
+    },
+    "htr_corrections": "../resources/htr_corrections.json"
+}

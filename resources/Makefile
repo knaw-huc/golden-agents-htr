@@ -110,11 +110,10 @@ keyword_uncurated_lexicon.tsv:
 	#Keyword lexicon; keywords that may be indicative of an object (obsolete!)
 	cut -d "," -f 1 "$(RESOURCEDIR)/keywords.csv" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
-sanitized_first_names_lexicon.tsv: first_names_lexicon.tsv
-	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
-
-sanitized_family_names_lexicon.tsv: family_names_lexicon.tsv
-	"$(REPOROOT)/scripts/sanitize_lexicon.py" $< > "$@" || (rm "$@" && false)
+%.sanitized.tsv: %.tsv
+	cd $(EXPDIR) && make groundtruth.txt
+	cd -
+	sh -c 'TOPITEM=$$(head -n 1 $< | cut -f 1) TOPFREQ=$$(grep -e "^$$TOPITEM" $(EXPDIR)/groundtruth.tok.lexicon.tsv | sort -k2 -rn | head -n 1 | cut -f 2) $(REPOROOT)/scripts/sanitize_lexicon.py $< 5 $$TOPITEM $$TOPFREQ' > "$@" || (rm "$@" && false)
 
 #Note: INT Historisch lexicon itself is not provided in this repo due to copyright restrictions, you need to get it yourself!
 int_historisch_lexicon.wordforms.lst:
@@ -151,14 +150,14 @@ int_historisch_lexicon_variants.freq.tsv: int_historisch_lexicon.wordforms.freq.
 
 
 .PHONY: all
-all: sanitized_first_names_lexicon.tsv sanitized_family_names_lexicon.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_historisch_lexicon_variants.tsv int_historisch_lexicon_variants.freq.tsv boedeltermen
+all: first_names_lexicon.sanitized.tsv family_names_lexicon.sanitized.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_historisch_lexicon_variants.tsv int_historisch_lexicon_variants.freq.tsv boedeltermen
 
 .PHONY: boedeltermen
 boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv animal_variants.freq.tsv animal_wordforms.freq.tsv
 
 .PHONY: clean
 clean:
-	rm boedeltermen.autoexpanded.csv *_variants.tsv sanitized_*.tsv *_lexicon.tsv *.freq.tsv *.freq.lst *_wordforms* || true
+	rm boedeltermen.autoexpanded.csv *_variants.tsv *.sanitized.tsv *_lexicon.tsv *.freq.tsv *.freq.lst *_wordforms* || true
 	[ -e int_historisch_lexicon_2022_02_04.txt ] && ln -s int_historisch_lexicon_2022_02_04.txt int_historisch_lexicon.tsv
 
 .PHONY: checkdeps

@@ -53,11 +53,14 @@ class NER:
             self.category_dict.update(
                 {fixpath(filepath, configfile): category for category, filepath in self.config['variantlists'].items()})
         self.params = SearchParameters(**self.config['searchparameters'])
+        print("Search Parameters: ", self.params.to_dict(),file=sys.stderr)
         abcfile = self.config['alphabet']
         if abcfile[0] != '/':
             # relative path:
             abcfile = os.path.join(os.path.dirname(configfile), abcfile)
-        self.model = VariantModel(abcfile, Weights(**self.config['weights']), debug=0)
+        weights = Weights(**self.config['weights'])
+        print("Weights: ", weights.to_dict(),file=sys.stderr)
+        self.model = VariantModel(abcfile, weights, debug=0)
         for filepath in self.config['lexicons'].values():
             filepath = fixpath(filepath, configfile)
             if not os.path.exists(filepath):

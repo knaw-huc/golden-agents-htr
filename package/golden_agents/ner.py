@@ -103,77 +103,81 @@ class NER:
                         and result['variants'][0]['score'] >= self.config.get('score-threshold', 0)
                 ):
                     xywh = f"{tl.coords.x},{tl.coords.y},{tl.coords.w},{tl.coords.h}"
-                    wa = self.create_web_annotation(scan.id, tl, result, iiif_url=scan.transkribus_uri, xywh=xywh,
-                                                    version_base_uri=version_base_uri, line_offset=len(plain_text))
-                    if wa:
-                        annotations.append(wa)
+                    annotations += list(self.create_web_annotation(scan.id, tl, result, iiif_url=scan.transkribus_uri, xywh=xywh,
+                                                    version_base_uri=version_base_uri, line_offset=len(plain_text)))
             plain_text += f"{text}\n"
         return (annotations, plain_text, raw_results)
 
     def create_web_annotation(self, scan_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
                               version_base_uri, line_offset: int):
-        """Convert analiticcl's output to web annotation
+        """Convert analiticcl's output to web annotation, may output multiple web annotations in case of ties
         """
-        top_variant = ner_result['variants'][0]
-        # ic(top_variant)
-        lexicons = top_variant['lexicons']
-        # note: categories starting with an underscore will not be propagated to output (useful for background lexicons)
-        categories = [self.category_dict[l] for l in lexicons if self.category_dict[l][0] != "_"]
-        if not categories:
-            return None
-        tag_bodies = []
-        for cat in categories:
-            body = {
-                "type": "TextualBody",
-                "value": cat,
-                "modified": datetime.today().isoformat(),
-                "purpose": "tagging"
-            }
-            tag_bodies.append(body)
-        bodies = [
-            *tag_bodies,
-            {
-                "type": "TextualBody",
-                "value": top_variant['text'],
-                "modified": datetime.today().isoformat(),
-                "purpose": "commenting",
-            },
-            {"type": "TextualBody", "value": categories, "purpose": "classifying"},
-            {
-                "type": "Dataset",
-                "value": {
-                    "match_phrase": ner_result['input'],
-                    "match_variant": top_variant['text'],
-                    "match_score": top_variant['score'],
-                    "category": categories,
-                },
-            },
-        ]
-        return {
-            "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
-            "id": str(uuid.uuid4()),
-            "type": "Annotation",
-            "motivation": "classifying",
-            "generated": datetime.today().isoformat(),
-            "generator": {
-                "id": "https://github.com/knaw-huc/golden-agents-htr",
-                "type": "Software",
-                "name": "GoldenAgentsNER"
-            },
-            "body": bodies,
-            "target":
-                {
-                    "source": f'{scan_urn}',
-                    "selector": [{
-                        "type": "TextPositionSelector",
-                        "start": line_offset + ner_result['offset']['begin'],
-                        "end": line_offset + ner_result['offset']['end']
-                    }, {
-                        "type": "TextQuoteSelector",
-                        "exact": ner_result['input']
-                    }
-                    ]
+        prevscore = None
+        for top_variant in ner_result['variants']:
+            if prevscore and top_variant['score'] < prevscore:
+                break
+            else:
+                prevscore = top_variant['score']
+
+            # ic(top_variant)
+            lexicons = top_variant['lexicons']
+            # note: categories starting with an underscore will not be propagated to output (useful for background lexicons)
+            categories = [self.category_dict[l] for l in lexicons if self.category_dict[l][0] != "_"]
+            if not categories:
+                continue
+            tag_bodies = []
+            for cat in categories:
+                body = {
+                    "type": "TextualBody",
+                    "value": cat,
+                    "modified": datetime.today().isoformat(),
+                    "purpose": "tagging"
                 }
+                tag_bodies.append(body)
+            bodies = [
+                *tag_bodies,
+                {
+                    "type": "TextualBody",
+                    "value": top_variant['text'],
+                    "modified": datetime.today().isoformat(),
+                    "purpose": "commenting",
+                },
+                {"type": "TextualBody", "value": categories, "purpose": "classifying"},
+                {
+                    "type": "Dataset",
+                    "value": {
+                        "match_phrase": ner_result['input'],
+                        "match_variant": top_variant['text'],
+                        "match_score": top_variant['score'],
+                        "category": categories,
+                    },
+                },
+            ]
+            yield {
+                "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
+                "id": str(uuid.uuid4()),
+                "type": "Annotation",
+                "motivation": "classifying",
+                "generated": datetime.today().isoformat(),
+                "generator": {
+                    "id": "https://github.com/knaw-huc/golden-agents-htr",
+                    "type": "Software",
+                    "name": "GoldenAgentsNER"
+                },
+                "body": bodies,
+                "target":
+                    {
+                        "source": f'{scan_urn}',
+                        "selector": [{
+                            "type": "TextPositionSelector",
+                            "start": line_offset + ner_result['offset']['begin'],
+                            "end": line_offset + ner_result['offset']['end']
+                        }, {
+                            "type": "TextQuoteSelector",
+                            "exact": ner_result['input']
+                        }
+                        ]
+                    }
             # {
             #     "source": f'{scan_urn}:textline={text_line.id}',
             #     "selector": [{

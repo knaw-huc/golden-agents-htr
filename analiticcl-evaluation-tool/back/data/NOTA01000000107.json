@@ -4,10 +4,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "cb2cab73-1b07-4d24-8521-ef6d4cbee05a",
+        "id": "abb53839-a84e-4018-bd57-ddb728b7e2eb",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:37.530725",
+        "generated": "2022-02-14T12:47:04.896259",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,13 +17,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:37.530680",
+                "modified": "2022-02-14T12:47:04.896213",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Paal",
-                "modified": "2022-02-09T15:07:37.530695",
+                "modified": "2022-02-14T12:47:04.896228",
                 "purpose": "commenting"
             },
             {
@@ -65,10 +65,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "8aa1dd40-b35b-4e68-9b79-2b60134e7a5b",
+        "id": "06e7e963-ec02-4672-ac90-65135f8a6f08",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:37.694197",
+        "generated": "2022-02-14T12:47:04.896282",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:04.896269",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Praal",
+                "modified": "2022-02-14T12:47:04.896271",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Pfaal",
+                    "match_variant": "Praal",
+                    "match_score": 0.7,
+                    "category": [
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 0,
+                    "end": 5
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Pfaal"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "5bbf4663-217b-436b-b9ca-e11db8a3d4c3",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.066683",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -78,13 +139,74 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:37.694147",
+                "modified": "2022-02-14T12:47:05.066635",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "juweel",
+                "modified": "2022-02-14T12:47:05.066651",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Juwelen",
+                    "match_variant": "juweel",
+                    "match_score": 0.875,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 52,
+                    "end": 59
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Juwelen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "90c383ce-874b-492d-9311-4d07afc9d93f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.066707",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.066693",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "juwelen",
-                "modified": "2022-02-09T15:07:37.694164",
+                "modified": "2022-02-14T12:47:05.066697",
                 "purpose": "commenting"
             },
             {
@@ -126,10 +248,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "a1aa1b37-8554-4c1c-a8f5-2ee74771a961",
+        "id": "f6a2dca3-89d8-4b28-ba1c-1579911cf5ef",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:37.694231",
+        "generated": "2022-02-14T12:47:05.066737",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -139,13 +261,74 @@
             {
                 "type": "TextualBody",
                 "value": "material",
-                "modified": "2022-02-09T15:07:37.694215",
+                "modified": "2022-02-14T12:47:05.066724",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "zilver",
+                "modified": "2022-02-14T12:47:05.066727",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "zilver",
+                    "match_variant": "zilver",
+                    "match_score": 1.0,
+                    "category": [
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 66,
+                    "end": 72
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "zilver"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "2ed6f38c-30b4-45ce-a35a-98e907979463",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.066753",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:05.066742",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "zilveren",
-                "modified": "2022-02-09T15:07:37.694218",
+                "modified": "2022-02-14T12:47:05.066745",
                 "purpose": "commenting"
             },
             {
@@ -187,10 +370,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "c26ca121-a7c5-480e-8635-83089318e748",
+        "id": "de8b7f52-67cf-4658-b652-124af5e46304",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:37.754572",
+        "generated": "2022-02-14T12:47:05.132458",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -200,13 +383,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:37.754523",
+                "modified": "2022-02-14T12:47:05.132411",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "kleden",
-                "modified": "2022-02-09T15:07:37.754538",
+                "modified": "2022-02-14T12:47:05.132427",
                 "purpose": "commenting"
             },
             {
@@ -248,10 +431,498 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "cd1ce2b2-e088-4430-924c-7b7063cca3d0",
+        "id": "2dbc19d8-5a96-4b6a-82ab-7208347fa773",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:37.754602",
+        "generated": "2022-02-14T12:47:05.132481",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132468",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "klederen",
+                "modified": "2022-02-14T12:47:05.132471",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "klederen",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "86ffa43b-c055-420d-b709-21e531a0579d",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132513",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132501",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "kleed",
+                "modified": "2022-02-14T12:47:05.132504",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "kleed",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c67007b6-907d-4466-9206-16a6e816c2cc",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132548",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132528",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "kleren",
+                "modified": "2022-02-14T12:47:05.132531",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "kleren",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "69d4c4e6-2dba-422e-b1af-a0d9275fe76e",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132562",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132553",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "klederen",
+                "modified": "2022-02-14T12:47:05.132555",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "klederen",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "db184845-3daa-4511-8c13-39082ce2ee9d",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132576",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132567",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "kleren",
+                "modified": "2022-02-14T12:47:05.132569",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "kleren",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "a4ad0bc0-e304-42f3-94c7-782375bca989",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132595",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132580",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "kleden",
+                "modified": "2022-02-14T12:47:05.132583",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "kleden",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "4fd213fb-6ed9-4c51-888e-06f91487c1d8",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132611",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132599",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "kleed",
+                "modified": "2022-02-14T12:47:05.132601",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "kleed",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "60ebeb64-046a-4596-83ef-7b7374bd0775",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132625",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:05.132616",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "ladder",
+                "modified": "2022-02-14T12:47:05.132618",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "nlederen",
+                    "match_variant": "ladder",
+                    "match_score": 0.78125,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 83,
+                    "end": 91
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "nlederen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c18823c4-1b4c-41b1-b886-503ee31f7bf7",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.132648",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -261,13 +932,13 @@
             {
                 "type": "TextualBody",
                 "value": "material",
-                "modified": "2022-02-09T15:07:37.754587",
+                "modified": "2022-02-14T12:47:05.132638",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "linnen",
-                "modified": "2022-02-09T15:07:37.754590",
+                "modified": "2022-02-14T12:47:05.132641",
                 "purpose": "commenting"
             },
             {
@@ -309,10 +980,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "e3c9bedd-5fb5-4fd5-8804-d7cc5550e3b8",
+        "id": "c4e2b6a3-f41e-4e63-9c68-3e106b768534",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.162320",
+        "generated": "2022-02-14T12:47:05.439481",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:05.439435",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Mette",
+                "modified": "2022-02-14T12:47:05.439451",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "met",
+                    "match_variant": "Mette",
+                    "match_score": 1.0,
+                    "category": [
+                        "firstname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 179,
+                    "end": 182
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "met"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "ac6a19e8-a517-4ffb-929f-7d00589cf174",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.564963",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -322,13 +1054,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:38.162273",
+                "modified": "2022-02-14T12:47:05.564916",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Hardevelt",
-                "modified": "2022-02-09T15:07:38.162289",
+                "modified": "2022-02-14T12:47:05.564932",
                 "purpose": "commenting"
             },
             {
@@ -370,10 +1102,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "a6942dc5-6a2f-4103-b91e-36f5c33eeb54",
+        "id": "0a10893e-b6f4-41e3-aa87-818b4fce1f4a",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.297410",
+        "generated": "2022-02-14T12:47:05.734409",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:05.734353",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Boer",
+                "modified": "2022-02-14T12:47:05.734370",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Boer",
+                    "match_variant": "Boer",
+                    "match_score": 1.0,
+                    "category": [
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 243,
+                    "end": 247
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Boer"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "354d0b97-ece1-48f6-ac49-5619535767f4",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:05.734448",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -383,13 +1176,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:38.297364",
+                "modified": "2022-02-14T12:47:05.734424",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "boer",
-                "modified": "2022-02-09T15:07:38.297379",
+                "modified": "2022-02-14T12:47:05.734428",
                 "purpose": "commenting"
             },
             {
@@ -431,10 +1224,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "31ad7a81-8e2e-46d5-b341-b675c16d6fca",
+        "id": "03d4a5ba-a327-471a-bac4-d68024d9c499",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.356475",
+        "generated": "2022-02-14T12:47:05.796603",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -444,13 +1237,13 @@
             {
                 "type": "TextualBody",
                 "value": "property",
-                "modified": "2022-02-09T15:07:38.356428",
+                "modified": "2022-02-14T12:47:05.796555",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "beschreven",
-                "modified": "2022-02-09T15:07:38.356443",
+                "modified": "2022-02-14T12:47:05.796570",
                 "purpose": "commenting"
             },
             {
@@ -492,10 +1285,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "107448e0-fba2-47b8-a8a5-f328b1f08085",
+        "id": "39d966d6-a7c5-47ed-8a0e-e739b3c621a8",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.374231",
+        "generated": "2022-02-14T12:47:05.819802",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -505,19 +1298,19 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:38.374184",
+                "modified": "2022-02-14T12:47:05.819754",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:38.374198",
+                "modified": "2022-02-14T12:47:05.819769",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Philip",
-                "modified": "2022-02-09T15:07:38.374201",
+                "modified": "2022-02-14T12:47:05.819773",
                 "purpose": "commenting"
             },
             {
@@ -561,10 +1354,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "3ee03997-e678-4c24-9bb3-7b237e4e9f63",
+        "id": "a484aca4-b14c-4c76-b18c-1bc82302f675",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.374257",
+        "generated": "2022-02-14T12:47:05.819837",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -574,13 +1367,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:38.374245",
+                "modified": "2022-02-14T12:47:05.819818",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Zweerts",
-                "modified": "2022-02-09T15:07:38.374247",
+                "modified": "2022-02-14T12:47:05.819823",
                 "purpose": "commenting"
             },
             {
@@ -622,10 +1415,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "4d472f03-512e-4f23-826f-45919734caff",
+        "id": "cc256457-36dc-4f75-b83e-1b05186590c5",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.374279",
+        "generated": "2022-02-14T12:47:05.819863",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -635,13 +1428,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:38.374269",
+                "modified": "2022-02-14T12:47:05.819852",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Hove",
-                "modified": "2022-02-09T15:07:38.374271",
+                "modified": "2022-02-14T12:47:05.819855",
                 "purpose": "commenting"
             },
             {
@@ -683,10 +1476,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "6a0a5a0f-5368-47fc-bb59-6e5dbf3982d0",
+        "id": "852b0cff-a104-4cfe-a2bc-0902c1e9799a",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.468899",
+        "generated": "2022-02-14T12:47:05.917217",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -696,13 +1489,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:38.468852",
+                "modified": "2022-02-14T12:47:05.917170",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Holland",
-                "modified": "2022-02-09T15:07:38.468867",
+                "modified": "2022-02-14T12:47:05.917185",
                 "purpose": "commenting"
             },
             {
@@ -744,10 +1537,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "f03119cb-3f2f-4e83-a246-63d65cd0f276",
+        "id": "139cd3fe-4c79-4921-918f-19c2b8677bff",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.468926",
+        "generated": "2022-02-14T12:47:05.917255",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -757,13 +1550,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:38.468914",
+                "modified": "2022-02-14T12:47:05.917240",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Amsterdam",
-                "modified": "2022-02-09T15:07:38.468916",
+                "modified": "2022-02-14T12:47:05.917243",
                 "purpose": "commenting"
             },
             {
@@ -805,10 +1598,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "6948c0b1-8892-4643-abe5-36836b38a30b",
+        "id": "b334010c-35c5-4c68-a440-d689cdf5e6ea",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:38.666044",
+        "generated": "2022-02-14T12:47:06.119982",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -818,13 +1611,74 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:38.665998",
+                "modified": "2022-02-14T12:47:06.119936",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "baren",
+                "modified": "2022-02-14T12:47:06.119952",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "baar",
+                    "match_variant": "baren",
+                    "match_score": 1.0,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 392,
+                    "end": 396
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "baar"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "dbade13b-dc96-4fc9-ad09-18a756eeb074",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:06.120010",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:06.119991",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "baar",
-                "modified": "2022-02-09T15:07:38.666013",
+                "modified": "2022-02-14T12:47:06.119995",
                 "purpose": "commenting"
             },
             {
@@ -866,10 +1720,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "0bce237d-abf3-4d69-8757-7a9027ed613a",
+        "id": "7cf82dc1-641a-43d7-8b6c-a1c56213670b",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.039767",
+        "generated": "2022-02-14T12:47:06.527961",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -879,13 +1733,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:39.039718",
+                "modified": "2022-02-14T12:47:06.527915",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Wijgert",
-                "modified": "2022-02-09T15:07:39.039733",
+                "modified": "2022-02-14T12:47:06.527930",
                 "purpose": "commenting"
             },
             {
@@ -927,10 +1781,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "695c353a-9b4e-4844-bd2b-92b4d61a370c",
+        "id": "028ecab7-93f7-4bef-973e-1323f37a0c1d",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.039794",
+        "generated": "2022-02-14T12:47:06.527982",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:06.527970",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Wiggert",
+                "modified": "2022-02-14T12:47:06.527973",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Wiagert",
+                    "match_variant": "Wiggert",
+                    "match_score": 0.7321428571428571,
+                    "category": [
+                        "firstname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 438,
+                    "end": 445
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Wiagert"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "7581842b-c29e-4ec0-a2c1-3579fd5ac749",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:06.528012",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -940,13 +1855,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:39.039782",
+                "modified": "2022-02-14T12:47:06.528001",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Lelij",
-                "modified": "2022-02-09T15:07:39.039785",
+                "modified": "2022-02-14T12:47:06.528004",
                 "purpose": "commenting"
             },
             {
@@ -988,10 +1903,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "540c6ebe-bb14-4f7e-84f8-f0404b7bf5be",
+        "id": "0d974b68-3de0-4fb8-9121-13dedd736213",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.039814",
+        "generated": "2022-02-14T12:47:06.528039",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1001,19 +1916,19 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:39.039802",
+                "modified": "2022-02-14T12:47:06.528026",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:39.039805",
+                "modified": "2022-02-14T12:47:06.528029",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Gerrit",
-                "modified": "2022-02-09T15:07:39.039807",
+                "modified": "2022-02-14T12:47:06.528031",
                 "purpose": "commenting"
             },
             {
@@ -1057,10 +1972,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "5ee5c6c1-2e38-44d8-b5ca-19ba0c639ade",
+        "id": "c2f6f5e8-f331-4990-ad5c-96a64704e21c",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.224190",
+        "generated": "2022-02-14T12:47:06.528052",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1070,19 +1985,80 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:39.224138",
+                "modified": "2022-02-14T12:47:06.528043",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Gerrid",
+                "modified": "2022-02-14T12:47:06.528046",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Gerrig",
+                    "match_variant": "Gerrid",
+                    "match_score": 0.75,
+                    "category": [
+                        "firstname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 464,
+                    "end": 470
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Gerrig"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "441d286b-bbdf-4158-b890-a28e18c37e50",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:06.781704",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:06.781652",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:39.224152",
+                "modified": "2022-02-14T12:47:06.781667",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Koop",
-                "modified": "2022-02-09T15:07:39.224156",
+                "modified": "2022-02-14T12:47:06.781671",
                 "purpose": "commenting"
             },
             {
@@ -1126,10 +2102,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "2c7ae66d-474e-4c01-956f-48096018b904",
+        "id": "45d0ca95-b668-496f-a2b6-b91f498f8b7b",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.224218",
+        "generated": "2022-02-14T12:47:06.781747",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1139,13 +2115,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:39.224206",
+                "modified": "2022-02-14T12:47:06.781733",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "testamentje",
-                "modified": "2022-02-09T15:07:39.224209",
+                "modified": "2022-02-14T12:47:06.781736",
                 "purpose": "commenting"
             },
             {
@@ -1187,10 +2163,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "38c460e2-9633-4183-8288-21d195a638a1",
+        "id": "6066bb0d-bd5a-45c6-928c-7c04b5d55615",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.400522",
+        "generated": "2022-02-14T12:47:06.781765",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:06.781752",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "testament",
+                "modified": "2022-02-14T12:47:06.781755",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Testamente",
+                    "match_variant": "testament",
+                    "match_score": 0.875,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 491,
+                    "end": 501
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Testamente"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8f0abbd3-0279-48f9-8c62-0301ed3fddfa",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:07.014350",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1200,13 +2237,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:39.400475",
+                "modified": "2022-02-14T12:47:07.014283",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Onne",
-                "modified": "2022-02-09T15:07:39.400489",
+                "modified": "2022-02-14T12:47:07.014305",
                 "purpose": "commenting"
             },
             {
@@ -1248,10 +2285,79 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "b7afe2bf-ccd9-4e62-a7eb-812b38fd6963",
+        "id": "70e08d62-56f1-4972-96a7-4996420c1961",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:39.724041",
+        "generated": "2022-02-14T12:47:07.014392",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:07.014364",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:07.014370",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bonne",
+                "modified": "2022-02-14T12:47:07.014375",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname",
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Konne",
+                    "match_variant": "Bonne",
+                    "match_score": 0.725,
+                    "category": [
+                        "firstname",
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 548,
+                    "end": 553
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Konne"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "ac1a58ab-b129-4da2-ae05-c31e10df3db1",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:07.372630",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1261,13 +2367,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:39.723990",
+                "modified": "2022-02-14T12:47:07.372578",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Kohne",
-                "modified": "2022-02-09T15:07:39.724007",
+                "modified": "2022-02-14T12:47:07.372594",
                 "purpose": "commenting"
             },
             {
@@ -1309,10 +2415,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "5c11598b-8d8a-4707-89f5-bfaaf514ba2a",
+        "id": "0f69d81c-1c72-4dc0-b8c9-ee662f4d7d6d",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.302719",
+        "generated": "2022-02-14T12:47:07.372654",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:07.372640",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Fohne",
+                "modified": "2022-02-14T12:47:07.372643",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Kohne",
+                    "match_variant": "Fohne",
+                    "match_score": 1.0,
+                    "category": [
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 662,
+                    "end": 667
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Kohne"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "d2471cfe-3a90-4416-9c78-dd24e79fd3e7",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:08.011820",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1322,13 +2489,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:40.302673",
+                "modified": "2022-02-14T12:47:08.011772",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Wigger",
-                "modified": "2022-02-09T15:07:40.302687",
+                "modified": "2022-02-14T12:47:08.011788",
                 "purpose": "commenting"
             },
             {
@@ -1370,10 +2537,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "a182661e-beea-4da6-a301-7452db462024",
+        "id": "cb67d869-5349-408e-8801-5ae8c0300ddd",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.302747",
+        "generated": "2022-02-14T12:47:08.011859",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1383,13 +2550,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.302735",
+                "modified": "2022-02-14T12:47:08.011843",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Leijen",
-                "modified": "2022-02-09T15:07:40.302737",
+                "modified": "2022-02-14T12:47:08.011846",
                 "purpose": "commenting"
             },
             {
@@ -1431,10 +2598,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "55508a71-6c56-4621-bb4e-ff27a30a1298",
+        "id": "bb04e48f-8017-4372-8e2e-ab2e737ece32",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.302765",
+        "generated": "2022-02-14T12:47:08.011958",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1444,19 +2611,19 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:40.302753",
+                "modified": "2022-02-14T12:47:08.011939",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.302756",
+                "modified": "2022-02-14T12:47:08.011942",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Gerrit",
-                "modified": "2022-02-09T15:07:40.302758",
+                "modified": "2022-02-14T12:47:08.011945",
                 "purpose": "commenting"
             },
             {
@@ -1500,10 +2667,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "b6767195-eeee-4f6a-8820-9b024d03e892",
+        "id": "ef118c74-045d-4fd2-92f4-55084735c528",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.354306",
+        "generated": "2022-02-14T12:47:08.064844",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1513,19 +2680,19 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:40.354252",
+                "modified": "2022-02-14T12:47:08.064793",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.354267",
+                "modified": "2022-02-14T12:47:08.064809",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Koop",
-                "modified": "2022-02-09T15:07:40.354271",
+                "modified": "2022-02-14T12:47:08.064815",
                 "purpose": "commenting"
             },
             {
@@ -1569,10 +2736,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "05c8d9ca-0011-4765-b1f4-2d8f877811e8",
+        "id": "4a3bd46b-1db1-41fe-97bb-38f5a84cb129",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.466044",
+        "generated": "2022-02-14T12:47:08.180602",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1582,13 +2749,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:40.465997",
+                "modified": "2022-02-14T12:47:08.180545",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Maria",
-                "modified": "2022-02-09T15:07:40.466013",
+                "modified": "2022-02-14T12:47:08.180561",
                 "purpose": "commenting"
             },
             {
@@ -1630,10 +2797,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "70f5bac9-8b5e-4a9b-98f5-a940277a81e0",
+        "id": "ad226346-d836-4eb7-906b-1266bbe9e478",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.515694",
+        "generated": "2022-02-14T12:47:08.231565",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1643,19 +2810,19 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:40.515642",
+                "modified": "2022-02-14T12:47:08.231510",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.515657",
+                "modified": "2022-02-14T12:47:08.231526",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Arnoldus",
-                "modified": "2022-02-09T15:07:40.515661",
+                "modified": "2022-02-14T12:47:08.231529",
                 "purpose": "commenting"
             },
             {
@@ -1699,10 +2866,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "68d81065-21a9-4438-b1f3-5a425e374eee",
+        "id": "f6d86f1c-df1e-437d-9ff9-45a64a716f42",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.637918",
+        "generated": "2022-02-14T12:47:08.361793",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1712,13 +2879,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.637795",
+                "modified": "2022-02-14T12:47:08.361745",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Hardevelt",
-                "modified": "2022-02-09T15:07:40.637811",
+                "modified": "2022-02-14T12:47:08.361763",
                 "purpose": "commenting"
             },
             {
@@ -1760,10 +2927,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "e60a948a-2247-402d-a8fe-7e1f91e40115",
+        "id": "8ead0cbe-e1c6-4f74-8296-ff75690e3aa9",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.637951",
+        "generated": "2022-02-14T12:47:08.361815",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1773,13 +2940,74 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.637938",
+                "modified": "2022-02-14T12:47:08.361803",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Hardeveld",
+                "modified": "2022-02-14T12:47:08.361806",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Hardeelf",
+                    "match_variant": "Hardeveld",
+                    "match_score": 0.65625,
+                    "category": [
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 916,
+                    "end": 924
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Hardeelf"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "aa9e8920-7288-456d-8ecd-a4958319ee24",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:08.361843",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:08.361830",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Frankendaal",
-                "modified": "2022-02-09T15:07:40.637941",
+                "modified": "2022-02-14T12:47:08.361833",
                 "purpose": "commenting"
             },
             {
@@ -1821,10 +3049,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "68d2f394-f078-4cb0-b571-5119c9e9fb91",
+        "id": "32ebe8f4-1116-4317-b3be-8e6e61bd84bc",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.869485",
+        "generated": "2022-02-14T12:47:08.624989",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1834,13 +3062,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:40.869431",
+                "modified": "2022-02-14T12:47:08.624928",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Nelen",
-                "modified": "2022-02-09T15:07:40.869447",
+                "modified": "2022-02-14T12:47:08.624948",
                 "purpose": "commenting"
             },
             {
@@ -1882,10 +3110,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "71297af4-dc81-431c-968a-6d6dc22a9d7b",
+        "id": "2da15e4d-9dad-4e7a-8a5f-8477bde69e55",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:40.869516",
+        "generated": "2022-02-14T12:47:08.625040",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1895,13 +3123,13 @@
             {
                 "type": "TextualBody",
                 "value": "material",
-                "modified": "2022-02-09T15:07:40.869500",
+                "modified": "2022-02-14T12:47:08.625013",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "zilveren",
-                "modified": "2022-02-09T15:07:40.869504",
+                "modified": "2022-02-14T12:47:08.625019",
                 "purpose": "commenting"
             },
             {
@@ -1943,10 +3171,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "e42bbd9a-24ad-4ffa-8543-f598ccb41b61",
+        "id": "211295e8-ab3c-4d9a-be20-267fe8bf16b5",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:41.033430",
+        "generated": "2022-02-14T12:47:08.821292",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1956,13 +3184,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:41.033383",
+                "modified": "2022-02-14T12:47:08.821246",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Dina",
-                "modified": "2022-02-09T15:07:41.033398",
+                "modified": "2022-02-14T12:47:08.821262",
                 "purpose": "commenting"
             },
             {
@@ -2004,10 +3232,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "78d03bd1-24ef-43dd-8f3c-70fd99f9c1b5",
+        "id": "83e91ee8-53ba-450d-9725-75b41c047fdd",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:41.110511",
+        "generated": "2022-02-14T12:47:08.915504",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2017,13 +3245,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:41.110466",
+                "modified": "2022-02-14T12:47:08.915400",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Elzevier",
-                "modified": "2022-02-09T15:07:41.110480",
+                "modified": "2022-02-14T12:47:08.915415",
                 "purpose": "commenting"
             },
             {
@@ -2065,10 +3293,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "e3c52f41-109f-4a46-b574-c8399c6aa2f0",
+        "id": "8569148d-ff06-488c-8447-8b09179ef10b",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:41.660437",
+        "generated": "2022-02-14T12:47:09.528033",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2078,19 +3306,80 @@
             {
                 "type": "TextualBody",
                 "value": "currency",
-                "modified": "2022-02-09T15:07:41.660389",
+                "modified": "2022-02-14T12:47:09.527987",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "guldens",
+                "modified": "2022-02-14T12:47:09.528003",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "currency"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Zuldens",
+                    "match_variant": "guldens",
+                    "match_score": 0.6428571428571428,
+                    "category": [
+                        "currency"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1158,
+                    "end": 1165
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Zuldens"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "390f2b33-95f3-42bb-b694-e9294d8f5b2b",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:09.528058",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "currency",
+                "modified": "2022-02-14T12:47:09.528042",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "category",
-                "modified": "2022-02-09T15:07:41.660403",
+                "modified": "2022-02-14T12:47:09.528045",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "gulden",
-                "modified": "2022-02-09T15:07:41.660406",
+                "modified": "2022-02-14T12:47:09.528048",
                 "purpose": "commenting"
             },
             {
@@ -2134,10 +3423,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "ec9b1935-4d38-45c8-948d-6afef5d93159",
+        "id": "c0a0e084-f2ff-439c-a6ec-528ec9093af9",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:41.824422",
+        "generated": "2022-02-14T12:47:09.701707",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2147,13 +3436,74 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:41.824374",
+                "modified": "2022-02-14T12:47:09.701660",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "mes",
+                "modified": "2022-02-14T12:47:09.701676",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "metse",
+                    "match_variant": "mes",
+                    "match_score": 1.0,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1182,
+                    "end": 1187
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "metse"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "16b65902-6560-4ece-860f-19515a5befe7",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:09.701733",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:09.701717",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "mets",
-                "modified": "2022-02-09T15:07:41.824389",
+                "modified": "2022-02-14T12:47:09.701722",
                 "purpose": "commenting"
             },
             {
@@ -2195,10 +3545,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "4c3e494e-0a4a-4f45-b801-fad4a55f7cba",
+        "id": "5e7ab99e-4962-47af-80fa-b93661940e6c",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:41.824447",
+        "generated": "2022-02-14T12:47:09.701756",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2208,13 +3558,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:41.824434",
+                "modified": "2022-02-14T12:47:09.701745",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Hardevelt",
-                "modified": "2022-02-09T15:07:41.824438",
+                "modified": "2022-02-14T12:47:09.701747",
                 "purpose": "commenting"
             },
             {
@@ -2256,10 +3606,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "08745d69-8c4f-4021-882e-c6e42c333423",
+        "id": "e2ad709a-ce73-4283-ba39-a8d5aa4a07a7",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:41.824471",
+        "generated": "2022-02-14T12:47:09.701784",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2269,13 +3619,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:41.824458",
+                "modified": "2022-02-14T12:47:09.701770",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "boer",
-                "modified": "2022-02-09T15:07:41.824463",
+                "modified": "2022-02-14T12:47:09.701773",
                 "purpose": "commenting"
             },
             {
@@ -2317,10 +3667,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "c5540ade-4945-4648-9d0a-78697afcbf26",
+        "id": "24686b7f-2f64-45b6-b7cd-a4806f94e2a3",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.005445",
+        "generated": "2022-02-14T12:47:09.701798",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:09.701789",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Boer",
+                "modified": "2022-02-14T12:47:09.701792",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Boer",
+                    "match_variant": "Boer",
+                    "match_score": 1.0,
+                    "category": [
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1211,
+                    "end": 1215
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Boer"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "60fd8533-6723-4d51-b504-9a6c5af34c08",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:09.887291",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2330,13 +3741,82 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:42.005382",
+                "modified": "2022-02-14T12:47:09.887239",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-02-14T12:47:09.887255",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Gerrit",
+                "modified": "2022-02-14T12:47:09.887258",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname",
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Gerrif",
+                    "match_variant": "Gerrit",
+                    "match_score": 0.75,
+                    "category": [
+                        "firstname",
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1230,
+                    "end": 1236
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Gerrif"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "d2e8ba91-fd61-43a2-92eb-685c50ef08de",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:09.887314",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:09.887301",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Gerrid",
-                "modified": "2022-02-09T15:07:42.005399",
+                "modified": "2022-02-14T12:47:09.887304",
                 "purpose": "commenting"
             },
             {
@@ -2378,10 +3858,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "a86215af-80e9-4e9b-aa1f-ec4713924454",
+        "id": "26b0aead-7910-4fdd-a1da-56ede62dc205",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.005477",
+        "generated": "2022-02-14T12:47:09.887335",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2391,13 +3871,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:42.005455",
+                "modified": "2022-02-14T12:47:09.887323",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Braamcamp",
-                "modified": "2022-02-09T15:07:42.005458",
+                "modified": "2022-02-14T12:47:09.887326",
                 "purpose": "commenting"
             },
             {
@@ -2439,10 +3919,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "95ba8318-1917-4eb8-b943-733aeec27db5",
+        "id": "94480b49-3000-4773-b953-9af5ea0ee7e1",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.239410",
+        "generated": "2022-02-14T12:47:10.119572",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2452,13 +3932,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:42.239361",
+                "modified": "2022-02-14T12:47:10.119526",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Groof",
-                "modified": "2022-02-09T15:07:42.239377",
+                "modified": "2022-02-14T12:47:10.119541",
                 "purpose": "commenting"
             },
             {
@@ -2500,10 +3980,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "613ea370-fcd0-4d6f-b6d8-fb31b598a75e",
+        "id": "6cb2e98c-9654-4141-bcd6-aee23905177f",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.239445",
+        "generated": "2022-02-14T12:47:10.119609",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2513,13 +3993,13 @@
             {
                 "type": "TextualBody",
                 "value": "currency",
-                "modified": "2022-02-09T15:07:42.239428",
+                "modified": "2022-02-14T12:47:10.119590",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "gulde",
-                "modified": "2022-02-09T15:07:42.239431",
+                "modified": "2022-02-14T12:47:10.119593",
                 "purpose": "commenting"
             },
             {
@@ -2561,10 +4041,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "3d64a422-e4b3-4fb9-a3fe-ceb93cffafe5",
+        "id": "cfc8f92f-ce0f-4d40-b703-6aa96c0bd991",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.675090",
+        "generated": "2022-02-14T12:47:10.623722",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2574,13 +4054,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:42.675043",
+                "modified": "2022-02-14T12:47:10.623673",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Maria",
-                "modified": "2022-02-09T15:07:42.675059",
+                "modified": "2022-02-14T12:47:10.623688",
                 "purpose": "commenting"
             },
             {
@@ -2622,10 +4102,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "6d880cfd-5176-41c9-95bc-6a083256b1eb",
+        "id": "d5343158-4102-4cc3-a69c-931a922b0615",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.675121",
+        "generated": "2022-02-14T12:47:10.623753",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2635,13 +4115,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:42.675107",
+                "modified": "2022-02-14T12:47:10.623738",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Crom",
-                "modified": "2022-02-09T15:07:42.675110",
+                "modified": "2022-02-14T12:47:10.623743",
                 "purpose": "commenting"
             },
             {
@@ -2683,10 +4163,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "5756594d-5dca-47aa-8aa0-f14e905ea7a0",
+        "id": "eab5ad7c-f768-4262-b6a7-b9029dcf0b36",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:42.899151",
+        "generated": "2022-02-14T12:47:10.623780",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:10.623767",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "baren",
+                "modified": "2022-02-14T12:47:10.623770",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "geboren",
+                    "match_variant": "baren",
+                    "match_score": 1.0,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1373,
+                    "end": 1380
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "geboren"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "6d1cb35d-4adf-47c6-b962-3fe59960a24f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:10.886716",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2696,13 +4237,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:42.899101",
+                "modified": "2022-02-14T12:47:10.886667",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Hardevelt",
-                "modified": "2022-02-09T15:07:42.899117",
+                "modified": "2022-02-14T12:47:10.886684",
                 "purpose": "commenting"
             },
             {
@@ -2744,10 +4285,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "0e566f32-d048-4a2d-9d64-d065832c5b16",
+        "id": "6b8194dd-0edf-4373-be7d-88f75e0c855b",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:43.087261",
+        "generated": "2022-02-14T12:47:11.111953",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2757,13 +4298,13 @@
             {
                 "type": "TextualBody",
                 "value": "streetname",
-                "modified": "2022-02-09T15:07:43.087211",
+                "modified": "2022-02-14T12:47:11.111904",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Gr",
-                "modified": "2022-02-09T15:07:43.087228",
+                "modified": "2022-02-14T12:47:11.111920",
                 "purpose": "commenting"
             },
             {
@@ -2805,10 +4346,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "458c4228-01a7-4587-8680-875ff04bb192",
+        "id": "e951d370-4040-42bf-9735-fee1f9e05348",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:43.087295",
+        "generated": "2022-02-14T12:47:11.111985",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2818,13 +4359,13 @@
             {
                 "type": "TextualBody",
                 "value": "currency",
-                "modified": "2022-02-09T15:07:43.087279",
+                "modified": "2022-02-14T12:47:11.111971",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "gulde",
-                "modified": "2022-02-09T15:07:43.087282",
+                "modified": "2022-02-14T12:47:11.111974",
                 "purpose": "commenting"
             },
             {
@@ -2866,10 +4407,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "b94dc095-7a8b-4ad5-89d1-1106be7b8651",
+        "id": "7575a94b-cea1-44f8-8600-3fec3b55ce9a",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:43.648951",
+        "generated": "2022-02-14T12:47:11.711570",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2879,13 +4420,13 @@
             {
                 "type": "TextualBody",
                 "value": "currency",
-                "modified": "2022-02-09T15:07:43.648902",
+                "modified": "2022-02-14T12:47:11.711524",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "gulde",
-                "modified": "2022-02-09T15:07:43.648917",
+                "modified": "2022-02-14T12:47:11.711540",
                 "purpose": "commenting"
             },
             {
@@ -2927,10 +4468,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "d1e3285c-1019-4570-abe2-a8625fcbe5e3",
+        "id": "a36782b8-082e-446c-a01d-11f151b155f5",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:43.858865",
+        "generated": "2022-02-14T12:47:11.935735",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2940,13 +4481,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:43.858816",
+                "modified": "2022-02-14T12:47:11.935689",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Staat",
-                "modified": "2022-02-09T15:07:43.858832",
+                "modified": "2022-02-14T12:47:11.935704",
                 "purpose": "commenting"
             },
             {
@@ -2988,10 +4529,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "50367ab7-6755-440e-9797-514b2ade6419",
+        "id": "e320304a-0449-4777-9fed-e2593ee757b4",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:44.077975",
+        "generated": "2022-02-14T12:47:12.146502",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3001,13 +4542,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:44.077924",
+                "modified": "2022-02-14T12:47:12.146456",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Mette",
-                "modified": "2022-02-09T15:07:44.077940",
+                "modified": "2022-02-14T12:47:12.146471",
                 "purpose": "commenting"
             },
             {
@@ -3049,10 +4590,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "e79d2c96-1519-4d32-b68a-0f5148a17b36",
+        "id": "f0cf2179-1596-4e21-a90a-cd5f5a471cea",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:44.078172",
+        "generated": "2022-02-14T12:47:12.146709",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3062,19 +4603,19 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:44.078145",
+                "modified": "2022-02-14T12:47:12.146682",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:44.078151",
+                "modified": "2022-02-14T12:47:12.146688",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Jan",
-                "modified": "2022-02-09T15:07:44.078156",
+                "modified": "2022-02-14T12:47:12.146691",
                 "purpose": "commenting"
             },
             {
@@ -3118,10 +4659,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "2f075082-8b8c-46a7-b175-cbf501c3e8aa",
+        "id": "231b4e23-488e-446e-800a-b46d4a4b1c4c",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:44.722846",
+        "generated": "2022-02-14T12:47:12.871544",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3131,13 +4672,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:44.722797",
+                "modified": "2022-02-14T12:47:12.871480",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Jantz",
-                "modified": "2022-02-09T15:07:44.722813",
+                "modified": "2022-02-14T12:47:12.871502",
                 "purpose": "commenting"
             },
             {
@@ -3179,10 +4720,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "3dc5a6e2-a45d-4ccd-8746-df1793465d2f",
+        "id": "83aa52bf-5d2c-44e4-ac4d-c0396e18d1c5",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:45.440593",
+        "generated": "2022-02-14T12:47:13.658942",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3192,13 +4733,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:45.440547",
+                "modified": "2022-02-14T12:47:13.658894",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "juweel",
-                "modified": "2022-02-09T15:07:45.440562",
+                "modified": "2022-02-14T12:47:13.658911",
                 "purpose": "commenting"
             },
             {
@@ -3240,10 +4781,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "11fc806a-988d-4185-b877-70776bb97b34",
+        "id": "61e8d312-46f8-4ef1-b7a5-7d9b0fb5f235",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:45.725734",
+        "generated": "2022-02-14T12:47:13.658967",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:13.658953",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "juwelen",
+                "modified": "2022-02-14T12:47:13.658956",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Juwelen",
+                    "match_variant": "juwelen",
+                    "match_score": 0.875,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2019,
+                    "end": 2026
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Juwelen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "393f643f-fb78-4a14-9b63-5d5a693d92ab",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:13.990143",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3253,13 +4855,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:45.725684",
+                "modified": "2022-02-14T12:47:13.990081",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Brammer",
-                "modified": "2022-02-09T15:07:45.725700",
+                "modified": "2022-02-14T12:47:13.990102",
                 "purpose": "commenting"
             },
             {
@@ -3301,10 +4903,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "dab7b096-38dc-4213-b783-66ace4de46fe",
+        "id": "bc3b4638-fcc7-44f2-8153-2f6c2868868a",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:45.725772",
+        "generated": "2022-02-14T12:47:13.990205",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3314,13 +4916,13 @@
             {
                 "type": "TextualBody",
                 "value": "property",
-                "modified": "2022-02-09T15:07:45.725753",
+                "modified": "2022-02-14T12:47:13.990177",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "bot",
-                "modified": "2022-02-09T15:07:45.725757",
+                "modified": "2022-02-14T12:47:13.990183",
                 "purpose": "commenting"
             },
             {
@@ -3362,10 +4964,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "0746de3a-ac5c-413c-99ca-b6116123f14c",
+        "id": "46b6ae24-6df5-4872-9906-e3c134a54e6c",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:45.982308",
+        "generated": "2022-02-14T12:47:13.990239",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3374,19 +4976,278 @@
         "body": [
             {
                 "type": "TextualBody",
-                "value": "material",
-                "modified": "2022-02-09T15:07:45.982260",
+                "value": "object",
+                "modified": "2022-02-14T12:47:13.990216",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
-                "value": "steen",
-                "modified": "2022-02-09T15:07:45.982275",
+                "value": "property",
+                "modified": "2022-02-14T12:47:13.990220",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "boot",
+                "modified": "2022-02-14T12:47:13.990225",
                 "purpose": "commenting"
             },
             {
                 "type": "TextualBody",
                 "value": [
+                    "object",
+                    "property"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "boot",
+                    "match_variant": "boot",
+                    "match_score": 1.0,
+                    "category": [
+                        "object",
+                        "property"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2081,
+                    "end": 2085
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "boot"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "167349da-3d26-452b-88d4-bbd751096248",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:13.990353",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "property",
+                "modified": "2022-02-14T12:47:13.990332",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "bot",
+                "modified": "2022-02-14T12:47:13.990337",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "property"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "boot",
+                    "match_variant": "bot",
+                    "match_score": 1.0,
+                    "category": [
+                        "property"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2081,
+                    "end": 2085
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "boot"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "4e16bd9c-0d43-480d-bd70-c3f080039476",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.253438",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.253386",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "oreilletten",
+                "modified": "2022-02-14T12:47:14.253401",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "orlieften",
+                    "match_variant": "oreilletten",
+                    "match_score": 0.7499999999999999,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2108,
+                    "end": 2117
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "orlieften"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "b1b34ea6-7274-4fd2-a277-d77d5568f73d",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.253466",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:14.253455",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Mette",
+                "modified": "2022-02-14T12:47:14.253457",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "met",
+                    "match_variant": "Mette",
+                    "match_score": 1.0,
+                    "category": [
+                        "firstname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2124,
+                    "end": 2127
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "met"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "0cfdfc0c-d984-4cd8-b603-cac7d407d6ba",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.253489",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.253474",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.253477",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "steen",
+                "modified": "2022-02-14T12:47:14.253479",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
                     "material"
                 ],
                 "purpose": "classifying"
@@ -3398,6 +5259,7 @@
                     "match_variant": "steen",
                     "match_score": 0.7678571428571428,
                     "category": [
+                        "object",
                         "material"
                     ]
                 }
@@ -3423,10 +5285,79 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "ad7c64d8-a331-4bb1-81e9-c4eed87e3f96",
+        "id": "5ee9b69a-1b89-4e79-bb1b-1c773891ce31",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.084130",
+        "generated": "2022-02-14T12:47:14.253508",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.253496",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.253499",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "stenen",
+                "modified": "2022-02-14T12:47:14.253501",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "tstenen",
+                    "match_variant": "stenen",
+                    "match_score": 0.7678571428571428,
+                    "category": [
+                        "object",
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2128,
+                    "end": 2135
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "tstenen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "d1cff179-76df-45fa-befc-cd28dfb8999e",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.381667",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3436,13 +5367,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:46.084082",
+                "modified": "2022-02-14T12:47:14.381622",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Spring",
-                "modified": "2022-02-09T15:07:46.084098",
+                "modified": "2022-02-14T12:47:14.381637",
                 "purpose": "commenting"
             },
             {
@@ -3484,10 +5415,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "b4121392-929a-47e0-90fd-e8064a05c670",
+        "id": "68f7fb2f-0c35-45cc-87d3-75ba8c568acf",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.084160",
+        "generated": "2022-02-14T12:47:14.381690",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3497,13 +5428,13 @@
             {
                 "type": "TextualBody",
                 "value": "firstname",
-                "modified": "2022-02-09T15:07:46.084142",
+                "modified": "2022-02-14T12:47:14.381678",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Mette",
-                "modified": "2022-02-09T15:07:46.084146",
+                "modified": "2022-02-14T12:47:14.381681",
                 "purpose": "commenting"
             },
             {
@@ -3545,10 +5476,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "c1400c3a-d3c9-441b-8e32-a2d4949c3ba5",
+        "id": "68a7170c-fb52-4dd3-84f3-4ea76b40d0d9",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.121245",
+        "generated": "2022-02-14T12:47:14.420082",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3558,13 +5489,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:46.121200",
+                "modified": "2022-02-14T12:47:14.420039",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "hoepring",
-                "modified": "2022-02-09T15:07:46.121215",
+                "modified": "2022-02-14T12:47:14.420053",
                 "purpose": "commenting"
             },
             {
@@ -3606,10 +5537,217 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "5348a3f6-397e-4fd2-8d7d-39499cc3e3e3",
+        "id": "1c6c66d3-7c7d-4640-9a70-ff6cb73a1dd5",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.192682",
+        "generated": "2022-02-14T12:47:14.420110",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.420096",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.420099",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "stenen",
+                "modified": "2022-02-14T12:47:14.420102",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "steenen",
+                    "match_variant": "stenen",
+                    "match_score": 1.0,
+                    "category": [
+                        "object",
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2200,
+                    "end": 2207
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "steenen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "1b31cf91-3c52-4b49-9241-3eee80fdd74a",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.420129",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.420115",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.420118",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "steen",
+                "modified": "2022-02-14T12:47:14.420120",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "steenen",
+                    "match_variant": "steen",
+                    "match_score": 1.0,
+                    "category": [
+                        "object",
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2200,
+                    "end": 2207
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "steenen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "a45fc78c-226e-4df9-abbb-17232b69db35",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.420146",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.420133",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.420136",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "stenen",
+                "modified": "2022-02-14T12:47:14.420139",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "steenen",
+                    "match_variant": "stenen",
+                    "match_score": 1.0,
+                    "category": [
+                        "object",
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2200,
+                    "end": 2207
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "steenen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "4cdc36ad-4912-46fd-903c-7d8110f52acb",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.509686",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3619,13 +5757,13 @@
             {
                 "type": "TextualBody",
                 "value": "familyname",
-                "modified": "2022-02-09T15:07:46.192632",
+                "modified": "2022-02-14T12:47:14.509639",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "Pen",
-                "modified": "2022-02-09T15:07:46.192648",
+                "modified": "2022-02-14T12:47:14.509655",
                 "purpose": "commenting"
             },
             {
@@ -3667,10 +5805,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "8581bd19-a2de-471b-8e13-2d79b657b85f",
+        "id": "761eb056-854e-4a95-b1eb-f84b82524573",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.309669",
+        "generated": "2022-02-14T12:47:14.509794",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:14.509776",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Mette",
+                "modified": "2022-02-14T12:47:14.509780",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "met",
+                    "match_variant": "Mette",
+                    "match_score": 1.0,
+                    "category": [
+                        "firstname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2223,
+                    "end": 2226
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "met"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "0d2b0cce-6f0f-4a6e-97cd-25fb74bc27b0",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.509825",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3680,13 +5879,151 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:46.309622",
+                "modified": "2022-02-14T12:47:14.509810",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.509814",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "stenen",
+                "modified": "2022-02-14T12:47:14.509817",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Stenen",
+                    "match_variant": "stenen",
+                    "match_score": 0.875,
+                    "category": [
+                        "object",
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2229,
+                    "end": 2235
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Stenen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "0d0d04e1-b2ff-419f-b826-d4cce4c6d9d5",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.509841",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.509830",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.509832",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "steen",
+                "modified": "2022-02-14T12:47:14.509835",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object",
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Stenen",
+                    "match_variant": "steen",
+                    "match_score": 0.875,
+                    "category": [
+                        "object",
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2229,
+                    "end": 2235
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Stenen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8ef901e2-e7b8-4183-9cae-65c227363027",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.652306",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.652264",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "kappen",
-                "modified": "2022-02-09T15:07:46.309638",
+                "modified": "2022-02-14T12:47:14.652278",
                 "purpose": "commenting"
             },
             {
@@ -3728,10 +6065,71 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "4844d1d7-5134-46cd-86a3-409b489bdd01",
+        "id": "ac5b1448-1533-4034-a6c0-54fb74ebfe22",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.309699",
+        "generated": "2022-02-14T12:47:14.652333",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-02-14T12:47:14.652317",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Mette",
+                "modified": "2022-02-14T12:47:14.652320",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "met",
+                    "match_variant": "Mette",
+                    "match_score": 1.0,
+                    "category": [
+                        "firstname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2257,
+                    "end": 2260
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "met"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8e066db3-92ac-488c-80f3-62aff8baefbe",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.652351",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3741,13 +6139,74 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:46.309682",
+                "modified": "2022-02-14T12:47:14.652341",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "parel",
+                "modified": "2022-02-14T12:47:14.652344",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "object"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "paerlen",
+                    "match_variant": "parel",
+                    "match_score": 1.0,
+                    "category": [
+                        "object"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2264,
+                    "end": 2271
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "paerlen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "aa6b7749-c663-43e3-926b-42a3b7b9b876",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.652365",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-02-14T12:47:14.652356",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "parels / paarlen",
-                "modified": "2022-02-09T15:07:46.309685",
+                "modified": "2022-02-14T12:47:14.652359",
                 "purpose": "commenting"
             },
             {
@@ -3789,10 +6248,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "13f3a6b2-8e52-4aee-b7e0-dfa03ea65aa3",
+        "id": "a7812f26-f50d-440a-a1af-f3238f38d638",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.380783",
+        "generated": "2022-02-14T12:47:14.741968",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3802,13 +6261,74 @@
             {
                 "type": "TextualBody",
                 "value": "material",
-                "modified": "2022-02-09T15:07:46.380723",
+                "modified": "2022-02-14T12:47:14.741901",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "koperen",
+                "modified": "2022-02-14T12:47:14.741924",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "material"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "koper",
+                    "match_variant": "koperen",
+                    "match_score": 1.0,
+                    "category": [
+                        "material"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=NOTA01000000107",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 2277,
+                    "end": 2282
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "koper"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "7793df09-0581-48be-b903-4b5febaad557",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-02-14T12:47:14.742009",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "material",
+                "modified": "2022-02-14T12:47:14.741986",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "koper",
-                "modified": "2022-02-09T15:07:46.380741",
+                "modified": "2022-02-14T12:47:14.741992",
                 "purpose": "commenting"
             },
             {
@@ -3850,10 +6370,10 @@
             "http://www.w3.org/ns/anno.jsonld",
             "https://leonvanwissen.nl/vocab/roar/roar.json"
         ],
-        "id": "72eefd06-d10b-4013-af68-11333555ada9",
+        "id": "d8a44c34-a51b-408b-942c-719db5d34fed",
         "type": "Annotation",
         "motivation": "classifying",
-        "generated": "2022-02-09T15:07:46.380810",
+        "generated": "2022-02-14T12:47:14.742050",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3863,13 +6383,13 @@
             {
                 "type": "TextualBody",
                 "value": "object",
-                "modified": "2022-02-09T15:07:46.380797",
+                "modified": "2022-02-14T12:47:14.742030",
                 "purpose": "tagging"
             },
             {
                 "type": "TextualBody",
                 "value": "stiften",
-                "modified": "2022-02-09T15:07:46.380800",
+                "modified": "2022-02-14T12:47:14.742035",
                 "purpose": "commenting"
             },
             {

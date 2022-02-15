@@ -111,7 +111,7 @@ keyword_uncurated_lexicon.tsv:
 	cut -d "," -f 1 "$(RESOURCEDIR)/keywords.csv" | tr '[:upper:]' '[:lower:]' > "$@" || (rm "$@" && false)
 
 %.sanitized.tsv: %.tsv
-	cd $(EXPDIR) && make groundtruth.txt
+	cd $(EXPDIR) && make groundtruth.tok.lexicon.tsv
 	cd -
 	sh -c 'TOPITEM=$$(head -n 1 $< | cut -f 1) TOPFREQ=$$(grep -e "^$$TOPITEM" $(EXPDIR)/groundtruth.tok.lexicon.tsv | sort -k2 -rn | head -n 1 | cut -f 2) $(REPOROOT)/scripts/sanitize_lexicon.py $< 5 $$TOPITEM $$TOPFREQ' > "$@" || (rm "$@" && false)
 

@@ -95,6 +95,13 @@ currency_variants.tsv: boedeltermen.autoexpanded.csv
 currency_wordforms.lst: boedeltermen.autoexpanded.csv
 	awk -F"," '($$2 == "munt") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
+quantifier_variants.tsv: boedeltermen.autoexpanded.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "eenheid") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+
+quantifier_wordforms.lst: boedeltermen.autoexpanded.csv
+	awk -F"," '($$2 == "eenheid") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+
 animal_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
 	awk -F"," '($$2 == "dier") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
@@ -153,7 +160,7 @@ int_historisch_lexicon_variants.freq.tsv: int_historisch_lexicon.wordforms.freq.
 all: first_names_lexicon.sanitized.tsv family_names_lexicon.sanitized.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_historisch_lexicon_variants.tsv int_historisch_lexicon_variants.freq.tsv boedeltermen
 
 .PHONY: boedeltermen
-boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv animal_variants.freq.tsv animal_wordforms.freq.tsv
+boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv animal_variants.freq.tsv animal_wordforms.freq.tsv quantifier_variants.freq.tsv quantifier_wordforms.freq.tsv
 
 .PHONY: clean
 clean:

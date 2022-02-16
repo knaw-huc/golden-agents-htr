@@ -34,6 +34,10 @@ buildings_lexicon.tsv: buildingsAdamlink.csv
 	#Extract street names
 	cut -d "," -f 2  $< | sed '/^$$/d' | tr -d '"' | sort | uniq  > "$@" || (rm "$@" && false)
 
+locations_lexicon.lst: thesauri/locations/reconstructions.csv
+	#Extract city/town names (and other locations)
+	grep "http" "$<" | grep -v Amsteldam | cut -d "," -f 2 | sed '/^$$/d' | tr -d '"' | sort | uniq  > "$@" || (rm "$@" && false)
+
 boedeltermen.autoexpanded.csv: boedeltermen.csv
 	#Expands boedeltermen with variants found in the INT Historical Lexicon
 	cp -f "$<" "$@" || (rm "$@" && false)
@@ -151,7 +155,12 @@ countries.freq.tsv: lexicons/countries.lst
 	cd -
 	lexmatch -f 0 -M -l "$<" -t $(EXPDIR)/groundtruth.txt | sed 's/\t0/\t1/' > "$@" || (rm "$@" && false)
 
-regio.freq.tsv: lexicons/regio.lst
+regions.freq.tsv: lexicons/regions.lst
+	cd $(EXPDIR) && make groundtruth.txt
+	cd -
+	lexmatch -f 0 -M -l "$<" -t $(EXPDIR)/groundtruth.txt | sed 's/\t0/\t1/' > "$@" || (rm "$@" && false)
+
+%_lexicon.freq.tsv: %_lexicon.lst
 	cd $(EXPDIR) && make groundtruth.txt
 	cd -
 	lexmatch -f 0 -M -l "$<" -t $(EXPDIR)/groundtruth.txt | sed 's/\t0/\t1/' > "$@" || (rm "$@" && false)

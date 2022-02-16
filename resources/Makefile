@@ -151,6 +151,11 @@ countries.freq.tsv: lexicons/countries.lst
 	cd -
 	lexmatch -f 0 -M -l "$<" -t $(EXPDIR)/groundtruth.txt | sed 's/\t0/\t1/' > "$@" || (rm "$@" && false)
 
+regio.freq.tsv: lexicons/regio.lst
+	cd $(EXPDIR) && make groundtruth.txt
+	cd -
+	lexmatch -f 0 -M -l "$<" -t $(EXPDIR)/groundtruth.txt | sed 's/\t0/\t1/' > "$@" || (rm "$@" && false)
+
 %_variants.freq.tsv: %_variants.tsv %_wordforms.freq.tsv
 	#Enrich a variant list with frequency information
 	"$(REPOROOT)/scripts/freqvariantlist.py" "$*_variants.tsv" "$*_wordforms.freq.tsv" > "$@" || (rm "$@" && false)

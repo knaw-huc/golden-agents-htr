@@ -183,7 +183,7 @@ boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_varian
 
 .PHONY: clean
 clean:
-	rm boedeltermen.autoexpanded.csv *_variants.tsv *.sanitized.tsv *_lexicon.tsv *.freq.tsv *.freq.lst *_wordforms* || true
+	rm boedeltermen.autoexpanded.csv *_variants.tsv *.sanitized.tsv *_lexicon.tsv *_lexicon.lst *.freq.tsv *.freq.lst *_wordforms* || true
 	[ -e int_historisch_lexicon_2022_02_04.txt ] && ln -s int_historisch_lexicon_2022_02_04.txt int_historisch_lexicon.tsv
 
 .PHONY: checkdeps

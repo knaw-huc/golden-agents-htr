@@ -12,8 +12,8 @@ import { Container, Header, Segment } from "semantic-ui-react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-// const apiBase = "http://localhost:2081"; // development
-const apiBase = "/api"; // production; proxied to back-end in nginx.conf
+const apiBase = "http://localhost:8000"; // development
+// const apiBase = "/api"; // production; proxied to back-end in nginx.conf
 
 // interface Doc {
 //   text: string;
@@ -30,9 +30,10 @@ interface DocumentProps {
 }
 
 const basenames: string[] = require("./ga-selection-basenames.json");
+const versions: string[] = ["exp8","exp9"];
 const config: {} = require("./config.json")
 const annotations0:{}[] = [];
-const text0: string = 'Please select a text';
+const text0: string = 'Please select a text (and version)';
 const doc0={text:text0,annotations:annotations0};
 
 class TextSelector extends Component<{selection:string, onChange}> {
@@ -55,11 +56,31 @@ class TextSelector extends Component<{selection:string, onChange}> {
   }
 }
 
+class VersionSelector extends Component<{selection:string, onChange}> {
+
+  render = () => {
+    const options = versions.map(option => (
+      <option key={option} value={option}>
+        {option}
+      </option>
+    ));
+//     options.unshift((<option disabled selected> -- select a version -- </option>));
+    return (
+      <span>
+      Version: &nbsp;
+      <select onChange = { (e) => this.props.onChange(e.target.value) }>
+        {options}
+      </select>
+      </span>
+    )
+  }
+}
+
 const VOCABULARY = [
-    { label: "firstname", uri: "http://vocab.getty.edu/aat/300008347?" },
+    { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
     { label: "familyname", uri: "http://vocab.getty.edu/aat/300008347?" },
     { label: "person",   uri: "http://vocab.getty.edu/aat/300024979" },
-    { label: "occupation", uri: "http://vocab.getty.edu/aat/300008347?" },
+    { label: "occupation", uri: "http://vocab.getty.edu/aat/300263369?" },
 
     { label: "material", uri: "http://vocab.getty.edu/aat/300010358" },
     { label: "property", uri: "http://vocab.getty.edu/aat/300008347" },
@@ -67,13 +88,16 @@ const VOCABULARY = [
     { label: "picture",  uri: "http://vocab.getty.edu/aat/300008347" },
     { label: "animal",   uri: "http://vocab.getty.edu/aat/300008347" },
 
-    { label: "currency", uri: "http://vocab.getty.edu/aat/300008347" },
+    { label: "currency", uri: "http://vocab.getty.edu/aat/300037316" },
 
+    { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
+    { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
     { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
 //     { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
     { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
     { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
+    { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
   ];
 
 // Make own component 'Document' for the annotatable source
@@ -164,10 +188,11 @@ class Document extends Component<DocumentProps> {
 const App = () => {
   const [doc, setDoc] = useState(doc0);
   const [selection, setSelection] = useState(basenames[0]);
+  const [versionSelection, setVersionSelection] = useState(versions[-1]);
   const [loading, setLoading] = useState(false);
 
-  const fetchPageData = async (selected:string) => {
-    const res = await fetch(apiBase + "/pagedata/" + selected, {
+  const fetchPageData = async (selected:string, selectedVersion: string) => {
+    const res = await fetch(apiBase + "/pagedata/" + selected + "/"+ selectedVersion, {
       headers: {
         "Content-Type": "text/json",
         Accept: "text/json",
@@ -215,7 +240,22 @@ const App = () => {
     setSelection(newSelection);
     var newText;
     var newAnnotations;
-    await fetchPageData(newSelection).then(pd => {newText = pd.text; newAnnotations=pd.annotations});
+    await fetchPageData(newSelection,versionSelection).then(pd => {newText = pd.text; newAnnotations=pd.annotations});
+    // await fetchText(newSelection).then(t => newText = t);
+    // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
+    const newDoc = {text:newText,annotations:newAnnotations};
+
+    setDoc(newDoc);
+    setLoading(false);
+  }
+
+  const handleVersionSelectionChange = async (newVersionSelection) => {
+    setLoading(true);
+    putAnnotations(selection,doc.annotations);
+    setVersionSelection(newVersionSelection);
+    var newText;
+    var newAnnotations;
+    await fetchPageData(selection,newVersionSelection).then(pd => {newText = pd.text; newAnnotations=pd.annotations});
     // await fetchText(newSelection).then(t => newText = t);
     // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
     const newDoc = {text:newText,annotations:newAnnotations};
@@ -244,10 +284,14 @@ const App = () => {
         <div>
           <TextSelector selection={selection} onChange={handleSelectionChange}/>
           &nbsp;
+          <VersionSelector selection={versionSelection} onChange={handleVersionSelectionChange}/>
+          &nbsp;
           <PuffLoader color={color} css={override} loading={loading} size={20} />
         </div>
 
         <div>Tag Legend: | {legend}</div>
+
+{/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
 
         <Segment>
           <Document doc={doc} setDoc={setDoc} />

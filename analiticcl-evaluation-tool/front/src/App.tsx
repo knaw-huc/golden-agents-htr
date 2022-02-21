@@ -13,6 +13,7 @@ import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
 import TextSelector from "./components/TextSelector";
+import VersionSelector from "./components/VersionSelector";
 
 const apiBase = "http://localhost:8000"; // development
 // const apiBase = "/api"; // production; proxied to back-end in nginx.conf
@@ -49,53 +50,6 @@ const useLocalStorageState = (key: string, defaultValue: string) => {
 
   return [state, setState];
 };
-
-// class TextSelector extends Component<{ selection: string; onChange }> {
-//   render = () => {
-//     const options = basenames.map((option) => (
-//       <option key={option} value={option}>
-//         {option}
-//       </option>
-//     ));
-//     // options.unshift((<option disabled selected> -- select a text -- </option>));
-//     return (
-//       <span>
-//         Text: &nbsp;
-//         <select onChange={(e) => this.props.onChange(e.target.value)}>
-//           {options}
-//         </select>
-//       </span>
-//     );
-//   };
-// }
-
-class VersionSelector extends Component<{
-  selection: string;
-  annotation_versions: string[];
-  onChange;
-}> {
-
-  shouldComponentUpdate = (newProps, _) => {
-    return newProps.annotation_versions !== this.props.annotation_versions;
-  };
-
-  render = () => {
-    const options = this.props.annotation_versions.map((option) => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ));
-    //     options.unshift((<option disabled selected> -- select a version -- </option>));
-    return (
-      <span>
-        Version: &nbsp;
-        <select onChange={(e) => this.props.onChange(e.target.value)}>
-          {options}
-        </select>
-      </span>
-    );
-  };
-}
 
 const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },

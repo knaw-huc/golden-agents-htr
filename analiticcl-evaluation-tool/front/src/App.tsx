@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 // Theming only
 import "semantic-ui-css/semantic.min.css";
 import { Container, Header, Segment } from "semantic-ui-react";
-// import { Container, Header, Segment, Button, Icon } from "semantic-ui-react";
 
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
@@ -15,13 +14,6 @@ import RecogitoDocument from "./components/RecogitoDocument";
 const apiBase = "http://localhost:8000"; // development
 // const apiBase = "/api"; // production; proxied to back-end in nginx.conf
 
-// interface Doc {
-//   text: string;
-//   annotations: {}[];
-// };
-
-const basenames: string[] = require("./ga-selection-basenames.json");
-const defaultVersions: string[] = ["exp1", "exp2"];
 const config: {} = require("./config.json");
 const annotations0: {}[] = [];
 const text0: string = "Please select a text (and version)";
@@ -44,7 +36,7 @@ const VOCABULARY = [
   { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
   { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
-  //     { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
   { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
@@ -52,12 +44,11 @@ const VOCABULARY = [
 ];
 
 const App = () => {
+  const [baseNames, setBaseNames] = useState([]);
   const [doc, setDoc] = useState(doc0);
-  const [annotationSelection, setAnnotationSelection] = useState(basenames[0]);
-  const [annotationVersions, setAnnotationVersions] = useState(defaultVersions);
-  const [versionSelection, setVersionSelection] = useState(
-    annotationVersions.slice(-1)[0]
-  );
+  const [annotationSelection, setAnnotationSelection] = useState("");
+  const [annotationVersions, setAnnotationVersions] = useState([]);
+  const [versionSelection, setVersionSelection] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchPageData = async (
@@ -77,7 +68,7 @@ const App = () => {
     if (res.status >= 200 && res.status <= 299) {
       data = await res.json();
     } else {
-      console.log(res.status, res.statusText);
+      console.error(res.status, res.statusText);
     }
     return data;
   };
@@ -92,18 +83,48 @@ const App = () => {
     var versionData = [];
     if (res.status >= 200 && res.status <= 299) {
       versionData = await res.json();
-      console.log("versionData=", versionData);
+      // console.log("versionData=", versionData);
     } else {
-      console.log(res.status, res.statusText);
+      console.error(res.status, res.statusText);
     }
     return versionData;
   };
 
+  const fetchBaseNames = async () => {
+    const res = await fetch(apiBase + "/basenames", {
+      headers: {
+        "Content-Type": "text/json",
+        Accept: "text/json",
+      },
+    });
+    var baseNames = [];
+    if (res.status >= 200 && res.status <= 299) {
+      baseNames = await res.json();
+      // console.log("baseNames=", baseNames);
+    } else {
+      console.log(res.status, res.statusText);
+    }
+    return baseNames;
+  };
+
   useEffect(() => {
+    setLoading(true);
     fetchVersionData().then((versionData) => {
       setAnnotationVersions(versionData);
     });
+    fetchBaseNames().then((baseNames) => {
+      setBaseNames(baseNames);
+    });
+    setLoading(false);
   }, []);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchPageData(baseNames[0], annotationVersions[0]).then((pageData) => {
+      setDoc({ text: pageData.text, annotations: pageData.annotations });
+    });
+    setLoading(false);
+  }, [annotationVersions, baseNames]);
 
   const putAnnotations = (
     basename: string,
@@ -122,7 +143,7 @@ const App = () => {
 
   const handleAnnotationSelectionChange = async (newSelection: string) => {
     setLoading(true);
-    putAnnotations(annotationSelection, versionSelection, doc.annotations);
+    putAnnotations(newSelection, versionSelection, doc.annotations);
     setAnnotationSelection(newSelection);
     var newText;
     var newAnnotations;
@@ -130,15 +151,11 @@ const App = () => {
       newText = pd.text;
       newAnnotations = pd.annotations;
     });
-    // await fetchText(newSelection).then(t => newText = t);
-    // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
-    const newDoc = { text: newText, annotations: newAnnotations };
-
-    setDoc(newDoc);
+    setDoc({ text: newText, annotations: newAnnotations });
     setLoading(false);
   };
 
-  const handleVersionSelectionChange = async (newVersionSelection) => {
+  const handleVersionSelectionChange = async (newVersionSelection: string) => {
     setLoading(true);
     putAnnotations(annotationSelection, newVersionSelection, doc.annotations);
     setVersionSelection(newVersionSelection);
@@ -148,11 +165,7 @@ const App = () => {
       newText = pd.text;
       newAnnotations = pd.annotations;
     });
-    // await fetchText(newSelection).then(t => newText = t);
-    // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
-    const newDoc = { text: newText, annotations: newAnnotations };
-
-    setDoc(newDoc);
+    setDoc({ text: newText, annotations: newAnnotations });
     setLoading(false);
   };
 
@@ -181,7 +194,7 @@ const App = () => {
         <div>
           <TextSelector
             selection={annotationSelection}
-            basenames={basenames}
+            basenames={baseNames}
             onChange={handleAnnotationSelectionChange}
           />
           &nbsp;

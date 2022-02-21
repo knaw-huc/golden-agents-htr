@@ -4,7 +4,7 @@ import json
 import os
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
@@ -58,10 +58,16 @@ def load_basenames():
 
 
 @app.get("/pagedata/{basename}/{version}")
-async def get_page_data(basename: str,version:str):
-    with open(f'data/{basename}.txt', encoding='utf8') as f:
+async def get_page_data(basename: str, version: str):
+    text_file = f'data/{basename}.txt'
+    if not os.path.exists(text_file):
+        raise HTTPException(status_code=404, detail=f"File not found: {text_file}")
+    with open(text_file, encoding='utf8') as f:
         text = f.read()
-    with open(f'data/{basename}.{version}.json', encoding='utf8') as f:
+    annotations_file = f'data/{basename}.{version}.json'
+    if not os.path.exists(annotations_file):
+        raise HTTPException(status_code=404, detail=f"File not found: {annotations_file}")
+    with open(annotations_file, encoding='utf8') as f:
         annotations = json.load(f)
     return {
         "text": text,

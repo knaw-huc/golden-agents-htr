@@ -47,6 +47,17 @@ async def root():
     return {"message": "This is the backend for the analiticcl-evaluation-tool"}
 
 
+@app.get("/versions")
+async def get_versions():
+    versions = set()
+    for annotation_file in os.listdir('data'):
+        if annotation_file.endswith('.json'):
+            parts = annotation_file.split('.')
+            if len(parts) == 3:
+                versions.add(parts[1])
+    return sorted(list(versions))
+
+
 @app.get("/basenames")
 async def get_basenames():
     return load_basenames()
@@ -79,10 +90,10 @@ async def get_page_data(basename: str, version: str):
     }
 
 
-@app.put("/annotations/{basename}")
-async def put_annotations(basename: str, body: dict):
+@app.put("/annotations/{basename}/{version}")
+async def put_annotations(basename: str, version: str, body: dict):
     annotation = body['annotation']
-    with open(f'data/{basename}.json', 'w', encoding='utf8') as f:
+    with open(f'data/{basename}.{version}.json', 'w', encoding='utf8') as f:
         json.dump(annotation, f)
     load_checks()
     checks[basename] = body['checked']

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 
 // Annotation package
 import { Recogito } from "@recogito/recogito-js";
@@ -30,91 +30,109 @@ interface DocumentProps {
 }
 
 const basenames: string[] = require("./ga-selection-basenames.json");
-const versions: string[] = ["exp8","exp9"];
-const config: {} = require("./config.json")
-const annotations0:{}[] = [];
-const text0: string = 'Please select a text (and version)';
-const doc0={text:text0,annotations:annotations0};
+const defaultVersions: string[] = ["exp1", "exp2"];
+const config: {} = require("./config.json");
+const annotations0: {}[] = [];
+const text0: string = "Please select a text (and version)";
+const doc0 = { text: text0, annotations: annotations0 };
 
-class TextSelector extends Component<{selection:string, onChange}> {
+const useLocalStorageState = (key: string, defaultValue: string) => {
+  const [state, setState] = useState(
+    () => window.localStorage.getItem(key) || defaultValue
+  );
 
+  useEffect(() => {
+    window.localStorage.setItem(key, state);
+  }, [key, state]);
+
+  return [state, setState];
+};
+
+class TextSelector extends Component<{ selection: string; onChange }> {
   render = () => {
-    const options = basenames.map(option => (
+    const options = basenames.map((option) => (
       <option key={option} value={option}>
         {option}
       </option>
     ));
-    options.unshift((<option disabled selected> -- select a text -- </option>));
+    // options.unshift((<option disabled selected> -- select a text -- </option>));
     return (
       <span>
-      Text: &nbsp;
-      <select onChange = { (e) => this.props.onChange(e.target.value) }>
-        {options}
-      </select>
+        Text: &nbsp;
+        <select onChange={(e) => this.props.onChange(e.target.value)}>
+          {options}
+        </select>
       </span>
-    )
-  }
+    );
+  };
 }
 
-class VersionSelector extends Component<{selection:string, onChange}> {
+class VersionSelector extends Component<{
+  selection: string;
+  annotation_versions: string[];
+  onChange;
+}> {
+
+  shouldComponentUpdate = (newProps, _) => {
+    return newProps.annotation_versions !== this.props.annotation_versions;
+  };
 
   render = () => {
-    const options = versions.map(option => (
+    const options = this.props.annotation_versions.map((option) => (
       <option key={option} value={option}>
         {option}
       </option>
     ));
-//     options.unshift((<option disabled selected> -- select a version -- </option>));
+    //     options.unshift((<option disabled selected> -- select a version -- </option>));
     return (
       <span>
-      Version: &nbsp;
-      <select onChange = { (e) => this.props.onChange(e.target.value) }>
-        {options}
-      </select>
+        Version: &nbsp;
+        <select onChange={(e) => this.props.onChange(e.target.value)}>
+          {options}
+        </select>
       </span>
-    )
-  }
+    );
+  };
 }
 
 const VOCABULARY = [
-    { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
-    { label: "familyname", uri: "http://vocab.getty.edu/aat/300008347?" },
-    { label: "person",   uri: "http://vocab.getty.edu/aat/300024979" },
-    { label: "occupation", uri: "http://vocab.getty.edu/aat/300263369?" },
+  { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
+  { label: "familyname", uri: "http://vocab.getty.edu/aat/300008347?" },
+  { label: "person", uri: "http://vocab.getty.edu/aat/300024979" },
+  { label: "occupation", uri: "http://vocab.getty.edu/aat/300263369?" },
 
-    { label: "material", uri: "http://vocab.getty.edu/aat/300010358" },
-    { label: "property", uri: "http://vocab.getty.edu/aat/300008347" },
-    { label: "object",   uri: "http://vocab.getty.edu/aat/300311889" },
-    { label: "picture",  uri: "http://vocab.getty.edu/aat/300008347" },
-    { label: "animal",   uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "material", uri: "http://vocab.getty.edu/aat/300010358" },
+  { label: "property", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "object", uri: "http://vocab.getty.edu/aat/300311889" },
+  { label: "picture", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "animal", uri: "http://vocab.getty.edu/aat/300008347" },
 
-    { label: "currency", uri: "http://vocab.getty.edu/aat/300037316" },
+  { label: "currency", uri: "http://vocab.getty.edu/aat/300037316" },
 
-    { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
-    { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
-    { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
-//     { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
-    { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
+  { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
+  { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
+  //     { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
-    { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
-    { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
-  ];
+  { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
+];
 
 // Make own component 'Document' for the annotatable source
 class Document extends Component<DocumentProps> {
   htmlId = "text-content";
-  r; // the Recogito instance
+  r: Recogito; // the Recogito instance
 
-
-  shouldComponentUpdate = (newProps,_) => {
+  shouldComponentUpdate = (newProps, _) => {
     return newProps.doc !== this.props.doc;
-  }
+  };
 
   componentDidUpdate = () => {
     // console.log('componentDidUpdate');
     // this.r.destroy();
     this.componentDidMount();
-  }
+  };
 
   // Initialize the Recogito instance after the component is mounted in the page
   componentDidMount = () => {
@@ -141,12 +159,12 @@ class Document extends Component<DocumentProps> {
         const tagClasses: string[] = [];
 
         for (const tag of tags) {
-            for (const vocab of VOCABULARY) {
-                const label = vocab.label;
-                if (tag === label) {
-                    tagClasses.push("tag-"+label);
-                }
+          for (const vocab of VOCABULARY) {
+            const label = vocab.label;
+            if (tag === label) {
+              tagClasses.push("tag-" + label);
             }
+          }
         }
 
         return tagClasses.join(" ");
@@ -164,17 +182,19 @@ class Document extends Component<DocumentProps> {
     this.r.on("deleteAnnotation", storeAnnotation);
     this.r.on("updateAnnotation", storeAnnotation);
 
-    console.info(this.props);
-    this.props.doc.annotations.map((annotation: {}) => this.r.addAnnotation(annotation));
+    //     console.info(this.props);
+    this.props.doc.annotations.map((annotation: {}) =>
+      this.r.addAnnotation(annotation)
+    );
 
     // For debugging, this can be helpful
     // console.log(r);
-  }
+  };
 
   componentWillUnmount = () => {
-    console.log('unmounting...');
+    console.log("unmounting...");
     this.r.destroy();
-  }
+  };
 
   render() {
     return (
@@ -187,82 +207,108 @@ class Document extends Component<DocumentProps> {
 
 const App = () => {
   const [doc, setDoc] = useState(doc0);
-  const [selection, setSelection] = useState(basenames[0]);
-  const [versionSelection, setVersionSelection] = useState(versions[-1]);
+  const [annotationSelection, setAnnotationSelection] = useState(basenames[0]);
+  const [annotationVersions, setAnnotationVersions] = useState(defaultVersions);
+  const [versionSelection, setVersionSelection] = useState(
+    annotationVersions.slice(-1)[0]
+  );
   const [loading, setLoading] = useState(false);
 
-  const fetchPageData = async (selected:string, selectedVersion: string) => {
-    const res = await fetch(apiBase + "/pagedata/" + selected + "/"+ selectedVersion, {
+  const fetchPageData = async (
+    selectedAnnotation: string,
+    selectedVersion: string
+  ) => {
+    const res = await fetch(
+      apiBase + "/pagedata/" + selectedAnnotation + "/" + selectedVersion,
+      {
+        headers: {
+          "Content-Type": "text/json",
+          Accept: "text/json",
+        },
+      }
+    );
+    var data = { text: "", annotations: [] };
+    if (res.status >= 200 && res.status <= 299) {
+      data = await res.json();
+    } else {
+      console.log(res.status, res.statusText);
+    }
+    return data;
+  };
+
+  const fetchVersionData = async () => {
+    const res = await fetch(apiBase + "/versions", {
       headers: {
         "Content-Type": "text/json",
         Accept: "text/json",
       },
     });
-    const data = await res.json();
-    return data;
-  }
+    var versionData = [];
+    if (res.status >= 200 && res.status <= 299) {
+      versionData = await res.json();
+      console.log("versionData=", versionData);
+    } else {
+      console.log(res.status, res.statusText);
+    }
+    return versionData;
+  };
 
-//   const fetchBaseNames = async () => {
-//     return await fetch(apiBase + "/basenames")
-//       .then(res => res.json());
-//   }
+  useEffect(() => {
+    fetchVersionData().then((versionData) => {
+      setAnnotationVersions(versionData);
+    });
+  }, []);
 
-  // const fetchText = async (selected:string) => {
-  //   const res = await fetch(selected+".txt", {
-  //     headers: {
-  //       "Content-Type": "text/plain",
-  //       Accept: "text/plain",
-  //     },
-  //   });
-  //   const text = await res.text();
-  //   return text;
-  // }
+  const putAnnotations = (
+    basename: string,
+    version: string,
+    annotations: {}[]
+  ) => {
+    console.debug(
+      "TODO: PUT http://backend.com/documents/" +
+        basename +
+        "/" +
+        version +
+        "/annotations"
+    );
+    // console.info(annotations);
+  };
 
-  // const fetchAnnotations = async (selected:string) => {
-  //   const res = await fetch(selected+".json", {
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       Accept: "application/json",
-  //     },
-  //   });
-  //   const annotations = await res.json();
-  //   return annotations;
-  // }
-
-  const putAnnotations = (basename:string, annotations:{}[]) => {
-    console.debug("TODO: PUT http://backend.com/documents/"+basename+"/annotations");
-    console.info(annotations);
-  }
-
-  const handleSelectionChange = async (newSelection) => {
+  const handleAnnotationSelectionChange = async (newSelection: string) => {
     setLoading(true);
-    putAnnotations(selection,doc.annotations);
-    setSelection(newSelection);
+    putAnnotations(annotationSelection, versionSelection, doc.annotations);
+    setAnnotationSelection(newSelection);
     var newText;
     var newAnnotations;
-    await fetchPageData(newSelection,versionSelection).then(pd => {newText = pd.text; newAnnotations=pd.annotations});
+    await fetchPageData(newSelection, versionSelection).then((pd) => {
+      newText = pd.text;
+      newAnnotations = pd.annotations;
+    });
     // await fetchText(newSelection).then(t => newText = t);
     // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
-    const newDoc = {text:newText,annotations:newAnnotations};
+    const newDoc = { text: newText, annotations: newAnnotations };
 
     setDoc(newDoc);
     setLoading(false);
-  }
+  };
 
   const handleVersionSelectionChange = async (newVersionSelection) => {
     setLoading(true);
-    putAnnotations(selection,doc.annotations);
+    putAnnotations(annotationSelection, newVersionSelection, doc.annotations);
     setVersionSelection(newVersionSelection);
     var newText;
     var newAnnotations;
-    await fetchPageData(selection,newVersionSelection).then(pd => {newText = pd.text; newAnnotations=pd.annotations});
+    await fetchPageData(annotationSelection, newVersionSelection).then((pd) => {
+      newText = pd.text;
+      newAnnotations = pd.annotations;
+    });
     // await fetchText(newSelection).then(t => newText = t);
     // await fetchAnnotations(newSelection).then(a => newAnnotations = a);
-    const newDoc = {text:newText,annotations:newAnnotations};
+    const newDoc = { text: newText, annotations: newAnnotations };
 
     setDoc(newDoc);
     setLoading(false);
-  }
+  };
 
   const color = "green";
   const override = css`
@@ -270,28 +316,45 @@ const App = () => {
     border-color: black;
   `;
 
-  const version = config["version"]
+  const version = config["version"];
 
-  const legend = VOCABULARY.map(voc => (
-         <><span className={"tag-"+voc.label}>{voc.label}</span><span> | </span></>
-        ));
+  const legend = VOCABULARY.map((voc) => (
+    <>
+      <span className={"tag-" + voc.label}>{voc.label}</span>
+      <span> | </span>
+    </>
+  ));
 
   return (
     <div className="App">
       <Container>
-        <Header as="h1">Golden Agents: Annotation Evaluation ({version})</Header>
+        <Header as="h1">
+          Golden Agents: Annotation Evaluation ({version})
+        </Header>
 
         <div>
-          <TextSelector selection={selection} onChange={handleSelectionChange}/>
+          <TextSelector
+            selection={annotationSelection}
+            onChange={handleAnnotationSelectionChange}
+          />
           &nbsp;
-          <VersionSelector selection={versionSelection} onChange={handleVersionSelectionChange}/>
+          <VersionSelector
+            selection={versionSelection}
+            annotation_versions={annotationVersions}
+            onChange={handleVersionSelectionChange}
+          />
           &nbsp;
-          <PuffLoader color={color} css={override} loading={loading} size={20} />
+          <PuffLoader
+            color={color}
+            css={override}
+            loading={loading}
+            size={20}
+          />
         </div>
 
         <div>Tag Legend: | {legend}</div>
 
-{/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
+        {/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
 
         <Segment>
           <Document doc={doc} setDoc={setDoc} />

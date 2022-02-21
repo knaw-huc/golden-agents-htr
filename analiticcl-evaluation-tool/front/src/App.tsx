@@ -12,6 +12,8 @@ import { Container, Header, Segment } from "semantic-ui-react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
+import TextSelector from "./components/TextSelector";
+
 const apiBase = "http://localhost:8000"; // development
 // const apiBase = "/api"; // production; proxied to back-end in nginx.conf
 
@@ -48,24 +50,24 @@ const useLocalStorageState = (key: string, defaultValue: string) => {
   return [state, setState];
 };
 
-class TextSelector extends Component<{ selection: string; onChange }> {
-  render = () => {
-    const options = basenames.map((option) => (
-      <option key={option} value={option}>
-        {option}
-      </option>
-    ));
-    // options.unshift((<option disabled selected> -- select a text -- </option>));
-    return (
-      <span>
-        Text: &nbsp;
-        <select onChange={(e) => this.props.onChange(e.target.value)}>
-          {options}
-        </select>
-      </span>
-    );
-  };
-}
+// class TextSelector extends Component<{ selection: string; onChange }> {
+//   render = () => {
+//     const options = basenames.map((option) => (
+//       <option key={option} value={option}>
+//         {option}
+//       </option>
+//     ));
+//     // options.unshift((<option disabled selected> -- select a text -- </option>));
+//     return (
+//       <span>
+//         Text: &nbsp;
+//         <select onChange={(e) => this.props.onChange(e.target.value)}>
+//           {options}
+//         </select>
+//       </span>
+//     );
+//   };
+// }
 
 class VersionSelector extends Component<{
   selection: string;
@@ -335,6 +337,7 @@ const App = () => {
         <div>
           <TextSelector
             selection={annotationSelection}
+            basenames={basenames}
             onChange={handleAnnotationSelectionChange}
           />
           &nbsp;

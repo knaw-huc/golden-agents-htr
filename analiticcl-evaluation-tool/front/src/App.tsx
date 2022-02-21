@@ -1,8 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
-
-// Annotation package
-import { Recogito } from "@recogito/recogito-js";
-import "@recogito/recogito-js/dist/recogito.min.css";
+import React, { useEffect, useState } from "react";
 
 // Theming only
 import "semantic-ui-css/semantic.min.css";
@@ -14,6 +10,7 @@ import { css } from "@emotion/react";
 
 import TextSelector from "./components/TextSelector";
 import VersionSelector from "./components/VersionSelector";
+import RecogitoDocument from "./components/RecogitoDocument";
 
 const apiBase = "http://localhost:8000"; // development
 // const apiBase = "/api"; // production; proxied to back-end in nginx.conf
@@ -23,33 +20,12 @@ const apiBase = "http://localhost:8000"; // development
 //   annotations: {}[];
 // };
 
-interface DocumentProps {
-  doc: any;
-  setDoc: (doc: any) => void;
-  // annotations: {}[];
-  // setAnnotations: (annotations: {}[]) => void;
-  // text: string;
-  // setText: (text: string) => void;
-}
-
 const basenames: string[] = require("./ga-selection-basenames.json");
 const defaultVersions: string[] = ["exp1", "exp2"];
 const config: {} = require("./config.json");
 const annotations0: {}[] = [];
 const text0: string = "Please select a text (and version)";
 const doc0 = { text: text0, annotations: annotations0 };
-
-const useLocalStorageState = (key: string, defaultValue: string) => {
-  const [state, setState] = useState(
-    () => window.localStorage.getItem(key) || defaultValue
-  );
-
-  useEffect(() => {
-    window.localStorage.setItem(key, state);
-  }, [key, state]);
-
-  return [state, setState];
-};
 
 const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
@@ -74,92 +50,6 @@ const VOCABULARY = [
   { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
 ];
-
-// Make own component 'Document' for the annotatable source
-class Document extends Component<DocumentProps> {
-  htmlId = "text-content";
-  r: Recogito; // the Recogito instance
-
-  shouldComponentUpdate = (newProps, _) => {
-    return newProps.doc !== this.props.doc;
-  };
-
-  componentDidUpdate = () => {
-    // console.log('componentDidUpdate');
-    // this.r.destroy();
-    this.componentDidMount();
-  };
-
-  // Initialize the Recogito instance after the component is mounted in the page
-  componentDidMount = () => {
-    // console.debug("componentDidMount");
-    this.r = new Recogito({
-      content: this.htmlId,
-      locale: "auto",
-      mode: "pre",
-      widgets: [
-        { widget: "COMMENT" },
-        {
-          widget: "TAG",
-          vocabulary: VOCABULARY,
-        },
-      ],
-      relationVocabulary: ["isRelated", "isPartOf", "isSameAs"],
-      formatter: (annotation: any) => {
-        // Get all tags in the bodies of the annotation
-        const tags = annotation.bodies.flatMap((body: any) =>
-          body.purpose === "tagging" ? body.value : []
-        );
-
-        // See CSS for the actual styling
-        const tagClasses: string[] = [];
-
-        for (const tag of tags) {
-          for (const vocab of VOCABULARY) {
-            const label = vocab.label;
-            if (tag === label) {
-              tagClasses.push("tag-" + label);
-            }
-          }
-        }
-
-        return tagClasses.join(" ");
-      },
-    });
-
-    const storeAnnotation = () => {
-      let currentDoc = this.props.doc;
-      currentDoc.annotations = this.r.getAnnotations();
-      this.props.setDoc(currentDoc);
-    };
-
-    // Make sure that the annotations are stored in the state
-    this.r.on("createAnnotation", storeAnnotation);
-    this.r.on("deleteAnnotation", storeAnnotation);
-    this.r.on("updateAnnotation", storeAnnotation);
-
-    //     console.info(this.props);
-    this.props.doc.annotations.map((annotation: {}) =>
-      this.r.addAnnotation(annotation)
-    );
-
-    // For debugging, this can be helpful
-    // console.log(r);
-  };
-
-  componentWillUnmount = () => {
-    console.log("unmounting...");
-    this.r.destroy();
-  };
-
-  render() {
-    return (
-      <div id={this.htmlId}>
-        <div className="code">{this.props.doc.text}</div>
-      </div>
-    );
-  }
-}
 
 const App = () => {
   const [doc, setDoc] = useState(doc0);
@@ -314,7 +204,7 @@ const App = () => {
         {/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
 
         <Segment>
-          <Document doc={doc} setDoc={setDoc} />
+          <RecogitoDocument doc={doc} setDoc={setDoc} vocabulary={VOCABULARY} />
         </Segment>
       </Container>
     </div>

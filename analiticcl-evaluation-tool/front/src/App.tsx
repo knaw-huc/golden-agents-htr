@@ -18,6 +18,10 @@ const config: {} = require("./config.json");
 const annotations0: {}[] = [];
 const text0: string = "Please select a text (and version)";
 const doc0 = { text: text0, annotations: annotations0 };
+const json_headers = {
+  "Content-Type": "application/json",
+  Accept: "application/json",
+};
 
 const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
@@ -58,10 +62,7 @@ const App = () => {
     const res = await fetch(
       apiBase + "/pagedata/" + selectedAnnotation + "/" + selectedVersion,
       {
-        headers: {
-          "Content-Type": "text/json",
-          Accept: "text/json",
-        },
+        headers: json_headers,
       }
     );
     var data = { text: "", annotations: [] };
@@ -75,10 +76,7 @@ const App = () => {
 
   const fetchVersionData = async () => {
     const res = await fetch(apiBase + "/versions", {
-      headers: {
-        "Content-Type": "text/json",
-        Accept: "text/json",
-      },
+      headers: json_headers,
     });
     var versionData = [];
     if (res.status >= 200 && res.status <= 299) {
@@ -92,10 +90,7 @@ const App = () => {
 
   const fetchBaseNames = async () => {
     const res = await fetch(apiBase + "/basenames", {
-      headers: {
-        "Content-Type": "text/json",
-        Accept: "text/json",
-      },
+      headers: json_headers,
     });
     var baseNames = [];
     if (res.status >= 200 && res.status <= 299) {
@@ -214,7 +209,10 @@ const App = () => {
 
         <div>Tag Legend: | {legend}</div>
 
-        {/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
+        <div>
+          Akkoord: Jirsi <input type="checkbox" /> | Judith{" "}
+          <input type="checkbox" />
+        </div>
 
         <Segment>
           <RecogitoDocument doc={doc} setDoc={setDoc} vocabulary={VOCABULARY} />

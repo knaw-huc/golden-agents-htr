@@ -2,7 +2,8 @@
 
 import json
 import os
-
+from typing import Dict, Any, List
+from pydantic import BaseModel
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
@@ -90,15 +91,21 @@ async def get_page_data(basename: str, version: str):
     }
 
 
+class AnnotationUpdateBody(BaseModel):
+    annotations: List[Dict]
+    checked: Dict[str,Any]
+
+
 @app.put("/annotations/{basename}/{version}")
-async def put_annotations(basename: str, version: str, body: dict):
-    annotation = body['annotation']
+async def put_annotations(basename: str, version: str, aub: AnnotationUpdateBody):
+    print(type(aub))
+    annotations = aub.annotations
     with open(f'data/{basename}.{version}.json', 'w', encoding='utf8') as f:
-        json.dump(annotation, f)
+        json.dump(annotations, f, indent=4)
     load_checks()
-    checks[basename] = body['checked']
+    checks[basename] = aub.checked
     save_checks()
-    return body
+    return aub
 
 
 if __name__ == '__main__':

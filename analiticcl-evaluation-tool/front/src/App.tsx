@@ -11,10 +11,10 @@ import TextSelector from "./components/TextSelector";
 import VersionSelector from "./components/VersionSelector";
 import RecogitoDocument from "./components/RecogitoDocument";
 
-const apiBase = "http://localhost:8000"; // development
-// const apiBase = "/api"; // production; proxied to back-end in nginx.conf
-
 const config: {} = require("./config.json");
+const inDevelopmentMode = config["developmentMode"];
+const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf
+
 const annotations0: {}[] = [];
 const text0: string = "Please select a text (and version)";
 const doc0 = { text: text0, annotations: annotations0 };
@@ -40,66 +40,58 @@ const VOCABULARY = [
   { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
   { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
-  { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
+  // { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
   { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
 ];
 
+const fetchData = async (path: string, defaultValue: any) => {
+  const res = await fetch(apiBase + path, {
+    headers: json_headers,
+  });
+  var data = defaultValue;
+  if (res.status >= 200 && res.status <= 299) {
+    data = await res.json();
+  } else {
+    console.error(res.status, res.statusText);
+  }
+  return data;
+};
+
 const App = () => {
   const [baseNames, setBaseNames] = useState([]);
   const [doc, setDoc] = useState(doc0);
   const [annotationSelection, setAnnotationSelection] = useState("");
   const [annotationVersions, setAnnotationVersions] = useState([]);
-  const [versionSelection, setVersionSelection] = useState("");
+  const [versionSelection, setVersionSelection] = useState("exp9");
   const [loading, setLoading] = useState(false);
+  const [annotationsChecked, setAnnotationsChecked] = useState({
+    jirsi: false,
+    judith: false,
+  });
 
   const fetchPageData = async (
     selectedAnnotation: string,
     selectedVersion: string
   ) => {
-    const res = await fetch(
-      apiBase + "/pagedata/" + selectedAnnotation + "/" + selectedVersion,
-      {
-        headers: json_headers,
-      }
-    );
-    var data = { text: "", annotations: [] };
-    if (res.status >= 200 && res.status <= 299) {
-      data = await res.json();
-    } else {
-      console.error(res.status, res.statusText);
+    const defaultValue = { text: "", annotations: [] };
+    if (selectedAnnotation != null && selectedVersion != null) {
+      return fetchData(
+        "/pagedata/" + selectedAnnotation + "/" + selectedVersion,
+        defaultValue
+      );
     }
-    return data;
+    return defaultValue;
   };
 
   const fetchVersionData = async () => {
-    const res = await fetch(apiBase + "/versions", {
-      headers: json_headers,
-    });
-    var versionData = [];
-    if (res.status >= 200 && res.status <= 299) {
-      versionData = await res.json();
-      // console.log("versionData=", versionData);
-    } else {
-      console.error(res.status, res.statusText);
-    }
-    return versionData;
+    return fetchData("/versions", []);
   };
 
   const fetchBaseNames = async () => {
-    const res = await fetch(apiBase + "/basenames", {
-      headers: json_headers,
-    });
-    var baseNames = [];
-    if (res.status >= 200 && res.status <= 299) {
-      baseNames = await res.json();
-      // console.log("baseNames=", baseNames);
-    } else {
-      console.log(res.status, res.statusText);
-    }
-    return baseNames;
+    return fetchData("/basenames", []);
   };
 
   useEffect(() => {
@@ -121,19 +113,27 @@ const App = () => {
     setLoading(false);
   }, [annotationVersions, baseNames]);
 
-  const putAnnotations = (
+  const putAnnotations = async (
     basename: string,
     version: string,
     annotations: {}[]
   ) => {
-    console.debug(
-      "TODO: PUT http://backend.com/documents/" +
-        basename +
-        "/" +
-        version +
-        "/annotations"
-    );
+    if (annotations.length === 0) {
+      return;
+    }
     // console.info(annotations);
+    const requestOptions = {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        annotations: annotations,
+        checked: annotationsChecked,
+      }),
+    };
+    // await fetch(
+    //   apiBase + "/annotations/" + basename + "/" + version,
+    //   requestOptions
+    // );
   };
 
   const handleAnnotationSelectionChange = async (newSelection: string) => {
@@ -172,12 +172,24 @@ const App = () => {
 
   const version = config["version"];
 
-  const legend = VOCABULARY.map((voc) => (
-    <>
-      <span className={"tag-" + voc.label}>{voc.label}</span>
-      <span> | </span>
-    </>
-  ));
+  const TagLegend = () => {
+    const legend = VOCABULARY.map((voc) => (
+      <>
+        <span className={"tag-" + voc.label}>{voc.label}</span>
+        <span> | </span>
+      </>
+    ));
+    return <div>Tag Legend: | {legend}</div>;
+  };
+
+  const Checked = () => {
+    return (
+      <div>
+        Akkoord: Jirsi <input type="checkbox" /> | Judith{" "}
+        <input type="checkbox" />
+      </div>
+    );
+  };
 
   return (
     <div className="App">
@@ -192,12 +204,18 @@ const App = () => {
             basenames={baseNames}
             onChange={handleAnnotationSelectionChange}
           />
-          &nbsp;
-          <VersionSelector
-            selection={versionSelection}
-            annotation_versions={annotationVersions}
-            onChange={handleVersionSelectionChange}
-          />
+          {inDevelopmentMode ? (
+            <>
+              &nbsp;
+              <VersionSelector
+                selection={versionSelection}
+                annotation_versions={annotationVersions}
+                onChange={handleVersionSelectionChange}
+              />
+            </>
+          ) : (
+            ""
+          )}
           &nbsp;
           <PuffLoader
             color={color}
@@ -207,12 +225,9 @@ const App = () => {
           />
         </div>
 
-        <div>Tag Legend: | {legend}</div>
+        <TagLegend />
 
-        <div>
-          Akkoord: Jirsi <input type="checkbox" /> | Judith{" "}
-          <input type="checkbox" />
-        </div>
+        <Checked />
 
         <Segment>
           <RecogitoDocument doc={doc} setDoc={setDoc} vocabulary={VOCABULARY} />

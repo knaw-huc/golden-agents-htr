@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 // Theming only
 import "semantic-ui-css/semantic.min.css";
@@ -15,9 +15,119 @@ const apiBase = "http://localhost:8000"; // development
 // const apiBase = "/api"; // production; proxied to back-end in nginx.conf
 
 const config: {} = require("./config.json");
-const annotations0: {}[] = [];
+const version = config["version"];
+
+const annotations0: Annotation[] = [];
 const text0: string = "Please select a text (and version)";
-const doc0 = { text: text0, annotations: annotations0 };
+const doc0: Doc = { id: '', version: '', text: text0, annotations: annotations0 };
+
+interface AnnotationBody {
+  type: string
+  purpose?: string
+  value: any
+  modified?: string
+}
+
+interface AnnotationSelector {
+  type: string
+  start?: number
+  end?: number
+  exact?: string
+}
+
+interface Annotation {
+  "@context": string[]
+  body: AnnotationBody[]
+  generated: string
+  generator: { id: string, type: string, name: string }
+  id: string
+  motivation: string
+  target: { source: string, selector: AnnotationSelector[] }
+  type: string
+}
+
+interface Doc {
+  id: string,
+  version: string
+  text: string
+  annotations: Annotation[]
+}
+
+interface InitData {
+  baseNames: string[]
+  annotationVersions: string[]
+}
+
+const fetchPageData = async (
+  selectedAnnotation: string,
+  selectedVersion: string
+) => {
+  const res = await fetch(
+    `${apiBase}/pagedata/${selectedAnnotation}/${selectedVersion}`,
+    {
+      headers: {
+        "Content-Type": "text/json",
+        Accept: "text/json",
+      },
+    }
+  );
+  var data = { text: "", annotations: [] };
+  if (res.status >= 200 && res.status <= 299) {
+    data = await res.json();
+  } else {
+    console.error(res.status, res.statusText);
+  }
+  return data;
+};
+
+const fetchVersionData = async () => {
+  const res = await fetch(apiBase + "/versions", {
+    headers: {
+      "Content-Type": "text/json",
+      Accept: "text/json",
+    },
+  });
+  var versionData = [];
+  if (res.status >= 200 && res.status <= 299) {
+    versionData = await res.json();
+    // console.log("versionData=", versionData);
+  } else {
+    console.error(res.status, res.statusText);
+  }
+  return versionData;
+};
+
+const fetchBaseNames = async () => {
+  const res = await fetch(apiBase + "/basenames", {
+    headers: {
+      "Content-Type": "text/json",
+      Accept: "text/json",
+    },
+  });
+  var baseNames = [];
+  if (res.status >= 200 && res.status <= 299) {
+    baseNames = await res.json();
+    // console.log("baseNames=", baseNames);
+  } else {
+    console.log(res.status, res.statusText);
+  }
+  return baseNames;
+};
+
+const putAnnotations = (
+  basename: string,
+  version: string,
+  annotations: {}[]
+) => {
+  console.debug(
+    "TODO: PUT http://backend.com/documents/" +
+      basename +
+      "/" +
+      version +
+      "/annotations"
+  );
+  // console.info(annotations);
+};
 
 const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
@@ -43,146 +153,69 @@ const VOCABULARY = [
   { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
 ];
 
+const color = "green";
+const override = css`
+  margin: 0 auto;
+  border-color: black;
+`;
+
+const legend = VOCABULARY.map((voc) => (
+  <span key={voc.label}>
+    <span className={"tag-" + voc.label}>{voc.label}</span>
+    <span> | </span>
+  </span>
+));
+
 const App = () => {
-  const [baseNames, setBaseNames] = useState([]);
+  const [initData, setInitData] = useState<InitData>({ baseNames: [], annotationVersions: [] })
   const [doc, setDoc] = useState(doc0);
-  const [annotationSelection, setAnnotationSelection] = useState("");
-  const [annotationVersions, setAnnotationVersions] = useState([]);
-  const [versionSelection, setVersionSelection] = useState("");
+
+  // const [annotationSelection, setAnnotationSelection] = useState("");
+  // const [versionSelection, setVersionSelection] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const fetchPageData = async (
-    selectedAnnotation: string,
-    selectedVersion: string
-  ) => {
-    const res = await fetch(
-      apiBase + "/pagedata/" + selectedAnnotation + "/" + selectedVersion,
-      {
-        headers: {
-          "Content-Type": "text/json",
-          Accept: "text/json",
-        },
-      }
-    );
-    var data = { text: "", annotations: [] };
-    if (res.status >= 200 && res.status <= 299) {
-      data = await res.json();
-    } else {
-      console.error(res.status, res.statusText);
-    }
-    return data;
-  };
-
-  const fetchVersionData = async () => {
-    const res = await fetch(apiBase + "/versions", {
-      headers: {
-        "Content-Type": "text/json",
-        Accept: "text/json",
-      },
-    });
-    var versionData = [];
-    if (res.status >= 200 && res.status <= 299) {
-      versionData = await res.json();
-      // console.log("versionData=", versionData);
-    } else {
-      console.error(res.status, res.statusText);
-    }
-    return versionData;
-  };
-
-  const fetchBaseNames = async () => {
-    const res = await fetch(apiBase + "/basenames", {
-      headers: {
-        "Content-Type": "text/json",
-        Accept: "text/json",
-      },
-    });
-    var baseNames = [];
-    if (res.status >= 200 && res.status <= 299) {
-      baseNames = await res.json();
-      // console.log("baseNames=", baseNames);
-    } else {
-      console.log(res.status, res.statusText);
-    }
-    return baseNames;
-  };
-
   useEffect(() => {
-    setLoading(true);
-    fetchVersionData().then((versionData) => {
-      setAnnotationVersions(versionData);
-    });
-    fetchBaseNames().then((baseNames) => {
-      setBaseNames(baseNames);
-    });
-    setLoading(false);
+    setLoading(true)
+
+    Promise
+      .all([fetchVersionData(), fetchBaseNames()])
+      .then(([versions, ids]) => {
+        fetchPageData(ids[0], versions[0])
+          .then((pageData: Pick<Doc, 'annotations' | 'text'>) => {
+            const doc: Doc = { id: ids[0], version: versions[0], ...pageData }
+            setDoc(doc)
+            setInitData({ annotationVersions: versions, baseNames: ids })
+            setLoading(false);
+          });
+      })
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    fetchPageData(baseNames[0], annotationVersions[0]).then((pageData) => {
-      setDoc({ text: pageData.text, annotations: pageData.annotations });
-    });
-    setLoading(false);
-  }, [annotationVersions, baseNames]);
+  const handleAnnotationSelectionChange = useCallback((id: Doc['id']) => {
+    setLoading(true)
 
-  const putAnnotations = (
-    basename: string,
-    version: string,
-    annotations: {}[]
-  ) => {
-    console.debug(
-      "TODO: PUT http://backend.com/documents/" +
-        basename +
-        "/" +
-        version +
-        "/annotations"
-    );
-    // console.info(annotations);
-  };
+    putAnnotations(id, doc.version, doc.annotations)
+    // setAnnotationSelection(id)
 
-  const handleAnnotationSelectionChange = async (newSelection: string) => {
-    setLoading(true);
-    putAnnotations(newSelection, versionSelection, doc.annotations);
-    setAnnotationSelection(newSelection);
-    var newText;
-    var newAnnotations;
-    await fetchPageData(newSelection, versionSelection).then((pd) => {
-      newText = pd.text;
-      newAnnotations = pd.annotations;
-    });
-    setDoc({ text: newText, annotations: newAnnotations });
-    setLoading(false);
-  };
+    fetchPageData(id, doc.version)
+      .then((pd) => {
+        setDoc({ id, version: doc.version, text: pd.text, annotations: pd.annotations })
+        setLoading(false)
+      })
+  }, [doc])
 
-  const handleVersionSelectionChange = async (newVersionSelection: string) => {
-    setLoading(true);
-    putAnnotations(annotationSelection, newVersionSelection, doc.annotations);
-    setVersionSelection(newVersionSelection);
-    var newText;
-    var newAnnotations;
-    await fetchPageData(annotationSelection, newVersionSelection).then((pd) => {
-      newText = pd.text;
-      newAnnotations = pd.annotations;
-    });
-    setDoc({ text: newText, annotations: newAnnotations });
-    setLoading(false);
-  };
+  const handleVersionSelectionChange = useCallback((version: Doc['version']) => {
+    setLoading(true)
 
-  const color = "green";
-  const override = css`
-    margin: 0 auto;
-    border-color: black;
-  `;
+    putAnnotations(doc.id, version, doc.annotations)
 
-  const version = config["version"];
+    fetchPageData(doc.id, version)
+      .then((pd) => {
+        setDoc({ id: doc.id, version, text: pd.text, annotations: pd.annotations })
+        setLoading(false)
+      })
+  }, [doc])
 
-  const legend = VOCABULARY.map((voc) => (
-    <>
-      <span className={"tag-" + voc.label}>{voc.label}</span>
-      <span> | </span>
-    </>
-  ));
+  console.log("LOADING APP")
 
   return (
     <div className="App">
@@ -193,14 +226,14 @@ const App = () => {
 
         <div>
           <TextSelector
-            selection={annotationSelection}
-            basenames={baseNames}
+            selection={doc.id}
+            basenames={initData.baseNames}
             onChange={handleAnnotationSelectionChange}
           />
           &nbsp;
           <VersionSelector
-            selection={versionSelection}
-            annotation_versions={annotationVersions}
+            selection={doc.version}
+            annotation_versions={initData.annotationVersions}
             onChange={handleVersionSelectionChange}
           />
           &nbsp;

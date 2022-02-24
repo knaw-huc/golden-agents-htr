@@ -14,8 +14,10 @@ interface RecogitoDocumentProps {
   // setText: (text: string) => void;
 }
 
+const htmlId = "text-content"
+
+
 class RecogitoDocument extends Component<RecogitoDocumentProps> {
-  htmlId = "text-content";
   r: Recogito; // the Recogito instance
 
   shouldComponentUpdate = (newProps, _) => {
@@ -32,7 +34,7 @@ class RecogitoDocument extends Component<RecogitoDocumentProps> {
   componentDidMount = () => {
     // console.debug("componentDidMount");
     this.r = new Recogito({
-      content: this.htmlId,
+      content: htmlId,
       locale: "auto",
       mode: "pre",
       widgets: [
@@ -92,7 +94,7 @@ class RecogitoDocument extends Component<RecogitoDocumentProps> {
 
   render() {
     return (
-      <div id={this.htmlId}>
+      <div id={htmlId}>
         <div className="code">{this.props.doc.text}</div>
       </div>
     );

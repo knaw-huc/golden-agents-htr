@@ -7,8 +7,8 @@ import { Container, Header, Segment } from "semantic-ui-react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-import TextSelector from "./components/TextSelector";
-import VersionSelector from "./components/VersionSelector";
+import { TextSelector } from "./components/TextSelector";
+import { VersionSelector } from "./components/VersionSelector";
 import RecogitoDocument from "./components/RecogitoDocument";
 
 const apiBase = "http://localhost:8000"; // development
@@ -194,7 +194,6 @@ const App = () => {
     setLoading(true)
 
     putAnnotations(id, doc.version, doc.annotations)
-    // setAnnotationSelection(id)
 
     fetchPageData(id, doc.version)
       .then((pd) => {
@@ -226,14 +225,12 @@ const App = () => {
 
         <div>
           <TextSelector
-            selection={doc.id}
             basenames={initData.baseNames}
             onChange={handleAnnotationSelectionChange}
           />
           &nbsp;
           <VersionSelector
-            selection={doc.version}
-            annotation_versions={initData.annotationVersions}
+            versions={initData.annotationVersions}
             onChange={handleVersionSelectionChange}
           />
           &nbsp;

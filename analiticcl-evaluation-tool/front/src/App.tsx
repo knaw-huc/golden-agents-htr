@@ -19,43 +19,48 @@ const version = config["version"];
 
 const annotations0: Annotation[] = [];
 const text0: string = "Please select a text (and version)";
-const doc0: Doc = { id: '', version: '', text: text0, annotations: annotations0 };
+const doc0: Doc = {
+  id: "",
+  version: "",
+  text: text0,
+  annotations: annotations0,
+};
 
 interface AnnotationBody {
-  type: string
-  purpose?: string
-  value: any
-  modified?: string
+  type: string;
+  purpose?: string;
+  value: any;
+  modified?: string;
 }
 
 interface AnnotationSelector {
-  type: string
-  start?: number
-  end?: number
-  exact?: string
+  type: string;
+  start?: number;
+  end?: number;
+  exact?: string;
 }
 
 export interface Annotation {
-  "@context": string[]
-  body: AnnotationBody[]
-  generated: string
-  generator: { id: string, type: string, name: string }
-  id: string
-  motivation: string
-  target: { source: string, selector: AnnotationSelector[] }
-  type: string
+  "@context": string[];
+  body: AnnotationBody[];
+  generated: string;
+  generator: { id: string; type: string; name: string };
+  id: string;
+  motivation: string;
+  target: { source: string; selector: AnnotationSelector[] };
+  type: string;
 }
 
 export interface Doc {
-  id: string,
-  version: string
-  text: string
-  annotations: Annotation[]
+  id: string;
+  version: string;
+  text: string;
+  annotations: Annotation[];
 }
 
 interface InitData {
-  baseNames: string[]
-  annotationVersions: string[]
+  baseNames: string[];
+  annotationVersions: string[];
 }
 
 const fetchPageData = async (
@@ -167,49 +172,67 @@ const legend = VOCABULARY.map((voc) => (
 ));
 
 const App = () => {
-  const [initData, setInitData] = useState<InitData>({ baseNames: [], annotationVersions: [] })
+  const [initData, setInitData] = useState<InitData>({
+    baseNames: [],
+    annotationVersions: [],
+  });
   const [doc, setDoc] = useState(doc0);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
 
-    Promise
-      .all([fetchVersionData(), fetchBaseNames()])
-      .then(([versions, ids]) => {
-        fetchPageData(ids[0], versions[0])
-          .then((pageData: Pick<Doc, 'annotations' | 'text'>) => {
-            const _doc: Doc = { id: ids[0], version: versions[0], ...pageData }
-            setDoc(_doc)
-            setInitData({ annotationVersions: versions, baseNames: ids })
+    Promise.all([fetchVersionData(), fetchBaseNames()]).then(
+      ([versions, ids]) => {
+        fetchPageData(ids[0], versions[0]).then(
+          (pageData: Pick<Doc, "annotations" | "text">) => {
+            const _doc: Doc = { id: ids[0], version: versions[0], ...pageData };
+            setDoc(_doc);
+            setInitData({ annotationVersions: versions, baseNames: ids });
             setLoading(false);
-          });
-      })
+          }
+        );
+      }
+    );
   }, []);
 
-  const handleTextChange = useCallback((id: Doc['id']) => {
-    setLoading(true)
+  const handleTextChange = useCallback(
+    (id: Doc["id"]) => {
+      setLoading(true);
 
-    putAnnotations(id, doc.version, doc.annotations)
+      putAnnotations(id, doc.version, doc.annotations);
 
-    fetchPageData(id, doc.version)
-      .then((pd) => {
-        setDoc({ id, version: doc.version, text: pd.text, annotations: pd.annotations })
-        setLoading(false)
-      })
-  }, [doc])
+      fetchPageData(id, doc.version).then((pd) => {
+        setDoc({
+          id,
+          version: doc.version,
+          text: pd.text,
+          annotations: pd.annotations,
+        });
+        setLoading(false);
+      });
+    },
+    [doc]
+  );
 
-  const handleVersionChange = useCallback((version: Doc['version']) => {
-    setLoading(true)
+  const handleVersionChange = useCallback(
+    (version: Doc["version"]) => {
+      setLoading(true);
 
-    putAnnotations(doc.id, version, doc.annotations)
+      putAnnotations(doc.id, version, doc.annotations);
 
-    fetchPageData(doc.id, version)
-      .then((pd) => {
-        setDoc({ id: doc.id, version, text: pd.text, annotations: pd.annotations })
-        setLoading(false)
-      })
-  }, [doc])
+      fetchPageData(doc.id, version).then((pd) => {
+        setDoc({
+          id: doc.id,
+          version,
+          text: pd.text,
+          annotations: pd.annotations,
+        });
+        setLoading(false);
+      });
+    },
+    [doc]
+  );
 
   return (
     <div className="App">
@@ -244,7 +267,9 @@ const App = () => {
         <Segment>
           <RecogitoDocument
             doc={doc}
-            updateAnnotations={(annotations: Annotation[]) => setDoc(d => ({ ...d, annotations }))}
+            updateAnnotations={(annotations: Annotation[]) =>
+              setDoc((d) => ({ ...d, annotations }))
+            }
           />
         </Segment>
       </Container>

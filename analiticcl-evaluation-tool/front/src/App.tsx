@@ -9,7 +9,7 @@ import { css } from "@emotion/react";
 
 import { TextSelector } from "./components/TextSelector";
 import { VersionSelector } from "./components/VersionSelector";
-import RecogitoDocument from "./components/RecogitoDocument";
+import { RecogitoDocument } from "./components/RecogitoDocument";
 
 const apiBase = "http://localhost:8000"; // development
 // const apiBase = "/api"; // production; proxied to back-end in nginx.conf
@@ -35,7 +35,7 @@ interface AnnotationSelector {
   exact?: string
 }
 
-interface Annotation {
+export interface Annotation {
   "@context": string[]
   body: AnnotationBody[]
   generated: string
@@ -46,7 +46,7 @@ interface Annotation {
   type: string
 }
 
-interface Doc {
+export interface Doc {
   id: string,
   version: string
   text: string
@@ -129,7 +129,7 @@ const putAnnotations = (
   // console.info(annotations);
 };
 
-const VOCABULARY = [
+export const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
   { label: "familyname", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "person", uri: "http://vocab.getty.edu/aat/300024979" },
@@ -169,9 +169,6 @@ const legend = VOCABULARY.map((voc) => (
 const App = () => {
   const [initData, setInitData] = useState<InitData>({ baseNames: [], annotationVersions: [] })
   const [doc, setDoc] = useState(doc0);
-
-  // const [annotationSelection, setAnnotationSelection] = useState("");
-  // const [versionSelection, setVersionSelection] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -182,15 +179,15 @@ const App = () => {
       .then(([versions, ids]) => {
         fetchPageData(ids[0], versions[0])
           .then((pageData: Pick<Doc, 'annotations' | 'text'>) => {
-            const doc: Doc = { id: ids[0], version: versions[0], ...pageData }
-            setDoc(doc)
+            const _doc: Doc = { id: ids[0], version: versions[0], ...pageData }
+            setDoc(_doc)
             setInitData({ annotationVersions: versions, baseNames: ids })
             setLoading(false);
           });
       })
   }, []);
 
-  const handleAnnotationSelectionChange = useCallback((id: Doc['id']) => {
+  const handleTextChange = useCallback((id: Doc['id']) => {
     setLoading(true)
 
     putAnnotations(id, doc.version, doc.annotations)
@@ -202,7 +199,7 @@ const App = () => {
       })
   }, [doc])
 
-  const handleVersionSelectionChange = useCallback((version: Doc['version']) => {
+  const handleVersionChange = useCallback((version: Doc['version']) => {
     setLoading(true)
 
     putAnnotations(doc.id, version, doc.annotations)
@@ -214,8 +211,6 @@ const App = () => {
       })
   }, [doc])
 
-  console.log("LOADING APP")
-
   return (
     <div className="App">
       <Container>
@@ -226,12 +221,12 @@ const App = () => {
         <div>
           <TextSelector
             basenames={initData.baseNames}
-            onChange={handleAnnotationSelectionChange}
+            onChange={handleTextChange}
           />
           &nbsp;
           <VersionSelector
             versions={initData.annotationVersions}
-            onChange={handleVersionSelectionChange}
+            onChange={handleVersionChange}
           />
           &nbsp;
           <PuffLoader
@@ -247,7 +242,10 @@ const App = () => {
         {/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
 
         <Segment>
-          <RecogitoDocument doc={doc} setDoc={setDoc} vocabulary={VOCABULARY} />
+          <RecogitoDocument
+            doc={doc}
+            updateAnnotations={(annotations: Annotation[]) => setDoc(d => ({ ...d, annotations }))}
+          />
         </Segment>
       </Container>
     </div>

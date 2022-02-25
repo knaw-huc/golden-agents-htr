@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 // Theming only
 import "semantic-ui-css/semantic.min.css";
@@ -7,23 +7,129 @@ import { Container, Header, Segment } from "semantic-ui-react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
 
-import TextSelector from "./components/TextSelector";
-import VersionSelector from "./components/VersionSelector";
-import RecogitoDocument from "./components/RecogitoDocument";
+import { TextSelector } from "./components/TextSelector";
+import { VersionSelector } from "./components/VersionSelector";
+import { RecogitoDocument } from "./components/RecogitoDocument";
+
+const apiBase = "http://localhost:8000"; // development
+// const apiBase = "/api"; // production; proxied to back-end in nginx.conf
 
 const config: {} = require("./config.json");
-const inDevelopmentMode = config["developmentMode"];
-const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf
+const version = config["version"];
 
-const annotations0: {}[] = [];
+const annotations0: Annotation[] = [];
 const text0: string = "Please select a text (and version)";
-const doc0 = { text: text0, annotations: annotations0 };
-const json_headers = {
-  "Content-Type": "application/json",
-  Accept: "application/json",
+const doc0: Doc = { id: '', version: '', text: text0, annotations: annotations0 };
+
+interface AnnotationBody {
+  type: string
+  purpose?: string
+  value: any
+  modified?: string
+}
+
+interface AnnotationSelector {
+  type: string
+  start?: number
+  end?: number
+  exact?: string
+}
+
+export interface Annotation {
+  "@context": string[]
+  body: AnnotationBody[]
+  generated: string
+  generator: { id: string, type: string, name: string }
+  id: string
+  motivation: string
+  target: { source: string, selector: AnnotationSelector[] }
+  type: string
+}
+
+export interface Doc {
+  id: string,
+  version: string
+  text: string
+  annotations: Annotation[]
+}
+
+interface InitData {
+  baseNames: string[]
+  annotationVersions: string[]
+}
+
+const fetchPageData = async (
+  selectedAnnotation: string,
+  selectedVersion: string
+) => {
+  const res = await fetch(
+    `${apiBase}/pagedata/${selectedAnnotation}/${selectedVersion}`,
+    {
+      headers: {
+        "Content-Type": "text/json",
+        Accept: "text/json",
+      },
+    }
+  );
+  var data = { text: "", annotations: [] };
+  if (res.status >= 200 && res.status <= 299) {
+    data = await res.json();
+  } else {
+    console.error(res.status, res.statusText);
+  }
+  return data;
 };
 
-const VOCABULARY = [
+const fetchVersionData = async () => {
+  const res = await fetch(apiBase + "/versions", {
+    headers: {
+      "Content-Type": "text/json",
+      Accept: "text/json",
+    },
+  });
+  var versionData = [];
+  if (res.status >= 200 && res.status <= 299) {
+    versionData = await res.json();
+    // console.log("versionData=", versionData);
+  } else {
+    console.error(res.status, res.statusText);
+  }
+  return versionData;
+};
+
+const fetchBaseNames = async () => {
+  const res = await fetch(apiBase + "/basenames", {
+    headers: {
+      "Content-Type": "text/json",
+      Accept: "text/json",
+    },
+  });
+  var baseNames = [];
+  if (res.status >= 200 && res.status <= 299) {
+    baseNames = await res.json();
+    // console.log("baseNames=", baseNames);
+  } else {
+    console.log(res.status, res.statusText);
+  }
+  return baseNames;
+};
+
+const putAnnotations = (
+  basename: string,
+  version: string,
+  annotations: {}[]
+) => {
+  console.debug(
+    "TODO: PUT http://backend.com/documents/" +
+      basename +
+      "/" +
+      version +
+      "/annotations"
+  );
+  // console.info(annotations);
+};
+
+export const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
   { label: "familyname", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "person", uri: "http://vocab.getty.edu/aat/300024979" },
@@ -40,156 +146,70 @@ const VOCABULARY = [
   { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
   { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
-  // { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
   { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
 ];
 
-const fetchData = async (path: string, defaultValue: any) => {
-  const res = await fetch(apiBase + path, {
-    headers: json_headers,
-  });
-  var data = defaultValue;
-  if (res.status >= 200 && res.status <= 299) {
-    data = await res.json();
-  } else {
-    console.error(res.status, res.statusText);
-  }
-  return data;
-};
+const color = "green";
+const override = css`
+  margin: 0 auto;
+  border-color: black;
+`;
+
+const legend = VOCABULARY.map((voc) => (
+  <span key={voc.label}>
+    <span className={"tag-" + voc.label}>{voc.label}</span>
+    <span> | </span>
+  </span>
+));
 
 const App = () => {
-  const [baseNames, setBaseNames] = useState([]);
+  const [initData, setInitData] = useState<InitData>({ baseNames: [], annotationVersions: [] })
   const [doc, setDoc] = useState(doc0);
-  const [annotationSelection, setAnnotationSelection] = useState("");
-  const [annotationVersions, setAnnotationVersions] = useState([]);
-  const [versionSelection, setVersionSelection] = useState("exp9");
   const [loading, setLoading] = useState(false);
-  const [annotationsChecked, setAnnotationsChecked] = useState({
-    jirsi: false,
-    judith: false,
-  });
-
-  const fetchPageData = async (
-    selectedAnnotation: string,
-    selectedVersion: string
-  ) => {
-    const defaultValue = { text: "", annotations: [] };
-    if (selectedAnnotation != null && selectedVersion != null) {
-      return fetchData(
-        "/pagedata/" + selectedAnnotation + "/" + selectedVersion,
-        defaultValue
-      );
-    }
-    return defaultValue;
-  };
-
-  const fetchVersionData = async () => {
-    return fetchData("/versions", []);
-  };
-
-  const fetchBaseNames = async () => {
-    return fetchData("/basenames", []);
-  };
 
   useEffect(() => {
-    setLoading(true);
-    fetchVersionData().then((versionData) => {
-      setAnnotationVersions(versionData);
-    });
-    fetchBaseNames().then((baseNames) => {
-      setBaseNames(baseNames);
-    });
-    setLoading(false);
+    setLoading(true)
+
+    Promise
+      .all([fetchVersionData(), fetchBaseNames()])
+      .then(([versions, ids]) => {
+        fetchPageData(ids[0], versions[0])
+          .then((pageData: Pick<Doc, 'annotations' | 'text'>) => {
+            const _doc: Doc = { id: ids[0], version: versions[0], ...pageData }
+            setDoc(_doc)
+            setInitData({ annotationVersions: versions, baseNames: ids })
+            setLoading(false);
+          });
+      })
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    fetchPageData(baseNames[0], annotationVersions[0]).then((pageData) => {
-      setDoc({ text: pageData.text, annotations: pageData.annotations });
-    });
-    setLoading(false);
-  }, [annotationVersions, baseNames]);
+  const handleTextChange = useCallback((id: Doc['id']) => {
+    setLoading(true)
 
-  const putAnnotations = async (
-    basename: string,
-    version: string,
-    annotations: {}[]
-  ) => {
-    if (annotations.length === 0) {
-      return;
-    }
-    // console.info(annotations);
-    const requestOptions = {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        annotations: annotations,
-        checked: annotationsChecked,
-      }),
-    };
-    // await fetch(
-    //   apiBase + "/annotations/" + basename + "/" + version,
-    //   requestOptions
-    // );
-  };
+    putAnnotations(id, doc.version, doc.annotations)
 
-  const handleAnnotationSelectionChange = async (newSelection: string) => {
-    setLoading(true);
-    putAnnotations(newSelection, versionSelection, doc.annotations);
-    setAnnotationSelection(newSelection);
-    var newText;
-    var newAnnotations;
-    await fetchPageData(newSelection, versionSelection).then((pd) => {
-      newText = pd.text;
-      newAnnotations = pd.annotations;
-    });
-    setDoc({ text: newText, annotations: newAnnotations });
-    setLoading(false);
-  };
+    fetchPageData(id, doc.version)
+      .then((pd) => {
+        setDoc({ id, version: doc.version, text: pd.text, annotations: pd.annotations })
+        setLoading(false)
+      })
+  }, [doc])
 
-  const handleVersionSelectionChange = async (newVersionSelection: string) => {
-    setLoading(true);
-    putAnnotations(annotationSelection, newVersionSelection, doc.annotations);
-    setVersionSelection(newVersionSelection);
-    var newText;
-    var newAnnotations;
-    await fetchPageData(annotationSelection, newVersionSelection).then((pd) => {
-      newText = pd.text;
-      newAnnotations = pd.annotations;
-    });
-    setDoc({ text: newText, annotations: newAnnotations });
-    setLoading(false);
-  };
+  const handleVersionChange = useCallback((version: Doc['version']) => {
+    setLoading(true)
 
-  const color = "green";
-  const override = css`
-    margin: 0 auto;
-    border-color: black;
-  `;
+    putAnnotations(doc.id, version, doc.annotations)
 
-  const version = config["version"];
-
-  const TagLegend = () => {
-    const legend = VOCABULARY.map((voc) => (
-      <>
-        <span className={"tag-" + voc.label}>{voc.label}</span>
-        <span> | </span>
-      </>
-    ));
-    return <div>Tag Legend: | {legend}</div>;
-  };
-
-  const Checked = () => {
-    return (
-      <div>
-        Akkoord: Jirsi <input type="checkbox" /> | Judith{" "}
-        <input type="checkbox" />
-      </div>
-    );
-  };
+    fetchPageData(doc.id, version)
+      .then((pd) => {
+        setDoc({ id: doc.id, version, text: pd.text, annotations: pd.annotations })
+        setLoading(false)
+      })
+  }, [doc])
 
   return (
     <div className="App">
@@ -200,22 +220,14 @@ const App = () => {
 
         <div>
           <TextSelector
-            selection={annotationSelection}
-            basenames={baseNames}
-            onChange={handleAnnotationSelectionChange}
+            basenames={initData.baseNames}
+            onChange={handleTextChange}
           />
-          {inDevelopmentMode ? (
-            <>
-              &nbsp;
-              <VersionSelector
-                selection={versionSelection}
-                annotation_versions={annotationVersions}
-                onChange={handleVersionSelectionChange}
-              />
-            </>
-          ) : (
-            ""
-          )}
+          &nbsp;
+          <VersionSelector
+            versions={initData.annotationVersions}
+            onChange={handleVersionChange}
+          />
           &nbsp;
           <PuffLoader
             color={color}
@@ -225,12 +237,15 @@ const App = () => {
           />
         </div>
 
-        <TagLegend />
+        <div>Tag Legend: | {legend}</div>
 
-        <Checked />
+        {/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
 
         <Segment>
-          <RecogitoDocument doc={doc} setDoc={setDoc} vocabulary={VOCABULARY} />
+          <RecogitoDocument
+            doc={doc}
+            updateAnnotations={(annotations: Annotation[]) => setDoc(d => ({ ...d, annotations }))}
+          />
         </Segment>
       </Container>
     </div>

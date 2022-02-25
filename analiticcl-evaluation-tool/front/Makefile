@@ -7,12 +7,12 @@ tag = ga-analiticcl-evaluate-front
 	mkdir -p .make
 
 .make/.install: .make package.json tsconfig.json
-	yarn install
+	npx yarn install
 	@touch .make/.install
 
 .make/.build: .make .make/.install src/* public/*
 	echo '{"version":"'$(date  +%Y.%m.%d)'"}' > src/config.json
-	yarn build
+	npx yarn build
 	@touch .make/.build
 
 build: .make/.build
@@ -31,7 +31,7 @@ docker-image: .make/.docker
 push: .make/.push
 
 start:
-	yarn start
+	npx yarn start
 
 clean:
 	rm -rf .make build

@@ -25,7 +25,7 @@ docker-image: .make/.docker
 
 push: .make/.push
 
-start:
+start: .make/.install
 	python main.py
 
 clean:

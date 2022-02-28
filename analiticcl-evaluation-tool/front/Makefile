@@ -1,7 +1,7 @@
 all: help
 tag = ga-analiticcl-evaluate-front
 
-.PHONY: build docker-image start help push config
+.PHONY: build docker-image start help push update-version
 
 .make:
 	mkdir -p .make
@@ -10,7 +10,7 @@ tag = ga-analiticcl-evaluate-front
 	npx yarn install
 	@touch .make/.install
 
-.make/.build: .make .make/.install src/* public/* config
+.make/.build: .make .make/.install src/* public/* update-version
 	npx yarn build
 	@touch .make/.build
 
@@ -35,8 +35,18 @@ start:
 clean:
 	rm -rf .make build
 
-config:
+update-version:
+	@echo "set version to `date +%Y.%m.%d`"
 	@jq ".version=\"`date +%Y.%m.%d`\"" src/config.json > /tmp/config.json && mv /tmp/config.json src/
+
+dev-config:
+	@echo "set developmentMode to true"
+	@jq ".developmentMode=true" src/config.json > /tmp/config.json && mv /tmp/config.json src/
+
+prod-config:
+	@echo "set developmentMode to false"
+	@jq ".developmentMode=false" src/config.json > /tmp/config.json && mv /tmp/config.json src/
+
 
 help:
 	@echo "make-tools for $(tag)"
@@ -46,3 +56,6 @@ help:
 	@echo "  docker-image    to build the docker image of the app, running in nginx"
 	@echo "  push            to push the docker image to registry.diginfra.net"
 	@echo "  clean           to remove generated files"
+	@echo "  update-version  to set the version to the current year.month.day"
+	@echo "  dev-config      to use the development config"
+	@echo "  prod-config     to use the production config"

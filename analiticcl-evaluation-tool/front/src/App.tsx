@@ -2,7 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 
 // Theming only
 import "semantic-ui-css/semantic.min.css";
-import { Container, Header, Segment } from "semantic-ui-react";
+import { Container, Header, Segment, Button } from "semantic-ui-react";
 
 import PuffLoader from "react-spinners/PuffLoader";
 import { css } from "@emotion/react";
@@ -11,11 +11,10 @@ import { TextSelector } from "./components/TextSelector";
 import { VersionSelector } from "./components/VersionSelector";
 import { RecogitoDocument } from "./components/RecogitoDocument";
 
-const apiBase = "http://localhost:8000"; // development
-// const apiBase = "/api"; // production; proxied to back-end in nginx.conf
-
 const config: {} = require("./config.json");
 const version = config["version"];
+const inDevelopmentMode = config["developmentMode"];
+const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf
 
 const annotations0: Annotation[] = [];
 const text0: string = "Please select a text (and version)";
@@ -119,19 +118,21 @@ const fetchBaseNames = async () => {
   return baseNames;
 };
 
-const putAnnotations = (
-  basename: string,
-  version: string,
-  annotations: {}[]
-) => {
-  console.debug(
-    "TODO: PUT http://backend.com/documents/" +
-      basename +
-      "/" +
-      version +
-      "/annotations"
-  );
-  // console.info(annotations);
+const putAnnotations = async (doc: Doc) => {
+  if (doc.annotations.length === 0) {
+    return;
+  }
+  const requestOptions = {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      annotations: doc.annotations,
+      checked: { jirsi: false, judith: false },
+    }),
+  };
+  const url = `${apiBase}/annotations/${doc.id}/${doc.version}`;
+  console.log(url);
+  await fetch(url, requestOptions);
 };
 
 export const VOCABULARY = [
@@ -151,7 +152,7 @@ export const VOCABULARY = [
   { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
   { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
-  { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
+  // { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
   { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
@@ -200,7 +201,7 @@ const App = () => {
     (id: Doc["id"]) => {
       setLoading(true);
 
-      putAnnotations(id, doc.version, doc.annotations);
+      // putAnnotations(id, doc.version, doc.annotations);
 
       fetchPageData(id, doc.version).then((pd) => {
         setDoc({
@@ -219,7 +220,7 @@ const App = () => {
     (version: Doc["version"]) => {
       setLoading(true);
 
-      putAnnotations(doc.id, version, doc.annotations);
+      // putAnnotations(doc.id, version, doc.annotations);
 
       fetchPageData(doc.id, version).then((pd) => {
         setDoc({
@@ -234,11 +235,54 @@ const App = () => {
     [doc]
   );
 
+  // const Checked = () => {
+  //   return (
+  //     <div>
+  //       Akkoord: Jirsi <input type="checkbox" /> | Judith{" "}
+  //       <input type="checkbox" />
+  //     </div>
+  //   );
+  // };
+
+  const SaveButton = () => {
+    const handleClick = () => {
+      putAnnotations(doc);
+    };
+    return (
+      <>
+        <Button primary icon onClick={handleClick}>
+          Save annotations
+        </Button>
+      </>
+    );
+  };
+
+  // const DownloadButton = () => {
+  //   const handleClick = () => {
+  //     putAnnotations(doc);
+  //   };
+  //   return (
+  //     <div>
+  //       <Button primary icon className="downloadbutton" onClick={handleClick}>
+  //         <a
+  //           href={`data:text/json;charset=utf-8,${encodeURIComponent(
+  //             JSON.stringify(doc.annotations, null, 2)
+  //           )}`}
+  //           download={`${doc.id}.json`}
+  //         >
+  //           {`Download Json`}
+  //         </a>{" "}
+  //         <Icon name="download" />
+  //       </Button>
+  //     </div>
+  //   );
+  // };
+
   return (
     <div className="App">
       <Container>
         <Header as="h1">
-          Golden Agents: Annotation Evaluation ({version})
+          Golden Agents: Annotation Evaluation (v{version})
         </Header>
 
         <div>
@@ -246,11 +290,17 @@ const App = () => {
             basenames={initData.baseNames}
             onChange={handleTextChange}
           />
-          &nbsp;
-          <VersionSelector
-            versions={initData.annotationVersions}
-            onChange={handleVersionChange}
-          />
+          {inDevelopmentMode ? (
+            <>
+              &nbsp;
+              <VersionSelector
+                versions={initData.annotationVersions}
+                onChange={handleVersionChange}
+              />
+            </>
+          ) : (
+            ""
+          )}
           &nbsp;
           <PuffLoader
             color={color}
@@ -258,11 +308,13 @@ const App = () => {
             loading={loading}
             size={20}
           />
+          <SaveButton />
         </div>
 
         <div>Tag Legend: | {legend}</div>
 
-        {/*         <div>Akkoord: Jirsi <input type="checkbox"/> | Judith <input type="checkbox"/></div> */}
+        {/* <Checked /> */}
+        {/* <DownloadButton /> */}
 
         <Segment>
           <RecogitoDocument

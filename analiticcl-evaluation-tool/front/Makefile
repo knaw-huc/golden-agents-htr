@@ -31,7 +31,7 @@ docker-image: .make/.docker
 push: .make/.push
 
 start:
-	npx yarn start
+	yarn start
 
 clean:
 	rm -rf .make build

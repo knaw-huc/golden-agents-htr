@@ -1,7 +1,7 @@
 all: help
 tag = ga-analiticcl-evaluate-front
 
-.PHONY: build docker-image start help push
+.PHONY: build docker-image start help push config
 
 .make:
 	mkdir -p .make
@@ -10,8 +10,7 @@ tag = ga-analiticcl-evaluate-front
 	npx yarn install
 	@touch .make/.install
 
-.make/.build: .make .make/.install src/* public/*
-	echo '{"version":"'$(date  +%Y.%m.%d)'"}' > src/config.json
+.make/.build: .make .make/.install src/* public/* config
 	npx yarn build
 	@touch .make/.build
 
@@ -35,6 +34,9 @@ start:
 
 clean:
 	rm -rf .make build
+
+config:
+	@jq ".version=\"`date +%Y.%m.%d`\"" src/config.json > /tmp/config.json && mv /tmp/config.json src/
 
 help:
 	@echo "make-tools for $(tag)"

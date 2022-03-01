@@ -3,14 +3,14 @@ Annotation demo using Recogito-JS and an example probate inventory.
 
 ## scripts
 
-### ```yarn install```
-
-Installs the necessary app dependencies into the `node_modules` folder.
-
-### ```yarn start```
+### ```make start```
 
 Runs the app in development mode.
 
-### ```yarn build```
+### ```make build```
 
 Builds the app for production to the `build` folder.
+
+### ```make dev-config```
+
+Adds `developmentMode=true` to the src/config.json; this will activate the version pull-down.

@@ -1,5 +1,5 @@
-# Probate Annotate
-Annotation demo using Recogito-JS and an example probate inventory. 
+# Analiticcl Evaluation Tool
+Tool to evaluate the annotations made by Analiticcl on a set of texts extracted from pagexml. 
 
 ## scripts
 

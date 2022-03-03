@@ -6,8 +6,8 @@ interface Props {
 export function TextSelector(props: Props) {
   return (
     <span>
-      Text: &nbsp;
-      <select onChange={(e) => props.onChange(e.target.value)}>
+      <label htmlFor="text_select">Text:</label> &nbsp;
+      <select id="text_select" onChange={(e) => props.onChange(e.target.value)}>
         {props.basenames.map((option) => (
           <option key={option} value={option}>
             {option}

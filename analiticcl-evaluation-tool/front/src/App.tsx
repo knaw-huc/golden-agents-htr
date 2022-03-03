@@ -2,10 +2,16 @@ import React, { useEffect, useState, useCallback } from "react";
 
 // Theming only
 import "semantic-ui-css/semantic.min.css";
-import { Container, Header, Segment, Button } from "semantic-ui-react";
+import {
+  Container,
+  Header,
+  Segment,
+  Button,
+  Dimmer,
+  Loader,
+} from "semantic-ui-react";
 
-import PuffLoader from "react-spinners/PuffLoader";
-import { css } from "@emotion/react";
+// import { css } from "@emotion/react";
 
 import { TextSelector } from "./components/TextSelector";
 import { VersionSelector } from "./components/VersionSelector";
@@ -23,6 +29,8 @@ const doc0: Doc = {
   version: "",
   text: text0,
   annotations: annotations0,
+  acceptedByJirsi: false,
+  acceptedByJudith: false,
 };
 
 interface AnnotationBody {
@@ -55,6 +63,8 @@ export interface Doc {
   version: string;
   text: string;
   annotations: Annotation[];
+  acceptedByJirsi: boolean;
+  acceptedByJudith: boolean;
 }
 
 interface InitData {
@@ -159,11 +169,11 @@ export const VOCABULARY = [
   { label: "quantifier", uri: "http://vocab.getty.edu/aat/300008347" },
 ];
 
-const color = "green";
-const override = css`
-  margin: 0 auto;
-  border-color: black;
-`;
+// const color = "green";
+// const override = css`
+//   margin: 0 auto;
+//   border-color: black;
+// `;
 
 const legend = VOCABULARY.map((voc) => (
   <span key={voc.label}>
@@ -187,7 +197,13 @@ const App = () => {
       ([versions, ids]) => {
         fetchPageData(ids[0], versions[0]).then(
           (pageData: Pick<Doc, "annotations" | "text">) => {
-            const _doc: Doc = { id: ids[0], version: versions[0], ...pageData };
+            const _doc: Doc = {
+              id: ids[0],
+              version: versions[0],
+              acceptedByJirsi: false,
+              acceptedByJudith: false,
+              ...pageData,
+            };
             setDoc(_doc);
             setInitData({ annotationVersions: versions, baseNames: ids });
             setLoading(false);
@@ -201,14 +217,14 @@ const App = () => {
     (id: Doc["id"]) => {
       setLoading(true);
 
-      // putAnnotations(id, doc.version, doc.annotations);
-
       fetchPageData(id, doc.version).then((pd) => {
         setDoc({
           id,
           version: doc.version,
           text: pd.text,
           annotations: pd.annotations,
+          acceptedByJirsi: false,
+          acceptedByJudith: false,
         });
         setLoading(false);
       });
@@ -220,14 +236,14 @@ const App = () => {
     (version: Doc["version"]) => {
       setLoading(true);
 
-      // putAnnotations(doc.id, version, doc.annotations);
-
       fetchPageData(doc.id, version).then((pd) => {
         setDoc({
           id: doc.id,
           version,
           text: pd.text,
           annotations: pd.annotations,
+          acceptedByJirsi: false,
+          acceptedByJudith: false,
         });
         setLoading(false);
       });
@@ -235,14 +251,36 @@ const App = () => {
     [doc]
   );
 
-  // const Checked = () => {
-  //   return (
-  //     <div>
-  //       Akkoord: Jirsi <input type="checkbox" /> | Judith{" "}
-  //       <input type="checkbox" />
-  //     </div>
-  //   );
-  // };
+  const Checked = () => {
+    return (
+      <>
+        Akkoord: <label htmlFor="jirsi_checkbox">Jirsi</label>{" "}
+        <input
+          type="checkbox"
+          id="jirsi_checkbox"
+          onChange={(e) => {
+            const _doc = doc;
+            _doc.acceptedByJirsi = e.target.value === "on";
+            console.log(_doc.acceptedByJirsi);
+            setDoc(_doc);
+          }}
+          checked={doc.acceptedByJirsi}
+        />{" "}
+        | <label htmlFor="judith_checkbox">Judith</label>{" "}
+        <input
+          type="checkbox"
+          id="judith_checkbox"
+          onChange={(e) => {
+            const _doc = doc;
+            _doc.acceptedByJudith = e.target.value === "on";
+            console.log(_doc.acceptedByJudith);
+            setDoc(_doc);
+          }}
+          checked={doc.acceptedByJudith}
+        />
+      </>
+    );
+  };
 
   const SaveButton = () => {
     const handleClick = () => {
@@ -250,7 +288,7 @@ const App = () => {
     };
     return (
       <>
-        <Button primary icon onClick={handleClick}>
+        <Button primary icon compact onClick={handleClick}>
           Save annotations
         </Button>
       </>
@@ -283,40 +321,42 @@ const App = () => {
       <Container>
         <Header as="h1">
           Golden Agents: Annotation Evaluation (v{version})
+          <small><a href={apiBase+"/html/instructions.html"}> (?)</a></small>
         </Header>
-
-        <div>
-          <TextSelector
-            basenames={initData.baseNames}
-            onChange={handleTextChange}
-          />
-          {inDevelopmentMode ? (
-            <>
-              &nbsp;
-              <VersionSelector
-                versions={initData.annotationVersions}
-                onChange={handleVersionChange}
-              />
-            </>
-          ) : (
-            ""
-          )}
-          &nbsp;
-          <PuffLoader
-            color={color}
-            css={override}
-            loading={loading}
-            size={20}
-          />
-          <SaveButton />
-        </div>
-
-        <div>Tag Legend: | {legend}</div>
-
-        {/* <Checked /> */}
-        {/* <DownloadButton /> */}
+        <Segment>
+          <div>
+            <TextSelector
+              basenames={initData.baseNames}
+              onChange={handleTextChange}
+            />
+            {inDevelopmentMode ? (
+              <>
+                &nbsp;|&nbsp;
+                <VersionSelector
+                  versions={initData.annotationVersions}
+                  onChange={handleVersionChange}
+                />
+              </>
+            ) : (
+              ""
+            )}
+            &nbsp;|&nbsp;
+            <Checked />
+            &nbsp;|&nbsp;
+            <SaveButton />
+          </div>
+        </Segment>
 
         <Segment>
+          <div>Tag Legend: | {legend}</div>
+        </Segment>
+
+        <Segment>
+          <Dimmer active={loading}>
+            <Loader>
+              Loading text {doc.id}.{doc.version} ...
+            </Loader>
+          </Dimmer>
           <RecogitoDocument
             doc={doc}
             updateAnnotations={(annotations: Annotation[]) =>

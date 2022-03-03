@@ -8,13 +8,14 @@ import markdown
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
 from fastapi.responses import HTMLResponse
+from icecream import ic
+from pydantic import BaseModel
 
 app = FastAPI()
 
 origins = [
-    "http://localhost",
+    # "http://localhost",
     "*"
 ]
 
@@ -71,25 +72,32 @@ def load_basenames():
     with open('data/ga-selection-basenames.json') as f:
         return json.load(f)
 
+def load_url_dict():
+    with open('data/page-selection.json') as f:
+        return json.load(f)
+
 
 @app.get("/pagedata/{basename}/{version}")
 async def get_page_data(basename: str, version: str):
+    transkribus_url = load_url_dict()
+    load_checks()
     text_file = f'data/{basename}.txt'
     if not os.path.exists(text_file):
-        raise HTTPException(status_code=404, detail=f"File not found: {text_file}")
+        _file_not_found(text_file)
     with open(text_file, encoding='utf8') as f:
         text = f.read()
     annotations_file = f'data/{basename}.{version}.json'
     if not os.path.exists(annotations_file):
-        raise HTTPException(status_code=404, detail=f"File not found: {annotations_file}")
+        _file_not_found(annotations_file)
     with open(annotations_file, encoding='utf8') as f:
         annotations = json.load(f)
     return {
         "text": text,
         "annotations": annotations,
+        "transkribus_url": transkribus_url[basename],
         "checked": {
-            "jirsi": False,
-            "judith": False
+            "jirsi": checks[basename]['jirsi'],
+            "judith": checks[basename]['judith']
         }
     }
 
@@ -113,12 +121,16 @@ async def put_annotations(basename: str, version: str, aub: AnnotationUpdateBody
 
 @app.get("/html/{filename}.html", response_class=HTMLResponse)
 async def get_html(filename: str):
-    filepath=f'doc/{filename}.md'
+    filepath = f'doc/{filename}.md'
     if not os.path.exists(filepath):
-        raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
+        _file_not_found(filepath)
     with open(filepath, "r", encoding="utf-8") as input_file:
         text = input_file.read()
     return markdown.markdown(text)
+
+
+def _file_not_found(filepath: str):
+    raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
 
 
 if __name__ == '__main__':

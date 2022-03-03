@@ -17,22 +17,6 @@ import { TextSelector } from "./components/TextSelector";
 import { VersionSelector } from "./components/VersionSelector";
 import { RecogitoDocument } from "./components/RecogitoDocument";
 
-const config: {} = require("./config.json");
-const version = config["version"];
-const inDevelopmentMode = config["developmentMode"];
-const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf
-
-const annotations0: Annotation[] = [];
-const text0: string = "Please select a text (and version)";
-const doc0: Doc = {
-  id: "",
-  version: "",
-  text: text0,
-  annotations: annotations0,
-  acceptedByJirsi: false,
-  acceptedByJudith: false,
-};
-
 interface AnnotationBody {
   type: string;
   purpose?: string;
@@ -63,6 +47,7 @@ export interface Doc {
   version: string;
   text: string;
   annotations: Annotation[];
+  transkribusURL: string;
   acceptedByJirsi: boolean;
   acceptedByJudith: boolean;
 }
@@ -71,6 +56,23 @@ interface InitData {
   baseNames: string[];
   annotationVersions: string[];
 }
+
+const config: {} = require("./config.json");
+const version = config["version"];
+const inDevelopmentMode = config["developmentMode"];
+const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf
+
+const annotations0: Annotation[] = [];
+const text0: string = "Please select a text (and version)";
+const doc0: Doc = {
+  id: "",
+  version: "",
+  text: text0,
+  annotations: annotations0,
+  transkribusURL: "",
+  acceptedByJirsi: false,
+  acceptedByJudith: false,
+};
 
 const fetchPageData = async (
   selectedAnnotation: string,
@@ -85,7 +87,7 @@ const fetchPageData = async (
       },
     }
   );
-  var data = { text: "", annotations: [] };
+  var data = { text: "", annotations: [], transkribus_url: "" };
   if (res.status >= 200 && res.status <= 299) {
     data = await res.json();
   } else {
@@ -137,7 +139,7 @@ const putAnnotations = async (doc: Doc) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       annotations: doc.annotations,
-      checked: { jirsi: false, judith: false },
+      checked: { jirsi: doc.acceptedByJirsi, judith: doc.acceptedByJudith },
     }),
   };
   const url = `${apiBase}/annotations/${doc.id}/${doc.version}`;
@@ -200,8 +202,9 @@ const App = () => {
             const _doc: Doc = {
               id: ids[0],
               version: versions[0],
-              acceptedByJirsi: false,
-              acceptedByJudith: false,
+              transkribusURL: pageData["transkribus_url"],
+              acceptedByJirsi: pageData["checked"]["jirsi"],
+              acceptedByJudith: pageData["checked"]["judith"],
               ...pageData,
             };
             setDoc(_doc);
@@ -223,10 +226,12 @@ const App = () => {
           version: doc.version,
           text: pd.text,
           annotations: pd.annotations,
-          acceptedByJirsi: false,
-          acceptedByJudith: false,
+          transkribusURL: pd.transkribus_url,
+          acceptedByJirsi: pd["checked"]["jirsi"],
+          acceptedByJudith: pd["checked"]["judith"],
         });
         setLoading(false);
+        // console.log(doc);
       });
     },
     [doc]
@@ -242,8 +247,9 @@ const App = () => {
           version,
           text: pd.text,
           annotations: pd.annotations,
-          acceptedByJirsi: false,
-          acceptedByJudith: false,
+          transkribusURL: pd.transkribus_url,
+          acceptedByJirsi: pd["checked"]["jirsi"],
+          acceptedByJudith: pd["checked"]["judith"],
         });
         setLoading(false);
       });
@@ -321,8 +327,14 @@ const App = () => {
       <Container>
         <Header as="h1">
           Golden Agents: Annotation Evaluation (v{version})
-          <small><a href={apiBase+"/html/instructions.html"}> (?)</a></small>
+          <small>
+            <a href={apiBase + "/html/instructions.html"} target="_blank" rel="noreferrer">
+              {" "}
+              (?)
+            </a>
+          </small>
         </Header>
+
         <Segment>
           <div>
             <TextSelector
@@ -349,6 +361,12 @@ const App = () => {
 
         <Segment>
           <div>Tag Legend: | {legend}</div>
+        </Segment>
+
+        <Segment>
+          <a href={doc.transkribusURL} target="_blank" rel="noreferrer">
+            Pagina in Stadsarchief
+          </a>
         </Segment>
 
         <Segment>

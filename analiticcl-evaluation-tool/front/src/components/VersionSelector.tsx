@@ -6,8 +6,11 @@ interface Props {
 export function VersionSelector(props: Props) {
   return (
     <span>
-      Version: &nbsp;
-      <select onChange={(e) => props.onChange(e.target.value)}>
+      <label htmlFor="version_select">Version:</label> &nbsp;
+      <select
+        id="version_select"
+        onChange={(e) => props.onChange(e.target.value)}
+      >
         {props.versions.map((option) => (
           <option key={option} value={option}>
             {option}

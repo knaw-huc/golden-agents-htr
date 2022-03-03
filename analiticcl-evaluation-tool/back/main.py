@@ -3,10 +3,13 @@
 import json
 import os
 from typing import Dict, Any, List
-from pydantic import BaseModel
+
+import markdown
 import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
@@ -93,7 +96,7 @@ async def get_page_data(basename: str, version: str):
 
 class AnnotationUpdateBody(BaseModel):
     annotations: List[Dict]
-    checked: Dict[str,Any]
+    checked: Dict[str, Any]
 
 
 @app.put("/annotations/{basename}/{version}")
@@ -106,6 +109,16 @@ async def put_annotations(basename: str, version: str, aub: AnnotationUpdateBody
     checks[basename] = aub.checked
     save_checks()
     return aub
+
+
+@app.get("/html/{filename}.html", response_class=HTMLResponse)
+async def get_html(filename: str):
+    filepath=f'doc/{filename}.md'
+    if not os.path.exists(filepath):
+        raise HTTPException(status_code=404, detail=f"File not found: {filepath}")
+    with open(filepath, "r", encoding="utf-8") as input_file:
+        text = input_file.read()
+    return markdown.markdown(text)
 
 
 if __name__ == '__main__':

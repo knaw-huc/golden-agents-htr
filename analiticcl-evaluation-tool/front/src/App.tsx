@@ -147,6 +147,23 @@ const putAnnotations = async (doc: Doc) => {
   await fetch(url, requestOptions);
 };
 
+const fetchChecks = async () => {
+  const res = await fetch(apiBase + "/checks", {
+    headers: {
+      "Content-Type": "text/json",
+      Accept: "text/json",
+    },
+  });
+  var checks = {};
+  if (res.status >= 200 && res.status <= 299) {
+    checks = await res.json();
+    // console.log("versionData=", versionData);
+  } else {
+    console.error(res.status, res.statusText);
+  }
+  return checks;
+};
+
 export const VOCABULARY = [
   { label: "firstname", uri: "http://vocab.getty.edu/aat/300404651?" },
   { label: "familyname", uri: "http://vocab.getty.edu/aat/300008347?" },
@@ -191,12 +208,14 @@ const App = () => {
   });
   const [doc, setDoc] = useState(doc0);
   const [loading, setLoading] = useState(false);
+  const [checks, setChecks] = useState({});
 
   useEffect(() => {
     setLoading(true);
 
-    Promise.all([fetchVersionData(), fetchBaseNames()]).then(
-      ([versions, ids]) => {
+    Promise.all([fetchVersionData(), fetchBaseNames(), fetchChecks()]).then(
+      ([versions, ids, _checks]) => {
+        setChecks(_checks);
         fetchPageData(ids[0], versions[0]).then(
           (pageData: Pick<Doc, "annotations" | "text">) => {
             const _doc: Doc = {
@@ -286,7 +305,7 @@ const App = () => {
 
   const SaveButton = () => {
     const handleClick = () => {
-      putAnnotations(doc);
+      putAnnotations(doc).then(() => fetchChecks().then((c) => setChecks(c)));
     };
     return (
       <>
@@ -339,6 +358,7 @@ const App = () => {
           <div>
             <TextSelector
               basenames={initData.baseNames}
+              checks={checks}
               onChange={handleTextChange}
             />
             {inDevelopmentMode ? (

@@ -67,6 +67,11 @@ async def get_versions():
 async def get_basenames():
     return load_basenames()
 
+@app.get("/checks")
+async def get_checks():
+    load_checks()
+    return checks
+
 
 def load_basenames():
     with open('data/ga-selection-basenames.json') as f:

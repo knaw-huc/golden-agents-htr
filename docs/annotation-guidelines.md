@@ -60,5 +60,5 @@ If you notice that notable words are missed, either keep a list or preferably ad
 
 ## Annotation Tool
 
-We will be annotating using [Recogito](https://recogito.pelagios.org/). The tags should be pre-loaded, place the corrected/normalized spelling in the *comment* field (or just leave it empty if it's already identical to the form in the document). Do not use the Person/Location/Event buttons in the recogito interface.
+We will be annotating using [our Recogito-based evaluation tool](https://ga-analiticcl-evaluate.tt.di.huc.knaw.nl/). The tags should be pre-loaded, place the corrected/normalized spelling in the *comment* field (or just leave it empty if it's already identical to the form in the document).
 

@@ -54,6 +54,10 @@ We aim to annotate the following named entities:
 There will be a high amount of false positives (mistagged words) at this stage. If it's too time-consuming to correct these individually in the annotation tool, just keep a list and add the false positives to that list so it can later be handled
 automatically. Make sure to mention the original form, 'corrected' form, and the tag in the list.
 
+## False negatives
+
+If you notice that notable words are missed, either keep a list or preferably add them directly to [boedeltermen.csv](https://github.com/knaw-huc/golden-agents-htr/blob/master/resources/boedeltermen.csv).
+
 ## Annotation Tool
 
 We will be annotating using [Recogito](https://recogito.pelagios.org/). The tags should be pre-loaded, place the corrected/normalized spelling in the *comment* field (or just leave it empty if it's already identical to the form in the document). Do not use the Person/Location/Event buttons in the recogito interface.

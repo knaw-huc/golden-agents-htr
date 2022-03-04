@@ -260,29 +260,25 @@ const App = () => {
   const Checked = () => {
     return (
       <>
-        Akkoord: <label htmlFor="jirsi_checkbox">Jirsi</label>{" "}
+        Checked: <label htmlFor="jirsi_checkbox">Jirsi</label>{" "}
         <input
           type="checkbox"
           id="jirsi_checkbox"
+          defaultChecked={doc.acceptedByJirsi}
           onChange={(e) => {
-            const _doc = doc;
-            _doc.acceptedByJirsi = e.target.value === "on";
-            console.log(_doc.acceptedByJirsi);
-            setDoc(_doc);
+            doc.acceptedByJirsi = !doc.acceptedByJirsi;
+            setDoc(doc);
           }}
-          checked={doc.acceptedByJirsi}
         />{" "}
         | <label htmlFor="judith_checkbox">Judith</label>{" "}
         <input
           type="checkbox"
           id="judith_checkbox"
+          defaultChecked={doc.acceptedByJudith}
           onChange={(e) => {
-            const _doc = doc;
-            _doc.acceptedByJudith = e.target.value === "on";
-            console.log(_doc.acceptedByJudith);
-            setDoc(_doc);
+            doc.acceptedByJudith = !doc.acceptedByJudith;
+            setDoc(doc);
           }}
-          checked={doc.acceptedByJudith}
         />
       </>
     );
@@ -328,7 +324,11 @@ const App = () => {
         <Header as="h1">
           Golden Agents: Annotation Evaluation (v{version})
           <small>
-            <a href={apiBase + "/html/instructions.html"} target="_blank" rel="noreferrer">
+            <a
+              href={apiBase + "/html/instructions.html"}
+              target="_blank"
+              rel="noreferrer"
+            >
               {" "}
               (?)
             </a>
@@ -365,7 +365,7 @@ const App = () => {
 
         <Segment>
           <a href={doc.transkribusURL} target="_blank" rel="noreferrer">
-            Pagina in Stadsarchief
+            Page in Stadsarchief{" "}
           </a>
         </Segment>
 

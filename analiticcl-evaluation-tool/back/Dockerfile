@@ -4,6 +4,7 @@ WORKDIR /code
 
 COPY requirements.txt /code/requirements.txt
 COPY data/ /code/data/
+COPY doc/ /code/doc/
 
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 

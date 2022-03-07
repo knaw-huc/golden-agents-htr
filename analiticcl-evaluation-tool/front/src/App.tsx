@@ -385,7 +385,7 @@ const App = () => {
 
         <Segment>
           <a href={doc.transkribusURL} target="_blank" rel="noreferrer">
-            Page in Stadsarchief{" "}
+            Page in Stadsarchief
           </a>
         </Segment>
 

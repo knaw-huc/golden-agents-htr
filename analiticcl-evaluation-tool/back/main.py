@@ -9,7 +9,6 @@ import uvicorn
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from icecream import ic
 from pydantic import BaseModel
 
 app = FastAPI()

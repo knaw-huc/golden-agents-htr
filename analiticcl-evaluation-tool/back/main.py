@@ -113,7 +113,6 @@ class AnnotationUpdateBody(BaseModel):
 
 @app.put("/annotations/{basename}/{version}")
 async def put_annotations(basename: str, version: str, aub: AnnotationUpdateBody):
-    print(type(aub))
     annotations = aub.annotations
     with open(f'data/{basename}.{version}.json', 'w', encoding='utf8') as f:
         json.dump(annotations, f, indent=4)

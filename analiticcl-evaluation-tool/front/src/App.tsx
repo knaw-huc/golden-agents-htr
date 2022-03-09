@@ -380,7 +380,7 @@ const App = () => {
         </Segment>
 
         <Segment>
-          <div>Tag Legend: | {legend}</div>
+          <div>Tag Legend: | <span className="tag-ambiguous">(ambiguous)</span> | {legend}</div>
         </Segment>
 
         <Segment>

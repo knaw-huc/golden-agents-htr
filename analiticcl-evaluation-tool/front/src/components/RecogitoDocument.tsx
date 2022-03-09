@@ -69,17 +69,16 @@ const initRecogito = () =>
       );
 
       // See CSS for the actual styling
-      const tagClasses: string[] = [];
-
-      for (const tag of tags) {
+      if (tags.length > 1) {
+        return "tag-ambiguous";
+      } else {
+        const tag = tags[0];
         for (const vocab of VOCABULARY) {
           const label = vocab.label;
           if (tag === label) {
-            tagClasses.push("tag-" + label);
+            return "tag-" + label;
           }
         }
       }
-
-      return tagClasses.join(" ");
     },
   });

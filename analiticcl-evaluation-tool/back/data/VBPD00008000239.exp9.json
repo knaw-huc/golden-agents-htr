@@ -1,140 +1,94 @@
 [
-    {
-        "@context": [
-            "http://www.w3.org/ns/anno.jsonld",
-            "https://leonvanwissen.nl/vocab/roar/roar.json"
-        ],
-        "id": "41ab4b0d-4d07-4755-a855-bd26576f76d3",
-        "type": "Annotation",
-        "motivation": "classifying",
-        "generated": "2022-02-16T15:37:47.042537",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
-        },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "firstname",
-                "modified": "2022-02-16T15:37:47.042486",
-                "purpose": "tagging"
-            },
-            {
-                "type": "TextualBody",
-                "value": "familyname",
-                "modified": "2022-02-16T15:37:47.042502",
-                "purpose": "tagging"
-            },
-            {
-                "type": "TextualBody",
-                "value": "Bruijn",
-                "modified": "2022-02-16T15:37:47.042506",
-                "purpose": "commenting"
-            },
-            {
-                "type": "TextualBody",
-                "value": [
-                    "firstname",
-                    "familyname"
-                ],
-                "purpose": "classifying"
-            },
-            {
-                "type": "Dataset",
-                "value": {
-                    "match_phrase": "Bruijn",
-                    "match_variant": "Bruijn",
-                    "match_score": 0.814193011239807,
-                    "category": [
-                        "firstname",
-                        "familyname"
-                    ]
-                }
-            }
-        ],
-        "target": {
-            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
-            "selector": [
-                {
-                    "type": "TextPositionSelector",
-                    "start": 15,
-                    "end": 21
-                },
-                {
-                    "type": "TextQuoteSelector",
-                    "exact": "Bruijn"
-                }
-            ]
-        }
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "urn:golden-agents:scan=VBPD00008000239:offset=15-21",
+    "type": "Annotation",
+    "motivation": "classifying",
+    "generated": "2022-02-16T15:37:47.042537",
+    "generator": {
+      "id": "https://github.com/knaw-huc/golden-agents-htr",
+      "type": "Software",
+      "name": "GoldenAgentsNER"
     },
-    {
-        "@context": [
-            "http://www.w3.org/ns/anno.jsonld",
-            "https://leonvanwissen.nl/vocab/roar/roar.json"
-        ],
-        "id": "ced6c017-4d0c-4482-8bc8-3442ef049ba0",
-        "type": "Annotation",
-        "motivation": "classifying",
-        "generated": "2022-02-16T15:37:47.042572",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "firstname",
+        "modified": "2022-02-16T15:37:47.042486",
+        "purpose": "tagging"
+      },
+      {
+        "type": "TextualBody",
+        "value": "familyname",
+        "modified": "2022-02-16T15:37:47.042502",
+        "purpose": "tagging"
+      },
+      {
+        "type": "TextualBody",
+        "value": "Bruijn",
+        "modified": "2022-02-16T15:37:47.042506",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+      "selector": [
+        {
+          "type": "TextPositionSelector",
+          "start": 15,
+          "end": 21
         },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "firstname",
-                "modified": "2022-02-16T15:37:47.042555",
-                "purpose": "tagging"
-            },
-            {
-                "type": "TextualBody",
-                "value": "familyname",
-                "modified": "2022-02-16T15:37:47.042558",
-                "purpose": "tagging"
-            },
-            {
-                "type": "TextualBody",
-                "value": "Jan",
-                "modified": "2022-02-16T15:37:47.042561",
-                "purpose": "commenting"
-            },
-            {
-                "type": "TextualBody",
-                "value": [
-                    "firstname",
-                    "familyname"
-                ],
-                "purpose": "classifying"
-            },
-            {
-                "type": "Dataset",
-                "value": {
-                    "match_phrase": "Jan",
-                    "match_variant": "Jan",
-                    "match_score": 1.0,
-                    "category": [
-                        "firstname",
-                        "familyname"
-                    ]
-                }
-            }
-        ],
-        "target": {
-            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
-            "selector": [
-                {
-                    "type": "TextPositionSelector",
-                    "start": 22,
-                    "end": 25
-                },
-                {
-                    "type": "TextQuoteSelector",
-                    "exact": "Jan"
-                }
-            ]
+        {
+          "type": "TextQuoteSelector",
+          "exact": "Bruijn"
         }
+      ]
     }
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "urn:golden-agents:scan=VBPD00008000239:offset=22-25",
+    "type": "Annotation",
+    "motivation": "classifying",
+    "generated": "2022-02-16T15:37:47.042572",
+    "generator": {
+      "id": "https://github.com/knaw-huc/golden-agents-htr",
+      "type": "Software",
+      "name": "GoldenAgentsNER"
+    },
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "firstname",
+        "modified": "2022-02-16T15:37:47.042555",
+        "purpose": "tagging"
+      },
+      {
+        "type": "TextualBody",
+        "value": "familyname",
+        "modified": "2022-02-16T15:37:47.042558",
+        "purpose": "tagging"
+      },
+      {
+        "type": "TextualBody",
+        "value": "Jan",
+        "modified": "2022-02-16T15:37:47.042561",
+        "purpose": "commenting"
+      }
+    ],
+    "target": {
+      "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+      "selector": [
+        {
+          "type": "TextPositionSelector",
+          "start": 22,
+          "end": 25
+        },
+        {
+          "type": "TextQuoteSelector",
+          "exact": "Jan"
+        }
+      ]
+    }
+  }
 ]

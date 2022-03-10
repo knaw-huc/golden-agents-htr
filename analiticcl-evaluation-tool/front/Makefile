@@ -21,7 +21,7 @@ build: .make/.build
 	docker tag $(tag):latest registry.diginfra.net/tt/$(tag):latest
 	@touch .make/.docker
 
-docker-image: .make/.docker
+docker-image: .make/.docker prod-config
 
 .make/.push: .make/.docker
 	docker push registry.diginfra.net/tt/$(tag):latest

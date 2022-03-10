@@ -12,7 +12,7 @@ tag = ga-analiticcl-evaluate-back
 
 install: .make/.install
 
-.make/.docker: .make Dockerfile data/ main.py requirements.txt
+.make/.docker: .make Dockerfile data/ doc/ main.py requirements.txt
 	docker build -t $(tag):latest .
 	@touch .make/.docker
 

@@ -36,7 +36,7 @@ def load_checks():
         with open(checkfile_path) as f:
             checks = json.load(f)
     else:
-        default = {"jirsi": False, "judith": False}
+        default = {"harm": False,"jirsi": False, "judith": False}
         for a in load_basenames():
             checks[a] = default
 
@@ -100,6 +100,7 @@ async def get_page_data(basename: str, version: str):
         "annotations": annotations,
         "transkribus_url": transkribus_url[basename],
         "checked": {
+            "harm": checks[basename]['harm'],
             "jirsi": checks[basename]['jirsi'],
             "judith": checks[basename]['judith']
         }

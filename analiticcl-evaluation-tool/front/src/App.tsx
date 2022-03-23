@@ -50,6 +50,7 @@ export interface Doc {
   transkribusURL: string;
   acceptedByJirsi: boolean;
   acceptedByJudith: boolean;
+  acceptedByHarm: boolean;
 }
 
 interface InitData {
@@ -70,6 +71,7 @@ const doc0: Doc = {
   text: text0,
   annotations: annotations0,
   transkribusURL: "",
+  acceptedByHarm: false,
   acceptedByJirsi: false,
   acceptedByJudith: false,
 };
@@ -139,7 +141,7 @@ const putAnnotations = async (doc: Doc) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       annotations: doc.annotations,
-      checked: { jirsi: doc.acceptedByJirsi, judith: doc.acceptedByJudith },
+      checked: { harm: doc.acceptedByHarm, jirsi: doc.acceptedByJirsi, judith: doc.acceptedByJudith },
     }),
   };
   const url = `${apiBase}/annotations/${doc.id}/${doc.version}`;
@@ -181,7 +183,7 @@ export const VOCABULARY = [
   { label: "country", uri: "http://vocab.getty.edu/aat/300008347?" },
   { label: "region", uri: "http://vocab.getty.edu/aat/300182722?" },
   { label: "streetname", uri: "http://vocab.getty.edu/aat/300008347?" },
-  // { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
+  { label: "location", uri: "http://vocab.getty.edu/aat/300008347" },
   { label: "room", uri: "http://vocab.getty.edu/aat/300008347" },
 
   { label: "category", uri: "http://vocab.getty.edu/aat/300008347" },
@@ -222,6 +224,7 @@ const App = () => {
               id: ids[0],
               version: versions[0],
               transkribusURL: pageData["transkribus_url"],
+              acceptedByHarm: pageData["checked"]["harm"],
               acceptedByJirsi: pageData["checked"]["jirsi"],
               acceptedByJudith: pageData["checked"]["judith"],
               ...pageData,
@@ -246,6 +249,7 @@ const App = () => {
           text: pd.text,
           annotations: pd.annotations,
           transkribusURL: pd.transkribus_url,
+          acceptedByHarm: pd["checked"]["harm"],
           acceptedByJirsi: pd["checked"]["jirsi"],
           acceptedByJudith: pd["checked"]["judith"],
         });
@@ -267,6 +271,7 @@ const App = () => {
           text: pd.text,
           annotations: pd.annotations,
           transkribusURL: pd.transkribus_url,
+          acceptedByHarm: pd["checked"]["harm"],
           acceptedByJirsi: pd["checked"]["jirsi"],
           acceptedByJudith: pd["checked"]["judith"],
         });
@@ -279,6 +284,16 @@ const App = () => {
   const Checked = () => {
     return (
       <>
+        Checked: <label htmlFor="harm_checkbox">Harm</label>{" "}
+        <input
+          type="checkbox"
+          id="harm_checkbox"
+          defaultChecked={doc.acceptedByHarm}
+          onChange={(e) => {
+            doc.acceptedByHarm = !doc.acceptedByHarm;
+            setDoc(doc);
+          }}
+        />{" "}
         Checked: <label htmlFor="jirsi_checkbox">Jirsi</label>{" "}
         <input
           type="checkbox"

@@ -60,7 +60,8 @@ class NER:
             abcfile = os.path.join(os.path.dirname(configfile), abcfile)
         weights = Weights(**self.config['weights'])
         print("Weights: ", weights.to_dict(),file=sys.stderr)
-        self.model = VariantModel(abcfile, weights, debug=0)
+        print("Debug: ", self.config.get('debug',0),file=sys.stderr)
+        self.model = VariantModel(abcfile, weights, debug=self.config.get('debug',0))
         for filepath in self.config['lexicons'].values():
             filepath = fixpath(filepath, configfile)
             if not os.path.exists(filepath):

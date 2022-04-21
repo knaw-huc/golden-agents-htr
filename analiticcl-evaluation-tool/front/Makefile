@@ -1,7 +1,7 @@
 all: help
 tag = ga-analiticcl-evaluate-front
 
-.PHONY: build docker-image start help push update-version
+.PHONY: build docker-image start help push update-version with-versions without-versions
 
 .make:
 	mkdir -p .make
@@ -46,6 +46,14 @@ dev-config:
 prod-config:
 	@echo "set developmentMode to false"
 	@jq ".developmentMode=false" src/config.json > /tmp/config.json && mv /tmp/config.json src/
+
+with-versions:
+	@echo "enabled version menu"
+	@jq ".versionSelector=true" src/config.json > /tmp/config.json && mv /tmp/config.json src/
+
+without-versions:
+	@echo "disabled version menu"
+	@jq ".versionSelector=false" src/config.json > /tmp/config.json && mv /tmp/config.json src/
 
 
 help:

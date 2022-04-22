@@ -22,6 +22,11 @@ with open(sys.argv[1],'r',encoding='utf-8') as f:
             if fields[FIELD_TYPE] == "simple":
                     data[fields[FIELD_LEMMA]].add(fields[FIELD_FORM])
 
+formcount = defaultdict(int) #for how many keys does each form occur? (used to compute mapping probability)
+for key, forms in data.items():
+    for form in forms:
+        formcount[form] += 1
+
 if len(sys.argv) >= 3:
     with open(sys.argv[2],'r',encoding='utf-8') as f:
         for line in f:
@@ -39,7 +44,8 @@ for key, forms in sorted(data.items()):
             for form in sorted([form for form in forms if form != keypart]):
                 freq = freqlist[form]
                 if freq == 0: freq = 1
-                print(f"\t{form}\t1.0\t{freq}", end="")
+                p = 1.0 / formcount[form] #deliberately kept independent from frequency information!
+                print(f"\t{form}\t{p}\t{freq}", end="")
             print()
 
 

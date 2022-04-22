@@ -84,6 +84,9 @@ texts: groundtruth.txt htr.txt
 %.tok.colibri.dat: %.tok.txt
 	colibri-classencode $<
 
+groundtruth.lm.tsv: groundtruth.tok.colibri.patternmodel
+	colibri-patternmodeller -u -l 3 -t 2 -i groundtruth.tok.colibri.patternmodel -c groundtruth.tok.colibri.cls --print | tail -n +2 | cut -f 1,2 | sort > $@
+
 # ------------------- Extracted lexicons ---------------------------
 
 %.lexicon.tsv: %.colibri.patternmodel %.colibri.cls

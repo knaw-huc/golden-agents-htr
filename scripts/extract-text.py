@@ -2,14 +2,15 @@
 
 import argparse
 
-import lxml.etree
+from pagexml.parser import parse_pagexml_file
 
-parser = argparse.ArgumentParser(description="Extract text contents from Page XML", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-parser.add_argument("files", nargs='*', help="Files")
-args = parser.parse_args()
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Extract text contents from Page XML", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+    parser.add_argument("files", nargs='*', help="Files")
+    args = parser.parse_args()
 
-for filename in args.files:
-    doc = lxml.etree.parse(filename).getroot()
-    for element in doc.xpath("//pagexml:TextRegion/pagexml:TextLine/pagexml:TextEquiv/pagexml:Unicode",namespaces={'pagexml': 'http://schema.primaresearch.org/PAGE/gts/pagecontent/2013-07-15' }):
-        if element.text:
-            print(element.text)
+    for filename in args.files:
+        scan = parse_pagexml_file(filename)
+        for tl in [l for l in scan.get_lines() if l.text]:
+            print(tl.text)
+

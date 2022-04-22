@@ -2,7 +2,7 @@
 
 """Expand boedeltermen with data from the INT historical lexicon.
 
-The INT historical lexicon maps lemmas to observed form forms (in all diachronical variation).
+The INT historical lexicon maps lemmas to observed word forms (in all diachronical variation).
 Boedeltermen maps lemmas to normalized wordforms **and** observed word forms. Normalised wordforms
 are therefore missing from the INT lexicon and the challenge is relating their observed forms back to
 our normalised forms. We use analiticcl to find the closest 'normalised form' (and hope it's correct).

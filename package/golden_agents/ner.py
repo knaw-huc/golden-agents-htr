@@ -60,18 +60,24 @@ class NER:
             abcfile = os.path.join(os.path.dirname(configfile), abcfile)
         weights = Weights(**self.config['weights'])
         print("Weights: ", weights.to_dict(),file=sys.stderr)
-        self.model = VariantModel(abcfile, weights, debug=0)
-        for filepath in self.config['lexicons'].values():
-            filepath = fixpath(filepath, configfile)
-            if not os.path.exists(filepath):
-                raise FileNotFoundError(filepath)
-            self.model.read_lexicon(filepath)
+        print("Debug: ", self.config.get('debug',0),file=sys.stderr)
+        self.model = VariantModel(abcfile, weights, debug=self.config.get('debug',0))
+        if 'lexicons' in self.config:
+            for filepath in self.config['lexicons'].values():
+                filepath = fixpath(filepath, configfile)
+                if not os.path.exists(filepath):
+                    raise FileNotFoundError(filepath)
+                self.model.read_lexicon(filepath)
         if 'variantlists' in self.config:
             for filepath in self.config['variantlists'].values():
                 filepath = fixpath(filepath, configfile)
                 if not os.path.exists(filepath):
                     raise FileNotFoundError(filepath)
                 self.model.read_variants(filepath, True)
+        if 'lm' in self.config:
+            for filepath in self.config['lm']:
+                filepath = fixpath(filepath, configfile)
+                self.model.read_lm(filepath)
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
@@ -125,7 +131,7 @@ class NER:
             # ic(top_variant)
             lexicons = top_variant['lexicons']
             # note: categories starting with an underscore will not be propagated to output (useful for background lexicons)
-            categories = [self.category_dict[l] for l in lexicons if self.category_dict[l][0] != "_"]
+            categories = [self.category_dict[l] for l in lexicons if l in self.category_dict and self.category_dict[l][0] != "_"]
             if not categories:
                 continue
             tag_bodies = []

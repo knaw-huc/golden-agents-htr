@@ -61,6 +61,7 @@ interface InitData {
 const config: {} = require("./config.json");
 const version = config["version"];
 const inDevelopmentMode = config["developmentMode"];
+const versionSelector = config["versionSelector"]; //show version menu?
 const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf
 
 const annotations0: Annotation[] = [];
@@ -141,7 +142,11 @@ const putAnnotations = async (doc: Doc) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       annotations: doc.annotations,
-      checked: { harm: doc.acceptedByHarm, jirsi: doc.acceptedByJirsi, judith: doc.acceptedByJudith },
+      checked: {
+        harm: doc.acceptedByHarm,
+        jirsi: doc.acceptedByJirsi,
+        judith: doc.acceptedByJudith,
+      },
     }),
   };
   const url = `${apiBase}/annotations/${doc.id}/${doc.version}`;
@@ -294,7 +299,7 @@ const App = () => {
             setDoc(doc);
           }}
         />{" "}
-        Checked: <label htmlFor="jirsi_checkbox">Jirsi</label>{" "}
+        <label htmlFor="jirsi_checkbox">Jirsi</label>{" "}
         <input
           type="checkbox"
           id="jirsi_checkbox"
@@ -376,7 +381,7 @@ const App = () => {
               checks={checks}
               onChange={handleTextChange}
             />
-            {inDevelopmentMode ? (
+            {versionSelector ? (
               <>
                 &nbsp;|&nbsp;
                 <VersionSelector
@@ -395,7 +400,10 @@ const App = () => {
         </Segment>
 
         <Segment>
-          <div>Tag Legend: | <span className="tag-ambiguous">(ambiguous)</span> | {legend}</div>
+          <div>
+            Tag Legend: | <span className="tag-ambiguous">(ambiguous)</span> |{" "}
+            {legend}
+          </div>
         </Segment>
 
         <Segment>

@@ -1,0 +1,140 @@
+[
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f6404275-b8c3-4d2d-9a29-ae2cd1d2adec",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-04-25T15:52:37.913810",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-04-25T15:52:37.913765",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-04-25T15:52:37.913780",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bruijn",
+                "modified": "2022-04-25T15:52:37.913783",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname",
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn",
+                    "match_variant": "Bruijn",
+                    "match_score": 0.814193011239807,
+                    "category": [
+                        "firstname",
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 15,
+                    "end": 21
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "cdc0f162-5480-4b66-8b9c-3ff7efc011fa",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-04-25T15:52:37.913836",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "firstname",
+                "modified": "2022-04-25T15:52:37.913822",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "familyname",
+                "modified": "2022-04-25T15:52:37.913825",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-04-25T15:52:37.913827",
+                "purpose": "commenting"
+            },
+            {
+                "type": "TextualBody",
+                "value": [
+                    "firstname",
+                    "familyname"
+                ],
+                "purpose": "classifying"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Jan",
+                    "match_variant": "Jan",
+                    "match_score": 1.0,
+                    "category": [
+                        "firstname",
+                        "familyname"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 22,
+                    "end": 25
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Jan"
+                }
+            ]
+        }
+    }
+]

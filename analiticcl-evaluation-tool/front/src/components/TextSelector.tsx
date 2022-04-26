@@ -21,6 +21,7 @@ export function TextSelector(props: Props) {
       <select id="text_select" onChange={(e) => props.onChange(e.target.value)}>
         {props.basenames.map((option) => (
           <option key={option} value={option}>
+            {checkbox(props.checks, option, "harm")}{" "}
             {checkbox(props.checks, option, "jirsi")}{" "}
             {checkbox(props.checks, option, "judith")} {option}
           </option>

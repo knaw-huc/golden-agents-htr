@@ -18,13 +18,13 @@ buildingsAdamlink.csv:
 	#query the AdamLink
 	python3 "$(REPOROOT)/scripts/sparql_buildingsAdamlink.py"
 
-first_names_lexicon.tsv: personnamesNA.csv
+first_names_lexicon.tsv: personnamesNA.csv boedeltermen.autoexpanded.csv
 	#Extract first names
-	cut -d "," -f 3 $< | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > "$@" || (rm "$@" && false)
+	cut -d "," -f 3 $< | sed '/^$$/d' | grep -ivE "^van$$" | tail --lines="+2" |  sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 2) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@"  | "$(REPOROOT)/scripts/no_overlap.py" boedeltermen.autoexpanded.csv > "$@" || (rm "$@" && false)
 
-family_names_lexicon.tsv: personnamesNA.csv
+family_names_lexicon.tsv: personnamesNA.csv boedeltermen.autoexpanded.csv
 	#Extract last names
-	cut -d "," -f 4,5 $< | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 1) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" > "$@" || (rm "$@" && false)
+	cut -d "," -f 4,5 $< | tr "," " " | sed '/^\s*$$/d' | grep -ivE "^van$$" | tail --lines="+2" | sort | uniq -c | sort -rn | awk '{first=$$1; $$1=""; gsub(/^[ \t]+/, "", $$0); if (length($$0) >= 3 && first > 2) { print $$0"\t"first } }' | grep -v " " | grep -v "\." | grep -v ":" | grep -v "@" | "$(REPOROOT)/scripts/no_overlap.py" boedeltermen.autoexpanded.csv > "$@" || (rm "$@" && false)
 
 streetnames_lexicon.tsv: streetnamesAdamlink.csv
 	#Extract street names

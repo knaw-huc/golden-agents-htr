@@ -1,14 +1,18 @@
 #!/usr/bin/env python3
 
 import argparse
+import csv
 import json
 import os.path
+from collections import defaultdict
 from dataclasses import dataclass
+from itertools import chain
 from typing import List
 
 from dataclasses_json import dataclass_json
 from icecream import ic
 from prettytable.colortable import ColorTable, Themes
+from tabulate import tabulate
 
 
 @dataclass_json
@@ -115,12 +119,12 @@ class Row:
 
 
 def print_categorization_table(eval_data, ref_data):
-    table = ColorTable(
-        ["Page ID", "Range", "Term", "Normalized (eval)", "Category (eval)", "Normalized (ref)", "Category (ref)",
-         "Diff?"],
-        theme=Themes.OCEAN)
-    table.align = 'l'
-    table.align["Range"] = 'r'
+    # table = ColorTable(
+    #     ["Page ID", "Range", "Term", "Normalized (eval)", "Category (eval)", "Normalized (ref)", "Category (ref)",
+    #      "Diff?"],
+    #     theme=Themes.OCEAN)
+    # table.align = 'l'
+    # table.align["Range"] = 'k'
     evaluation_rows = {}
     for page_id in eval_data.keys():
         annotations = eval_data[page_id]
@@ -135,7 +139,7 @@ def print_categorization_table(eval_data, ref_data):
                 range=range_str,
                 term=target.exact,
                 normalized_eval=normalizations,
-                categories_eval=categories,
+                categories_eval=normalized_categories(categories),
                 normalized_ref=[],
                 categories_ref=[]
             )
@@ -158,23 +162,95 @@ def print_categorization_table(eval_data, ref_data):
                     normalized_eval=[],
                     categories_eval=[],
                     normalized_ref=normalizations,
-                    categories_ref=categories
+                    categories_ref=normalized_categories(categories)
                 )
-    for k in sorted(evaluation_rows.keys()):
-        r = evaluation_rows[k]
-        diff = r.normalized_ref != r.normalized_eval or r.categories_ref != r.categories_eval
-        diff_str = "X" if diff else ""
-        table.add_row([
-            r.page_id,
-            r.range,
-            r.term,
-            ' /\n'.join(r.normalized_eval),
-            ' /\n'.join(r.categories_eval),
-            ' /\n'.join(r.normalized_ref),
-            ' /\n'.join(r.categories_ref),
-            diff_str
-        ])
-    print(table)
+    # for k in sorted(evaluation_rows.keys()):
+    #     r = evaluation_rows[k]
+    #     diff = r.normalized_ref != r.normalized_eval or r.categories_ref != r.categories_eval
+    #     diff_str = "X" if diff else ""
+    #     table.add_row([
+    #         r.page_id,
+    #         r.range,
+    #         r.term,
+    #         ' /\n'.join(r.normalized_eval),
+    #         ' /\n'.join(r.categories_eval),
+    #         ' /\n'.join(r.normalized_ref),
+    #         ' /\n'.join(r.categories_ref),
+    #         diff_str
+    #     ])
+    # print(table)
+    headers = ["Page ID", "Range", "Term",
+               "Normalized (eval)", "Normalized (ref)", "Normalization mismatch",
+               "Category (eval)", "Category (ref)", "Category mismatch"]
+    table = [table_row(evaluation_rows[k]) for k in sorted(evaluation_rows.keys())]
+    print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
+    with open('evaluation_results.tsv', 'w') as f:
+        writer = csv.writer(f, delimiter="\t")
+        writer.writerow(headers)
+        writer.writerows(table)
+    group_by_category(evaluation_rows)
+
+
+def table_row(row):
+    n_mismatch = "" if row.normalized_ref == row.normalized_eval \
+        else "/" if len(row.normalized_ref) > 0 and set(row.normalized_ref).issubset(set(row.normalized_eval)) \
+        else "X"
+    c_mismatch = "" if row.categories_ref == row.categories_eval \
+        else "/" if len(row.categories_ref) > 0 and set(row.categories_ref).issubset(set(row.categories_eval)) \
+        else "X"
+    return [row.page_id,
+            row.range,
+            row.term,
+            ' /\n'.join(row.normalized_eval),
+            ' /\n'.join(row.normalized_ref),
+            n_mismatch,
+            ' /\n'.join(row.categories_eval),
+            ' /\n'.join(row.categories_ref),
+            c_mismatch]
+
+
+def normalized_category(raw_category: str):
+    if raw_category == 'curr':
+        return 'currency'
+    if raw_category == 'family':
+        return 'familyname'
+    if raw_category == 'first':
+        return 'firstname'
+    if raw_category in ['ob', 'obj']:
+        return 'object'
+    if raw_category == 'occ':
+        return 'occupation'
+    if raw_category == 'prop':
+        return 'property'
+    return raw_category
+
+
+def normalized_categories(category_list: list):
+    return [normalized_category(c) for c in category_list]
+
+
+def group_by_category(evaluation_rows):
+    rows_for_category = defaultdict(list)
+    for k, r in evaluation_rows.items():
+        cats = set(normalized_categories(r.categories_eval + r.categories_ref))
+        for c in cats:
+            rows_for_category[c].append(r)
+
+    rows_for_eval_category = defaultdict(list)
+    for k, r in evaluation_rows.items():
+        cats = set(r.categories_eval)
+        for c in cats:
+            rows_for_eval_category[c].append(r)
+
+    rows_for_ref_category = defaultdict(list)
+    for k, r in evaluation_rows.items():
+        cats = set(r.categories_ref)
+        for c in cats:
+            rows_for_ref_category[c].append(r)
+    all_cats = sorted(set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys())))
+    headers = ["category", "# in eval", "# in ref"]
+    table = [[c, len(rows_for_eval_category[c]), len(rows_for_ref_category[c])] for c in all_cats]
+    print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 
 
 def check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir):

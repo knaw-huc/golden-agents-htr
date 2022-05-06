@@ -184,7 +184,7 @@ def print_categorization_table(eval_data, ref_data):
                "Category (eval)", "Category (ref)", "Category mismatch"]
     table = [table_row(evaluation_rows[k]) for k in sorted(evaluation_rows.keys())]
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
-    with open('evaluation_results.tsv', 'w') as f:
+    with open('evaluation_results.tsv', 'w', newline='\n') as f:
         writer = csv.writer(f, delimiter="\t")
         writer.writerow(headers)
         writer.writerows(table)
@@ -238,13 +238,13 @@ def group_by_category(evaluation_rows):
 
     rows_for_eval_category = defaultdict(list)
     for k, r in evaluation_rows.items():
-        cats = set(r.categories_eval)
+        cats = set(normalized_categories(r.categories_eval))
         for c in cats:
             rows_for_eval_category[c].append(r)
 
     rows_for_ref_category = defaultdict(list)
     for k, r in evaluation_rows.items():
-        cats = set(r.categories_ref)
+        cats = set(normalized_categories(r.categories_ref))
         for c in cats:
             rows_for_ref_category[c].append(r)
     all_cats = sorted(set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys())))

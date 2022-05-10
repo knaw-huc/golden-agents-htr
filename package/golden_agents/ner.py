@@ -247,7 +247,7 @@ class NER:
                 #the tag assigned to this match
                 bodies[-1]['value']['category'] = ner_result['tag']
                 #the sequence number (in case the tagged sequence covers multiple items)
-                bodies[-1]['value']['seqnr'] = int(ner_result['seqnr']) if 'seqnr' in ner_result else 0
+                bodies[-1]['value']['seqnr'] = int(ner_result['seqnr']+1) if 'seqnr' in ner_result else 1
             elif not self.has_contextrules:
                 #old-style:
                 bodies[-1]['value']['category'] = categories

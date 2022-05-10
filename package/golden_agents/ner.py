@@ -150,6 +150,8 @@ class NER:
                                 }, {
                                     "type": "TextQuoteSelector",
                                     "exact": text_line.text[ner_result['offset']['begin']:ner_result2['offset']['end']]
+                                    "prefix": text_line.text[:ner_result['offset']['begin']],
+                                    "suffix": text_line.text[ner_result2['offset']['end']:],
                                 }
                                 ]
                             }
@@ -272,7 +274,9 @@ class NER:
                             "end": line_offset + ner_result['offset']['end']
                         }, {
                             "type": "TextQuoteSelector",
-                            "exact": text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']]
+                            "exact": text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']],
+                            "prefix": text_line.text[:ner_result['offset']['begin']],
+                            "suffix": text_line.text[ner_result['offset']['end']:],
                         }
                         ]
                     }

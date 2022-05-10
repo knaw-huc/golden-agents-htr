@@ -1,0 +1,485 @@
+[
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "b4dfc4b2-2d22-416e-9a61-c85830bd95b5",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:36.022450",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jones",
+                "modified": "2022-05-10T13:11:36.022397",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "JVNes",
+                    "match_variant": "Jones",
+                    "match_score": 0.5205044560282496,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 0,
+                    "end": 5
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "JVNes",
+                    "prefix": "",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "a36710bb-f24d-480e-9327-c6ae82a6e556",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.048707",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "land",
+                "modified": "2022-05-10T13:11:37.048661",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "land",
+                    "match_variant": "land",
+                    "match_score": 0.813717277486911,
+                    "match_source": [
+                        "locations_lexicon.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 124,
+                    "end": 128
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "land",
+                    "prefix": "",
+                    "suffix": " als na Rechten."
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "d537694d-ae2d-480f-b632-d2abbba94cb6",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.223153",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "location",
+                "modified": "2022-05-10T13:11:37.223086",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Amsterdam",
+                "modified": "2022-05-10T13:11:37.223104",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Amsterdam",
+                    "match_variant": "Amsterdam",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv",
+                        "locations_lexicon.freq.tsv"
+                    ],
+                    "category": "location",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 159,
+                    "end": 168
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Amsterdam",
+                    "prefix": "Gepasseert in ",
+                    "suffix": " ter presentie"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f3110748-7f72-4da0-bc91-785f4bc88282",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.314069",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:11:37.314081",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Anthonij Maas",
+                    "match_variant": "Anthonij Maas",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 202,
+                    "end": 215
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Anthonij Maas",
+                    "prefix": "van Jan van Nes en ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8fd002db-bf21-47f3-8a2e-a9f0b4923ea3",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.314130",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-05-10T13:11:37.314111",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Jan",
+                    "match_variant": "Jan",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 187,
+                    "end": 190
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Jan",
+                    "prefix": "van ",
+                    "suffix": " van Nes en Anthonij Maas"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "efa509cd-e944-4853-8644-0ccb1b34dfd2",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.314200",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Nes",
+                "modified": "2022-05-10T13:11:37.314185",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Nes",
+                    "match_variant": "Nes",
+                    "match_score": 0.8001744326300357,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv",
+                        "streetnames_lexicon.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 195,
+                    "end": 198
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Nes",
+                    "prefix": "van Jan van ",
+                    "suffix": " en Anthonij Maas"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "6f1fbc4d-0fe7-4510-ba6d-ae8212a2302b",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.314232",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:11:37.314213",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Anthonij",
+                "modified": "2022-05-10T13:11:37.314215",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Anthonij",
+                    "match_variant": "Anthonij",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 202,
+                    "end": 210
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Anthonij",
+                    "prefix": "van Jan van Nes en ",
+                    "suffix": " Maas"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "13c82546-fce5-4778-b23e-461718ea3494",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.314251",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Maas",
+                "modified": "2022-05-10T13:11:37.314240",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Maas",
+                    "match_variant": "Maas",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 211,
+                    "end": 215
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Maas",
+                    "prefix": "van Jan van Nes en Anthonij ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f98c19b6-4504-42a7-a2c5-d72e716ecdee",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:11:37.410050",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "location",
+                "modified": "2022-05-10T13:11:37.410001",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Hoorn",
+                "modified": "2022-05-10T13:11:37.410015",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Hoorn",
+                    "match_variant": "Hoorn",
+                    "match_score": 0.8043799232894792,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv",
+                        "locations_lexicon.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "location",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000201",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 245,
+                    "end": 250
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "n",
+                    "prefix": "HDvanHoor",
+                    "suffix": ""
+                }
+            ]
+        }
+    }
+]

@@ -108,10 +108,14 @@ class NER:
                 length = 1
                 #aggregate text of the top variants
                 variant_text = ner_result['variants'][0]['text']
+                last_ner_result = ner_result
                 for j, ner_result2 in enumerate(ner_results[i+1:]):
                     if ner_result2.get('tag') == ner_result.get('tag') and ner_result2.get('seqnr') == j + 1:
                         length += 1
                         variant_text += " " + ner_result2['variants'][0]['text']
+                        last_ner_result = ner_result2
+                    else:
+                        break
                 if length > 1:
                     yield {
                         "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
@@ -134,7 +138,7 @@ class NER:
                             "type": "Dataset",
                             "value": {
                                 # the text in the input
-                                "match_phrase": text_line.text[ner_result['offset']['begin']:ner_result2['offset']['end']],
+                                "match_phrase": text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                 # aggregate text of the top variants
                                 "match_variant": variant_text,
                                 "category": ner_result['tag']
@@ -146,12 +150,12 @@ class NER:
                                 "selector": [{
                                     "type": "TextPositionSelector",
                                     "start": line_offset + ner_result['offset']['begin'],
-                                    "end": line_offset + ner_result2['offset']['end']
+                                    "end": line_offset + last_ner_result['offset']['end']
                                 }, {
                                     "type": "TextQuoteSelector",
-                                    "exact": text_line.text[ner_result['offset']['begin']:ner_result2['offset']['end']],
+                                    "exact": text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                     "prefix": text_line.text[:ner_result['offset']['begin']],
-                                    "suffix": text_line.text[ner_result2['offset']['end']:],
+                                    "suffix": text_line.text[last_ner_result['offset']['end']:],
                                 }
                                 ]
                             }

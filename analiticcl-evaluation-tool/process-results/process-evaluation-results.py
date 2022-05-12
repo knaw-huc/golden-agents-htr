@@ -93,7 +93,7 @@ def print_comparison_table(eval_data, eval_keys, ref_data):
 
 
 def extract_categories(annotation: dict) -> List[str]:
-    return [extract_category(b) for b in annotation['body'] if b['purpose'] == 'tagging']
+    return [extract_category(b) for b in annotation['body'] if b.get('purpose') == 'tagging']
 
 
 def extract_category(annotation_body: dict) -> str:
@@ -104,7 +104,7 @@ def extract_category(annotation_body: dict) -> str:
 
 
 def extract_normalizations(annotation: dict) -> List[str]:
-    return [b['value'] for b in annotation['body'] if b['purpose'] == 'commenting']
+    return [b['value'] for b in annotation['body'] if b.get('purpose') == 'commenting']
 
 
 @dataclass
@@ -281,7 +281,7 @@ def main():
     args = parser.parse_args()
     # ic(args)
     results = evaluate(eval_dir=args.evaluation_set, ref_dir=args.reference_set)
-    print(json.dumps(results.to_dict(), indent=4))
+    # print(json.dumps(results.to_dict(), indent=4))
 
 
 if __name__ == '__main__':

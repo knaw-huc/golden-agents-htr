@@ -1,0 +1,1143 @@
+[
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "21489df5-132f-4f0b-b13f-2c44131d08da",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:44.456327",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "huizen",
+                "modified": "2022-05-10T13:13:44.456259",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "huijse",
+                    "match_variant": "huizen",
+                    "match_score": 0.6067270823264057,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 49,
+                    "end": 55
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "huijse",
+                    "prefix": "gevonden ten ",
+                    "suffix": " w"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c5a0fa53-2e2a-4f98-900d-50e34f1eb713",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:44.612694",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:44.612708",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn Jan",
+                    "match_variant": "Bruijn Jan",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 68,
+                    "end": 78
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn Jan",
+                    "prefix": "Joanns de ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8cc0e7b0-097a-4cb9-b499-4228386d4530",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:44.612765",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Joannes",
+                "modified": "2022-05-10T13:13:44.612744",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Joanns",
+                    "match_variant": "Joannes",
+                    "match_score": 0.5944129592063873,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 58,
+                    "end": 64
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Joanns",
+                    "prefix": "",
+                    "suffix": " de Bruijn Jan"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c1e53cc5-579f-474c-8a28-e5c418744922",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:44.612797",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:44.612781",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bruijn",
+                "modified": "2022-05-10T13:13:44.612784",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn",
+                    "match_variant": "Bruijn",
+                    "match_score": 0.8141832162009942,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 68,
+                    "end": 74
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn",
+                    "prefix": "Joanns de ",
+                    "suffix": " Jan"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "7d5e5d88-cc7c-4564-8f42-fc25b4d63977",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:44.612818",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-05-10T13:13:44.612807",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Jan",
+                    "match_variant": "Jan",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 75,
+                    "end": 78
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Jan",
+                    "prefix": "Joanns de Bruijn ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c5f5d75e-fa3d-4343-8a0e-02f8578102d8",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:44.813152",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "kelders",
+                "modified": "2022-05-10T13:13:44.813092",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "kelders",
+                    "match_variant": "kelders",
+                    "match_score": 0.8008690776562938,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 95,
+                    "end": 102
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "kelders",
+                    "prefix": "mitsgaders inde ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "3a29061a-b7fe-48c2-9e45-aaf482e5ba46",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:45.192253",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "zolder",
+                "modified": "2022-05-10T13:13:45.192203",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "solders",
+                    "match_variant": "zolder",
+                    "match_score": 0.8002803476310625,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 107,
+                    "end": 114
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "solders",
+                    "prefix": "enn ",
+                    "suffix": " vandenzelver"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "b7a88950-f93b-4cdb-af57-ac61136e4acd",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:45.253983",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:45.253997",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn Janszoon",
+                    "match_variant": "Bruijn Janszoon",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 131,
+                    "end": 146
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn Janszoon",
+                    "prefix": "de ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "475ee0a6-db03-421d-814a-6398ce3c1df4",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:45.254069",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:45.254033",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bruijn",
+                "modified": "2022-05-10T13:13:45.254039",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn",
+                    "match_variant": "Bruijn",
+                    "match_score": 0.8141832162009942,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 131,
+                    "end": 137
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn",
+                    "prefix": "de ",
+                    "suffix": " Janszoon"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "1388cd68-3173-41e0-a778-22ab2f0102b3",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:45.254094",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Janszoon",
+                "modified": "2022-05-10T13:13:45.254081",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Janszoon",
+                    "match_variant": "Janszoon",
+                    "match_score": 0.8004004271222638,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 138,
+                    "end": 146
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Janszoon",
+                    "prefix": "de Bruijn ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c1d21063-d3a0-4843-a3f7-2145ff1e20aa",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:45.527398",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Dreesen",
+                "modified": "2022-05-10T13:13:45.527349",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "deesen",
+                    "match_variant": "Dreesen",
+                    "match_score": 0.5866950599611169,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 154,
+                    "end": 160
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "deesen",
+                    "prefix": "als op ",
+                    "suffix": " Inventar"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f0d38888-5516-4e75-b79d-0e937873b652",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:45.587939",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "gedrukt",
+                "modified": "2022-05-10T13:13:45.587892",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "gedrukt",
+                    "match_variant": "gedrukt",
+                    "match_score": 0.8125,
+                    "match_source": [
+                        "property_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 177,
+                    "end": 184
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "gedrukt",
+                    "prefix": "is uyt ",
+                    "suffix": " zijnde"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "521aaeed-fab7-40f1-ac01-575d6bac201e",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.126059",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "enig",
+                "modified": "2022-05-10T13:13:46.126003",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "eenige",
+                    "match_variant": "enig",
+                    "match_score": 0.8000025620988713,
+                    "match_source": [
+                        "quantifier_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 223,
+                    "end": 229
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "eenige",
+                    "prefix": "Aug: & ",
+                    "suffix": " (volgende"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "e5b534bc-b59d-42b6-b116-c7867ddf5880",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.169643",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Ter Aa",
+                "modified": "2022-05-10T13:13:46.169587",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "ter ae",
+                    "match_variant": "Ter Aa",
+                    "match_score": 0.566671488034971,
+                    "match_source": [
+                        "locations_lexicon.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 257,
+                    "end": 263
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "ter ae",
+                    "prefix": "deses Jaers 1721 ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "53a45206-5123-4c58-b5f3-0e090780b06a",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.331212",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Delmestre",
+                "modified": "2022-05-10T13:13:46.331167",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Ed Gestre",
+                    "match_variant": "Delmestre",
+                    "match_score": 0.6266666666666667,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 276,
+                    "end": 285
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Ed Gestre",
+                    "prefix": "van den wel ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "eae1e587-2f2e-449f-a8a8-c00bd1f3c16b",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.443615",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:46.443635",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Wigbold e Achel",
+                    "match_variant": "Wigbold Rachel",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 289,
+                    "end": 304
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Wigbold e Achel",
+                    "prefix": "M. ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "2e8d4292-8e61-49a4-981e-c53896bd3bc8",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.443713",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:46.443676",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Wigbold",
+                "modified": "2022-05-10T13:13:46.443683",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Wigbold",
+                    "match_variant": "Wigbold",
+                    "match_score": 0.8458386683738797,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 289,
+                    "end": 296
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Wigbold",
+                    "prefix": "M. ",
+                    "suffix": " e Achel"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8c80fd35-897f-451a-be90-26780327fe6a",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.443754",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Rachel",
+                "modified": "2022-05-10T13:13:46.443732",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "e Achel",
+                    "match_variant": "Rachel",
+                    "match_score": 0.5872145742313082,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 297,
+                    "end": 304
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "e Achel",
+                    "prefix": "M. Wigbold ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "d8013248-d133-40dc-8548-48660d5b7632",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:46.879041",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Huijsvoorn",
+                "modified": "2022-05-10T13:13:46.878978",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "huijse voorn",
+                    "match_variant": "Huijsvoorn",
+                    "match_score": 0.7166666666666667,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 332,
+                    "end": 344
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "huijse voorn",
+                    "prefix": "en ten ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "72a98224-b391-4e40-a4c7-76ad054a8823",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:47.607390",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:47.607405",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Thomas Wilkenton",
+                    "match_variant": "Thomas Wilkieson",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 367,
+                    "end": 383
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Thomas Wilkenton",
+                    "prefix": "",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "9fb67c22-2309-477e-b74f-33d77cd984aa",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:47.607454",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:47.607430",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Thomas",
+                "modified": "2022-05-10T13:13:47.607434",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Thomas",
+                    "match_variant": "Thomas",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 367,
+                    "end": 373
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Thomas",
+                    "prefix": "",
+                    "suffix": " Wilkenton"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f398556a-4777-4a2d-b47c-97b8baf9f33c",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:47.607476",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Wilkieson",
+                "modified": "2022-05-10T13:13:47.607464",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Wilkenton",
+                    "match_variant": "Wilkieson",
+                    "match_score": 0.6266666666666667,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000240",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 374,
+                    "end": 383
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Wilkenton",
+                    "prefix": "Thomas ",
+                    "suffix": ""
+                }
+            ]
+        }
+    }
+]

@@ -52,6 +52,7 @@ class NER:
         if 'variantlists' in self.config:
             self.category_dict.update(
                 {fixpath(filepath, configfile): category for category, filepath in self.config['variantlists'].items()})
+        self.config['searchparameters']['unicodeoffsets'] = True #force usage of unicode points in offsets (rather than UTF-8 bytes)
         self.params = SearchParameters(**self.config['searchparameters'])
         print("Search Parameters: ", self.params.to_dict(),file=sys.stderr)
         abcfile = self.config['alphabet']
@@ -78,6 +79,11 @@ class NER:
             for filepath in self.config['lm']:
                 filepath = fixpath(filepath, configfile)
                 self.model.read_lm(filepath)
+        if 'contextrules' in self.config:
+            self.model.read_contextrules(self.config['contextrules'])
+            self.has_contextrules = True
+        else:
+            self.has_contextrules = False
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
@@ -95,6 +101,67 @@ class NER:
         scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
         return self.create_web_annotations(scan, "http://localhost:8080/textrepo/versions/x")
 
+    def create_web_annotation_multispan(self, ner_results, text_line: PageXMLTextLine, line_offset: int, scan_urn: str):
+        """Extract larger tagged entities from NER results and creates web annotations for them."""
+        for i, ner_result in enumerate(ner_results):
+            if 'tag' in ner_result and ner_result.get('seqnr') == 0:
+                length = 1
+                #aggregate text of the top variants
+                variant_text = ner_result['variants'][0]['text']
+                last_ner_result = ner_result
+                for j, ner_result2 in enumerate(ner_results[i+1:]):
+                    if ner_result2.get('tag') == ner_result.get('tag') and ner_result2.get('seqnr') == j + 1:
+                        length += 1
+                        variant_text += " " + ner_result2['variants'][0]['text']
+                        last_ner_result = ner_result2
+                    else:
+                        break
+                if length > 1:
+                    yield {
+                        "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
+                        "id": str(uuid.uuid4()),
+                        "type": "Annotation",
+                        "motivation": "classifying",
+                        "generated": datetime.today().isoformat(),
+                        "generator": {
+                            "id": "https://github.com/knaw-huc/golden-agents-htr",
+                            "type": "Software",
+                            "name": "GoldenAgentsNER"
+                        },
+                        "body": [{
+                            "type": "TextualBody",
+                            "value": ner_result['tag'],
+                            "modified": datetime.today().isoformat(),
+                            "purpose": "tagging"
+                        },
+                        {
+                            "type": "Dataset",
+                            "value": {
+                                # the text in the input
+                                "match_phrase": text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                # aggregate text of the top variants
+                                "match_variant": variant_text,
+                                "category": ner_result['tag']
+                            },
+                        }],
+                        "target":
+                            {
+                                "source": f'{scan_urn}',
+                                "selector": [{
+                                    "type": "TextPositionSelector",
+                                    "start": line_offset + ner_result['offset']['begin'],
+                                    "end": line_offset + last_ner_result['offset']['end']
+                                }, {
+                                    "type": "TextQuoteSelector",
+                                    "exact": text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                    "prefix": text_line.text[:ner_result['offset']['begin']],
+                                    "suffix": text_line.text[last_ner_result['offset']['end']:],
+                                }
+                                ]
+                            }
+                    }
+
+
     def create_web_annotations(self, scan, version_base_uri: str) -> (List[dict], str, List[dict]):
         """Find lines in the scan and pass them to the tagger, producing web-annotations"""
         annotations = []
@@ -105,6 +172,9 @@ class NER:
             if hasattr(self, 'htr_corrector') and self.htr_corrector:
                 text = self.htr_corrector.correct(text)
             ner_results = self.model.find_all_matches(text, self.params)
+            if self.has_contextrules:
+                for entity_wa in self.create_web_annotation_multispan(ner_results, tl, len(plain_text), scan.id):
+                    annotations.append(entity_wa)
             for result in ner_results:
                 raw_results.append(result)
                 if (
@@ -132,17 +202,30 @@ class NER:
             lexicons = top_variant['lexicons']
             # note: categories starting with an underscore will not be propagated to output (useful for background lexicons)
             categories = [self.category_dict[l] for l in lexicons if l in self.category_dict and self.category_dict[l][0] != "_"]
-            if not categories:
-                continue
             tag_bodies = []
-            for cat in categories:
-                body = {
+            if 'tag' in ner_result and ner_result.get('seqnr') == 0:
+                #new style: tag set by analiticcl via contextrules
+                tag_bodies = [{
                     "type": "TextualBody",
-                    "value": cat,
+                    "value": ner_result['tag'],
                     "modified": datetime.today().isoformat(),
                     "purpose": "tagging"
-                }
-                tag_bodies.append(body)
+                }]
+            elif not self.has_contextrules:
+                #old style: tag derived directly from lexicon
+                if not categories:
+                    continue
+                for cat in categories:
+                    body = {
+                        "type": "TextualBody",
+                        "value": cat,
+                        "modified": datetime.today().isoformat(),
+                        "purpose": "tagging"
+                    }
+                    tag_bodies.append(body)
+            elif not categories:
+                #background lexicon match only, don't output
+                continue
             bodies = [
                 *tag_bodies,
                 {
@@ -151,17 +234,29 @@ class NER:
                     "modified": datetime.today().isoformat(),
                     "purpose": "commenting",
                 },
-                {"type": "TextualBody", "value": categories, "purpose": "classifying"},
                 {
                     "type": "Dataset",
                     "value": {
+                        # the text in the input
                         "match_phrase": ner_result['input'],
+                        # the variant in the lexicon that matched with the input
                         "match_variant": top_variant['text'],
+                        # the score of the match as reported by the system (no intrinsic meaning, only to be judged
+                        # relatively)
                         "match_score": top_variant['score'],
-                        "category": categories,
+                        # the sources (lexicons/variants lists) where the match was found
+                        "match_source": [ os.path.basename(x) for x in top_variant['lexicons'] ],
                     },
                 },
             ]
+            if 'tag' in ner_result:
+                #the tag assigned to this match
+                bodies[-1]['value']['category'] = ner_result['tag']
+                #the sequence number (in case the tagged sequence covers multiple items)
+                bodies[-1]['value']['seqnr'] = int(ner_result['seqnr']+1) if 'seqnr' in ner_result else 1
+            elif not self.has_contextrules:
+                #old-style:
+                bodies[-1]['value']['category'] = categories
             yield {
                 "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
                 "id": str(uuid.uuid4()),
@@ -183,10 +278,16 @@ class NER:
                             "end": line_offset + ner_result['offset']['end']
                         }, {
                             "type": "TextQuoteSelector",
-                            "exact": ner_result['input']
+                            "exact": text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']],
+                            "prefix": text_line.text[:ner_result['offset']['begin']],
+                            "suffix": text_line.text[ner_result['offset']['end']:],
                         }
                         ]
                     }
+            }
+            if self.has_contextrules:
+                #ties are already resolved by analiticcl if there are context rules
+                break
             # {
             #     "source": f'{scan_urn}:textline={text_line.id}',
             #     "selector": [{
@@ -226,4 +327,3 @@ class NER:
             #     }
             # }
             # ]
-        }

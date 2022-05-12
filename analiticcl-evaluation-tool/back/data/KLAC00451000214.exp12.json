@@ -1,0 +1,2585 @@
+[
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "966f2187-e686-41b3-ab25-11a05be8247f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:50.470359",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:12:50.470372",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Elias Sienes",
+                    "match_variant": "Elias Tienes",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 15,
+                    "end": 27
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Elias Sienes",
+                    "prefix": "den Boedel van ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "e18942fa-701d-4f79-89fa-697a6a8d33cc",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:50.470431",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "boedel",
+                "modified": "2022-05-10T13:12:50.470402",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Boedel",
+                    "match_variant": "boedel",
+                    "match_score": 0.8021744531333184,
+                    "match_source": [
+                        "category_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 4,
+                    "end": 10
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Boedel",
+                    "prefix": "den ",
+                    "suffix": " van Elias Sienes"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "41aecc24-9401-4fcd-8694-b3ac4b9de795",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:50.470458",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:12:50.470443",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Elias",
+                "modified": "2022-05-10T13:12:50.470446",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Elias",
+                    "match_variant": "Elias",
+                    "match_score": 0.8185261565958617,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 15,
+                    "end": 20
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Elias",
+                    "prefix": "den Boedel van ",
+                    "suffix": " Sienes"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "127ccfa6-4fa0-4d57-800d-1678290d5d76",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:50.470475",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Tienes",
+                "modified": "2022-05-10T13:12:50.470465",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Sienes",
+                    "match_variant": "Tienes",
+                    "match_score": 0.5666948497542521,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 21,
+                    "end": 27
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Sienes",
+                    "prefix": "den Boedel van Elias ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f6554f80-acfe-4ca1-9adb-3a67fff937e2",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:50.809907",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:12:50.809857",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "lieden",
+                "modified": "2022-05-10T13:12:50.809870",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "ieden",
+                    "match_variant": "lieden",
+                    "match_score": 0.5923927739065624,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 54,
+                    "end": 59
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "ieden",
+                    "prefix": "zo als dezelve is gekomen ",
+                    "suffix": " M: Cassarij"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "5e7320ac-e580-46b5-b3ba-62155bd78201",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:50.809931",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Casparij",
+                "modified": "2022-05-10T13:12:50.809920",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Cassarij",
+                    "match_variant": "Casparij",
+                    "match_score": 0.5511799410029499,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 63,
+                    "end": 71
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Cassarij",
+                    "prefix": "zo als dezelve is gekomen ieden M: ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "ead1ee6f-bca4-46e6-a22c-664664172d27",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:51.314067",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Beels",
+                "modified": "2022-05-10T13:12:51.314017",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Beels",
+                    "match_variant": "Beels",
+                    "match_score": 0.8171536796536797,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 72,
+                    "end": 77
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Beels",
+                    "prefix": "",
+                    "suffix": " iit kregte van t appoinbemant"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "457c51e4-fe68-4519-806d-0576f1fc6d39",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:52.260122",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "location",
+                "modified": "2022-05-10T13:12:52.260055",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Amsterdam",
+                "modified": "2022-05-10T13:12:52.260069",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Amsteldam",
+                    "match_variant": "Amsterdam",
+                    "match_score": 0.7644444444444446,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv",
+                        "locations_lexicon.freq.tsv"
+                    ],
+                    "category": "location",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 159,
+                    "end": 168
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Amsteldam",
+                    "prefix": "Stadt ",
+                    "suffix": " in dete 4 Sehtember"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "3a216269-d92d-4228-95ec-255dc11ab8a0",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:52.836608",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "beest",
+                "modified": "2022-05-10T13:12:52.836539",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "beest",
+                    "match_variant": "beest",
+                    "match_score": 0.8019723865877711,
+                    "match_source": [
+                        "picture_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 195,
+                    "end": 200
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "beest",
+                    "prefix": "1762, ",
+                    "suffix": " volgens inkentanf daar dan get"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "a610a31d-f834-47a2-9473-aa2706159297",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:53.003277",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-05-10T13:12:53.003209",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Jan",
+                    "match_variant": "Jan",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 267,
+                    "end": 270
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Jan",
+                    "prefix": "maakt ten overstaan aan de Notaris ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "4afd8bf4-b68b-4bd4-af6d-fb45518e15ff",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:53.104462",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Verleij",
+                "modified": "2022-05-10T13:12:53.104416",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "verleij",
+                    "match_variant": "Verleij",
+                    "match_score": 0.8310293386374937,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 271,
+                    "end": 278
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "verleij",
+                    "prefix": "",
+                    "suffix": ", bestaan"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "133ebaf9-e8b7-4ed7-a392-f0a410faea2e",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:54.771178",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "geld",
+                "modified": "2022-05-10T13:12:54.771118",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Geld",
+                    "match_variant": "geld",
+                    "match_score": 0.9134640522875817,
+                    "match_source": [
+                        "category_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 408,
+                    "end": 412
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Geld",
+                    "prefix": "in het contante ",
+                    "suffix": ": mede by rekining verant"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "12c6a6fc-929f-4dc2-9e0b-7c31c4744f98",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:54.771209",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Gerant",
+                "modified": "2022-05-10T13:12:54.771196",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "verant",
+                    "match_variant": "Gerant",
+                    "match_score": 0.5666807793742779,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 431,
+                    "end": 437
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "verant",
+                    "prefix": "in het contante Geld: mede by rekining ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "635a065a-11a7-4e48-a354-e2cc7a7b3492",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:55.478317",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "een",
+                "modified": "2022-05-10T13:12:55.478266",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Een",
+                    "match_variant": "een",
+                    "match_score": 0.9297600594406938,
+                    "match_source": [
+                        "quantifier_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 456,
+                    "end": 459
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Een",
+                    "prefix": "",
+                    "suffix": " abligetie groot \u0192 1300 Cap ten Lasten van"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "b5c16aad-c6c7-4c33-b528-bed68e186877",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:55.478352",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "groot",
+                "modified": "2022-05-10T13:12:55.478338",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "groot",
+                    "match_variant": "groot",
+                    "match_score": 0.8161009609436218,
+                    "match_source": [
+                        "property_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 470,
+                    "end": 475
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "groot",
+                    "prefix": "Een abligetie ",
+                    "suffix": " \u0192 1300 Cap ten Lasten van"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "1002584f-1b57-4088-a475-52532394fe4f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:56.223945",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Holland",
+                "modified": "2022-05-10T13:12:56.223862",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Holland",
+                    "match_variant": "Holland",
+                    "match_score": 0.859713055954089,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv",
+                        "regions.freq.tsv",
+                        "locations_lexicon.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 502,
+                    "end": 509
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Holland",
+                    "prefix": "",
+                    "suffix": " & Westffriesland (dan Comptoire Dakp"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c1a74b45-ebe5-4c48-a6ec-4ea5c7cba0a0",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:56.223996",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "West-Friesland",
+                "modified": "2022-05-10T13:12:56.223970",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Westffriesland",
+                    "match_variant": "West-Friesland",
+                    "match_score": 0.5576623376623376,
+                    "match_source": [
+                        "locations_lexicon.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 512,
+                    "end": 526
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Westffriesland",
+                    "prefix": "Holland & ",
+                    "suffix": " (dan Comptoire Dakp"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "90235f53-c642-4ab5-b0ca-160966741663",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:56.224029",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "kantoor",
+                "modified": "2022-05-10T13:12:56.224015",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Comptoire",
+                    "match_variant": "kantoor",
+                    "match_score": 0.8427586206896551,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 532,
+                    "end": 541
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Comptoire",
+                    "prefix": "Holland & Westffriesland (dan ",
+                    "suffix": " Dakp"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "82f79b69-63a2-43fc-a4d0-d1ee24a25a21",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:56.738968",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "groot",
+                "modified": "2022-05-10T13:12:56.738912",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "groot",
+                    "match_variant": "groot",
+                    "match_score": 0.8161009609436218,
+                    "match_source": [
+                        "property_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 583,
+                    "end": 588
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "root ",
+                    "prefix": "den bbligatie ten lasten als boven g",
+                    "suffix": "in"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "6c600c1a-61c9-4ffd-b142-e6ea1457213a",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.063724",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:12:57.063637",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "kappen",
+                "modified": "2022-05-10T13:12:57.063652",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Capt",
+                    "match_variant": "kappen",
+                    "match_score": 0.8010386238234339,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 592,
+                    "end": 596
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Capt",
+                    "prefix": "",
+                    "suffix": " \u0192200 ten comptoire Am steldam"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8668e94d-e22e-4852-b8f3-9a196a098481",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.063759",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "kantoor",
+                "modified": "2022-05-10T13:12:57.063746",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "comptoire",
+                    "match_variant": "kantoor",
+                    "match_score": 0.8427586206896551,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 606,
+                    "end": 615
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "comptoire",
+                    "prefix": "Capt \u0192200 ten ",
+                    "suffix": " Am steldam"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "81f87e60-643a-4da3-abd9-499b1184e0a7",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.063778",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Amsterdam",
+                "modified": "2022-05-10T13:12:57.063768",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Am steldam",
+                    "match_variant": "Amsterdam",
+                    "match_score": 0.648,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv",
+                        "locations_lexicon.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 616,
+                    "end": 626
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Am steldam",
+                    "prefix": "Capt \u0192200 ten comptoire ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "361a7eb8-ba48-4518-9591-6106568cd0d8",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.133354",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "huis",
+                "modified": "2022-05-10T13:12:57.133292",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "huijs",
+                    "match_variant": "huis",
+                    "match_score": 0.8018487191880135,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 631,
+                    "end": 636
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "huijs",
+                    "prefix": "Ten ",
+                    "suffix": " en twe staande en gezegen in de Nieuwen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "f7cd3c84-5f87-4a22-bd50-f7e421681d06",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.133394",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "twee",
+                "modified": "2022-05-10T13:12:57.133377",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "twe",
+                    "match_variant": "twee",
+                    "match_score": 0.8028446072995516,
+                    "match_source": [
+                        "quantifier_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 640,
+                    "end": 643
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "twe",
+                    "prefix": "Ten huijs en ",
+                    "suffix": " staande en gezegen in de Nieuwen"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "0a950425-a41e-493d-be03-06ad3fb2fe62",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.133428",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "nieuwe",
+                "modified": "2022-05-10T13:12:57.133416",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Nieuwen",
+                    "match_variant": "nieuwe",
+                    "match_score": 0.8000829285629665,
+                    "match_source": [
+                        "property_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 669,
+                    "end": 676
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Nieuwen",
+                    "prefix": "Ten huijs en twe staande en gezegen in de ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "db3f6ce5-1d2e-41ad-ab73-9054a37491dc",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.606112",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Vijzelstraat",
+                "modified": "2022-05-10T13:12:57.606050",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Vyzelstraat",
+                    "match_variant": "Vijzelstraat",
+                    "match_score": 0.5958441558441558,
+                    "match_source": [
+                        "streetnames_lexicon.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 677,
+                    "end": 688
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Vyzelstraat",
+                    "prefix": "",
+                    "suffix": " aan de Noord zyde"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "3f236e11-9eb5-42b9-a193-79cadc39a03b",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.606165",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Noord",
+                "modified": "2022-05-10T13:12:57.606145",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Noord",
+                    "match_variant": "Noord",
+                    "match_score": 0.8001979626345527,
+                    "match_source": [
+                        "locations_lexicon.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 696,
+                    "end": 701
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Noord",
+                    "prefix": "Vyzelstraat aan de ",
+                    "suffix": " zyde"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "d2ddd326-4ddd-4b59-9065-265887dae3b7",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:57.606199",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "zijde",
+                "modified": "2022-05-10T13:12:57.606181",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "zyde",
+                    "match_variant": "zijde",
+                    "match_score": 0.8003596483963704,
+                    "match_source": [
+                        "material_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 702,
+                    "end": 706
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "zyde",
+                    "prefix": "Vyzelstraat aan de Noord ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "acfdb17f-8cea-40ec-84e1-a4cae9801120",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:58.100936",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "huis",
+                "modified": "2022-05-10T13:12:58.100883",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "huijsi",
+                    "match_variant": "huis",
+                    "match_score": 0.5685153858546802,
+                    "match_source": [
+                        "room_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 722,
+                    "end": 728
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "huijsi",
+                    "prefix": "Dit boven gem: ",
+                    "suffix": " svolgens ap pomilement"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "3b700b55-565b-48e1-b21d-e2b946add52f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:58.100971",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:12:58.100953",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "nap",
+                "modified": "2022-05-10T13:12:58.100956",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "ap",
+                    "match_variant": "nap",
+                    "match_score": 0.8000685871056241,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 738,
+                    "end": 740
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "ap",
+                    "prefix": "Dit boven gem: huijsi svolgens ",
+                    "suffix": " pomilement"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "a4e518e1-f05c-4cd4-b069-aa47afe892e4",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:59.982580",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:12:59.982596",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "aan Coenraad",
+                    "match_variant": "Jan Coenraad",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 891,
+                    "end": 903
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "aan Coenraad",
+                    "prefix": "muinnt Begister fr 2fa verkogt ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "c7f70aec-545f-4ca4-abe6-64316277a78b",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:59.982677",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:12:59.982644",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-05-10T13:12:59.982649",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "aan",
+                    "match_variant": "Jan",
+                    "match_score": 0.6533333333333334,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 891,
+                    "end": 894
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "aan",
+                    "prefix": "muinnt Begister fr 2fa verkogt ",
+                    "suffix": " Coenraad"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "a4839fc5-e202-4f45-b0c0-b125824f9604",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:12:59.982709",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Coenraad",
+                "modified": "2022-05-10T13:12:59.982692",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Coenraad",
+                    "match_variant": "Coenraad",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 895,
+                    "end": 903
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Coenraad",
+                    "prefix": "muinnt Begister fr 2fa verkogt aan ",
+                    "suffix": ""
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "098b1edb-8836-4d50-a3b3-36d713ae7b8f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:00.339393",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Hoeneker",
+                "modified": "2022-05-10T13:13:00.339345",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Hoeneker",
+                    "match_variant": "Hoeneker",
+                    "match_score": 0.8119469788259597,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 904,
+                    "end": 912
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Hoeneker",
+                    "prefix": "",
+                    "suffix": " voor zyn meester voor de solunja van \u0192 4600\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8b699f70-cccf-4c7a-a13e-092ccf17b592",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:01.003639",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:13:01.003564",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "penningen",
+                "modified": "2022-05-10T13:13:01.003583",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "penningen",
+                    "match_variant": "penningen",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 969,
+                    "end": 978
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "penningen",
+                    "prefix": "legt de ze ",
+                    "suffix": " zijn aangesordt vijf loten in"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "8461cb57-ab91-488e-87aa-5866b2d6e5be",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:01.003690",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "vijf",
+                "modified": "2022-05-10T13:13:01.003668",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "vijf",
+                    "match_variant": "vijf",
+                    "match_score": 0.8636723163841807,
+                    "match_source": [
+                        "quantifier_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 995,
+                    "end": 999
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "vijf",
+                    "prefix": "legt de ze penningen zijn aangesordt ",
+                    "suffix": " loten in"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "06081549-ff25-4348-9aea-2fba4072f197",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:01.003731",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:13:01.003706",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "lot",
+                "modified": "2022-05-10T13:13:01.003711",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "loten",
+                    "match_variant": "lot",
+                    "match_score": 0.8000259793278778,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1000,
+                    "end": 1005
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "loten",
+                    "prefix": "legt de ze penningen zijn aangesordt vijf ",
+                    "suffix": " in"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "57a472a1-f480-4919-9826-d6d1d76ea421",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:01.697101",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-05-10T13:13:01.697036",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "JN",
+                    "match_variant": "Jan",
+                    "match_score": 0.6,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1038,
+                    "end": 1040
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "JN",
+                    "prefix": "de De: Hollandse Loterje van ",
+                    "suffix": "300, ooo. gearesteert"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "73d6bfd4-9a1b-44a1-a086-ef69b2b756b2",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.474547",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:02.474566",
+                "purpose": "tagging"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Elias Lienes",
+                    "match_variant": "Elias Lieners",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1133,
+                    "end": 1145
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Elias Lienes",
+                    "prefix": "Mr: Cashams Beels voor ",
+                    "suffix": ", bedra\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "1d9597b2-23d3-4147-8920-36697befd132",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.474628",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Mor",
+                "modified": "2022-05-10T13:13:02.474601",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Mr",
+                    "match_variant": "Mor",
+                    "match_score": 0.5525641025641026,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1110,
+                    "end": 1112
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Mr",
+                    "prefix": "",
+                    "suffix": ": Cashams Beels voor Elias Lienes, bedra\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "59418108-5c57-496e-91b6-560fa944bf57",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.474667",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Casas",
+                "modified": "2022-05-10T13:13:02.474649",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Cashams",
+                    "match_variant": "Casas",
+                    "match_score": 0.43642750903038463,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1114,
+                    "end": 1121
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Cashams",
+                    "prefix": "Mr: ",
+                    "suffix": " Beels voor Elias Lienes, bedra\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "060ea725-8854-45e4-b33c-eddcfc2688d7",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.474698",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Beels",
+                "modified": "2022-05-10T13:13:02.474681",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Beels",
+                    "match_variant": "Beels",
+                    "match_score": 0.8171536796536797,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1122,
+                    "end": 1127
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Beels",
+                    "prefix": "Mr: Cashams ",
+                    "suffix": " voor Elias Lienes, bedra\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "ffca2b3c-87f2-443d-9aff-c84352f7b322",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.474749",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-05-10T13:13:02.474727",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Elias",
+                "modified": "2022-05-10T13:13:02.474732",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Elias",
+                    "match_variant": "Elias",
+                    "match_score": 0.8185261565958617,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1133,
+                    "end": 1138
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Elias",
+                    "prefix": "Mr: Cashams Beels voor ",
+                    "suffix": " Lienes, bedra\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "150ce1d9-f8dd-4c6f-b198-37e5ceba6855",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.474777",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Lieners",
+                "modified": "2022-05-10T13:13:02.474762",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Lienes",
+                    "match_variant": "Lieners",
+                    "match_score": 0.5866999739519948,
+                    "match_source": [
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1139,
+                    "end": 1145
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Lienes",
+                    "prefix": "Mr: Cashams Beels voor Elias ",
+                    "suffix": ", bedra\u00ac"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "b86881af-87c1-416f-a1b2-fff760b7375b",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.604191",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:13:02.604120",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "lot",
+                "modified": "2022-05-10T13:13:02.604139",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Lot",
+                    "match_variant": "lot",
+                    "match_score": 0.8003475725978249,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1164,
+                    "end": 1167
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Lot",
+                    "prefix": "gemd yder ",
+                    "suffix": " \u0192760"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "2de90690-d96d-41f7-a530-0080f1f6e47f",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.979364",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "vijf",
+                "modified": "2022-05-10T13:13:02.979313",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "vyf",
+                    "match_variant": "vijf",
+                    "match_score": 0.8121338912133892,
+                    "match_source": [
+                        "quantifier_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1182,
+                    "end": 1185
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "vyf",
+                    "prefix": "op welke ",
+                    "suffix": " loten in de eerste Lijst is getookken"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "76829774-64e5-4578-8567-6a6d2903fc48",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.979397",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:13:02.979379",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "loot",
+                "modified": "2022-05-10T13:13:02.979382",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "loten",
+                    "match_variant": "loot",
+                    "match_score": 0.8000259793278778,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "material_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1186,
+                    "end": 1191
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "loten",
+                    "prefix": "op welke vyf ",
+                    "suffix": " in de eerste Lijst is getookken"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "bdee11d8-72df-4820-97c0-4ae28a027b84",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:02.979427",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "object",
+                "modified": "2022-05-10T13:13:02.979414",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "lijst",
+                "modified": "2022-05-10T13:13:02.979416",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Lijst",
+                    "match_variant": "lijst",
+                    "match_score": 0.8223054615756403,
+                    "match_source": [
+                        "object_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "object",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1205,
+                    "end": 1210
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Lijst",
+                    "prefix": "op welke vyf loten in de eerste ",
+                    "suffix": " is getookken"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "ccc69dc4-f444-49d5-948c-313a948a903c",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-05-10T13:13:03.241537",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "duizend",
+                "modified": "2022-05-10T13:13:03.241486",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "duyzend",
+                    "match_variant": "duizend",
+                    "match_score": 0.5828620959268078,
+                    "match_source": [
+                        "quantifier_variants.freq.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ]
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=KLAC00451000214",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 1232,
+                    "end": 1239
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "duyzend",
+                    "prefix": "den ",
+                    "suffix": " gulens"
+                }
+            ]
+        }
+    }
+]

@@ -170,6 +170,12 @@ exp3: lexicons A16098000033.txt
 %.exp11n2.raw.json: %.xml lexicons
 	golden-agents-ner --rawout --config nerconfig.exp11n2.json "$<" > "$@" || (rm "$@" && false)
 
+%.exp12.json: %.xml lexicons
+	golden-agents-ner --stdout --config nerconfig.exp12.json "$<" > "$@" || (rm "$@" && false)
+
+%.exp12.raw.json: %.xml lexicons
+	golden-agents-ner --rawout --config nerconfig.exp12.json "$<" > "$@" || (rm "$@" && false)
+
 
 .PHONY: exp7
 exp7: devset.lst lexicons
@@ -242,6 +248,15 @@ ifeq ($(strip $(DATADIR)),)
 endif
 	#process the whole development set without extra overhead
 	golden-agents-ner --infix exp11n2 --config nerconfig.exp11n2.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
+
+.PHONY: exp12
+exp12: linkdevlist devset.lst lexicons
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	#process the whole development set without extra overhead
+	golden-agents-ner --infix exp12 --config nerconfig.exp12.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
 
 .PHONY: lexicons
 lexicons:

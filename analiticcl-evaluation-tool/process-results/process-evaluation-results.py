@@ -6,11 +6,9 @@ import json
 import os.path
 from collections import defaultdict
 from dataclasses import dataclass
-from itertools import chain
 from typing import List
 
 from dataclasses_json import dataclass_json
-from icecream import ic
 from prettytable.colortable import ColorTable, Themes
 from tabulate import tabulate
 
@@ -86,9 +84,10 @@ def print_comparison_table(eval_data, eval_keys, ref_data):
     table.align = 'r'
     table.align["Page ID"] = 'l'
     for basename in sorted(eval_keys):
-        eval_size = len(eval_data[basename])
-        ref_size = len(ref_data[basename])
-        table.add_row([basename, eval_size, ref_size, abs(eval_size - ref_size)])
+        if basename in ref_data:
+            eval_size = len(eval_data[basename])
+            ref_size = len(ref_data[basename])
+            table.add_row([basename, eval_size, ref_size, abs(eval_size - ref_size)])
     print(table)
 
 
@@ -183,12 +182,106 @@ def print_categorization_table(eval_data, ref_data):
                "Normalized (eval)", "Normalized (ref)", "Normalization mismatch",
                "Category (eval)", "Category (ref)", "Category mismatch"]
     table = [table_row(evaluation_rows[k]) for k in sorted(evaluation_rows.keys())]
+
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
+
+    cn = print_per_category(headers, table)
+
+    write_to_tsv(headers, table)
+
+    group_by_category(evaluation_rows, cn)
+
+
+def write_to_tsv(headers, table):
     with open('evaluation_results.tsv', 'w', newline='\n') as f:
         writer = csv.writer(f, delimiter="\t")
         writer.writerow(headers)
         writer.writerows(table)
-    group_by_category(evaluation_rows)
+
+
+class CategorizationNumbers:
+    def __init__(self, total: int, true_positives: int, false_positives: int, false_negatives: int):
+        self.total = total
+        self.true_positives = true_positives
+        self.false_positives = false_positives
+        self.false_negatives = false_negatives
+
+    def accuracy(self) -> float:
+        divider = (self.true_positives + self.false_positives + self.false_negatives)
+        return 0 if divider == 0 \
+            else self.true_positives / divider
+
+    def recall(self) -> float:
+        divider = (self.true_positives + self.false_negatives)
+        return 0 if divider == 0 \
+            else self.true_positives / divider
+
+    def precision(self) -> float:
+        divider = (self.true_positives + self.false_positives)
+        return 0 if divider == 0 \
+            else self.true_positives / divider
+
+    def f1(self) -> float:
+        # if self.precision() is None or self.recall() is None:
+        #     return None
+        divider = (self.precision() + self.recall())
+        return 0 if divider == 0 \
+            else 2 * ((self.precision() * self.recall()) / divider)
+
+
+def print_per_category(headers, table):
+    grouped = defaultdict(list)
+    for row in table:
+        categories = set((row[6] + " /\n" + row[7]).split(" /\n"))
+        if '' in categories:
+            categories.remove('')
+        for cat in normalized_categories(categories):
+            grouped[cat].append(row)
+    categorization_numbers = {}
+    for cat in sorted(grouped.keys()):
+        cat_rows = grouped[cat]
+        type_groups = defaultdict(list)
+        true_positive = 'true positive'
+        false_positive = 'false positive'
+        false_negative = 'false negative'
+        for r in cat_rows:
+            eval_cats = r[6].split(" /\n")
+            ref_cats = r[7].split(" /\n")
+            cat_in_eval = cat in eval_cats
+            cat_in_ref = cat in ref_cats
+            if cat_in_eval and cat_in_ref:
+                type_groups[true_positive].append(r)
+            elif cat_in_eval:
+                type_groups[false_positive].append(r)
+            elif cat_in_ref:
+                type_groups[false_negative].append(r)
+        total = len(cat_rows)
+        true_positive_count = len(type_groups[true_positive])
+        false_positive_count = len(type_groups[false_positive])
+        false_negative_count = len(type_groups[false_negative])
+        cn = CategorizationNumbers(total=total,
+                                   true_positives=true_positive_count,
+                                   false_positives=false_positive_count,
+                                   false_negatives=false_negative_count)
+        categorization_numbers[cat] = cn
+        print(
+            f"{cat} (total: {cn.total} /"
+            f" {true_positive}: {cn.true_positives} /"
+            f" {false_positive}: {cn.false_positives} /"
+            f" {false_negative}: {cn.false_negatives} /"
+            f" accuracy: {cn.accuracy()}) /"
+            f" precision: {cn.precision()} /"
+            f" recall: {cn.recall()} /"
+            f" f1: {cn.f1()}:")
+        # print(tabulate(cat_rows, headers=headers, tablefmt="fancy_grid"))
+        # print()
+        for m_type in [true_positive, false_positive, false_negative]:
+            sub_total = len(type_groups[m_type])
+            if sub_total > 0:
+                print(f"{cat} ({sub_total} {m_type}):")
+                print(tabulate(type_groups[m_type], headers=headers, tablefmt="fancy_grid"))
+                print()
+    return categorization_numbers
 
 
 def table_row(row):
@@ -205,7 +298,7 @@ def table_row(row):
             ' /\n'.join(row.normalized_ref),
             n_mismatch,
             ' /\n'.join(row.categories_eval),
-            ' /\n'.join(row.categories_ref),
+            ' /\n'.join(normalized_categories(row.categories_ref)),
             c_mismatch]
 
 
@@ -229,7 +322,23 @@ def normalized_categories(category_list: list):
     return [normalized_category(c) for c in category_list]
 
 
-def group_by_category(evaluation_rows):
+def create_row(category: str, rows_for_eval_category: dict, rows_for_ref_category: dict, cn: CategorizationNumbers):
+    return [
+        category,
+        len(rows_for_eval_category[category]),
+        len(rows_for_ref_category[category]),
+        cn.total,
+        cn.true_positives,
+        cn.false_positives,
+        cn.false_negatives,
+        cn.accuracy(),
+        cn.precision(),
+        cn.recall(),
+        cn.f1()
+    ]
+
+
+def group_by_category(evaluation_rows, categorization_numbers):
     rows_for_category = defaultdict(list)
     for k, r in evaluation_rows.items():
         cats = set(normalized_categories(r.categories_eval + r.categories_ref))
@@ -248,8 +357,9 @@ def group_by_category(evaluation_rows):
         for c in cats:
             rows_for_ref_category[c].append(r)
     all_cats = sorted(set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys())))
-    headers = ["category", "# in eval", "# in ref"]
-    table = [[c, len(rows_for_eval_category[c]), len(rows_for_ref_category[c])] for c in all_cats]
+    headers = ["category", "# in eval", "# in ref", "total", "TP", "FP", "FN", "accuracy", "precision", "recall", "F1"]
+    table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in all_cats]
+    print("categorization numbers:")
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 
 

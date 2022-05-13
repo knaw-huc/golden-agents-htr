@@ -3,7 +3,6 @@
 from sparql_common import query
 
 if __name__ == "__main__":
-
     URL = "https://sparql.goldenagents.org/"
 
     q = """

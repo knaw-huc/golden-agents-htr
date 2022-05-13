@@ -4,7 +4,7 @@
 
 import sys
 
-HYPHENS = ("¬","-")
+HYPHENS = ("¬", "-")
 
 buffer = ""
 for line in sys.stdin:

@@ -15,4 +15,4 @@ for line in sys.stdin:
         data[fields[0]] = fields[1:]
 
 for key, values in sorted(data.items()):
-    print(f"{key}\t" + "\t".join([ f"{x}\t1.0" for x in sorted(set(values))]))
+    print(f"{key}\t" + "\t".join([f"{x}\t1.0" for x in sorted(set(values))]))

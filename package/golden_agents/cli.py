@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import sys
 import argparse
 import json
 import os.path
+import sys
 
 from golden_agents.ner import NER
 
@@ -15,8 +15,9 @@ def main():
     parser.add_argument('--destinationdir', '-d', type=str, help="Directory for output files", action='store',
                         required=False)
     parser.add_argument('--infix', type=str, help="infix for output files", action='store', required=False)
-    parser.add_argument('--stdout','-o',help="Output JSON to standard output", action='store_true', required=False)
-    parser.add_argument('--rawout','-r',help="Output raw results from analiticcl to standard output (as JSON)", action='store_true', required=False)
+    parser.add_argument('--stdout', '-o', help="Output JSON to standard output", action='store_true', required=False)
+    parser.add_argument('--rawout', '-r', help="Output raw results from analiticcl to standard output (as JSON)",
+                        action='store_true', required=False)
     parser.add_argument("pagexmlfiles",
                         nargs="*",
                         help="The PageXML file(s) to extract NER annotations from",
@@ -47,11 +48,11 @@ def main():
                     json_file = os.path.join(out_root, f"{basename}.json")
                     text_file = os.path.join(out_root, f"{basename}.txt")
 
-                print(f'writing to {json_file}',file=sys.stderr)
+                print(f'writing to {json_file}', file=sys.stderr)
                 with open(json_file, 'w', encoding='utf8') as f:
                     json.dump(obj=annotations, fp=f, indent=4)
 
-                print(f'writing to {text_file}',file=sys.stderr)
+                print(f'writing to {text_file}', file=sys.stderr)
                 with open(text_file, 'w', encoding='utf8') as f:
                     f.write(plain_text)
 

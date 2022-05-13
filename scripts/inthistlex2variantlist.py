@@ -13,17 +13,17 @@ data = defaultdict(set)
 freqlist = defaultdict(int)
 
 if len(sys.argv) != 3:
-    print("Usage: inthistlex2variantlist.py int_historisch_lexicon.tsv freqlist.tsv",file=sys.stderr)
+    print("Usage: inthistlex2variantlist.py int_historisch_lexicon.tsv freqlist.tsv", file=sys.stderr)
 
-with open(sys.argv[1],'r',encoding='utf-8') as f:
+with open(sys.argv[1], 'r', encoding='utf-8') as f:
     for line in f:
         if line:
             fields = line.split("\t")
             if fields[FIELD_TYPE] == "simple":
-                    data[fields[FIELD_LEMMA]].add(fields[FIELD_FORM])
+                data[fields[FIELD_LEMMA]].add(fields[FIELD_FORM])
 
 if len(sys.argv) >= 3:
-    with open(sys.argv[2],'r',encoding='utf-8') as f:
+    with open(sys.argv[2], 'r', encoding='utf-8') as f:
         for line in f:
             line = line.strip()
             if line:
@@ -41,5 +41,3 @@ for key, forms in sorted(data.items()):
                 if freq == 0: freq = 1
                 print(f"\t{form}\t1.0\t{freq}", end="")
             print()
-
-

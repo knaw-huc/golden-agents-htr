@@ -3,8 +3,8 @@ import time
 import pandas as pd
 from SPARQLWrapper import SPARQLWrapper, JSON
 
-def query(q, endpoint, OFFSET=0, LIMIT=10000):
 
+def query(q, endpoint, OFFSET=0, LIMIT=10000):
     sparql = SPARQLWrapper(endpoint)
     sparql.setQuery(q + f" OFFSET {OFFSET} LIMIT {LIMIT}")
 
@@ -15,7 +15,6 @@ def query(q, endpoint, OFFSET=0, LIMIT=10000):
     df = df.applymap(lambda x: x['value'] if not pd.isna(x) else "")
 
     if len(df) == LIMIT:
-
         OFFSET += LIMIT
         time.sleep(1)
 

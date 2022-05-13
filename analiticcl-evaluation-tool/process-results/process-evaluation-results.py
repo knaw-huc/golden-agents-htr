@@ -6,7 +6,7 @@ import json
 import os.path
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import List
+from typing import List, Dict
 
 from dataclasses_json import dataclass_json
 from prettytable.colortable import ColorTable, Themes
@@ -229,14 +229,28 @@ class CategorizationNumbers:
             else 2 * ((self.precision() * self.recall()) / divider)
 
 
+def initialize_confusion_matrix(all_categories: List[str]) -> Dict[str, Dict[str, int]]:
+    matrix = {}
+    categories = sorted(all_categories)
+    for x in categories:
+        matrix[x] = {}
+        for y in categories:
+            matrix[x][y] = 0
+    return matrix
+
+
 def print_per_category(headers, table):
     grouped = defaultdict(list)
+    all_categories = set()
     for row in table:
         categories = set((row[6] + " /\n" + row[7]).split(" /\n"))
+        all_categories.update(categories)
         if '' in categories:
             categories.remove('')
         for cat in normalized_categories(categories):
             grouped[cat].append(row)
+    confusion = initialize_confusion_matrix(all_categories)
+    print(confusion)
     categorization_numbers = {}
     for cat in sorted(grouped.keys()):
         cat_rows = grouped[cat]
@@ -251,10 +265,19 @@ def print_per_category(headers, table):
             cat_in_ref = cat in ref_cats
             if cat_in_eval and cat_in_ref:
                 type_groups[true_positive].append(r)
+                confusion[cat][cat] += 1
             elif cat_in_eval:
                 type_groups[false_positive].append(r)
+                if len(ref_cats) == 0:
+                    ref_cats = ['']  # classified as cat in eval, not classified in ref
+                for ref_cat in ref_cats:
+                    confusion[cat][ref_cat] += 1
             elif cat_in_ref:
                 type_groups[false_negative].append(r)
+                if len(eval_cats) == 0:  # classified as cat in ref, nog classified in eval
+                    eval_cats = ['']
+                for eval_cat in eval_cats:
+                    confusion[eval_cat][cat] += 1
         total = len(cat_rows)
         true_positive_count = len(type_groups[true_positive])
         false_positive_count = len(type_groups[false_positive])
@@ -281,7 +304,25 @@ def print_per_category(headers, table):
                 print(f"{cat} ({sub_total} {m_type}):")
                 print(tabulate(type_groups[m_type], headers=headers, tablefmt="fancy_grid"))
                 print()
+
+    display_confusion_matrix(confusion)
     return categorization_numbers
+
+
+def filter_zero(num: int) -> str:
+    return "" if num == 0 else num
+
+
+def display_confusion_matrix(confusion: dict):
+    sorted_categories = sorted(confusion.keys())
+    matrix = [['↓eval \\ ref→', *sorted_categories]]
+    for eval_cat in sorted(confusion.keys()):
+        row = [filter_zero(confusion[eval_cat][ref_cat]) for ref_cat in sorted_categories]
+        row.insert(0, eval_cat)
+        matrix.append(row)
+    print("confusion matrix:")
+    print(tabulate(matrix, tablefmt="fancy_grid"))
+    print()
 
 
 def table_row(row):
@@ -381,7 +422,8 @@ def check_paths_exist(eval_dir, ref_dir):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Evaluate auto-generated webannotations against a ground truth, produces precision, recall, class confusion matrix metrics",
+        description="Evaluate auto-generated webannotations against a ground truth, produces precision, recall,"
+                    " class confusion matrix metrics",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--evaluation-set', '-e', type=str, help="Directory with the web annotations to evaluate",
                         action='store', required=True)

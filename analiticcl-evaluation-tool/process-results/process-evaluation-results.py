@@ -171,10 +171,10 @@ def print_categorization_table(eval_data, ref_data):
     #         r.page_id,
     #         r.range,
     #         r.term,
-    #         ' /\n'.join(r.normalized_eval),
-    #         ' /\n'.join(r.categories_eval),
-    #         ' /\n'.join(r.normalized_ref),
-    #         ' /\n'.join(r.categories_ref),
+    #         '|'.join(r.normalized_eval),
+    #         '|'.join(r.categories_eval),
+    #         '|'.join(r.normalized_ref),
+    #         '|'.join(r.categories_ref),
     #         diff_str
     #     ])
     # print(table)
@@ -243,7 +243,7 @@ def print_per_category(headers, table):
     grouped = defaultdict(list)
     all_categories = set()
     for row in table:
-        categories = set((row[6] + " /\n" + row[7]).split(" /\n"))
+        categories = set((row[6] + "|" + row[7]).split("|"))
         all_categories.update(categories)
         if '' in categories:
             categories.remove('')
@@ -259,8 +259,8 @@ def print_per_category(headers, table):
         false_positive = 'false positive'
         false_negative = 'false negative'
         for r in cat_rows:
-            eval_cats = r[6].split(" /\n")
-            ref_cats = r[7].split(" /\n")
+            eval_cats = r[6].split("|")
+            ref_cats = r[7].split("|")
             cat_in_eval = cat in eval_cats
             cat_in_ref = cat in ref_cats
             if cat_in_eval and cat_in_ref:
@@ -335,11 +335,11 @@ def table_row(row):
     return [row.page_id,
             row.range,
             row.term,
-            ' /\n'.join(row.normalized_eval),
-            ' /\n'.join(row.normalized_ref),
+            '|'.join(row.normalized_eval),
+            '|'.join(row.normalized_ref),
             n_mismatch,
-            ' /\n'.join(row.categories_eval),
-            ' /\n'.join(normalized_categories(row.categories_ref)),
+            '|'.join(row.categories_eval),
+            '|'.join(normalized_categories(row.categories_ref)),
             c_mismatch]
 
 

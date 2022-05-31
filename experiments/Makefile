@@ -286,6 +286,8 @@ checkdeps:
 	which jq
 	python3 -c 'import SPARQLWrapper'
 	python3 -c 'import pandas'
+	python3 -c 'import dataclasses_json'
+	python3 -c 'import tabulate'
 	which golden-agents-htr
 
 .PHONY: help

@@ -3,6 +3,7 @@
 import argparse
 import csv
 import json
+import os
 import os.path
 from collections import defaultdict
 from dataclasses import dataclass
@@ -32,7 +33,7 @@ class Target:
 @dataclass
 class Classification:
     target: Target
-    classes: []
+    classes: List
 
 
 def extract_target(target: dict) -> Target:
@@ -40,12 +41,17 @@ def extract_target(target: dict) -> Target:
         source = target["source"]
     else:
         source = ""
+    start = None
+    end = None
+    exact = ""
     for s in target['selector']:
         if s['type'] == 'TextPositionSelector':
             start = s['start']
             end = s['end']
         elif s['type'] == 'TextQuoteSelector':
             exact = s['exact']
+    if start is None or end is None:
+        raise ValueError("No start/end found")
     return Target(source=source, start=start, end=end, exact=exact)
 
 
@@ -247,9 +253,9 @@ def print_per_category(headers, table):
         all_categories.update(categories)
         if '' in categories:
             categories.remove('')
-        for cat in normalized_categories(categories):
+        for cat in normalized_categories(list(categories)):
             grouped[cat].append(row)
-    confusion = initialize_confusion_matrix(all_categories)
+    confusion = initialize_confusion_matrix(list(all_categories))
     print(confusion)
     categorization_numbers = {}
     for cat in sorted(grouped.keys()):
@@ -310,7 +316,7 @@ def print_per_category(headers, table):
 
 
 def filter_zero(num: int) -> str:
-    return "" if num == 0 else num
+    return "" if num == 0 else str(num)
 
 
 def display_confusion_matrix(confusion: dict):
@@ -381,19 +387,19 @@ def create_row(category: str, rows_for_eval_category: dict, rows_for_ref_categor
 
 def group_by_category(evaluation_rows, categorization_numbers):
     rows_for_category = defaultdict(list)
-    for k, r in evaluation_rows.items():
+    for r in evaluation_rows.values():
         cats = set(normalized_categories(r.categories_eval + r.categories_ref))
         for c in cats:
             rows_for_category[c].append(r)
 
     rows_for_eval_category = defaultdict(list)
-    for k, r in evaluation_rows.items():
+    for r in evaluation_rows.values():
         cats = set(normalized_categories(r.categories_eval))
         for c in cats:
             rows_for_eval_category[c].append(r)
 
     rows_for_ref_category = defaultdict(list)
-    for k, r in evaluation_rows.items():
+    for r in evaluation_rows.values():
         cats = set(normalized_categories(r.categories_ref))
         for c in cats:
             rows_for_ref_category[c].append(r)

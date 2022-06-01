@@ -76,11 +76,12 @@ def evaluate(eval_dir: str, ref_dir: str, outfile: str) -> EvaluationResults:
     eval_data = load_annotations(eval_dir)
     ref_data = load_annotations(ref_dir)
 
-    eval_keys = check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir)
+    #returns the keys that exist both in reference data and evaluation data
+    keys = check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir)
 
-    print_comparison_table(eval_data, eval_keys, ref_data)
+    print_comparison_table(eval_data,keys, ref_data)
 
-    print_categorization_table(eval_data, ref_data, outfile)
+    print_categorization_table(eval_data, keys, ref_data, outfile)
 
     return EvaluationResults("", "", "")
 
@@ -123,7 +124,7 @@ class Row:
     categories_ref: List[str]
 
 
-def print_categorization_table(eval_data, ref_data, outfile: str):
+def print_categorization_table(eval_data, keys, ref_data, outfile: str):
     # table = ColorTable(
     #     ["Page ID", "Range", "Term", "Normalized (eval)", "Category (eval)", "Normalized (ref)", "Category (ref)",
     #      "Diff?"],
@@ -131,7 +132,7 @@ def print_categorization_table(eval_data, ref_data, outfile: str):
     # table.align = 'l'
     # table.align["Range"] = 'k'
     evaluation_rows = {}
-    for page_id in eval_data.keys():
+    for page_id in keys:
         annotations = eval_data[page_id]
         for a in annotations:
             target = extract_target(a['target'])
@@ -148,7 +149,7 @@ def print_categorization_table(eval_data, ref_data, outfile: str):
                 normalized_ref=[],
                 categories_ref=[]
             )
-    for page_id in ref_data.keys():
+    for page_id in keys:
         annotations = ref_data[page_id]
         for a in annotations:
             target = extract_target(a['target'])
@@ -432,7 +433,7 @@ def check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir):
     diff = eval_keys - ref_keys
     if diff:
         print(f"some files in {eval_dir} have no corresponding reference files in {ref_dir}: {diff}")
-    return eval_keys
+    return eval_keys & ref_keys 
 
 
 def check_paths_exist(eval_dir, ref_dir):

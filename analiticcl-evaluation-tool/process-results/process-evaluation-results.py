@@ -260,13 +260,11 @@ def print_per_category(headers, table):
         for cat in normalized_categories(list(categories)):
             grouped[cat].append(row)
     confusion = initialize_confusion_matrix(list(all_categories))
-    confusion_strict = initialize_confusion_matrix(list(all_categories))
     print(confusion)
     categorization_numbers = {}
     for cat in sorted(grouped.keys()):
         cat_rows = grouped[cat]
         type_groups = defaultdict(list)
-        type_groups_strict = defaultdict(list)
         true_positive = 'true positive'
         strict_true_positive = 'strict true positive'
         false_positive = 'false positive'

@@ -418,6 +418,7 @@ def group_by_category(evaluation_rows, categorization_numbers):
         cats = set(normalized_categories(r.categories_eval + r.categories_ref))
         for c in cats:
             rows_for_category[c].append(r)
+            rows_for_category["TOTAL"].append(r)
             if c in CAT_SELECTION:
                 rows_for_category["SUBTOTAL"].append(r)
 
@@ -426,6 +427,7 @@ def group_by_category(evaluation_rows, categorization_numbers):
         cats = set(normalized_categories(r.categories_eval))
         for c in cats:
             rows_for_eval_category[c].append(r)
+            rows_for_eval_category["TOTAL"].append(r)
             if c in CAT_SELECTION:
                 rows_for_eval_category["SUBTOTAL"].append(r)
 
@@ -434,6 +436,7 @@ def group_by_category(evaluation_rows, categorization_numbers):
         cats = set(normalized_categories(r.categories_ref))
         for c in cats:
             rows_for_ref_category[c].append(r)
+            rows_for_ref_category["TOTAL"].append(r)
             if c in CAT_SELECTION:
                 rows_for_ref_category["SUBTOTAL"].append(r)
 
@@ -444,9 +447,16 @@ def group_by_category(evaluation_rows, categorization_numbers):
             cn += categorization_numbers[c]
     categorization_numbers["SUBTOTAL"] = cn
 
-    all_cats = sorted(set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys())))
+    all_cats = set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys()))
+
+    cn = CategorizationNumbers(0,0,0,0,0)
+    for c in all_cats - {"SUBTOTAL"}:
+        if c in categorization_numbers:
+            cn += categorization_numbers[c]
+    categorization_numbers["TOTAL"] = cn
+
     headers = ["category", "# in eval", "# in ref", "total", "TP (+strict)", "FP", "FN", "accuracy", "precision", "recall", "F1"]
-    table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in all_cats]
+    table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in sorted(all_cats)]
     print("categorization numbers:")
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 

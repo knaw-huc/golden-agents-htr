@@ -333,10 +333,10 @@ def display_confusion_matrix(confusion: dict):
 
 def table_row(row):
     n_mismatch = "" if row.normalized_ref == row.normalized_eval \
-        else "/" if len(row.normalized_ref) > 0 and set(row.normalized_ref).issubset(set(row.normalized_eval)) \
+        or set(row.normalized_ref).intersection(set(row.normalized_eval)) \
         else "X"
     c_mismatch = "" if row.categories_ref == row.categories_eval \
-        else "/" if len(row.categories_ref) > 0 and set(row.categories_ref).issubset(set(row.categories_eval)) \
+        or set(row.categories_ref).intersection(set(row.categories_eval)) \
         else "X"
     return [row.page_id,
             row.range,

@@ -13,6 +13,8 @@ from dataclasses_json import dataclass_json
 from prettytable.colortable import ColorTable, Themes
 from tabulate import tabulate
 
+#Selection of categories that we are actually interested in 
+CAT_SELECTION = ("object", "person","location","streetname")
 
 @dataclass_json
 @dataclass(frozen=True)
@@ -242,6 +244,14 @@ class CategorizationNumbers:
         return 0 if divider == 0 \
             else 2 * ((self.precision(strict) * self.recall(strict)) / divider)
 
+    def __iadd__(self, other):
+        self.total += other.total
+        self.true_positives += other.true_positives
+        self.strict_true_positives += other.strict_true_positives
+        self.false_positives += other.false_positives
+        self.false_negatives += other.false_negatives
+        return self
+
 
 def initialize_confusion_matrix(all_categories: List[str]) -> Dict[str, Dict[str, int]]:
     matrix = {}
@@ -408,18 +418,32 @@ def group_by_category(evaluation_rows, categorization_numbers):
         cats = set(normalized_categories(r.categories_eval + r.categories_ref))
         for c in cats:
             rows_for_category[c].append(r)
+            if c in CAT_SELECTION:
+                rows_for_category["SUBTOTAL"].append(r)
 
     rows_for_eval_category = defaultdict(list)
     for r in evaluation_rows.values():
         cats = set(normalized_categories(r.categories_eval))
         for c in cats:
             rows_for_eval_category[c].append(r)
+            if c in CAT_SELECTION:
+                rows_for_eval_category["SUBTOTAL"].append(r)
 
     rows_for_ref_category = defaultdict(list)
     for r in evaluation_rows.values():
         cats = set(normalized_categories(r.categories_ref))
         for c in cats:
             rows_for_ref_category[c].append(r)
+            if c in CAT_SELECTION:
+                rows_for_ref_category["SUBTOTAL"].append(r)
+
+    cn = CategorizationNumbers(0,0,0,0,0)
+    assert cn is not None
+    for c in CAT_SELECTION:
+        if c in categorization_numbers:
+            cn += categorization_numbers[c]
+    categorization_numbers["SUBTOTAL"] = cn
+
     all_cats = sorted(set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys())))
     headers = ["category", "# in eval", "# in ref", "total", "TP (+strict)", "FP", "FN", "accuracy", "precision", "recall", "F1"]
     table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in all_cats]

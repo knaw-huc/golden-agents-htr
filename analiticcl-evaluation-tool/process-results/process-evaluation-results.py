@@ -14,7 +14,7 @@ from prettytable.colortable import ColorTable, Themes
 from tabulate import tabulate
 
 #Selection of categories that we are actually interested in 
-CAT_SELECTION = ("object", "person","location","streetname")
+CAT_SELECTION = ("object", "person","location","streetname", "room")
 
 @dataclass_json
 @dataclass(frozen=True)

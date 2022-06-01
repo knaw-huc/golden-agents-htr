@@ -1,6 +1,7 @@
 REPOROOT := $(shell git rev-parse --show-toplevel)
 RESOURCEDIR := $(REPOROOT)/resources/
 DATADIR =
+TMPDIR = /tmp
 
 
 # -------------------- File Indices -------------------------
@@ -176,87 +177,34 @@ exp3: lexicons A16098000033.txt
 %.exp12.raw.json: %.xml lexicons
 	golden-agents-ner --rawout --config nerconfig.exp12.json "$<" > "$@" || (rm "$@" && false)
 
+.PHONY: exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12
+exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12:
+	$(MAKE) exp EXP=$@
 
-.PHONY: exp7
-exp7: devset.lst lexicons
+.PHONY: exp
+exp: linkdevlist devset.lst lexicons
 ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
 	@false
 endif
-	#recursive make procesisng the whole development set
-	cat devset.lst | xargs -I"{}" make DATADIR="$(DATADIR)" "{}.exp7.json"
-
-.PHONY: exp8
-exp8: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
-	@false
-endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp8 --config nerconfig.exp8.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
-
-.PHONY: exp9
-exp9: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+ifeq ($(strip $(EXP)),)
+	@echo "Usage Error: Specify an experiment by passing for example EXP=exp12" >&2
 	@false
 endif
 	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp9 --config nerconfig.exp9.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
+	golden-agents-ner --infix "$(EXP)" --config "nerconfig.$(EXP).json" $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
+	$(MAKE) eval EXP="$(EXP)"
 
-.PHONY: exp10
-exp10: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+.PHONY: eval
+eval:
+ifeq ($(strip $(EXP)),)
+	@echo "Usage Error: Specify an experiment by passing for example EXP=exp12" >&2
 	@false
 endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp10 --config nerconfig.exp10.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
-
-.PHONY: exp10b
-exp10b: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
-	@false
-endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp10b --config nerconfig.exp10b.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
-
-.PHONY: exp10c
-exp10c: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
-	@false
-endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp10c --config nerconfig.exp10c.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
-
-.PHONY: exp11
-exp11: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
-	@false
-endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp11 --config nerconfig.exp11.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
-
-.PHONY: exp11n2
-exp11n2: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
-	@false
-endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp11n2 --config nerconfig.exp11n2.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
-
-.PHONY: exp12
-exp12: linkdevlist devset.lst lexicons
-ifeq ($(strip $(DATADIR)),)
-	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
-	@false
-endif
-	#process the whole development set without extra overhead
-	golden-agents-ner --infix exp12 --config nerconfig.exp12.json $(shell cat devset.lst | sed 's/$$/.xml/' | tr '\n' ' ')
+	rm -Rf "$(TMPDIR)/evalout/" || true
+	mkdir -p "$(TMPDIR)/evalout/"
+	cp *0*.$(EXP).json "$(TMPDIR)/evalout/"
+	../analiticcl-evaluation-tool/process-results/process-evaluation-results.py -e "$(TMPDIR)/evalout/" -r ../analiticcl-evaluation-tool/process-results/ground-truth/ > evaluation.$(EXP).txt
 
 .PHONY: lexicons
 lexicons:

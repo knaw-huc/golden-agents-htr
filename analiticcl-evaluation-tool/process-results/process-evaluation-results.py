@@ -438,7 +438,7 @@ def main():
                         required=True)
     parser.add_argument('--out', '-o', type=str, help="Output file (TSV)",
                         action='store',
-                        default='evaluaton_results.tsv')
+                        default='evaluation_results.tsv')
     args = parser.parse_args()
     # ic(args)
     results = evaluate(eval_dir=args.evaluation_set, ref_dir=args.reference_set, outfile=args.out)

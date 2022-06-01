@@ -204,7 +204,7 @@ endif
 	rm -Rf "$(TMPDIR)/evalout/" || true
 	mkdir -p "$(TMPDIR)/evalout/"
 	cp *0*.$(EXP).json "$(TMPDIR)/evalout/"
-	../analiticcl-evaluation-tool/process-results/process-evaluation-results.py -e "$(TMPDIR)/evalout/" -r ../analiticcl-evaluation-tool/process-results/ground-truth/ > evaluation.$(EXP).txt
+	../analiticcl-evaluation-tool/process-results/process-evaluation-results.py -e "$(TMPDIR)/evalout/" -r ../analiticcl-evaluation-tool/process-results/ground-truth/ -o "evaluation.$(EXP).tsv" > "evaluation.$(EXP).log"
 
 .PHONY: lexicons
 lexicons:

@@ -70,7 +70,7 @@ def json_files(eval_dir):
     return [f for f in os.listdir(eval_dir) if os.path.isfile(os.path.join(eval_dir, f)) and f.endswith(".json")]
 
 
-def evaluate(eval_dir: str, ref_dir: str) -> EvaluationResults:
+def evaluate(eval_dir: str, ref_dir: str, outfile: str) -> EvaluationResults:
     check_paths_exist(eval_dir, ref_dir)
 
     eval_data = load_annotations(eval_dir)
@@ -80,7 +80,7 @@ def evaluate(eval_dir: str, ref_dir: str) -> EvaluationResults:
 
     print_comparison_table(eval_data, eval_keys, ref_data)
 
-    print_categorization_table(eval_data, ref_data)
+    print_categorization_table(eval_data, ref_data, outfile)
 
     return EvaluationResults("", "", "")
 
@@ -123,7 +123,7 @@ class Row:
     categories_ref: List[str]
 
 
-def print_categorization_table(eval_data, ref_data):
+def print_categorization_table(eval_data, ref_data, outfile: str):
     # table = ColorTable(
     #     ["Page ID", "Range", "Term", "Normalized (eval)", "Category (eval)", "Normalized (ref)", "Category (ref)",
     #      "Diff?"],
@@ -193,13 +193,13 @@ def print_categorization_table(eval_data, ref_data):
 
     cn = print_per_category(headers, table)
 
-    write_to_tsv(headers, table)
+    write_to_tsv(headers, table, outfile)
 
     group_by_category(evaluation_rows, cn)
 
 
-def write_to_tsv(headers, table):
-    with open('evaluation_results.tsv', 'w', newline='\n') as f:
+def write_to_tsv(headers, table, outfile: str):
+    with open(outfile, 'w', newline='\n') as f:
         writer = csv.writer(f, delimiter="\t")
         writer.writerow(headers)
         writer.writerows(table)
@@ -436,9 +436,12 @@ def main():
     parser.add_argument('--reference-set', '-r', type=str, help="Directory with the reference web annotations",
                         action='store',
                         required=True)
+    parser.add_argument('--out', '-o', type=str, help="Output file (TSV)",
+                        action='store',
+                        default='evaluaton_results.tsv')
     args = parser.parse_args()
     # ic(args)
-    results = evaluate(eval_dir=args.evaluation_set, ref_dir=args.reference_set)
+    results = evaluate(eval_dir=args.evaluation_set, ref_dir=args.reference_set, outfile=args.out)
     # print(json.dumps(results.to_dict(), indent=4))
 
 

@@ -156,6 +156,9 @@ def print_categorization_table(eval_data, ref_data, outfile: str):
             key = f"{page_id}.{target.start:05d}-{target.end:05d}"
             categories = sorted(extract_categories(a))
             normalizations = sorted(extract_normalizations(a))
+            if not normalizations:
+                #no normalizations provided by annotator, copy input term
+                normalizations = [target.exact]
             if key in evaluation_rows:
                 evaluation_rows[key].normalized_ref = normalizations
                 evaluation_rows[key].categories_ref = categories

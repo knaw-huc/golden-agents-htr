@@ -130,11 +130,17 @@ class NER:
                             "name": "GoldenAgentsNER"
                         },
                         "body": [{
-                            "type": "TextualBody",
-                            "value": ner_result['tag'],
-                            "modified": datetime.today().isoformat(),
-                            "purpose": "tagging"
-                        },
+                                "type": "TextualBody",
+                                "value": ner_result['tag'],
+                                "modified": datetime.today().isoformat(),
+                                "purpose": "tagging"
+                            },
+                            {
+                                "type": "TextualBody",
+                                "value": variant_text,
+                                "modified": datetime.today().isoformat(),
+                                "purpose": "commenting"
+                            },
                             {
                                 "type": "Dataset",
                                 "value": {

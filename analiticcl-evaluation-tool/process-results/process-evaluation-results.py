@@ -7,7 +7,7 @@ import os
 import os.path
 from collections import defaultdict
 from dataclasses import dataclass
-from typing import List, Dict
+from typing import List, Dict, Union, Set
 
 from dataclasses_json import dataclass_json
 from prettytable.colortable import ColorTable, Themes
@@ -325,12 +325,12 @@ def print_per_category(headers, table):
         for r in cat_rows:
             eval_norm = set(r[3].split("|"))
             ref_norm = set(r[4].split("|"))
-            norm_match = bool(eval_norm.intersection(ref_norm))
+            norm_match = match_normalization(ref_norm, eval_norm)
             eval_cats = r[6].split("|")
             ref_cats = r[7].split("|")
             cat_in_eval = cat in eval_cats
             cat_in_ref = cat in ref_cats
-            if cat_in_eval and cat_in_ref:
+            if match_category(ref_cats, eval_cats) and cat not in ('firstname','familyname'):
                 type_groups[true_positive].append(r)
                 if norm_match:
                     type_groups[strict_true_positive].append(r)
@@ -396,14 +396,24 @@ def display_confusion_matrix(confusion: dict):
     print(tabulate(matrix, tablefmt="fancy_grid"))
     print()
 
+def match_normalization_row(row: Row) -> bool:
+    return match_normalization(row.normalized_ref, row.normalized_eval)
+
+def match_normalization(normalized_ref: Union[List[str],Set[str]], normalized_eval: Union[List[str],Set[str]]) -> bool:
+    return normalized_ref == normalized_eval \
+           or bool(set(normalized_ref).intersection(set(normalized_eval)))
+
+def match_category_row(row: Row) -> bool:
+    return match_category(row.categories_ref, row.categories_eval)
+
+def match_category(categories_ref: Union[List[str],Set[str]], categories_eval: Union[List[str],Set[str]]) -> bool:
+    return categories_ref == categories_eval \
+        or ('person' in categories_eval and ('firstname' in categories_ref or 'familyname' in categories_ref)) \
+        or bool(set(categories_ref).intersection(set(categories_eval)))
 
 def table_row(row):
-    n_mismatch = "" if row.normalized_ref == row.normalized_eval \
-        or set(row.normalized_ref).intersection(set(row.normalized_eval)) \
-        else "X"
-    c_mismatch = "" if row.categories_ref == row.categories_eval \
-        or set(row.categories_ref).intersection(set(row.categories_eval)) \
-        else "X"
+    n_mismatch = "" if match_normalization_row(row) else "X"
+    c_mismatch = "" if match_category_row(row) else "X"
     return [row.page_id,
             row.range,
             row.term,

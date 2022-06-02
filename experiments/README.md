@@ -24,3 +24,13 @@ Run ``make checkdeps`` to check if you have all necessary dependencies. A [LaMac
 ## Other experiments
 
 * `NA_word2vec_experiment.ipynb` - Training a word2vec model on all HTR data with some examples of similar words. Data not included.
+
+## Experiment 13
+
+ID        | Description                                       | Precision      | Recall        | F1
+----------|---------------------------------------------------|----------------|---------------|-----
+`exp13`   | Base                                              | 0.659 (0.525)  │ 0.549 (0.437) │ 0.599 (0.477)
+`exp13b`  | Reduced maximum anagram/levenshtein distance      | 0.648 (0.503)  │ 0.549 (0.426) │ 0.594 (0.461)
+`exp13c`  | Unigrams only                                     | 0.641 (0.503)  │ 0.556 (0.436) │ 0.595 (0.467)
+`exp13d`  | Increased frequency weight                        | 0.618 (0.461)  │ 0.522 (0.389) │ 0.566 (0.422)
+`exp13e`  | Include trigrams                                  |                |               |  

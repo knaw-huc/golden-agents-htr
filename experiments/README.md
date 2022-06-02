@@ -33,4 +33,4 @@ ID        | Description                                       | Precision      |
 `exp13b`  | Reduced maximum anagram/levenshtein distance      | 0.648 (0.503)  │ 0.549 (0.426) │ 0.594 (0.461)
 `exp13c`  | Unigrams only                                     | 0.641 (0.503)  │ 0.556 (0.436) │ 0.595 (0.467)
 `exp13d`  | Increased frequency weight                        | 0.618 (0.461)  │ 0.522 (0.389) │ 0.566 (0.422)
-`exp13e`  | Include trigrams                                  |                |               |  
+`exp13e`  | Include trigrams                                  | 0.661 (0.529)  │ 0.555 (0.444) │ 0.603 (0.483)

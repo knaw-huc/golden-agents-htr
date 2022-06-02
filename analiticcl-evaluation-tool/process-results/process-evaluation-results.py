@@ -506,7 +506,7 @@ def group_by_category(evaluation_rows, categorization_numbers):
 
     headers = ["category", "# in eval", "# in ref", "total", "TP (+strict)", "FP", "FN", "accuracy", "precision", "recall", "F1"]
     table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in sorted(all_cats)]
-    print("categorization numbers:")
+    print("categorization numbers: (strict values that take normalisation into account are in parentheses)")
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 
 

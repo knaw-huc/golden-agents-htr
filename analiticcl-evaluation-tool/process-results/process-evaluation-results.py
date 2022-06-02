@@ -115,6 +115,7 @@ def extract_normalizations(annotation: dict) -> List[str]:
     return [b['value'] for b in annotation['body'] if b.get('purpose') == 'commenting']
 
 
+
 @dataclass
 class Row:
     page_id: str
@@ -125,6 +126,43 @@ class Row:
     normalized_ref: List[str]
     categories_ref: List[str]
 
+def extract_persons(evaluation_rows: Dict[str, Row]):
+    firstname_start = defaultdict(dict)
+    lastname_start = defaultdict(dict)
+    for row in evaluation_rows.values():
+        start, end = [ int(x) for x in row.range.split("-") ]
+        if 'firstname' in row.categories_ref:
+            firstname_start[row.page_id][start] = row
+        if 'familyname' in row.categories_ref:
+            lastname_start[row.page_id][start] = row
+
+    for page_id, firstnames_offsets in firstname_start.items():
+        for start, firstname in firstnames_offsets.items():
+            end = int(firstname.range.split("-")[1]) + 1
+            for lastname_offset in (end,end+1):
+                if lastname_offset in lastname_start[page_id]:
+                    lastname = lastname_start[page_id][lastname_offset]
+                    normalized_ref = (firstname.normalized_ref[0] + " " + lastname.normalized_ref[0]).strip()
+                    end = int(lastname.range.split("-")[1])
+                    key = f"{page_id}.{start:05d}-{end:05d}"
+                    if key in evaluation_rows:
+                        if not normalized_ref in evaluation_rows[key].normalized_ref:
+                            evaluation_rows[key].normalized_ref.append(normalized_ref)
+                        if not "person" in evaluation_rows[key].categories_ref:
+                            evaluation_rows[key].categories_ref.append("person")
+                    else:
+                        range_str = f"{start}-{end}"
+                        evaluation_rows[key] = Row(
+                            page_id=page_id,
+                            range=range_str,
+                            term=firstname.term + " " + lastname.term,
+                            normalized_eval=[],
+                            categories_eval=[],
+                            normalized_ref=[normalized_ref],
+                            categories_ref=["person"]
+                        )
+                    print(f"(Extracted person '{normalized_ref}' in ground truth: {key})")
+        
 
 def print_categorization_table(eval_data, keys, ref_data, outfile: str):
     # table = ColorTable(
@@ -175,6 +213,7 @@ def print_categorization_table(eval_data, keys, ref_data, outfile: str):
                     normalized_ref=normalizations,
                     categories_ref=normalized_categories(categories)
                 )
+    extract_persons(evaluation_rows)
     # for k in sorted(evaluation_rows.keys()):
     #     r = evaluation_rows[k]
     #     diff = r.normalized_ref != r.normalized_eval or r.categories_ref != r.categories_eval

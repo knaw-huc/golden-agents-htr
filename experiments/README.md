@@ -33,10 +33,11 @@ Run an experiment using for instance: ``make DATADIR=/path/to/data exp13``
 
 ## Experiment 13 Results
 
-(analiticcl 0.4.0)
+*(conducted with analiticcl 0.4.0, input data as described by git tag `exp13` of this repo)*
 
-Precision, Recall, F1 values are from the "subtotal" column (microaverage) that only considers the classes 'object','person','location','streetname' and 'room'. 
-Full experimental output is in the ``evaluation.exp13*.log`` and ``evaluation.exp13*.tsv`` files.
+Precision, Recall, F1 values are from the "subtotal" column (microaverage) that only considers the classes 'object','person','location','streetname' and 'room', as those are the only outputted in this batch. 
+Full experimental output is in the ``evaluation.exp13*.log`` and ``evaluation.exp13*.tsv`` files. Configurations (i.e. exact parameter settings) are in ``nerconfig.exp13*.json``.
+Values in parentheses are stricter and take not just classification, but also normalisation into account.
 
 ID        | Description                                       | Precision      | Recall        | F1
 ----------|---------------------------------------------------|----------------|---------------|-----
@@ -48,3 +49,9 @@ ID        | Description                                       | Precision      |
 `exp13f`  | Increased maximum anagram/levenshtein distance    | 0.673 (0.523)  | 0.567 (0.441) | 0.615 (0.479) 
 `exp13ef` | (combination)                                     | 0.671 (0.522)  | 0.562 (0.438) | 0.612 (0.476) 
 `exp13g`  | case sensitive                                    | 0.651 (0.525)  | 0.537 (0.433) | 0.588 (0.475) 
+`exp13h`  | Decreased frequency weight                        | 0.657 (0.519)  | 0.560 (0.443) | 0.604 (0.478)
+`exp13i`  | with Language Model from ground truth subset [1]  | 0.671 (0.441)  │ 0.546 (0.359) │ 0.602 (0.396)
+`exp13j`  | with Language Model from modern news corpora      | 0.686 (0.514)  │ 0.523 (0.392) │ 0.594 (0.445) 
+
+* ``[1]`` This is the entire subset of the collection that is marked as ground truth and is a large superset of our annotated ground truth data
+

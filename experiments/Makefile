@@ -177,8 +177,8 @@ exp3: lexicons A16098000033.txt
 %.exp12.raw.json: %.xml lexicons
 	golden-agents-ner --rawout --config nerconfig.exp12.json "$<" > "$@" || (rm "$@" && false)
 
-.PHONY: exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g
-exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g:
+.PHONY: exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g exp13h exp13i exp13j
+exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g exp13h exp13i exp13j:
 	$(MAKE) exp EXP=$@
 
 .PHONY: exp

@@ -35,7 +35,8 @@ Run an experiment using for instance: ``make DATADIR=/path/to/data exp13``
 
 (analiticcl 0.4.0)
 
-Precision, Recall, F1 values are from the "subtotal" column (microaverage) that only considers the classes 'object','person','location','streetname' and 'room'
+Precision, Recall, F1 values are from the "subtotal" column (microaverage) that only considers the classes 'object','person','location','streetname' and 'room'. 
+Full experimental output is in the ``evaluation.exp13*.log`` and ``evaluation.exp13*.tsv`` files.
 
 ID        | Description                                       | Precision      | Recall        | F1
 ----------|---------------------------------------------------|----------------|---------------|-----

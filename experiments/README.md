@@ -53,6 +53,7 @@ ID        | Description                                       | Precision      |
 `exp13i`  | with Language Model from ground truth subset [1]  | 0.671 (0.441)  | 0.546 (0.359) | 0.602 (0.396)
 `exp13j`  | with Language Model from modern news corpora      | 0.686 (0.514)  | 0.523 (0.392) | 0.594 (0.445) 
 `exp13k`  | less pruning                                      | 0.644 (0.516)  | 0.546 (0.438) | 0.591 (0.474) 
+`exp13l`  | more pruning                                      | 0.673 (0.473)  | 0.454 (0.319) | 0.542 (0.381)
 
 * ``[1]`` This is the entire subset of the collection that is marked as ground truth and is a large superset of our annotated ground truth data
 

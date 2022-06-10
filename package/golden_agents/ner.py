@@ -104,7 +104,7 @@ class NER:
     def create_web_annotation_multispan(self, ner_results, text_line: PageXMLTextLine, line_offset: int, scan_urn: str):
         """Extract larger tagged entities from NER results and creates web annotations for them."""
         for i, ner_result in enumerate(ner_results):
-            if 'tag' in ner_result and ner_result.get('seqnr') == 0:
+            if 'tag' in ner_result and ner_result.get('seqnr') == 0 and ner_result['variants']:
                 length = 1
                 # aggregate text of the top variants
                 variant_text = ner_result['variants'][0]['text']
@@ -137,7 +137,7 @@ class NER:
                             },
                             {
                                 "type": "TextualBody",
-                                "value": variant_text,
+                                "value": ner_result['tag'],
                                 "modified": datetime.today().isoformat(),
                                 "purpose": "commenting"
                             },

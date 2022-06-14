@@ -24,6 +24,17 @@ endif
 	echo "" > groundtruth.index
 	cat "$(REPOROOT)/resources/werkvoorraad.csv" | grep -E ";GT" | awk -F ';' '{ print $$4"" }' | xargs -L 1 -I"{}" find "$(DATADIR)/{}" -name "*.xml" >> groundtruth.index || [ -s groundtruth.index ]
 
+boedel.index:
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+	#An index of all boedel files
+	echo "" > "$@"
+	cat "$(REPOROOT)/resources/boedelindex.csv" | awk -F ',' '{ print $$3"" }' > $(TMPDIR)/terms
+	find "$(DATADIR)" -name "*.xml" | python3 "$(REPOROOT)/scripts/match-boedel-index.py" "$(TMPDIR)/terms"  >> "$@" || [ -s "$@" ]
+
+
 devset.lst:
 ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2

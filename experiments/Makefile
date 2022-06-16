@@ -217,6 +217,25 @@ endif
 	cp *0*.$(EXP).json "$(TMPDIR)/evalout/"
 	../analiticcl-evaluation-tool/process-results/process-evaluation-results.py -e "$(TMPDIR)/evalout/" -r ../analiticcl-evaluation-tool/process-results/ground-truth/ -o "evaluation.$(EXP).tsv" > "evaluation.$(EXP).log"
 
+.PHONY: boedels
+boedels: linkdevlist lexicons boedel.index
+#process all boedels (deeds)
+ifeq ($(strip $(DATADIR)),)
+	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2
+	@false
+endif
+ifeq ($(strip $(EXP)),)
+	@echo "Usage Error: Specify an experiment by passing for example EXP=exp12" >&2
+	@false
+endif
+ifeq ($(strip $(OUTDIR)),)
+	@echo "Usage Error: Specify an output directory by passing for example OUTDIR=/tmp/" >&2
+	@false
+endif
+	#cat boedel.index | xargs -I"{}" basename "{}" > "$(TMPDIR)/boedels.lst"
+	mkdir -p "$(OUTDIR)"
+	golden-agents-ner --destinationdir "$(OUTDIR)" --config "nerconfig.$(EXP).json" "boedel.index"
+
 .PHONY: lexicons
 lexicons:
 	cd $(RESOURCEDIR) && make all

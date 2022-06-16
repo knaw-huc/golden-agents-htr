@@ -3,6 +3,7 @@ import argparse
 import json
 import os.path
 import sys
+from typing import List
 
 from golden_agents.ner import NER
 
@@ -24,6 +25,7 @@ def main():
                         type=str)
     args = parser.parse_args()
 
+
     ner = NER(args.config)
 
     if args.pagexmlfiles:
@@ -31,8 +33,19 @@ def main():
         if args.destinationdir:
             os.makedirs(args.destinationdir, exist_ok=True)
             out_root = args.destinationdir
+        parsefiles(ner, out_root, args, *[ x for x in args.pagexmlfiles])
 
-        for pagexmlfile in args.pagexmlfiles:
+
+def parsefiles(ner, out_root: str, args, *files):
+    for pagexmlfile in files:
+        if pagexmlfile.endswith(".lst") or pagexmlfile.endswith(".index"):
+            #not a pagexml file but a file referring to page xml files:
+            morefiles = []
+            with open(pagexmlfile,'r',encoding='utf-8') as f:
+                for line in f:
+                    if line.strip(): morefiles.append(line.strip())
+            parsefiles(ner, out_root, args, *morefiles)
+        else:
             (annotations, plain_text, raw_results) = ner.process_pagexml(pagexmlfile)
             basename = os.path.splitext(os.path.basename(pagexmlfile))[0]
 

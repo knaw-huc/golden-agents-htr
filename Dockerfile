@@ -11,5 +11,5 @@ RUN pip install dataclasses_json
 RUN mkdir -p /data /tmp/golden-agents-ner
 COPY package/ /tmp/golden-agents-ner
 RUN cd /tmp/golden-agents-ner && pip install .
-WORKDIR /data
+WORKDIR /work
 CMD /bin/ash -l

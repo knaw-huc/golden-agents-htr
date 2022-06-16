@@ -56,14 +56,14 @@ ID        | Description                                       | Precision      |
 
 ## Experiment 14 Results
 
-After updating boedel pages, this should be equal to exp13 but it isn't?
+Same as exp13, but after fixing indeterministic behaviour in analiticcl. Also after updating boedel pages, but this should have no effect.
 
-*(conducted with analiticcl 0.4.0, input data as described by git tag `exp14` of this repo)*
+*(conducted with analiticcl 0.4.1, input data as described by git tag `exp14` of this repo)*
 
 ID        | Description                                       | Precision      | Recall        | F1
 ----------|---------------------------------------------------|----------------|---------------|-----
-`exp14`  | Base (no debug)                                   | 0.663 (0.452)  | 0.551 (0.376) | 0.602 (0.410)
-`exp14a` | without the pre-correction stage                  | 0.567 (0.388)  | 0.489 (0.334) | 0.525 (0.359)
+`exp14`   | Base (no debug)                                   | 0.662 (0.443)  | 0.550 (0.367)  | 0.601 (0.402) 
+`exp14a`  | without the pre-correction stage                  | 
 
 * ``[1]`` This is the entire subset of the collection that is marked as ground truth and is a large superset of our annotated ground truth data
 

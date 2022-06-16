@@ -52,10 +52,18 @@ ID        | Description                                       | Precision      |
 `exp13h`  | Decreased frequency weight                        | 0.657 (0.519)  | 0.560 (0.443) | 0.604 (0.478)
 `exp13i`  | with Language Model from ground truth subset [1]  | 0.671 (0.441)  | 0.546 (0.359) | 0.602 (0.396)
 `exp13j`  | with Language Model from modern news corpora      | 0.686 (0.514)  | 0.523 (0.392) | 0.594 (0.445) 
-`exp13k`  | less pruning                                      | 0.644 (0.516)  | 0.546 (0.438) | 0.591 (0.474) 
-`exp13l`  | more pruning                                      | 0.673 (0.473)  | 0.454 (0.319) | 0.542 (0.381)
-`exp13m`  | without the pre-correction stage                  | 0.567 (0.388)  | 0.489 (0.334) | 0.525 (0.359)
-`exp13n`  | Base (no debug)                                   | 0.663 (0.452)  | 0.551 (0.376)  | 0.602 (0.410)
+
+
+## Experiment 14 Results
+
+After updating boedel pages, this should be equal to exp13 but it isn't?
+
+*(conducted with analiticcl 0.4.0, input data as described by git tag `exp14` of this repo)*
+
+ID        | Description                                       | Precision      | Recall        | F1
+----------|---------------------------------------------------|----------------|---------------|-----
+`exp14`  | Base (no debug)                                   | 0.663 (0.452)  | 0.551 (0.376) | 0.602 (0.410)
+`exp14a` | without the pre-correction stage                  | 0.567 (0.388)  | 0.489 (0.334) | 0.525 (0.359)
 
 * ``[1]`` This is the entire subset of the collection that is marked as ground truth and is a large superset of our annotated ground truth data
 

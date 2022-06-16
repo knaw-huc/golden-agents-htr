@@ -513,7 +513,7 @@ def group_by_category(evaluation_rows, categorization_numbers):
 def check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir):
     eval_keys = eval_data.keys()
     ref_keys = ref_data.keys()
-    diff = eval_keys - ref_keys
+    diff = list(sorted(eval_keys - ref_keys))
     if diff:
         print(f"some files in {eval_dir} have no corresponding reference files in {ref_dir}: {diff}")
     return eval_keys & ref_keys 

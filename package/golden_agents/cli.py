@@ -37,7 +37,7 @@ def main():
 
 
 def parsefiles(ner, out_root: str, args, *files):
-    for pagexmlfile in files:
+    for pagexmlfile in sorted(files):
         if pagexmlfile.endswith(".lst") or pagexmlfile.endswith(".index"):
             #not a pagexml file but a file referring to page xml files:
             morefiles = []

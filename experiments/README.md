@@ -19,6 +19,7 @@ This repository holds experimental output. The main point of entry for the exper
 * ``exp10`` - **Experiment 10** - Experiments with language modelling
 * ``exp12*`` - **Experiment 12** - Experiments with context rules 
 * ``exp13*`` - **Experiment 13** - Batch of experiments evaluated against the groundtruth data, see evaluation results below
+* ``exp14*`` - **Experiment 14** - Like exp13 but after a bugfix in analiticcl. Evaluated against the groundtruth data, see evaluation results below
 
 
 Pass the root directory containing the Page XML data using ``make DATADIR=/path/to/data``.

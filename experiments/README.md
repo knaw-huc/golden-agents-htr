@@ -54,16 +54,29 @@ ID        | Description                                       | Precision      |
 `exp13j`  | with Language Model from modern news corpora      | 0.686 (0.514)  | 0.523 (0.392) | 0.594 (0.445) 
 
 
+* ``[1]`` This is the entire subset of the collection that is marked as ground truth and is a large superset of our annotated ground truth data
+
 ## Experiment 14 Results
 
-Same as exp13, but after fixing indeterministic behaviour in analiticcl. Also after updating boedel pages, but this should have no effect.
+Same as exp13, but after fixing indeterministic behaviour in analiticcl. Also after updating boedel pages, but this has no effect.
 
 *(conducted with analiticcl 0.4.1, input data as described by git tag `exp14` of this repo)*
 
 ID        | Description                                       | Precision      | Recall        | F1
 ----------|---------------------------------------------------|----------------|---------------|-----
-`exp14`   | Base (no debug)                                   | 0.662 (0.443)  | 0.550 (0.367)  | 0.601 (0.402) 
-`exp14a`  | without the pre-correction stage                  | 
+`exp14`   | Base (arbitrary)                                  | 0.662 (0.524) | 0.550 (0.435)  | 0.601 (0.475)
+`exp14a`  | without the pre-correction stage [2]              | 0.567 (0.431) | 0.485 (0.369)  | 0.523 (0.398)
+`exp14b`  | Reduced maximum anagram/levenshtein distance      | 0.650 (0.494) | 0.546 (0.415)  | 0.593 (0.451) 
+`exp14c`  | Unigrams only                                     | 0.637 (0.495) | 0.553 (0.430)  | 0.592 (0.461)
+`exp14d`  | Increased frequency weight                        | 0.618 (0.460) | 0.519 (0.386)  | 0.564 (0.420)
+`exp14e`  | Include trigrams                                  | 0.662 (0.524) | 0.550 (0.435)  | 0.601 (0.475)
+`exp14f`  | Increased maximum anagram/levenshtein distance    | 0.672 (0.520) | 0.566 (0.438)  | 0.614 (0.475)
+`exp14g`  | case sensitive                                    | 0.653 (0.530) | 0.539 (0.438)  | 0.590 (0.480)
+`exp14h`  | Decreased frequency weight                        | 0.657 (0.511) | 0.559 (0.434)  | 0.604 (0.470)
+`exp14i`  | with Language Model from ground truth subset [1]  | 0.670 (0.436) | 0.549 (0.357)  | 0.603 (0.393) 
+`exp14j`  | with Language Model from modern news corpora      | 0.681 (0.505) | 0.520 (0.385)  | 0.590 (0.437)
+`exp14k`  | less pruning                                      | 0.649 (0.519) | 0.546 (0.437)  | 0.593 (0.474) 
+`exp14l`  | more pruning                                      | 0.673 (0.558) │ 0.455 (0.378)  | 0.543 (0.451)
 
-* ``[1]`` This is the entire subset of the collection that is marked as ground truth and is a large superset of our annotated ground truth data
+* ``[2]`` As the ground-truth does uses the pre-correction stage (unfortunately), this is causes mismatches and results are inaccurate
 

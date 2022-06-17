@@ -224,7 +224,7 @@ endif
 	../analiticcl-evaluation-tool/process-results/process-evaluation-results.py -e "$(TMPDIR)/evalout/" -r ../analiticcl-evaluation-tool/process-results/ground-truth/ -o "evaluation.$(EXP).tsv" > "evaluation.$(EXP).log"
 
 .PHONY: boedels
-boedels: linkdevlist lexicons boedel.index
+boedels: lexicons boedel.index
 #process all boedels (deeds)
 ifeq ($(strip $(DATADIR)),)
 	@echo "Usage Error: Data directory required, please specify a DATADIR=/path/to/datadir argument" >&2

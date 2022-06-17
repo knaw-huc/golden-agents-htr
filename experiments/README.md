@@ -79,5 +79,5 @@ ID        | Description                                       | Precision      |
 `exp14k`  | less pruning                                      | 0.649 (0.519) | 0.546 (0.437)  | 0.593 (0.474) 
 `exp14l`  | more pruning                                      | 0.673 (0.558) | 0.455 (0.378)  | 0.543 (0.451)
 
-* ``[2]`` As the ground-truth does uses the pre-correction stage (unfortunately), this is causes mismatches and results are inaccurate
+* ``[2]`` As the ground-truth does uses the pre-correction stage (unfortunately), this is causes mismatches and results are inaccurate. In all order experiments, the pre-corrections themselves don't have any effect on the evaluation as they are not evaluated but treated as a given.
 

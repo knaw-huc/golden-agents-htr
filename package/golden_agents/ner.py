@@ -137,7 +137,7 @@ class NER:
                             },
                             {
                                 "type": "TextualBody",
-                                "value": ner_result['tag'],
+                                "value": variant_text,
                                 "modified": datetime.today().isoformat(),
                                 "purpose": "commenting"
                             },

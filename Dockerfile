@@ -6,6 +6,8 @@ RUN apk update && apk add python3 py3-pip py3-xmltodict py3-sparqlwrapper py3-nu
 RUN cargo install --root /usr analiticcl
 RUN cargo install --root /usr lexmatch
 RUN cargo install --root /usr sesdiff
+RUN pip install nltk
+RUN pip install pagexml-tools
 RUN pip install analiticcl
 RUN pip install dataclasses_json
 RUN mkdir -p /data /tmp/golden-agents-ner

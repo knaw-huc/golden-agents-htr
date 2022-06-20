@@ -85,23 +85,37 @@ Om te kunnen evalueren hebben we referentiedata nodig.
 
 ![Annotatieomgeving](annotationtool.png)
 
+## Voorbeeld resultaten
+
+![Annotatieomgeving](boedeloutput1.png)
+
 ## Evaluatie
 
 **Classificatie & Normalisatie**
 
-Metriek   | Waarde    
-----------|-----------
-Precisie  | 0.524
-Recall    | 0.435     
-F1        | 0.475
+Metriek    | #out | #ref | Precisie | Recall | F1    
+-----------|------|------|----------|--------|---------
+Objecten   | 448  | 584  | 0.498    | 0.382  | 0.432
+Personen   | 219  | 130  | 0.612    | 0.638  | 0.625
+Locaties   |  14  |  26  | 0.143    | 0.077  | 0.100
+Vertrekken |  33  |  33  | 0.455    | 0.455  | 0.455
+**Totaal** |  -   |  -   | 0.525    | 0.435  | 0.475 
 
 **Alleen Classificatie**
 
-Metriek   | Waarde    
-----------|-----------
-Precisie  | 0.662
-Recall    | 0.550
-F1        | 0.601
+Metriek    | Precisie | Recall | F1    
+-----------|----------|--------|---
+Objecten   | 0.681    | 0.522  | 0.432
+Personen   | 0.685    | 0.714  | 0.699
+Locaties   | 0.214    | 0.115  | 0.150
+Vertrekken | 0.455    | 0.455  | 0.455
+**Totaal** | 0.662    | 0.550  | 0.601 
+
+
+
+
+
+
 
 ## Referenties
 

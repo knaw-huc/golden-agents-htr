@@ -1,0 +1,40 @@
+@startuml
+
+skinparam collections {
+    BackgroundColor GoldenRod
+    ArrowColor Black
+}
+
+skinparam hexagon {
+    BackgroundColor DimGray
+    FontColor White
+    ArrowColor Black
+}
+
+collections "Scans van boedelinventarissen" as boedelscans
+collections "Transcripties van scans (PageXML)" as transcriptions
+
+hexagon "Layout parsing" as layoutparsing
+
+hexagon "Handwritten Text Recognition (Transkribus)" as htr
+
+hexagon "NER met normalisatie (analiticcl)" as analiticcl
+
+hexagon "Serialisatie" as serialisation
+
+collections "Annotaties op transcripties (WebAnnotation)" as webannotations
+
+collections "Lexicons/variantlijsten/contextregels" as lexicons
+
+
+
+boedelscans -down-> htr 
+htr -down-> transcriptions
+transcriptions -right-> layoutparsing  
+lexicons -right->analiticcl
+layoutparsing -down-> analiticcl : per zin
+analiticcl -down-> serialisation : per annotatie
+serialisation -down-> webannotations
+
+@enduml
+

@@ -7,7 +7,7 @@ RUN cargo install --root /usr analiticcl
 RUN cargo install --root /usr lexmatch
 RUN cargo install --root /usr sesdiff
 RUN pip install nltk
-RUN pip install pagexml-tools
+RUN pip install https://github.com/knaw-huc/pagexml/archive/scipy1.7.zip
 RUN pip install analiticcl
 RUN pip install dataclasses_json
 RUN mkdir -p /data /tmp/golden-agents-ner

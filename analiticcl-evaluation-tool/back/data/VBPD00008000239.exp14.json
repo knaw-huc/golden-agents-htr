@@ -1,0 +1,168 @@
+[
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "5c0e2485-9eca-4e8e-841e-40b7027248ee",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-06-17T12:42:25.533239",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-06-17T12:42:25.533255",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bruijn Jan",
+                "modified": "2022-06-17T12:42:25.533258",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn Jan",
+                    "match_variant": "Bruijn Jan",
+                    "category": "person"
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 15,
+                    "end": 25
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn Jan",
+                    "prefix": "",
+                    "suffix": " zoon"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "e7683d7c-0611-463b-b9bd-05d6d8b2de2d",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-06-17T12:42:25.533310",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "person",
+                "modified": "2022-06-17T12:42:25.533283",
+                "purpose": "tagging"
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bruijn",
+                "modified": "2022-06-17T12:42:25.533287",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Bruijn",
+                    "match_variant": "Bruijn",
+                    "match_score": 0.8141832162009942,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 1
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 15,
+                    "end": 21
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Bruijn",
+                    "prefix": "",
+                    "suffix": " Jan zoon"
+                }
+            ]
+        }
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            "https://leonvanwissen.nl/vocab/roar/roar.json"
+        ],
+        "id": "b6919eea-35e4-4fc2-ab0e-f35504f4cb73",
+        "type": "Annotation",
+        "motivation": "classifying",
+        "generated": "2022-06-17T12:42:25.533337",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-06-17T12:42:25.533323",
+                "purpose": "commenting"
+            },
+            {
+                "type": "Dataset",
+                "value": {
+                    "match_phrase": "Jan",
+                    "match_variant": "Jan",
+                    "match_score": 1.0,
+                    "match_source": [
+                        "first_names_lexicon.sanitized.tsv",
+                        "family_names_lexicon.sanitized.tsv",
+                        "int_historisch_lexicon_variants.freq.tsv"
+                    ],
+                    "category": "person",
+                    "seqnr": 2
+                }
+            }
+        ],
+        "target": {
+            "source": "urn:golden-agents:unknown:scan=VBPD00008000239",
+            "selector": [
+                {
+                    "type": "TextPositionSelector",
+                    "start": 22,
+                    "end": 25
+                },
+                {
+                    "type": "TextQuoteSelector",
+                    "exact": "Jan",
+                    "prefix": "Bruijn ",
+                    "suffix": " zoon"
+                }
+            ]
+        }
+    }
+]

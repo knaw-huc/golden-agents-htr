@@ -24,13 +24,17 @@
 * Normale entiteitherkenning werkt hierdoor niet goed
     - Standaard NER-modellen zijn niet getraind op objecten
 
+![HTR Voorbeeld](htr.png)
+
 ## Onze strategie
 
 **Wat hebben we?**
 
 * Een flink aantal lexicons/thesauri met namen van personen, locaties en objecten (diverse bronnen)
-* Met name de objecten hebben we handmatig verrijkt
+* Met name de objecten hebben we handmatig verrijkt:
+    * [bron](https://github.com/knaw-huc/golden-agents-htr/blob/master/resources/boedeltermen.csv)
 * INT Historisch Lexicon; gecureerde lijst die historische varianten koppelt, tevens geschikt als *achtergrondlexicon*
+    * helaas niet openbaar beschikbaar ivm beperkte rechten
 
 **Aanpak**
 
@@ -66,7 +70,6 @@
 
 * Kwaliteit is erg afhankelijk van de kwaliteit van de input (lexicons, variantlijsten)
 * Handmatige **lexiconcuratie** om tot een lijst 'boedeltermen' te komen. Focus op objecten, maar ook categorieën die helpen deze vindbaar te maken (denk aan materialen, telwoorden en andere eigenschappen).
-    * ``https://github.com/knaw-huc/golden-agents-htr/blob/master/resources/boedeltermen.csv``
 * Belangrijke rol voor het achtergrondlexicon (INT Historisch Lexicon)
 
 ## Referentiedata en annotatie
@@ -112,15 +115,11 @@ Vertrekken | 0.455    | 0.455  | 0.455
 **Totaal** | 0.662    | 0.550  | 0.601 
 
 
-
-
-
-
-
 ## Referenties
 
 * **Analiticcl**: https://github.com/proycon/analiticcl
 * **Golden Agents HTR Repo:** https://github.com/knaw-huc/golden-agents-htr
+    * Bevat: annotatietool, evaluatietool, NER wrapper tool, gecureerde lexicons, alle experimenten (uitvoer, evaluatie logs, sparql queries)
 
 **Publicaties**:
 

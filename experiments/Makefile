@@ -30,9 +30,9 @@ ifeq ($(strip $(DATADIR)),)
 	@false
 endif
 	#An index of all boedel files
-	echo "" > "$@"
-	cat "$(REPOROOT)/resources/boedelindex.csv" | awk -F ',' '{ print $$3"" }' > $(TMPDIR)/terms
-	find "$(DATADIR)" -name "*.xml" | python3 "$(REPOROOT)/scripts/match-boedel-index.py" "$(TMPDIR)/terms"  >> "$@" || [ -s "$@" ]
+	cat "$(REPOROOT)/resources/boedelindex.csv" | awk -F ',' '{ print $$3"" }' > "$(TMPDIR)/terms"
+	[ -s "$(TMPDIR)/terms" ]
+	find "$(DATADIR)" -name "*.xml" | python3 "$(REPOROOT)/scripts/match-boedel-index.py" "$(TMPDIR)/terms"  > "$@" || [ -s "$@" ]
 
 
 devset.lst:
@@ -238,7 +238,6 @@ ifeq ($(strip $(OUTDIR)),)
 	@echo "Usage Error: Specify an output directory by passing for example OUTDIR=/tmp/" >&2
 	@false
 endif
-	#cat boedel.index | xargs -I"{}" basename "{}" > "$(TMPDIR)/boedels.lst"
 	mkdir -p "$(OUTDIR)"
 	golden-agents-ner --destinationdir "$(OUTDIR)" --config "nerconfig.$(EXP).json" "boedel.index"
 

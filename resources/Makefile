@@ -179,7 +179,7 @@ regions.freq.tsv: lexicons/regions.lst
 
 
 .PHONY: all
-all: first_names_lexicon.sanitized.tsv family_names_lexicon.sanitized.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_historisch_lexicon_variants.tsv int_historisch_lexicon_variants.freq.tsv boedeltermen
+all: first_names_lexicon.sanitized.tsv family_names_lexicon.sanitized.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_historisch_lexicon_variants.tsv int_historisch_lexicon_variants.freq.tsv boedeltermen boedelindex.csv
 
 .PHONY: boedeltermen
 boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv animal_variants.freq.tsv animal_wordforms.freq.tsv quantifier_variants.freq.tsv quantifier_wordforms.freq.tsv locations_lexicon.freq.tsv countries.freq.tsv regions.freq.tsv

@@ -3,8 +3,13 @@ import "@recogito/recogito-js/dist/recogito.min.css";
 import { useEffect, useState } from "react";
 import type { Annotation, Doc } from "../App";
 import { VOCABULARY } from "../App";
+import GeotaggingWidget from '@recogito/geotagging-widget';
 
 const htmlId = "text-content";
+
+const gtw_config = {
+  defaultOrigin: [ 48, 16 ]
+};
 
 interface Props {
   doc: Doc;
@@ -60,6 +65,7 @@ const initRecogito = () =>
         widget: "TAG",
         vocabulary: VOCABULARY,
       },
+      { widget: GeotaggingWidget(gtw_config) }
     ],
     relationVocabulary: ["isRelated", "isPartOf", "isSameAs"],
     formatter: (annotation: any) => {

@@ -3,7 +3,7 @@ import "@recogito/recogito-js/dist/recogito.min.css";
 import { useEffect, useState } from "react";
 import type { Annotation, Doc } from "../App";
 import { VOCABULARY } from "../App";
-import GeotaggingWidget from '@recogito/geotagging-widget';
+import GeotaggingWidget from "@recogito/geotagging-widget/src";
 
 const htmlId = "text-content";
 

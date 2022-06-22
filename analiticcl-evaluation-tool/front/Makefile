@@ -29,8 +29,8 @@ docker-image: .make/.docker prod-config
 
 push: .make/.push
 
-start:
-	yarn start
+start: .make/.install
+	npx yarn start
 
 clean:
 	rm -rf .make build
@@ -59,8 +59,8 @@ without-versions:
 help:
 	@echo "make-tools for $(tag)"
 	@echo "Please use \`make <target>' where <target> is one of"
-	@echo "  build           to build the app for deployment"
 	@echo "  start           to run the app in development mode"
+	@echo "  build           to build the app for deployment"
 	@echo "  docker-image    to build the docker image of the app, running in nginx"
 	@echo "  push            to push the docker image to registry.diginfra.net"
 	@echo "  clean           to remove generated files"

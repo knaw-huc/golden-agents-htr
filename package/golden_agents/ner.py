@@ -119,7 +119,7 @@ class NER:
                 if length > 1:
                     yield {
                         "@context": ["http://www.w3.org/ns/anno.jsonld",
-                                     "https://leonvanwissen.nl/vocab/roar/roar.json"],
+                                     {"ana": "http://purl.org/analiticcl/terms#"}],
                         "id": str(uuid.uuid4()),
                         "type": "Annotation",
                         "motivation": "classifying",
@@ -130,11 +130,11 @@ class NER:
                             "name": "GoldenAgentsNER"
                         },
                         "body": [{
-                                "type": "TextualBody",
-                                "value": ner_result['tag'],
-                                "modified": datetime.today().isoformat(),
-                                "purpose": "tagging"
-                            },
+                            "type": "TextualBody",
+                            "value": ner_result['tag'],
+                            "modified": datetime.today().isoformat(),
+                            "purpose": "tagging"
+                        },
                             {
                                 "type": "TextualBody",
                                 "value": variant_text,
@@ -142,14 +142,14 @@ class NER:
                                 "purpose": "commenting"
                             },
                             {
-                                "type": "Dataset",
+                                "type": "ana:Match",
                                 "value": {
                                     # the text in the input
-                                    "match_phrase": text_line.text[
-                                                    ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                    "ana:match_phrase": text_line.text[
+                                                        ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                     # aggregate text of the top variants
-                                    "match_variant": variant_text,
-                                    "category": ner_result['tag']
+                                    "ana:match_variant": variant_text,
+                                    "ana:category": ner_result['tag']
                                 },
                             }],
                         "target":
@@ -194,7 +194,7 @@ class NER:
                         self.create_web_annotation(scan.id, tl, result, iiif_url=scan.transkribus_uri, xywh=xywh,
                                                    version_base_uri=version_base_uri, line_offset=len(plain_text)))
             plain_text += f"{text}\n"
-        return (annotations, plain_text, raw_results)
+        return annotations, plain_text, raw_results
 
     def create_web_annotation(self, scan_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
                               version_base_uri, line_offset: int):
@@ -245,30 +245,30 @@ class NER:
                     "purpose": "commenting",
                 },
                 {
-                    "type": "Dataset",
+                    "type": "ana:Match",
                     "value": {
                         # the text in the input
-                        "match_phrase": ner_result['input'],
+                        "ana:match_phrase": ner_result['input'],
                         # the variant in the lexicon that matched with the input
-                        "match_variant": top_variant['text'],
+                        "ana:match_variant": top_variant['text'],
                         # the score of the match as reported by the system (no intrinsic meaning, only to be judged
                         # relatively)
-                        "match_score": top_variant['score'],
+                        "ana:match_score": top_variant['score'],
                         # the sources (lexicons/variants lists) where the match was found
-                        "match_source": [os.path.basename(x) for x in top_variant['lexicons']],
+                        "ana:match_source": [os.path.basename(x) for x in top_variant['lexicons']],
                     },
                 },
             ]
             if 'tag' in ner_result:
                 # the tag assigned to this match
-                bodies[-1]['value']['category'] = ner_result['tag']
+                bodies[-1]['value']['ana:category'] = ner_result['tag']
                 # the sequence number (in case the tagged sequence covers multiple items)
-                bodies[-1]['value']['seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
+                bodies[-1]['value']['ana:seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
             elif not self.has_contextrules:
                 # old-style:
-                bodies[-1]['value']['category'] = categories
+                bodies[-1]['value']['ana:category'] = categories
             yield {
-                "@context": ["http://www.w3.org/ns/anno.jsonld", "https://leonvanwissen.nl/vocab/roar/roar.json"],
+                "@context": ["http://www.w3.org/ns/anno.jsonld", {"ana": "http://purl.org/analiticcl/terms#"}],
                 "id": str(uuid.uuid4()),
                 "type": "Annotation",
                 "motivation": "classifying",

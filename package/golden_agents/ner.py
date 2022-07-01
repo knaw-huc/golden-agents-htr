@@ -3,7 +3,7 @@ import os.path
 import sys
 import uuid
 from datetime import datetime
-from typing import List
+from typing import List, Dict, Any
 
 from analiticcl import VariantModel, Weights, SearchParameters
 from golden_agents.corrections import Corrector
@@ -84,6 +84,8 @@ class NER:
             self.has_contextrules = True
         else:
             self.has_contextrules = False
+        if 'resourceids' in self.config:
+            self.resource_ids = self.config['resourceids']
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
@@ -117,6 +119,7 @@ class NER:
                     else:
                         break
                 if length > 1:
+                    tagging_body = self.tagging_body(label=ner_result['tag'])
                     yield {
                         "@context": ["http://www.w3.org/ns/anno.jsonld",
                                      {"ana": "http://purl.org/analiticcl/terms#"}],
@@ -129,12 +132,8 @@ class NER:
                             "type": "Software",
                             "name": "GoldenAgentsNER"
                         },
-                        "body": [{
-                            "type": "TextualBody",
-                            "value": ner_result['tag'],
-                            "modified": datetime.today().isoformat(),
-                            "purpose": "tagging"
-                        },
+                        "body": [
+                            tagging_body,
                             {
                                 "type": "TextualBody",
                                 "value": variant_text,
@@ -150,24 +149,26 @@ class NER:
                                     # aggregate text of the top variants
                                     "ana:match_variant": variant_text,
                                     "ana:category": ner_result['tag']
-                                },
-                            }],
-                        "target":
-                            {
-                                "source": f'{scan_urn}',
-                                "selector": [{
+                                }
+                            }
+                        ],
+                        "target": {
+                            "source": f'{scan_urn}',
+                            "selector": [
+                                {
                                     "type": "TextPositionSelector",
                                     "start": line_offset + ner_result['offset']['begin'],
                                     "end": line_offset + last_ner_result['offset']['end']
-                                }, {
+                                },
+                                {
                                     "type": "TextQuoteSelector",
                                     "exact": text_line.text[
                                              ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                     "prefix": text_line.text[:ner_result['offset']['begin']],
                                     "suffix": text_line.text[last_ner_result['offset']['end']:],
                                 }
-                                ]
-                            }
+                            ]
+                        }
                     }
 
     def create_web_annotations(self, scan, version_base_uri: str) -> (List[dict], str, List[dict]):
@@ -215,23 +216,13 @@ class NER:
             tag_bodies = []
             if 'tag' in ner_result and ner_result.get('seqnr') == 0:
                 # new style: tag set by analiticcl via contextrules
-                tag_bodies = [{
-                    "type": "TextualBody",
-                    "value": ner_result['tag'],
-                    "modified": datetime.today().isoformat(),
-                    "purpose": "tagging"
-                }]
+                tag_bodies = [self.tagging_body(label=ner_result['tag'])]
             elif not self.has_contextrules:
                 # old style: tag derived directly from lexicon
                 if not categories:
                     continue
                 for cat in categories:
-                    body = {
-                        "type": "TextualBody",
-                        "value": cat,
-                        "modified": datetime.today().isoformat(),
-                        "purpose": "tagging"
-                    }
+                    body = self.tagging_body(label=cat)
                     tag_bodies.append(body)
             elif not categories:
                 # background lexicon match only, don't output
@@ -282,16 +273,17 @@ class NER:
                 "target":
                     {
                         "source": f'{scan_urn}',
-                        "selector": [{
-                            "type": "TextPositionSelector",
-                            "start": line_offset + ner_result['offset']['begin'],
-                            "end": line_offset + ner_result['offset']['end']
-                        }, {
-                            "type": "TextQuoteSelector",
-                            "exact": text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']],
-                            "prefix": text_line.text[:ner_result['offset']['begin']],
-                            "suffix": text_line.text[ner_result['offset']['end']:],
-                        }
+                        "selector": [
+                            {
+                                "type": "TextPositionSelector",
+                                "start": line_offset + ner_result['offset']['begin'],
+                                "end": line_offset + ner_result['offset']['end']
+                            }, {
+                                "type": "TextQuoteSelector",
+                                "exact": text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']],
+                                "prefix": text_line.text[:ner_result['offset']['begin']],
+                                "suffix": text_line.text[ner_result['offset']['end']:],
+                            }
                         ]
                     }
             }
@@ -337,3 +329,27 @@ class NER:
             #     }
             # }
             # ]
+
+    def tagging_body(self, label: str, confidence: float = None, provenance: str = None) -> Dict[str, Any]:
+        if self.resource_ids:
+            body = {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": datetime.today().isoformat(),
+                "source": {
+                    "id": self.resource_ids[label],
+                    "label": label
+                }
+            }
+            if confidence:
+                body['confidence'] = confidence
+            if provenance:
+                body['provenance'] = provenance
+            return body
+        else:
+            return {
+                "type": "TextualBody",
+                "value": label,
+                "modified": datetime.today().isoformat(),
+                "purpose": "tagging"
+            }

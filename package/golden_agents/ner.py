@@ -86,6 +86,10 @@ class NER:
             self.has_contextrules = False
         if 'resourceids' in self.config:
             self.resource_ids = self.config['resourceids']
+            self.has_resource_ids = True
+        else:
+            self.has_resource_ids = False
+
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
@@ -331,7 +335,9 @@ class NER:
             # ]
 
     def tagging_body(self, label: str, confidence: float = None, provenance: str = None) -> Dict[str, Any]:
-        if self.resource_ids:
+        if self.has_resource_ids:
+            if label not in self.resource_ids:
+                raise Exception(f"no resourceid defined for '{label}': check config file.")
             body = {
                 "type": "SpecificResource",
                 "purpose": "tagging",

@@ -8,15 +8,16 @@ from rdflib import Graph, URIRef
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Loads a set of JSON-LD files into a data graph, and exports the graph in turtle format to stdout.",
+        description="Loads a (set of) JSON-LD file(s) into a data graph, "
+                    "and exports the graph in turtle format to stdout.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
-    parser.add_argument("jsonld_files",
+    parser.add_argument("jsonld_file",
                         nargs="*",
-                        help="The JSON-LD files to convert",
+                        help="The JSON-LD file(s) to load",
                         type=str)
     args = parser.parse_args()
-    if args.jsonld_files:
-        graph = setup_graph(args.jsonld_files)
+    if args.jsonld_file:
+        graph = setup_graph(args.jsonld_file)
         ttl = graph.serialize()
         print(ttl)
     else:

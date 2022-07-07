@@ -21,7 +21,8 @@ def create_scan_id(file) -> str:
     else:
         archive_id = "unknown"
         print(
-            f"WARNING: No archive component could be extracted for {file} because input file has no archive directory component",
+            f"WARNING: No archive component could be extracted for {file} "
+            f"because input file has no archive directory component",
             file=sys.stderr)
     scan_id = path_parts[-1].replace('.xml', '')
     return f"urn:golden-agents:{archive_id}:scan={scan_id}"
@@ -38,9 +39,18 @@ def fixpath(filepath: str, configfile: str) -> str:
 HTR_CORRECTIONS = 'htr_corrections'
 
 
+def now():
+    return datetime.today().isoformat()
+
+
+def random_annotation_id() -> str:
+    return f'urn:golden-agents:annotation:{uuid.uuid4()}'
+
+
 class NER:
     def __init__(self, configfile: str):
-        """Instantiates a NER tagger with variantmodel; loads all lexicons specified in the configuration (and parameters)"""
+        """Instantiates a NER tagger with variantmodel; loads all lexicons specified in the configuration
+         (and parameters)"""
         with open(configfile, 'rb') as f:
             self.config = json.load(f)
         for key in ("lexicons", "searchparameters", "alphabet", "weights"):
@@ -127,10 +137,10 @@ class NER:
                     yield {
                         "@context": ["http://www.w3.org/ns/anno.jsonld",
                                      {"ana": "http://purl.org/analiticcl/terms#"}],
-                        "id": str(uuid.uuid4()),
+                        "id": random_annotation_id(),
                         "type": "Annotation",
                         "motivation": "classifying",
-                        "generated": datetime.today().isoformat(),
+                        "generated": now(),
                         "generator": {
                             "id": "https://github.com/knaw-huc/golden-agents-htr",
                             "type": "Software",
@@ -141,7 +151,7 @@ class NER:
                             {
                                 "type": "TextualBody",
                                 "value": variant_text,
-                                "modified": datetime.today().isoformat(),
+                                "modified": now(),
                                 "purpose": "commenting"
                             },
                             {
@@ -214,7 +224,8 @@ class NER:
 
             # ic(top_variant)
             lexicons = top_variant['lexicons']
-            # note: categories starting with an underscore will not be propagated to output (useful for background lexicons)
+            # note: categories starting with an underscore will not be propagated to output
+            # (useful for background lexicons)
             categories = [self.category_dict[l] for l in lexicons if
                           l in self.category_dict and self.category_dict[l][0] != "_"]
             tag_bodies = []
@@ -236,7 +247,7 @@ class NER:
                 {
                     "type": "TextualBody",
                     "value": top_variant['text'],
-                    "modified": datetime.today().isoformat(),
+                    "modified": now(),
                     "purpose": "commenting",
                 },
                 {
@@ -264,17 +275,17 @@ class NER:
                 bodies[-1]['value']['ana:category'] = categories
             yield {
                 "@context": ["http://www.w3.org/ns/anno.jsonld", {"ana": "http://purl.org/analiticcl/terms#"}],
-                "id": str(uuid.uuid4()),
+                "id": random_annotation_id(),
                 "type": "Annotation",
                 "motivation": "classifying",
-                "generated": datetime.today().isoformat(),
+                "generated": now(),
                 "generator": {
                     "id": "https://github.com/knaw-huc/golden-agents-htr",
                     "type": "Software",
                     "name": "GoldenAgentsNER"
                 },
                 "body": bodies,
-                "target":
+                "target": [
                     {
                         "source": f'{scan_urn}',
                         "selector": [
@@ -289,50 +300,21 @@ class NER:
                                 "suffix": text_line.text[ner_result['offset']['end']:],
                             }
                         ]
-                    }
+                        # },
+                        # {
+                        #     "source": iiif_url,
+                        #     "type": "Image",
+                        #     "selector": {
+                        #         "type": "FragmentSelector",
+                        #         "conformsTo": "http://www.w3.org/TR/media-frags/",
+                        #         "value": f"xywh={xywh}"
+                        #     }
+                    }]
+
             }
             if self.has_contextrules:
                 # ties are already resolved by analiticcl if there are context rules
                 break
-            # {
-            #     "source": f'{scan_urn}:textline={text_line.id}',
-            #     "selector": [{
-            #         "type": "TextPositionSelector",
-            #         "start": ner_result['offset']['begin'],
-            #         "end": ner_result['offset']['end']
-            #     }, {
-            #         "type": "TextQuoteSelector",
-            #         "exact": ner_result['input']
-            #
-            #     }, {
-            #         "type": "FragmentSelector",
-            #         "conformsTo": "http://tools.ietf.org/rfc/rfc5147",
-            #         "value": f"char={ner_result['offset']['begin']},{ner_result['offset']['end']}"
-            #     }
-            #     ]
-            # },
-            # {
-            #     "source": f'{version_base_uri}/contents',
-            #     "type": "xml",
-            #     "selector": {
-            #         "type": "FragmentSelector",
-            #         "conformsTo": "http://tools.ietf.org/rfc/rfc3023",
-            #         "value": f"xpointer(id({text_line.id})/TextEquiv/Unicode)"
-            #     }
-            # },
-            # {
-            #     "source": f"{version_base_uri}/chars/{ner_result['offset']['begin']}/{ner_result['offset']['end']}"
-            # },
-            # {
-            #     "source": iiif_url,
-            #     "type": "image",
-            #     "selector": {
-            #         "type": "FragmentSelector",
-            #         "conformsTo": "http://www.w3.org/TR/media-frags/",
-            #         "value": f"xywh={xywh}"
-            #     }
-            # }
-            # ]
 
     def tagging_body(self, label: str, confidence: float = None, provenance: str = None) -> Dict[str, Any]:
         if self.has_resource_ids:
@@ -341,7 +323,7 @@ class NER:
             body = {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": datetime.today().isoformat(),
+                "modified": now(),
                 "source": {
                     "id": self.resource_ids[label],
                     "label": label
@@ -356,6 +338,6 @@ class NER:
             return {
                 "type": "TextualBody",
                 "value": label,
-                "modified": datetime.today().isoformat(),
+                "modified": now(),
                 "purpose": "tagging"
             }

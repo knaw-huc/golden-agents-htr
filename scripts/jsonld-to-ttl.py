@@ -19,6 +19,8 @@ def main():
         graph = setup_graph(args.jsonld_files)
         ttl = graph.serialize()
         print(ttl)
+    else:
+        parser.print_usage()
 
 
 def setup_graph(jsonld_files: List[str]):

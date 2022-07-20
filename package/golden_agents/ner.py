@@ -9,6 +9,9 @@ from analiticcl import VariantModel, Weights, SearchParameters
 from golden_agents.corrections import Corrector
 from pagexml.parser import PageXMLTextLine, parse_pagexml_file
 
+VARIANT_MATCHING_CONTEXT = "https://brambg.github.io/ns/variant-matching.jsonld"
+HTR_CORRECTIONS = 'htr_corrections'
+
 
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
@@ -34,9 +37,6 @@ def fixpath(filepath: str, configfile: str) -> str:
         # relative path:
         filepath = os.path.join(os.path.dirname(configfile), filepath)
     return filepath
-
-
-HTR_CORRECTIONS = 'htr_corrections'
 
 
 def now():
@@ -117,7 +117,8 @@ class NER:
         scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
         return self.create_web_annotations(scan, "http://localhost:8080/textrepo/versions/x")
 
-    def create_web_annotation_multispan(self, ner_results, text_line: PageXMLTextLine, line_offset: int, scan_urn: str):
+    def create_web_annotation_multispan(self, ner_results, text_line: PageXMLTextLine, line_offset: int,
+                                        pagexml_urn: str):
         """Extract larger tagged entities from NER results and creates web annotations for them."""
         for i, ner_result in enumerate(ner_results):
             if 'tag' in ner_result and ner_result.get('seqnr') == 0 and ner_result['variants']:
@@ -135,11 +136,16 @@ class NER:
                 if length > 1:
                     tagging_body = self.tagging_body(label=ner_result['tag'])
                     yield {
-                        "@context": ["http://www.w3.org/ns/anno.jsonld",
-                                     {"vm": "https://humanities.knaw.nl/ns/variant-matching#"}],
+                        "@context": [
+                            VARIANT_MATCHING_CONTEXT,
+                            "http://www.w3.org/ns/anno.jsonld"
+                        ],
                         "id": random_annotation_id(),
                         "type": "Annotation",
-                        "motivation": "classifying",
+                        "motivation": [
+                            "classifying",
+                            "correcting"
+                        ],
                         "generated": now(),
                         "generator": {
                             "id": "https://github.com/knaw-huc/golden-agents-htr",
@@ -152,20 +158,21 @@ class NER:
                                 "type": "TextualBody",
                                 "value": variant_text,
                                 "modified": now(),
-                                "purpose": "commenting"
+                                "purpose": "correcting"
                             },
                             {
-                                "type": "vm:Match",
+                                "@context": VARIANT_MATCHING_CONTEXT,
+                                "type": "Match",
                                 # the text in the input
-                                "vm:phrase": text_line.text[
-                                             ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                "phrase": text_line.text[
+                                          ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                 # aggregate text of the top variants
-                                "vm:variant": variant_text,
-                                "vm:category": ner_result['tag']
+                                "variant": variant_text,
+                                "category": ner_result['tag']
                             }
                         ],
                         "target": {
-                            "source": f'{scan_urn}',
+                            "source": f'{pagexml_urn}',
                             "selector": [
                                 {
                                     "type": "TextPositionSelector",
@@ -209,7 +216,7 @@ class NER:
             plain_text += f"{text}\n"
         return annotations, plain_text, raw_results
 
-    def create_web_annotation(self, scan_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
+    def create_web_annotation(self, pagexml_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
                               version_base_uri, line_offset: int):
         """Convert analiticcl's output to web annotation, may output multiple web annotations in case of ties
         """
@@ -249,32 +256,38 @@ class NER:
                     "purpose": "commenting",
                 },
                 {
-                    "type": "vm:Match",
+                    "@context": VARIANT_MATCHING_CONTEXT,
+                    "type": "Match",
                     # the text in the input
-                    "vm:phrase": ner_result['input'],
+                    "phrase": ner_result['input'],
                     # the variant in the lexicon that matched with the input
-                    "vm:variant": top_variant['text'],
+                    "variant": top_variant['text'],
                     # the score of the match as reported by the system (no intrinsic meaning, only to be judged
                     # relatively)
-                    "vm:score": top_variant['score'],
+                    "score": top_variant['score'],
                     # the sources (lexicons/variants lists) where the match was found
-                    "vm:source": [os.path.basename(x) for x in top_variant['lexicons']],
+                    "source": [os.path.basename(x) for x in top_variant['lexicons']],
                 },
             ]
             if 'tag' in ner_result:
                 # the tag assigned to this match
-                bodies[-1]['value']['vm:category'] = ner_result['tag']
+                bodies[-1]['category'] = ner_result['tag']
                 # the sequence number (in case the tagged sequence covers multiple items)
-                bodies[-1]['value']['vm:seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
+                bodies[-1]['seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
             elif not self.has_contextrules:
                 # old-style:
-                bodies[-1]['value']['vm:category'] = categories
+                bodies[-1]['category'] = categories
             yield {
-                "@context": ["http://www.w3.org/ns/anno.jsonld",
-                             {"vm": "https://humanities.knaw.nl/ns/variant-matching#"}],
+                "@context": [
+                    VARIANT_MATCHING_CONTEXT,
+                    "http://www.w3.org/ns/anno.jsonld"
+                ],
                 "id": random_annotation_id(),
                 "type": "Annotation",
-                "motivation": "classifying",
+                "motivation": [
+                    "classifying",
+                    "correcting"
+                ],
                 "generated": now(),
                 "generator": {
                     "id": "https://github.com/knaw-huc/golden-agents-htr",
@@ -284,7 +297,7 @@ class NER:
                 "body": bodies,
                 "target": [
                     {
-                        "source": f'{scan_urn}',
+                        "source": pagexml_urn,
                         "selector": [
                             {
                                 "type": "TextPositionSelector",
@@ -297,15 +310,15 @@ class NER:
                                 "suffix": text_line.text[ner_result['offset']['end']:],
                             }
                         ]
-                        # },
-                        # {
-                        #     "source": iiif_url,
-                        #     "type": "Image",
-                        #     "selector": {
-                        #         "type": "FragmentSelector",
-                        #         "conformsTo": "http://www.w3.org/TR/media-frags/",
-                        #         "value": f"xywh={xywh}"
-                        #     }
+                    },
+                    {
+                        "source": iiif_url,
+                        "type": "Image",
+                        "selector": {
+                            "type": "FragmentSelector",
+                            "conformsTo": "http://www.w3.org/TR/media-frags/",
+                            "value": f"xywh={xywh}"
+                        }
                     }]
 
             }

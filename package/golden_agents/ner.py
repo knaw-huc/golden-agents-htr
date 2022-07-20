@@ -156,14 +156,12 @@ class NER:
                             },
                             {
                                 "type": "vm:Match",
-                                "value": {
-                                    # the text in the input
-                                    "vm:match_phrase": text_line.text[
-                                                       ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                    # aggregate text of the top variants
-                                    "vm:match_variant": variant_text,
-                                    "vm:category": ner_result['tag']
-                                }
+                                # the text in the input
+                                "vm:phrase": text_line.text[
+                                             ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                # aggregate text of the top variants
+                                "vm:variant": variant_text,
+                                "vm:category": ner_result['tag']
                             }
                         ],
                         "target": {
@@ -252,17 +250,15 @@ class NER:
                 },
                 {
                     "type": "vm:Match",
-                    "value": {
-                        # the text in the input
-                        "vm:phrase": ner_result['input'],
-                        # the variant in the lexicon that matched with the input
-                        "vm:variant": top_variant['text'],
-                        # the score of the match as reported by the system (no intrinsic meaning, only to be judged
-                        # relatively)
-                        "vm:score": top_variant['score'],
-                        # the sources (lexicons/variants lists) where the match was found
-                        "vm:source": [os.path.basename(x) for x in top_variant['lexicons']],
-                    },
+                    # the text in the input
+                    "vm:phrase": ner_result['input'],
+                    # the variant in the lexicon that matched with the input
+                    "vm:variant": top_variant['text'],
+                    # the score of the match as reported by the system (no intrinsic meaning, only to be judged
+                    # relatively)
+                    "vm:score": top_variant['score'],
+                    # the sources (lexicons/variants lists) where the match was found
+                    "vm:source": [os.path.basename(x) for x in top_variant['lexicons']],
                 },
             ]
             if 'tag' in ner_result:

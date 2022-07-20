@@ -136,7 +136,7 @@ class NER:
                     tagging_body = self.tagging_body(label=ner_result['tag'])
                     yield {
                         "@context": ["http://www.w3.org/ns/anno.jsonld",
-                                     {"ana": "http://purl.org/analiticcl/terms#"}],
+                                     {"vm": "https://humanities.knaw.nl/ns/variant-matching#"}],
                         "id": random_annotation_id(),
                         "type": "Annotation",
                         "motivation": "classifying",
@@ -155,14 +155,14 @@ class NER:
                                 "purpose": "commenting"
                             },
                             {
-                                "type": "ana:Match",
+                                "type": "vm:Match",
                                 "value": {
                                     # the text in the input
-                                    "ana:match_phrase": text_line.text[
-                                                        ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                    "vm:match_phrase": text_line.text[
+                                                       ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                     # aggregate text of the top variants
-                                    "ana:match_variant": variant_text,
-                                    "ana:category": ner_result['tag']
+                                    "vm:match_variant": variant_text,
+                                    "vm:category": ner_result['tag']
                                 }
                             }
                         ],
@@ -251,30 +251,31 @@ class NER:
                     "purpose": "commenting",
                 },
                 {
-                    "type": "ana:Match",
+                    "type": "vm:Match",
                     "value": {
                         # the text in the input
-                        "ana:match_phrase": ner_result['input'],
+                        "vm:phrase": ner_result['input'],
                         # the variant in the lexicon that matched with the input
-                        "ana:match_variant": top_variant['text'],
+                        "vm:variant": top_variant['text'],
                         # the score of the match as reported by the system (no intrinsic meaning, only to be judged
                         # relatively)
-                        "ana:match_score": top_variant['score'],
+                        "vm:score": top_variant['score'],
                         # the sources (lexicons/variants lists) where the match was found
-                        "ana:match_source": [os.path.basename(x) for x in top_variant['lexicons']],
+                        "vm:source": [os.path.basename(x) for x in top_variant['lexicons']],
                     },
                 },
             ]
             if 'tag' in ner_result:
                 # the tag assigned to this match
-                bodies[-1]['value']['ana:category'] = ner_result['tag']
+                bodies[-1]['value']['vm:category'] = ner_result['tag']
                 # the sequence number (in case the tagged sequence covers multiple items)
-                bodies[-1]['value']['ana:seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
+                bodies[-1]['value']['vm:seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
             elif not self.has_contextrules:
                 # old-style:
-                bodies[-1]['value']['ana:category'] = categories
+                bodies[-1]['value']['vm:category'] = categories
             yield {
-                "@context": ["http://www.w3.org/ns/anno.jsonld", {"ana": "http://purl.org/analiticcl/terms#"}],
+                "@context": ["http://www.w3.org/ns/anno.jsonld",
+                             {"vm": "https://humanities.knaw.nl/ns/variant-matching#"}],
                 "id": random_annotation_id(),
                 "type": "Annotation",
                 "motivation": "classifying",

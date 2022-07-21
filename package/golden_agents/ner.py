@@ -136,15 +136,12 @@ class NER:
                 if length > 1:
                     tagging_body = self.tagging_body(label=ner_result['tag'])
                     yield {
-                        "@context": [
-                            VARIANT_MATCHING_CONTEXT,
-                            "http://www.w3.org/ns/anno.jsonld"
-                        ],
+                        "@context": "http://www.w3.org/ns/anno.jsonld",
                         "id": random_annotation_id(),
                         "type": "Annotation",
                         "motivation": [
                             "classifying",
-                            "correcting"
+                            "editing"
                         ],
                         "generated": now(),
                         "generator": {
@@ -158,7 +155,7 @@ class NER:
                                 "type": "TextualBody",
                                 "value": variant_text,
                                 "modified": now(),
-                                "purpose": "correcting"
+                                "purpose": "editing"
                             },
                             {
                                 "@context": VARIANT_MATCHING_CONTEXT,
@@ -253,7 +250,7 @@ class NER:
                     "type": "TextualBody",
                     "value": top_variant['text'],
                     "modified": now(),
-                    "purpose": "commenting",
+                    "purpose": "editing",
                 },
                 {
                     "@context": VARIANT_MATCHING_CONTEXT,
@@ -278,15 +275,12 @@ class NER:
                 # old-style:
                 bodies[-1]['category'] = categories
             yield {
-                "@context": [
-                    VARIANT_MATCHING_CONTEXT,
-                    "http://www.w3.org/ns/anno.jsonld"
-                ],
+                "@context": "http://www.w3.org/ns/anno.jsonld",
                 "id": random_annotation_id(),
                 "type": "Annotation",
                 "motivation": [
                     "classifying",
-                    "correcting"
+                    "editing"
                 ],
                 "generated": now(),
                 "generator": {

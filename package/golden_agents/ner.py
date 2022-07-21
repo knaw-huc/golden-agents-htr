@@ -44,7 +44,7 @@ def now():
 
 
 def random_annotation_id() -> str:
-    return f'urn:golden-agents:annotation:{uuid.uuid4()}'
+    return f'https://data.goldenagents.org/datasets/annotations/{uuid.uuid4()}'
 
 
 class NER:

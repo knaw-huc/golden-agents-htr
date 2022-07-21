@@ -115,10 +115,14 @@ class NER:
             scan.id = create_scan_id(file)
         # TODO: remove hardcoded urls
         scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
-        return self.create_web_annotations(scan, "http://localhost:8080/textrepo/versions/x")
+        inv_num = "some_inventory_number"
+        base_name = file.split('/')[-1].split('.')[0]
+        scan.pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/scans/{base_name}"
+        scan.text_pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/texts/{base_name}"
+        return self.create_web_annotations(scan)
 
     def create_web_annotation_multispan(self, ner_results, text_line: PageXMLTextLine, line_offset: int,
-                                        pagexml_urn: str):
+                                        text_pid: str, scan_pid: str):
         """Extract larger tagged entities from NER results and creates web annotations for them."""
         for i, ner_result in enumerate(ner_results):
             if 'tag' in ner_result and ner_result.get('seqnr') == 0 and ner_result['variants']:
@@ -135,6 +139,7 @@ class NER:
                         break
                 if length > 1:
                     tagging_body = self.tagging_body(label=ner_result['tag'])
+                    xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
                     yield {
                         "@context": "http://www.w3.org/ns/anno.jsonld",
                         "id": random_annotation_id(),
@@ -168,26 +173,38 @@ class NER:
                                 "category": ner_result['tag']
                             }
                         ],
-                        "target": {
-                            "source": f'{pagexml_urn}',
-                            "selector": [
-                                {
-                                    "type": "TextPositionSelector",
-                                    "start": line_offset + ner_result['offset']['begin'],
-                                    "end": line_offset + last_ner_result['offset']['end']
-                                },
-                                {
-                                    "type": "TextQuoteSelector",
-                                    "exact": text_line.text[
-                                             ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                    "prefix": text_line.text[:ner_result['offset']['begin']],
-                                    "suffix": text_line.text[last_ner_result['offset']['end']:],
+                        "target": [
+                            {
+                                "source": text_pid,
+                                "type": "Text",
+                                "selector": [
+                                    {
+                                        "type": "TextPositionSelector",
+                                        "start": line_offset + ner_result['offset']['begin'],
+                                        "end": line_offset + last_ner_result['offset']['end']
+                                    },
+                                    {
+                                        "type": "TextQuoteSelector",
+                                        "exact": text_line.text[
+                                                 ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                        "prefix": text_line.text[:ner_result['offset']['begin']],
+                                        "suffix": text_line.text[last_ner_result['offset']['end']:],
+                                    }
+                                ]
+                            },
+                            {
+                                "source": scan_pid,
+                                "type": "Image",
+                                "selector": {
+                                    "type": "FragmentSelector",
+                                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                                    "value": f"xywh={xywh}"
                                 }
-                            ]
-                        }
+                            }
+                        ]
                     }
 
-    def create_web_annotations(self, scan, version_base_uri: str) -> (List[dict], str, List[dict]):
+    def create_web_annotations(self, scan) -> (List[dict], str, List[dict]):
         """Find lines in the scan and pass them to the tagger, producing web-annotations"""
         annotations = []
         plain_text = ''
@@ -198,7 +215,9 @@ class NER:
                 text = self.htr_corrector.correct(text)
             ner_results = self.model.find_all_matches(text, self.params)
             if self.has_contextrules:
-                for entity_wa in self.create_web_annotation_multispan(ner_results, tl, len(plain_text), scan.id):
+                for entity_wa in self.create_web_annotation_multispan(ner_results=ner_results, text_line=tl,
+                                                                      line_offset=len(plain_text),
+                                                                      scan_pid=scan.pid, text_pid=scan.text_pid):
                     annotations.append(entity_wa)
             for result in ner_results:
                 raw_results.append(result)
@@ -208,28 +227,28 @@ class NER:
                 ):
                     xywh = f"{tl.coords.x},{tl.coords.y},{tl.coords.w},{tl.coords.h}"
                     annotations += list(
-                        self.create_web_annotation(scan.id, tl, result, iiif_url=scan.transkribus_uri, xywh=xywh,
-                                                   version_base_uri=version_base_uri, line_offset=len(plain_text)))
+                        self.create_web_annotation(text_line=tl, ner_result=result, scan_pid=scan.pid, xywh=xywh,
+                                                   text_pid=scan.text_pid,
+                                                   line_offset=len(plain_text)))
             plain_text += f"{text}\n"
         return annotations, plain_text, raw_results
 
-    def create_web_annotation(self, pagexml_urn: str, text_line: PageXMLTextLine, ner_result, iiif_url, xywh,
-                              version_base_uri, line_offset: int):
+    def create_web_annotation(self, text_line: PageXMLTextLine, ner_result, scan_pid, xywh, text_pid, line_offset: int):
         """Convert analiticcl's output to web annotation, may output multiple web annotations in case of ties
         """
-        prevscore = None
+        prev_score = None
         for top_variant in ner_result['variants']:
-            if prevscore and top_variant['score'] < prevscore:
+            if prev_score and top_variant['score'] < prev_score:
                 break
             else:
-                prevscore = top_variant['score']
+                prev_score = top_variant['score']
 
             # ic(top_variant)
             lexicons = top_variant['lexicons']
             # note: categories starting with an underscore will not be propagated to output
             # (useful for background lexicons)
-            categories = [self.category_dict[l] for l in lexicons if
-                          l in self.category_dict and self.category_dict[l][0] != "_"]
+            categories = [self.category_dict[lexicon] for lexicon in lexicons if
+                          lexicon in self.category_dict and self.category_dict[lexicon][0] != "_"]
             tag_bodies = []
             if 'tag' in ner_result and ner_result.get('seqnr') == 0:
                 # new style: tag set by analiticcl via contextrules
@@ -291,7 +310,8 @@ class NER:
                 "body": bodies,
                 "target": [
                     {
-                        "source": pagexml_urn,
+                        "source": text_pid,
+                        "type": "Text",
                         "selector": [
                             {
                                 "type": "TextPositionSelector",
@@ -306,7 +326,7 @@ class NER:
                         ]
                     },
                     {
-                        "source": iiif_url,
+                        "source": scan_pid,
                         "type": "Image",
                         "selector": {
                             "type": "FragmentSelector",

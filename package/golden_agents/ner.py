@@ -1,3 +1,4 @@
+import csv
 import json
 import os.path
 import sys
@@ -17,7 +18,7 @@ def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
 
 
-def create_scan_id(file) -> str:
+def create_scan_id(file: str) -> str:
     path_parts = file.split('/')
     if len(path_parts) >= 2:
         archive_id = path_parts[-2]
@@ -108,15 +109,23 @@ class NER:
                 corrections_dict = json.load(f)
             self.htr_corrector = Corrector(corrections_dict)
 
+        index = {}
+        with open('../resources/archive_identifiers.csv') as f:
+            for row in csv.DictReader(f):
+                index[row['title']] = row['identifier']
+        self.archive_identifier = index
+
     def process_pagexml(self, file: str) -> (list, str, list):
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
         scan = parse_pagexml_file(file)
         if not scan.id:
             scan.id = create_scan_id(file)
         # TODO: remove hardcoded urls
-        scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
-        inv_num = "some_inventory_number"
-        base_name = file.split('/')[-1].split('.')[0]
+        # scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
+        path_parts = file.split('/')
+        archive_title = path_parts[-2]
+        inv_num = self.archive_identifier[archive_title]
+        base_name = path_parts[-1].split('.')[0]
         scan.pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/scans/{base_name}"
         scan.text_pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/texts/{base_name}"
         return self.create_web_annotations(scan)

@@ -7,7 +7,7 @@ from typing import List, Dict, Any, Optional, Tuple
 from copy import deepcopy
 
 from analiticcl import VariantModel, Weights, SearchParameters
-from golden_agents.corrections import Corrector
+from golden_agents_ner.corrections import Corrector
 from pagexml.parser import PageXMLTextLine, parse_pagexml_file
 
 VARIANT_MATCHING_CONTEXT = "https://brambg.github.io/ns/variant-matching.jsonld"

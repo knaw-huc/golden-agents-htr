@@ -1,13 +1,13 @@
-import csv
 import json
 import os.path
 import sys
 import uuid
+from copy import deepcopy
 from datetime import datetime
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional, Tuple
 
 from analiticcl import VariantModel, Weights, SearchParameters
-from golden_agents.corrections import Corrector
+from golden_agents_ner.corrections import Corrector
 from pagexml.parser import PageXMLTextLine, parse_pagexml_file
 
 VARIANT_MATCHING_CONTEXT = "https://brambg.github.io/ns/variant-matching.jsonld"
@@ -108,14 +108,13 @@ class NER:
             with open(corrections_file) as f:
                 corrections_dict = json.load(f)
             self.htr_corrector = Corrector(corrections_dict)
-
         index = {}
         with open('../resources/archive_identifiers.csv') as f:
             for row in csv.DictReader(f):
                 index[row['title']] = row['identifier']
         self.archive_identifier = index
 
-    def process_pagexml(self, file: str) -> (list, str, list):
+    def process_pagexml(self, file: str) -> Tuple[list, str, list]:
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
         scan = parse_pagexml_file(file)
         if not scan.id:
@@ -134,86 +133,92 @@ class NER:
                                         text_pid: str, scan_pid: str):
         """Extract larger tagged entities from NER results and creates web annotations for them."""
         for i, ner_result in enumerate(ner_results):
-            if 'tag' in ner_result and ner_result.get('seqnr') == 0 and ner_result['variants']:
-                length = 1
-                # aggregate text of the top variants
-                variant_text = ner_result['variants'][0]['text']
-                last_ner_result = ner_result
-                for j, ner_result2 in enumerate(ner_results[i + 1:]):
-                    if ner_result2.get('tag') == ner_result.get('tag') and ner_result2.get('seqnr') == j + 1:
-                        length += 1
-                        variant_text += " " + ner_result2['variants'][0]['text']
-                        last_ner_result = ner_result2
-                    else:
-                        break
-                if length > 1:
-                    tagging_body = self.tagging_body(label=ner_result['tag'])
-                    xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
-                    yield {
-                        "@context": "http://www.w3.org/ns/anno.jsonld",
-                        "id": random_annotation_id(),
-                        "type": "Annotation",
-                        "motivation": [
-                            "classifying",
-                            "editing"
-                        ],
-                        "generated": now(),
-                        "generator": {
-                            "id": "https://github.com/knaw-huc/golden-agents-htr",
-                            "type": "Software",
-                            "name": "GoldenAgentsNER"
-                        },
-                        "body": [
-                            tagging_body,
-                            {
-                                "type": "TextualBody",
-                                "value": variant_text,
-                                "modified": now(),
-                                "purpose": "editing"
+            if ner_result['variants']:
+                for (tag, seqnr) in zip(ner_result.get('tag', []), ner_result.get('seqnr', [])):
+                    # If there are multiple tags we create a complete and a seperate web annotation for each of them
+                    if seqnr > 0:
+                        # find beginning of sequence, skip otherwise
+                        continue
+                    length = 1
+                    # find the rest of the sequence; aggregate text of the top variants
+                    variant_text = ner_result['variants'][0]['text']
+                    last_ner_result = ner_result
+                    for j, ner_result2 in enumerate(ner_results[i + 1:]):
+                        idx = ner_result2.get('tag', []).find(tag)
+                        if idx != -1 and ner_result2.get('seqnr', [])[idx] == j + 1:
+                            length += 1
+                            variant_text += " " + ner_result2['variants'][0]['text']
+                            last_ner_result = ner_result2
+                        else:
+                            break
+                    if length > 1:
+                        tagging_body = self.tagging_body(label=tag)
+                        xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
+                        yield {
+                            "@context": "http://www.w3.org/ns/anno.jsonld",
+                            "id": random_annotation_id(),
+                            "type": "Annotation",
+                            "motivation": [
+                                "classifying",
+                                "editing"
+                            ],
+                            "generated": now(),
+                            "generator": {
+                                "id": "https://github.com/knaw-huc/golden-agents-htr",
+                                "type": "Software",
+                                "name": "GoldenAgentsNER"
                             },
-                            {
-                                "@context": VARIANT_MATCHING_CONTEXT,
-                                "type": "Match",
-                                # the text in the input
-                                "phrase": text_line.text[
-                                          ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                # aggregate text of the top variants
-                                "variant": variant_text,
-                                "category": ner_result['tag']
-                            }
-                        ],
-                        "target": [
-                            {
-                                "source": text_pid,
-                                "type": "Text",
-                                "selector": [
-                                    {
-                                        "type": "TextPositionSelector",
-                                        "start": line_offset + ner_result['offset']['begin'],
-                                        "end": line_offset + last_ner_result['offset']['end']
-                                    },
-                                    {
-                                        "type": "TextQuoteSelector",
-                                        "exact": text_line.text[
-                                                 ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                        "prefix": text_line.text[:ner_result['offset']['begin']],
-                                        "suffix": text_line.text[last_ner_result['offset']['end']:],
-                                    }
-                                ]
-                            },
-                            {
-                                "source": scan_pid,
-                                "type": "Image",
-                                "selector": {
-                                    "type": "FragmentSelector",
-                                    "conformsTo": "http://www.w3.org/TR/media-frags/",
-                                    "value": f"xywh={xywh}"
+                            "body": [
+                                tagging_body,
+                                {
+                                    "type": "TextualBody",
+                                    "value": variant_text,
+                                    "modified": now(),
+                                    "purpose": "editing"
+                                },
+                                {
+                                    "@context": VARIANT_MATCHING_CONTEXT,
+                                    "type": "Match",
+                                    # the text in the input
+                                    "phrase": text_line.text[
+                                              ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                    # aggregate text of the top variants
+                                    "variant": variant_text,
+                                    "category": ner_result['tag']
                                 }
-                            }
-                        ]
-                    }
+                            ],
+                            "target": [
+                                {
+                                    "source": text_pid,
+                                    "type": "Text",
+                                    "selector": [
+                                        {
+                                            "type": "TextPositionSelector",
+                                            "start": line_offset + ner_result['offset']['begin'],
+                                            "end": line_offset + last_ner_result['offset']['end']
+                                        },
+                                        {
+                                            "type": "TextQuoteSelector",
+                                            "exact": text_line.text[
+                                                     ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                            "prefix": text_line.text[:ner_result['offset']['begin']],
+                                            "suffix": text_line.text[last_ner_result['offset']['end']:],
+                                        }
+                                    ]
+                                },
+                                {
+                                    "source": scan_pid,
+                                    "type": "Image",
+                                    "selector": {
+                                        "type": "FragmentSelector",
+                                        "conformsTo": "http://www.w3.org/TR/media-frags/",
+                                        "value": f"xywh={xywh}"
+                                    }
+                                }
+                            ]
+                        }
 
-    def create_web_annotations(self, scan) -> (List[dict], str, List[dict]):
+    def create_web_annotations(self, scan) -> Tuple[List[dict], str, List[dict]]:
         """Find lines in the scan and pass them to the tagger, producing web-annotations"""
         annotations = []
         plain_text = ''
@@ -294,15 +299,7 @@ class NER:
                     "source": [os.path.basename(x) for x in top_variant['lexicons']],
                 },
             ]
-            if 'tag' in ner_result:
-                # the tag assigned to this match
-                bodies[-1]['category'] = ner_result['tag']
-                # the sequence number (in case the tagged sequence covers multiple items)
-                bodies[-1]['seqnr'] = int(ner_result['seqnr'] + 1) if 'seqnr' in ner_result else 1
-            elif not self.has_contextrules:
-                # old-style:
-                bodies[-1]['category'] = categories
-            yield {
+            webannotation = {
                 "@context": "http://www.w3.org/ns/anno.jsonld",
                 "id": random_annotation_id(),
                 "type": "Annotation",
@@ -345,11 +342,30 @@ class NER:
                     }]
 
             }
+            if 'tag' in ner_result:
+                # If we have multiple tags (and hence multiple seqnr) we output a complete and separate webannotation for each
+                for tag, seqnr in zip(ner_result['tag'], ner_result['seqnr']):
+                    if ner_result['tag'].len() > 1:
+                        webannotation = deepcopy(webannotation)
+                        webannotation['id'] = random_annotation_id()
+                    # the tag assigned to this match
+                    webannotation['body'][-1]['category'] = tag
+                    # the sequence number (in case the tagged sequence covers multiple items)
+                    webannotation['body'][-1]['seqnr'] = int(seqnr + 1) if 'seqnr' in ner_result else 1
+                    yield webannotation
+            elif not self.has_contextrules:
+                # old-style, allows multiple categories in one annotation
+                webannotation['body'][-1]['category'] = categories
+                yield webannotation
+            else:
+                yield webannotation
             if self.has_contextrules:
                 # ties are already resolved by analiticcl if there are context rules
+                # no need to consider further top variants
                 break
 
-    def tagging_body(self, label: str, confidence: float = None, provenance: str = None) -> Dict[str, Any]:
+    def tagging_body(self, label: str, confidence: Optional[float] = None, provenance: Optional[str] = None) -> Dict[
+        str, Any]:
         if self.has_resource_ids:
             if label not in self.resource_ids:
                 raise Exception(f"no resourceid defined for '{label}': check config file.")

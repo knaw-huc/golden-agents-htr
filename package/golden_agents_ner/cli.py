@@ -4,7 +4,7 @@ import json
 import os.path
 import sys
 
-from golden_agents.ner import NER
+from golden_agents_ner.ner import NER
 
 
 def main():

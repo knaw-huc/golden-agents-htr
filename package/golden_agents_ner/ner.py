@@ -1,3 +1,4 @@
+import csv
 import json
 import os.path
 import sys
@@ -12,6 +13,7 @@ from pagexml.parser import PageXMLTextLine, parse_pagexml_file
 
 VARIANT_MATCHING_CONTEXT = "https://brambg.github.io/ns/variant-matching.jsonld"
 HTR_CORRECTIONS = 'htr_corrections'
+ARCHIVE_IDENTIFIERS = 'archive_identifiers'
 
 
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
@@ -74,27 +76,32 @@ class NER:
         print("Weights: ", weights.to_dict(), file=sys.stderr)
         print("Debug: ", self.config.get('debug', 0), file=sys.stderr)
         self.model = VariantModel(abcfile, weights, debug=self.config.get('debug', 0))
+
         if 'lexicons' in self.config:
             for filepath in self.config['lexicons'].values():
                 filepath = fixpath(filepath, configfile)
                 if not os.path.exists(filepath):
                     raise FileNotFoundError(filepath)
                 self.model.read_lexicon(filepath)
+
         if 'variantlists' in self.config:
             for filepath in self.config['variantlists'].values():
                 filepath = fixpath(filepath, configfile)
                 if not os.path.exists(filepath):
                     raise FileNotFoundError(filepath)
                 self.model.read_variants(filepath, True)
+
         if 'lm' in self.config:
             for filepath in self.config['lm']:
                 filepath = fixpath(filepath, configfile)
                 self.model.read_lm(filepath)
+
         if 'contextrules' in self.config:
             self.model.read_contextrules(self.config['contextrules'])
             self.has_contextrules = True
         else:
             self.has_contextrules = False
+
         if 'resourceids' in self.config:
             self.resource_ids = self.config['resourceids']
             self.has_resource_ids = True
@@ -108,11 +115,16 @@ class NER:
             with open(corrections_file) as f:
                 corrections_dict = json.load(f)
             self.htr_corrector = Corrector(corrections_dict)
-        index = {}
-        with open('../resources/archive_identifiers.csv') as f:
-            for row in csv.DictReader(f):
-                index[row['title']] = row['identifier']
-        self.archive_identifier = index
+
+        if ARCHIVE_IDENTIFIERS in self.config:
+            index = {}
+            with open(self.config[ARCHIVE_IDENTIFIERS]) as f:
+                for row in csv.DictReader(f):
+                    index[row['title']] = row['identifier']
+            self.archive_identifier = index
+        else:
+            raise Exception(f"config file should have an '{ARCHIVE_IDENTIFIERS}' entry linking to a file like "
+                            f"resources/archive_identifiers.tsv.")
 
     def process_pagexml(self, file: str) -> Tuple[list, str, list]:
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""

@@ -1,4 +1,4 @@
-import { Recogito } from "@recogito/recogito-js";
+import { Recogito } from "@recogito/recogito-js/src";
 import "@recogito/recogito-js/dist/recogito.min.css";
 import { useEffect, useState } from "react";
 import type { Annotation, Doc } from "../App";

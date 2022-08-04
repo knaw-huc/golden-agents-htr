@@ -58,8 +58,14 @@ interface InitData {
   annotationVersions: string[];
 }
 
-const config: {} = require("./config.json");
+const config: {} = {
+  "version": "2022.08.04",
+  "developmentMode": true,
+  "versionSelector": true
+};
+
 const version = config["version"];
+console.log(config)
 const inDevelopmentMode = config["developmentMode"];
 const versionSelector = config["versionSelector"]; //show version menu?
 const apiBase = inDevelopmentMode ? "http://localhost:8000" : "/api"; // production; proxied to back-end in nginx.conf

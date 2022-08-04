@@ -1,42 +1,61 @@
 {
-    "alphabet": "../resources/simple.alphabet.tsv",
-    "lexicons": {
-        "firstname": "../resources/first_names_lexicon.sanitized.tsv",
-        "familyname": "../resources/family_names_lexicon.sanitized.tsv",
-        "country": "../resources/countries.freq.tsv",
-        "region": "../resources/regions.freq.tsv",
-        "location": "../resources/locations_lexicon.freq.tsv",
-        "streetname": "../resources/streetnames_lexicon.tsv"
-    },
-    "variantlists": {
-        "object": "../resources/object_variants.freq.tsv",
-        "material": "../resources/material_variants.freq.tsv",
-        "property": "../resources/property_variants.freq.tsv",
-        "picture": "../resources/picture_variants.freq.tsv",
-        "currency": "../resources/currency_variants.freq.tsv",
-        "category": "../resources/category_variants.freq.tsv",
-        "room": "../resources/room_variants.freq.tsv",
-        "animal": "../resources/animal_variants.freq.tsv",
-        "quantifier": "../resources/quantifier_variants.freq.tsv",
-        "_background": "../resources/int_historisch_lexicon_variants.freq.tsv"
-    },
-    "searchparameters": {
-        "max_edit_distance": "0.7;4",
-        "max_anagram_distance": "0.7;4",
-        "max_ngram": 3,
-        "cutoff_threshold": 1.4,
-        "score_threshold": 0.5,
-        "max_matches": 20,
-        "freq_weight": 0.25,
-        "variantmodel_weight": 1.0
-    },
-    "weights": {
-        "ld": 0.550,
-        "lcs": 0.150,
-        "prefix": 0.150,
-        "suffix": 0.150,
-        "case": 0
-    },
-    "debug": 1,
-    "htr_corrections": "../resources/htr_corrections.json"
+  "alphabet": "../resources/simple.alphabet.tsv",
+  "lexicons": {
+    "firstname": "../resources/first_names_lexicon.sanitized.tsv",
+    "familyname": "../resources/family_names_lexicon.sanitized.tsv",
+    "country": "../resources/countries.freq.tsv",
+    "region": "../resources/regions.freq.tsv",
+    "location": "../resources/locations_lexicon.freq.tsv",
+    "street": "../resources/streetnames_lexicon.tsv"
+  },
+  "variantlists": {
+    "object": "../resources/object_variants.freq.tsv",
+    "material": "../resources/material_variants.freq.tsv",
+    "property": "../resources/property_variants.freq.tsv",
+    "painting": "../resources/picture_variants.freq.tsv",
+    "currency": "../resources/currency_variants.freq.tsv",
+    "category": "../resources/category_variants.freq.tsv",
+    "room": "../resources/room_variants.freq.tsv",
+    "animal": "../resources/animal_variants.freq.tsv",
+    "quantifier": "../resources/quantifier_variants.freq.tsv",
+    "_background": "../resources/int_historisch_lexicon_variants.freq.tsv"
+  },
+  "resourceids": {
+    "animal": "http://vocab.getty.edu/aat/300249525",
+    "category": "http://vocab.getty.edu/aat/300435413",
+    "country": "http://vocab.getty.edu/aat/300387506",
+    "currency": "http://vocab.getty.edu/aat/300411993",
+    "familyname": "http://vocab.getty.edu/aat/300435247",
+    "firstname": "http://vocab.getty.edu/aat/300404651",
+    "location": "http://vocab.getty.edu/aat/300248479",
+    "material": "http://vocab.getty.edu/aat/300010358",
+    "object": "http://vocab.getty.edu/aat/300311889",
+    "painting": "http://vocab.getty.edu/aat/300033618",
+    "person": "http://vocab.getty.edu/aat/300024979",
+    "property": "http://vocab.getty.edu/aat/300055588",
+    "quantifier": "http://vocab.getty.edu/aat/300055665",
+    "region": "http://vocab.getty.edu/aat/300182722",
+    "room": "http://vocab.getty.edu/aat/300133704",
+    "street": "http://vocab.getty.edu/aat/300008247"
+  },
+  "searchparameters": {
+    "max_edit_distance": "0.7;4",
+    "max_anagram_distance": "0.7;4",
+    "max_ngram": 3,
+    "cutoff_threshold": 1.4,
+    "score_threshold": 0.5,
+    "max_matches": 20,
+    "freq_weight": 0.25,
+    "variantmodel_weight": 1.0
+  },
+  "weights": {
+    "ld": 0.550,
+    "lcs": 0.150,
+    "prefix": 0.150,
+    "suffix": 0.150,
+    "case": 0
+  },
+  "debug": 1,
+  "htr_corrections": "../resources/htr_corrections.json",
+  "archive_identifiers": "../resources/archive_identifiers.csv"
 }

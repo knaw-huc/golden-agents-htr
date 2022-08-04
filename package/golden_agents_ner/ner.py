@@ -159,8 +159,11 @@ class NER:
                     variant_text = ner_result['variants'][0]['text']
                     last_ner_result = ner_result
                     for j, ner_result2 in enumerate(ner_results[i + 1:]):
-                        idx = ner_result2.get('tag', []).find(tag)
-                        if idx != -1 and ner_result2.get('seqnr', [])[idx] == j + 1:
+                        try:
+                            idx = ner_result2.get('tag', []).index(tag)
+                        except ValueError:
+                            break
+                        if ner_result2.get('seqnr', [])[idx] == j + 1:
                             length += 1
                             variant_text += " " + ner_result2['variants'][0]['text']
                             last_ner_result = ner_result2

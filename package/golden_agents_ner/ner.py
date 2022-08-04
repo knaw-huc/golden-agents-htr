@@ -128,6 +128,9 @@ class NER:
 
     def process_pagexml(self, file: str) -> Tuple[list, str, list]:
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
+        if os.path.islink(file): 
+            #deference symbolic links, we need the full path info
+            file = os.path.realpath(file)
         scan = parse_pagexml_file(file)
         if not scan.id:
             scan.id = create_scan_id(file)

@@ -195,12 +195,12 @@ exp3: lexicons A16098000033.txt
 	golden-agents-ner --rawout --config nerconfig.exp14.json "$<" > "$@" || (rm "$@" && false)
 
 %.exp15.json: %.xml lexicons
-	golden-agents-ner --stdout --config nerconfig.exp14.json "$<" > "$@" || (rm "$@" && false)
+	golden-agents-ner --stdout --config nerconfig.exp15.json "$<" > "$@" || (rm "$@" && false)
 
 %.exp15.raw.json: %.xml lexicons
 	golden-agents-ner --rawout --config nerconfig.exp15.json "$<" > "$@" || (rm "$@" && false)
 
-.PHONY: exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g exp13h exp13i exp13j exp13k exp13l exp14 exp14a exp14b exp14c exp14d exp14e exp14f exp14ef exp14g exp14h exp14i exp14j exp14k exp14l exp15:
+.PHONY: exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g exp13h exp13i exp13j exp13k exp13l exp14 exp14a exp14b exp14c exp14d exp14e exp14f exp14ef exp14g exp14h exp14i exp14j exp14k exp14l exp15
 exp7 exp8 exp9 exp10 exp10b exp10c exp11 exp11n2 exp12 exp13 exp13b exp13c exp13d exp13e exp13f exp13ef exp13g exp13h exp13i exp13j exp13k exp13l exp14 exp14a exp14b exp14c exp14d exp14e exp14f exp14ef exp14g exp14h exp14i exp14j exp14k exp14l exp15:
 	$(MAKE) exp EXP=$@
 

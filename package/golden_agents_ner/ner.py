@@ -360,7 +360,7 @@ class NER:
             if 'tag' in ner_result:
                 # If we have multiple tags (and hence multiple seqnr) we output a complete and separate webannotation for each
                 for tag, seqnr in zip(ner_result['tag'], ner_result['seqnr']):
-                    if ner_result['tag'].len() > 1:
+                    if len(ner_result['tag']) > 1:
                         webannotation = deepcopy(webannotation)
                         webannotation['id'] = random_annotation_id()
                     # the tag assigned to this match

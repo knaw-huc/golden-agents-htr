@@ -38,23 +38,29 @@ class Classification:
     classes: List
 
 
-def extract_target(target: dict) -> Target:
-    if "source" in target:
-        source = target["source"]
+def extract_target(target: Union[list, dict]) -> Target:
+    if isinstance(target, list):
+        for t in target:
+            if t['type'] == 'Text':
+                return extract_target(t)
+        raise Exception("Unable to extract target")
     else:
-        source = ""
-    start = None
-    end = None
-    exact = ""
-    for s in target['selector']:
-        if s['type'] == 'TextPositionSelector':
-            start = s['start']
-            end = s['end']
-        elif s['type'] == 'TextQuoteSelector':
-            exact = s['exact']
-    if start is None or end is None:
-        raise ValueError("No start/end found")
-    return Target(source=source, start=start, end=end, exact=exact)
+        if "source" in target:
+            source = target["source"]
+        else:
+            source = ""
+        start = None
+        end = None
+        exact = ""
+        for s in target['selector']:
+            if s['type'] == 'TextPositionSelector':
+                start = s['start']
+                end = s['end']
+            elif s['type'] == 'TextQuoteSelector':
+                exact = s['exact']
+        if start is None or end is None:
+            raise ValueError("No start/end found")
+        return Target(source=source, start=start, end=end, exact=exact)
 
 
 def load_annotations(path):

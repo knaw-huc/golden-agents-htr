@@ -13,8 +13,9 @@ from dataclasses_json import dataclass_json
 from prettytable.colortable import ColorTable, Themes
 from tabulate import tabulate
 
-#Selection of categories that we are actually interested in 
-CAT_SELECTION = ("object", "person","location","streetname", "room")
+# Selection of categories that we are actually interested in
+CAT_SELECTION = ("object", "person", "location", "street", "room")
+
 
 @dataclass_json
 @dataclass(frozen=True)
@@ -84,10 +85,10 @@ def evaluate(eval_dir: str, ref_dir: str, outfile: str) -> EvaluationResults:
     eval_data = load_annotations(eval_dir)
     ref_data = load_annotations(ref_dir)
 
-    #returns the keys that exist both in reference data and evaluation data
+    # returns the keys that exist both in reference data and evaluation data
     keys = check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir)
 
-    print_comparison_table(eval_data,keys, ref_data)
+    print_comparison_table(eval_data, keys, ref_data)
 
     print_categorization_table(eval_data, keys, ref_data, outfile)
 
@@ -121,7 +122,6 @@ def extract_normalizations(annotation: dict) -> List[str]:
     return [b['value'] for b in annotation['body'] if b.get('purpose') == 'commenting']
 
 
-
 @dataclass
 class Row:
     page_id: str
@@ -132,11 +132,12 @@ class Row:
     normalized_ref: List[str]
     categories_ref: List[str]
 
+
 def extract_persons(evaluation_rows: Dict[str, Row]):
     firstname_start = defaultdict(dict)
     lastname_start = defaultdict(dict)
     for row in evaluation_rows.values():
-        start, end = [ int(x) for x in row.range.split("-") ]
+        start, end = [int(x) for x in row.range.split("-")]
         if 'firstname' in row.categories_ref:
             firstname_start[row.page_id][start] = row
         if 'familyname' in row.categories_ref:
@@ -145,7 +146,7 @@ def extract_persons(evaluation_rows: Dict[str, Row]):
     for page_id, firstnames_offsets in firstname_start.items():
         for start, firstname in firstnames_offsets.items():
             end = int(firstname.range.split("-")[1]) + 1
-            for lastname_offset in (end,end+1):
+            for lastname_offset in (end, end + 1):
                 if lastname_offset in lastname_start[page_id]:
                     lastname = lastname_start[page_id][lastname_offset]
                     normalized_ref = (firstname.normalized_ref[0] + " " + lastname.normalized_ref[0]).strip()
@@ -168,7 +169,7 @@ def extract_persons(evaluation_rows: Dict[str, Row]):
                             categories_ref=["person"]
                         )
                     print(f"(Extracted person '{normalized_ref}' in ground truth: {key})")
-        
+
 
 def print_categorization_table(eval_data, keys, ref_data, outfile: str):
     # table = ColorTable(
@@ -204,7 +205,7 @@ def print_categorization_table(eval_data, keys, ref_data, outfile: str):
             categories = sorted(extract_categories(a))
             normalizations = sorted(extract_normalizations(a))
             if not normalizations:
-                #no normalizations provided by annotator, copy input term
+                # no normalizations provided by annotator, copy input term
                 normalizations = [target.exact]
             if key in evaluation_rows:
                 evaluation_rows[key].normalized_ref = normalizations
@@ -257,32 +258,33 @@ def write_to_tsv(headers, table, outfile: str):
 
 
 class CategorizationNumbers:
-    def __init__(self, total: int, true_positives: int, strict_true_positives: int, false_positives: int, false_negatives: int):
+    def __init__(self, total: int, true_positives: int, strict_true_positives: int, false_positives: int,
+                 false_negatives: int):
         self.total = total
         self.true_positives = true_positives
-        self.strict_true_positives = strict_true_positives #these is a subset of the true positives where also the normalisation matches
+        self.strict_true_positives = strict_true_positives  # these is a subset of the true positives where also the normalisation matches
         self.false_positives = false_positives
         self.false_negatives = false_negatives
 
-    def accuracy(self, strict: bool =False) -> float:
+    def accuracy(self, strict: bool = False) -> float:
         tp = self.strict_true_positives if strict else self.true_positives
         divider = (self.true_positives + self.false_positives + self.false_negatives)
         return 0 if divider == 0 \
             else tp / divider
 
-    def recall(self, strict: bool =False) -> float:
+    def recall(self, strict: bool = False) -> float:
         tp = self.strict_true_positives if strict else self.true_positives
         divider = (self.true_positives + self.false_negatives)
         return 0 if divider == 0 \
             else tp / divider
 
-    def precision(self, strict: bool =False) -> float:
+    def precision(self, strict: bool = False) -> float:
         tp = self.strict_true_positives if strict else self.true_positives
         divider = (self.true_positives + self.false_positives)
         return 0 if divider == 0 \
             else tp / divider
 
-    def f1(self, strict: bool =False) -> float:
+    def f1(self, strict: bool = False) -> float:
         # if self.precision() is None or self.recall() is None:
         #     return None
         divider = (self.precision(strict) + self.recall(strict))
@@ -336,7 +338,7 @@ def print_per_category(headers, table):
             ref_cats = r[7].split("|")
             cat_in_eval = cat in eval_cats
             cat_in_ref = cat in ref_cats
-            if match_category(ref_cats, eval_cats) and cat not in ('firstname','familyname'):
+            if match_category(ref_cats, eval_cats) and cat not in ('firstname', 'familyname'):
                 type_groups[true_positive].append(r)
                 if norm_match:
                     type_groups[strict_true_positive].append(r)
@@ -402,20 +404,26 @@ def display_confusion_matrix(confusion: dict):
     print(tabulate(matrix, tablefmt="fancy_grid"))
     print()
 
+
 def match_normalization_row(row: Row) -> bool:
     return match_normalization(row.normalized_ref, row.normalized_eval)
 
-def match_normalization(normalized_ref: Union[List[str],Set[str]], normalized_eval: Union[List[str],Set[str]]) -> bool:
+
+def match_normalization(normalized_ref: Union[List[str], Set[str]],
+                        normalized_eval: Union[List[str], Set[str]]) -> bool:
     return normalized_ref == normalized_eval \
            or bool(set(normalized_ref).intersection(set(normalized_eval)))
+
 
 def match_category_row(row: Row) -> bool:
     return match_category(row.categories_ref, row.categories_eval)
 
-def match_category(categories_ref: Union[List[str],Set[str]], categories_eval: Union[List[str],Set[str]]) -> bool:
+
+def match_category(categories_ref: Union[List[str], Set[str]], categories_eval: Union[List[str], Set[str]]) -> bool:
     return categories_ref == categories_eval \
-        or ('person' in categories_eval and ('firstname' in categories_ref or 'familyname' in categories_ref)) \
-        or bool(set(categories_ref).intersection(set(categories_eval)))
+           or ('person' in categories_eval and ('firstname' in categories_ref or 'familyname' in categories_ref)) \
+           or bool(set(categories_ref).intersection(set(categories_eval)))
+
 
 def table_row(row):
     n_mismatch = "" if match_normalization_row(row) else "X"
@@ -495,7 +503,7 @@ def group_by_category(evaluation_rows, categorization_numbers):
             if c in CAT_SELECTION:
                 rows_for_ref_category["SUBTOTAL"].append(r)
 
-    cn = CategorizationNumbers(0,0,0,0,0)
+    cn = CategorizationNumbers(0, 0, 0, 0, 0)
     assert cn is not None
     for c in CAT_SELECTION:
         if c in categorization_numbers:
@@ -504,14 +512,16 @@ def group_by_category(evaluation_rows, categorization_numbers):
 
     all_cats = set(list(rows_for_ref_category.keys()) + list(rows_for_eval_category.keys()))
 
-    cn = CategorizationNumbers(0,0,0,0,0)
+    cn = CategorizationNumbers(0, 0, 0, 0, 0)
     for c in all_cats - {"SUBTOTAL"}:
         if c in categorization_numbers:
             cn += categorization_numbers[c]
     categorization_numbers["TOTAL"] = cn
 
-    headers = ["category", "# in eval", "# in ref", "total", "TP (+strict)", "FP", "FN", "accuracy", "precision", "recall", "F1"]
-    table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in sorted(all_cats)]
+    headers = ["category", "# in eval", "# in ref", "total", "TP (+strict)", "FP", "FN", "accuracy", "precision",
+               "recall", "F1"]
+    table = [create_row(c, rows_for_eval_category, rows_for_ref_category, categorization_numbers[c]) for c in
+             sorted(all_cats)]
     print("categorization numbers: (strict values that take normalisation into account are in parentheses)")
     print(tabulate(table, headers=headers, tablefmt="fancy_grid"))
 
@@ -522,7 +532,7 @@ def check_file_discrepancy(eval_data, eval_dir, ref_data, ref_dir):
     diff = list(sorted(eval_keys - ref_keys))
     if diff:
         print(f"some files in {eval_dir} have no corresponding reference files in {ref_dir}: {diff}")
-    return eval_keys & ref_keys 
+    return eval_keys & ref_keys
 
 
 def check_paths_exist(eval_dir, ref_dir):

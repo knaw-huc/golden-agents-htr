@@ -48,9 +48,9 @@ def parsefiles(ner, out_root: str, args, *files):
             basename = os.path.splitext(os.path.basename(pagexmlfile))[0]
 
             if args.rawout:
-                json.dump(obj=raw_results, fp=sys.stdout, indent=4)
+                json.dump(obj=raw_results, fp=sys.stdout, indent=4, ensure_ascii=False)
             elif args.stdout:
-                json.dump(obj=annotations, fp=sys.stdout, indent=4)
+                json.dump(obj=annotations, fp=sys.stdout, indent=4, ensure_ascii=False)
             else:
                 if args.infix:
                     json_file = os.path.join(out_root, f"{basename}.{args.infix}.json")
@@ -61,7 +61,7 @@ def parsefiles(ner, out_root: str, args, *files):
 
                 print(f'writing to {json_file}', file=sys.stderr)
                 with open(json_file, 'w', encoding='utf8') as f:
-                    json.dump(obj=annotations, fp=f, indent=4)
+                    json.dump(obj=annotations, fp=f, indent=4, ensure_ascii=False)
 
                 print(f'writing to {text_file}', file=sys.stderr)
                 with open(text_file, 'w', encoding='utf8') as f:

@@ -1,0 +1,239 @@
+[
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/9f99a636-2881-4864-8a87-1c3ccb7162a6",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-08T22:14:53.141113",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-08T22:14:53.141129",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300024979",
+                    "label": "person"
+                }
+            },
+            {
+                "type": "TextualBody",
+                "value": "Bruijn Jan",
+                "modified": "2022-08-08T22:14:53.141133",
+                "purpose": "editing"
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Bruijn Jan",
+                "variant": "Bruijn Jan",
+                "category": "person",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/99e35cc52b73daa9123762e201def4e1/texts/VBPD00008000239",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 15,
+                        "end": 25
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Bruijn Jan",
+                        "prefix": "",
+                        "suffix": " zoon"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/99e35cc52b73daa9123762e201def4e1/scans/VBPD00008000239",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=291,276,713,97"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/025d8705-cc9a-4f86-b110-e8658aa98796",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-08T22:14:53.141199",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Bruijn",
+                "modified": "2022-08-08T22:14:53.141185",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-08T22:14:53.141165",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300024979",
+                    "label": "person"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-08T22:14:53.141178",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Bruijn",
+                "variant": "Bruijn",
+                "score": 0.8141832162009942,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "person",
+                "seqnr": 1
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Bruijn",
+                "variant": "Bruijn",
+                "score": 0.8141832162009942,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/99e35cc52b73daa9123762e201def4e1/texts/VBPD00008000239",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 15,
+                        "end": 21
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Bruijn",
+                        "prefix": "",
+                        "suffix": " Jan zoon"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/99e35cc52b73daa9123762e201def4e1/scans/VBPD00008000239",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=291,276,713,97"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/4d4d2d2b-e7d8-4c99-a1d2-f5bb1bad1537",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-08T22:14:53.141228",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Jan",
+                "modified": "2022-08-08T22:14:53.141219",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-08T22:14:53.141212",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Jan",
+                "variant": "Jan",
+                "score": 1.0,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/99e35cc52b73daa9123762e201def4e1/texts/VBPD00008000239",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 22,
+                        "end": 25
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan",
+                        "prefix": "Bruijn ",
+                        "suffix": " zoon"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/99e35cc52b73daa9123762e201def4e1/scans/VBPD00008000239",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=291,276,713,97"
+                }
+            }
+        ]
+    }
+]

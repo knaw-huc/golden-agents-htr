@@ -20,6 +20,7 @@ This repository holds experimental output. The main point of entry for the exper
 * ``exp12*`` - **Experiment 12** - Experiments with context rules 
 * ``exp13*`` - **Experiment 13** - Batch of experiments evaluated against the groundtruth data, see evaluation results below
 * ``exp14*`` - **Experiment 14** - Like exp13 but after a bugfix in analiticcl. Evaluated against the groundtruth data, see evaluation results below
+* ``exp15*`` - **Experiment 15** - Like exp14 but after changes in context rules, web annotation output, and multi-tag support in analiticcl. Evaluated against the groundtruth data, see evaluation results below
 
 
 Pass the root directory containing the Page XML data using ``make DATADIR=/path/to/data``.
@@ -80,4 +81,15 @@ ID        | Description                                       | Precision      |
 `exp14l`  | more pruning                                      | 0.673 (0.558) | 0.455 (0.378)  | 0.543 (0.451)
 
 * ``[2]`` As the ground-truth does uses the pre-correction stage (unfortunately), this is causes mismatches and results are inaccurate. In all order experiments, the pre-corrections themselves don't have any effect on the evaluation as they are not evaluated but treated as a given.
+
+
+## Experiment 15 Results
+
+Like exp14 but after changes in context rules, web annotation output, and multi-tag support in analiticcl. Evaluated against the groundtruth data, see evaluation results below
+
+*(conducted with analiticcl 0.4.4, input data as described by git tag `exp15` of this repo)*
+
+ID        | Description                                       | Precision      | Recall        | F1
+----------|---------------------------------------------------|----------------|---------------|-------
+`exp15`   | Base (arbitrary)                                  | 0.665 (0.528)  │ 0.552 (0.438) │ 0.604 (0.479) 
 

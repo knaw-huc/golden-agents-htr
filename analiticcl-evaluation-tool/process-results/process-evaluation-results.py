@@ -119,7 +119,7 @@ def extract_category(annotation_body: dict) -> str:
 
 
 def extract_normalizations(annotation: dict) -> List[str]:
-    return [b['value'] for b in annotation['body'] if b.get('purpose') == 'commenting']
+    return [b['value'] for b in annotation['body'] if b.get('purpose') in {'commenting', 'editing'}]
 
 
 @dataclass
@@ -172,12 +172,6 @@ def extract_persons(evaluation_rows: Dict[str, Row]):
 
 
 def print_categorization_table(eval_data, keys, ref_data, outfile: str):
-    # table = ColorTable(
-    #     ["Page ID", "Range", "Term", "Normalized (eval)", "Category (eval)", "Normalized (ref)", "Category (ref)",
-    #      "Diff?"],
-    #     theme=Themes.OCEAN)
-    # table.align = 'l'
-    # table.align["Range"] = 'k'
     evaluation_rows = {}
     for page_id in keys:
         annotations = eval_data[page_id]
@@ -544,7 +538,7 @@ def check_paths_exist(eval_dir, ref_dir):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Evaluate auto-generated webannotations against a ground truth, produces precision, recall,"
+        description="Evaluate auto-generated web annotations against a ground truth, produces precision, recall,"
                     " class confusion matrix metrics",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('--evaluation-set', '-e', type=str, help="Directory with the web annotations to evaluate",
@@ -556,7 +550,6 @@ def main():
                         action='store',
                         default='evaluation_results.tsv')
     args = parser.parse_args()
-    # ic(args)
     results = evaluate(eval_dir=args.evaluation_set, ref_dir=args.reference_set, outfile=args.out)
     # print(json.dumps(results.to_dict(), indent=4))
 

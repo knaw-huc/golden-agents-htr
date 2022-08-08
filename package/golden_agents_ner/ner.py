@@ -170,7 +170,6 @@ class NER:
                         else:
                             break
                     if length > 1:
-                        tagging_body = self.tagging_body(label=tag)
                         xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
                         yield {
                             "@context": "http://www.w3.org/ns/anno.jsonld",
@@ -187,23 +186,18 @@ class NER:
                                 "name": "GoldenAgentsNER"
                             },
                             "body": [
-                                tagging_body,
+                                self.tagging_body(label=tag),
                                 {
                                     "type": "TextualBody",
                                     "value": variant_text,
                                     "modified": now(),
                                     "purpose": "editing"
                                 },
-                                {
-                                    "@context": VARIANT_MATCHING_CONTEXT,
-                                    "type": "Match",
-                                    # the text in the input
-                                    "phrase": text_line.text[
-                                              ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                    # aggregate text of the top variants
-                                    "variant": variant_text,
-                                    "category": ner_result['tag']
-                                }
+                                self.variantmatch_body(phrase=text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                                       variant=variant_text,
+                                                       score=None,
+                                                       lexicons=[],
+                                                       category=tag, seqnr=seqnr)
                             ],
                             "target": [
                                 {
@@ -282,42 +276,40 @@ class NER:
             categories = [self.category_dict[lexicon] for lexicon in lexicons if
                           lexicon in self.category_dict and self.category_dict[lexicon][0] != "_"]
             tag_bodies = []
-            if 'tag' in ner_result and ner_result.get('seqnr') == 0:
-                # new style: tag set by analiticcl via contextrules
-                tag_bodies = [self.tagging_body(label=ner_result['tag'])]
+            variantmatch_bodies = []
+            if ner_result.get('tag'):
+                if isinstance(ner_result['tag'],str) and ner_result['seqnr'] == 0:
+                    # new style: tag set by analiticcl < 0.4.2 via contextrules  , one tag only (for backward compatibility only)
+                    tag_bodies.append(self.tagging_body(label=ner_result['tag']))
+                    variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=ner_result['tag'], seqnr=0))
+                else:
+                    # new style: tag set by analiticcl >= 0.4.2 via contextrules  , supports multiple tags, each will get a body
+                    for tag, seqnr in zip(ner_result.get('tag',[]), ner_result.get('seqnr',[])):
+                        if seqnr == 0:
+                            tag_bodies.append(self.tagging_body(label=tag))
+                            variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
             elif not self.has_contextrules:
-                # old style: tag derived directly from lexicon
+                # old style: tag derived directly from lexicon , no context rules used
                 if not categories:
                     continue
                 for cat in categories:
                     body = self.tagging_body(label=cat)
                     tag_bodies.append(body)
+                    variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=cat,seqnr=None))
             elif not categories:
                 # background lexicon match only, don't output
                 continue
             bodies = [
-                *tag_bodies,
                 {
                     "type": "TextualBody",
                     "value": top_variant['text'],
                     "modified": now(),
                     "purpose": "editing",
                 },
-                {
-                    "@context": VARIANT_MATCHING_CONTEXT,
-                    "type": "Match",
-                    # the text in the input
-                    "phrase": ner_result['input'],
-                    # the variant in the lexicon that matched with the input
-                    "variant": top_variant['text'],
-                    # the score of the match as reported by the system (no intrinsic meaning, only to be judged
-                    # relatively)
-                    "score": top_variant['score'],
-                    # the sources (lexicons/variants lists) where the match was found
-                    "source": [os.path.basename(x) for x in top_variant['lexicons']],
-                },
+                *tag_bodies,
+                *variantmatch_bodies
             ]
-            webannotation = {
+            yield {
                 "@context": "http://www.w3.org/ns/anno.jsonld",
                 "id": random_annotation_id(),
                 "type": "Annotation",
@@ -360,23 +352,6 @@ class NER:
                     }]
 
             }
-            if 'tag' in ner_result:
-                # If we have multiple tags (and hence multiple seqnr) we output a complete and separate webannotation for each
-                for tag, seqnr in zip(ner_result['tag'], ner_result['seqnr']):
-                    if len(ner_result['tag']) > 1:
-                        webannotation = deepcopy(webannotation)
-                        webannotation['id'] = random_annotation_id()
-                    # the tag assigned to this match
-                    webannotation['body'][-1]['category'] = tag
-                    # the sequence number (in case the tagged sequence covers multiple items)
-                    webannotation['body'][-1]['seqnr'] = int(seqnr + 1) if 'seqnr' in ner_result else 1
-                    yield webannotation
-            elif not self.has_contextrules:
-                # old-style, allows multiple categories in one annotation
-                webannotation['body'][-1]['category'] = categories
-                yield webannotation
-            else:
-                yield webannotation
             if self.has_contextrules:
                 # ties are already resolved by analiticcl if there are context rules
                 # no need to consider further top variants
@@ -408,3 +383,26 @@ class NER:
                 "modified": now(),
                 "purpose": "tagging"
             }
+
+    def variantmatch_body(self, phrase:str, variant: str, score: Optional[float], lexicons: list, category: Optional[str], seqnr: Optional[int]) -> Dict:
+        d = {
+            "@context": VARIANT_MATCHING_CONTEXT,
+            "type": "Match",
+            # the text in the input
+            "phrase": phrase,
+            # the variant in the lexicon that matched with the input
+            "variant": variant,
+        }
+        if score is not None:
+            # the score of the match as reported by the system (no intrinsic meaning, only to be judged relatively)
+            d['score'] = score
+        if lexicons:
+            # the sources (lexicons/variants lists) where the match was found
+            d['source'] = [os.path.basename(x) for x in lexicons]
+        if category is not None:
+            d['category'] = category
+        if seqnr is not None:
+            d['seqnr'] = int(seqnr + 1)
+        elif category is not None:
+            d['seqnr'] = 1
+        return d

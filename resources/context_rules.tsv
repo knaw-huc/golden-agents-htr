@@ -9,19 +9,19 @@ de|mijn ; heer ; @family_names_lexicon.sanitized.tsv	1.3	person;familyname	2:;2:
 mijnheer|mevrouw|genaamd ; @first_names_lexicon.sanitized.tsv ; @family_names_lexicon.sanitized.tsv	1.3	person;firstname;familyname	2:;2:3;3:
 @first_names_lexicon.sanitized.tsv ; @family_names_lexicon.sanitized.tsv	1.2	person;firstname;familyname	0:;0:1;1:2
 			
-@quantifier_variants.freq.tsv ; @property_variants.freq.tsv ; @material_variants.freq.tsv  ; @object_variants.freq.tsv	1.2	object;quantifier;property;material	3:;0:1;1:2;2:3
-@quantifier_variants.freq.tsv ; @material_variants.freq.tsv ; @property_variants.freq.tsv  ; @object_variants.freq.tsv	1.2	object;quantifier;material;property	3:;0:1;1:2;2:3
-@quantifier_variants.freq.tsv ; @property_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;quantifier;property	2:;0:1;1:2
-@quantifier_variants.freq.tsv ; @material_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;quantifier;material	2:;0:1;1:2
-@property_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;property	1:;0:1
-@material_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;material	1:;0:1
-@quantifier_variants.freq.tsv ; @object_variants.freq.tsv	1.1	object;quantifier	1:;0:1
+@quantifier_variants.freq.tsv ; @property_variants.freq.tsv ; @material_variants.freq.tsv  ; @object_variants.freq.tsv	1.2	object;quantifier;property;material;object-entity	3:;0:1;1:2;2:3;0:
+@quantifier_variants.freq.tsv ; @material_variants.freq.tsv ; @property_variants.freq.tsv  ; @object_variants.freq.tsv	1.2	object;quantifier;material;property;object-entity	3:;0:1;1:2;2:3;0:
+@quantifier_variants.freq.tsv ; @property_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;quantifier;property;object-entity	2:;0:1;1:2;0:
+@quantifier_variants.freq.tsv ; @material_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;quantifier;material;object-entity	2:;0:1;1:2;0:
+@property_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;property;object-entity	1:;0:1;0:
+@material_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;material;object-entity	1:;0:1;0:
+@quantifier_variants.freq.tsv ; @object_variants.freq.tsv	1.1	object;quantifier;object-entity	1:;0:1;0:
 in|aan|langs|tegenover ; de ; @streetnames_lexicon.tsv	1.1	street	2:
 in|uit|van|naar|richting|te|stad|dorp ; @locations_lexicon.freq.tsv	1.1	location	1:
 in|uit|van|op|aan|voor|achter|langs|naast|tegenover ; de|het|een ; @room_variants.freq.tsv	1.1	room	2:
-de|het|een ; @object_variants.freq.tsv	1.1	object	1:
-een ; dito ; ?	1.1	object	2:
-@object_variants.freq.tsv ; van|uit ;  @material_variants.freq.tsv	1.1	object;material	0:1;2:3
+de|het|een ; @object_variants.freq.tsv	1.1	object;object-entity	1:;0:
+een ; dito ; ?	1.1	object;object-entity	2:;0:
+@object_variants.freq.tsv ; van|uit ;  @material_variants.freq.tsv	1.1	object;material;object-entity	0:1;2:3;0:
 			
 # Retain singleton objects			
 			

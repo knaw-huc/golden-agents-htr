@@ -186,13 +186,13 @@ class NER:
                                 "name": "GoldenAgentsNER"
                             },
                             "body": [
-                                self.tagging_body(label=tag),
                                 {
                                     "type": "TextualBody",
                                     "value": variant_text,
                                     "modified": now(),
                                     "purpose": "editing"
                                 },
+                                self.tagging_body(label=tag),
                                 self.variantmatch_body(phrase=text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
                                                        variant=variant_text,
                                                        score=None,

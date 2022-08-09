@@ -299,6 +299,8 @@ class NER:
             elif not categories:
                 # background lexicon match only, don't output
                 continue
+            if not tag_bodies and not variantmatch_bodies:
+                continue
             bodies = [
                 {
                     "type": "TextualBody",

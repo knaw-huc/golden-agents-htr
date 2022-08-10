@@ -171,6 +171,21 @@ class NER:
                             break
                     if length > 1:
                         xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
+                        body = []
+                        if variant_text != text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']]:
+                            #only add TextualBody (purpose 'editing') if the text is changed
+                            body.append({
+                                    "type": "TextualBody",
+                                    "value": variant_text,
+                                    "modified": now(),
+                                    "purpose": "editing"
+                            })
+                        body.append(self.tagging_body(label=tag))
+                        body.append(self.variantmatch_body(phrase=text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
+                                                       variant=variant_text,
+                                                       score=None,
+                                                       lexicons=[],
+                                                       category=tag, seqnr=seqnr))
                         yield {
                             "@context": "http://www.w3.org/ns/anno.jsonld",
                             "id": random_annotation_id(),
@@ -185,20 +200,7 @@ class NER:
                                 "type": "Software",
                                 "name": "GoldenAgentsNER"
                             },
-                            "body": [
-                                {
-                                    "type": "TextualBody",
-                                    "value": variant_text,
-                                    "modified": now(),
-                                    "purpose": "editing"
-                                },
-                                self.tagging_body(label=tag),
-                                self.variantmatch_body(phrase=text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                                       variant=variant_text,
-                                                       score=None,
-                                                       lexicons=[],
-                                                       category=tag, seqnr=seqnr)
-                            ],
+                            "body": body,
                             "target": [
                                 {
                                     "source": text_pid,
@@ -301,16 +303,17 @@ class NER:
                 continue
             if not tag_bodies and not variantmatch_bodies:
                 continue
-            bodies = [
-                {
-                    "type": "TextualBody",
-                    "value": top_variant['text'],
-                    "modified": now(),
-                    "purpose": "editing",
-                },
-                *tag_bodies,
-                *variantmatch_bodies
-            ]
+            bodies = []
+            if top_variant['text'] != text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']]:
+                #only add TextualBody (purpose 'editing') if the text is changed
+                bodies.append({
+                        "type": "TextualBody",
+                        "value": top_variant['text'],
+                        "modified": now(),
+                        "purpose": "editing",
+                })
+            bodies += tag_bodies
+            bodies += variantmatch_bodies
             yield {
                 "@context": "http://www.w3.org/ns/anno.jsonld",
                 "id": random_annotation_id(),

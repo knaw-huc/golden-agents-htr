@@ -289,7 +289,7 @@ class NER:
                     for tag, seqnr in zip(ner_result.get('tag',[]), ner_result.get('seqnr',[])):
                         if seqnr == 0:
                             tag_bodies.append(self.tagging_body(label=tag))
-                            variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
+                        variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
             elif not self.has_contextrules:
                 # old style: tag derived directly from lexicon , no context rules used
                 if not categories:

@@ -1,13 +1,13 @@
 [
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/4f62abb1-f23c-445c-a77d-0293c7fd4a6c",
+        "id": "https://data.goldenagents.org/datasets/annotations/392c651f-1155-4498-88b3-698fb6a98688",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:12.759726",
+        "generated": "2022-08-12T15:02:45.936000",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,69 +17,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:12.759679",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Casparus Beels",
-                "variant": "Casparus Beels",
-                "category": "person",
-                "seqnr": 1
-            }
-        ],
-        "target": [
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
-                "type": "Text",
-                "selector": [
-                    {
-                        "type": "TextPositionSelector",
-                        "start": 48,
-                        "end": 62
-                    },
-                    {
-                        "type": "TextQuoteSelector",
-                        "exact": "Casparus Beels",
-                        "prefix": "Mr: ",
-                        "suffix": " als Segiertur die de natelen"
-                    }
-                ]
-            },
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000213",
-                "type": "Image",
-                "selector": {
-                    "type": "FragmentSelector",
-                    "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3201,1360,2278,257"
-                }
-            }
-        ]
-    },
-    {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a779e9a5-be48-4f9b-874b-648d12b8f23a",
-        "type": "Annotation",
-        "motivation": [
-            "classifying",
-            "editing"
-        ],
-        "generated": "2022-08-11T14:47:12.759790",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
-        },
-        "body": [
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:12.759759",
+                "modified": "2022-08-12T15:02:45.935941",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300024979",
                     "label": "person"
@@ -88,7 +26,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:12.759773",
+                "modified": "2022-08-12T15:02:45.935968",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -152,13 +90,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/2ef9e8cb-c2eb-4d1a-b0b8-4c02d45a1045",
+        "id": "https://data.goldenagents.org/datasets/annotations/fd02696f-0a93-4dcb-abfa-7a3f87a079c0",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:12.759816",
+        "generated": "2022-08-12T15:02:45.936029",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -168,7 +106,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:12.759805",
+                "modified": "2022-08-12T15:02:45.936016",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -230,43 +168,33 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a2a79b02-ae42-40ef-a8af-0bdbc3ae8f70",
+        "id": "https://data.goldenagents.org/datasets/annotations/ae288f43-1c51-4c77-9462-2b07f9e901ff",
         "type": "Annotation",
         "motivation": [
-            "classifying",
-            "editing"
+            "classifying"
         ],
-        "generated": "2022-08-11T14:47:13.137982",
+        "generated": "2022-08-12T15:02:45.936074",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "Elias Lieners",
-                "modified": "2022-08-11T14:47:13.137927",
-                "purpose": "editing"
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
             },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:13.137945",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Elias Lienes",
-                "variant": "Elias Lieners",
-                "category": "person",
-                "seqnr": 1
-            }
-        ],
+            "type": [
+                "rpp:Observation",
+                "rpp:Person"
+            ],
+            "label": "Casparus Beels",
+            "modified": "2022-08-12T15:02:45.936080",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/392c651f-1155-4498-88b3-698fb6a98688",
+                "https://data.goldenagents.org/datasets/annotations/fd02696f-0a93-4dcb-abfa-7a3f87a079c0"
+            ]
+        },
         "target": [
             {
                 "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
@@ -274,14 +202,14 @@
                 "selector": [
                     {
                         "type": "TextPositionSelector",
-                        "start": 102,
-                        "end": 114
+                        "start": 96,
+                        "end": 110
                     },
                     {
                         "type": "TextQuoteSelector",
-                        "exact": "Elias Lienes",
-                        "prefix": "Jahap van ",
-                        "suffix": ", en by af fometement"
+                        "exact": "Casparus Beels",
+                        "prefix": "Mr: ",
+                        "suffix": " als Segiertur die de natelen"
                     }
                 ]
             },
@@ -291,20 +219,20 @@
                 "selector": {
                     "type": "FragmentSelector",
                     "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3692,1544,1762,188"
+                    "value": "xywh=3201,1360,2278,257"
                 }
             }
         ]
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/dd31f865-d919-49d6-916c-ea99ed3949a4",
+        "id": "https://data.goldenagents.org/datasets/annotations/e38fdec2-7d98-4255-946b-d463beadfc0e",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:13.138056",
+        "generated": "2022-08-12T15:02:46.336124",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -314,7 +242,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:13.138024",
+                "modified": "2022-08-12T15:02:46.336061",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300024979",
                     "label": "person"
@@ -323,7 +251,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:13.138038",
+                "modified": "2022-08-12T15:02:46.336091",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -387,13 +315,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/8e1a6b38-949f-4a52-84ff-ed728c47b80a",
+        "id": "https://data.goldenagents.org/datasets/annotations/35bf9dba-0eea-465b-8d71-75580077c2cf",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:13.138089",
+        "generated": "2022-08-12T15:02:46.336162",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -403,13 +331,13 @@
             {
                 "type": "TextualBody",
                 "value": "Lieners",
-                "modified": "2022-08-11T14:47:13.138078",
+                "modified": "2022-08-12T15:02:46.336151",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:13.138072",
+                "modified": "2022-08-12T15:02:46.336144",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -471,43 +399,33 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/85450f74-d223-4eea-a17c-0d18da853bcb",
+        "id": "https://data.goldenagents.org/datasets/annotations/b192804c-0b7e-4ab0-a077-c2e80cbe049b",
         "type": "Annotation",
         "motivation": [
-            "classifying",
-            "editing"
+            "classifying"
         ],
-        "generated": "2022-08-11T14:47:14.646962",
+        "generated": "2022-08-12T15:02:46.336212",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "de penningen",
-                "modified": "2022-08-11T14:47:14.646911",
-                "purpose": "editing"
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
             },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:14.646927",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300311889",
-                    "label": "object-entity"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "de Penningen",
-                "variant": "de penningen",
-                "category": "object-entity",
-                "seqnr": 1
-            }
-        ],
+            "type": [
+                "rpp:Observation",
+                "rpp:Person"
+            ],
+            "label": "Elias Lieners",
+            "modified": "2022-08-12T15:02:46.336218",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/e38fdec2-7d98-4255-946b-d463beadfc0e",
+                "https://data.goldenagents.org/datasets/annotations/35bf9dba-0eea-465b-8d71-75580077c2cf"
+            ]
+        },
         "target": [
             {
                 "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
@@ -515,14 +433,14 @@
                 "selector": [
                     {
                         "type": "TextPositionSelector",
-                        "start": 257,
-                        "end": 269
+                        "start": 146,
+                        "end": 158
                     },
                     {
                         "type": "TextQuoteSelector",
-                        "exact": "de Penningen",
-                        "prefix": "te verkopen, en ",
-                        "suffix": " daar van provenierende"
+                        "exact": "Elias Lienes",
+                        "prefix": "Jahap van ",
+                        "suffix": ", en by af fometement"
                     }
                 ]
             },
@@ -532,86 +450,20 @@
                 "selector": {
                     "type": "FragmentSelector",
                     "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3705,1930,1778,188"
+                    "value": "xywh=3692,1544,1762,188"
                 }
             }
         ]
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a3a28c74-ff13-4cdc-bd4a-2034b0562cf5",
+        "id": "https://data.goldenagents.org/datasets/annotations/abec3096-a194-42b0-af58-4f07b1a8f961",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:14.647023",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
-        },
-        "body": [
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:14.647000",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300311889",
-                    "label": "object-entity"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "de",
-                "variant": "de",
-                "score": 1.0,
-                "source": [
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 1
-            }
-        ],
-        "target": [
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
-                "type": "Text",
-                "selector": [
-                    {
-                        "type": "TextPositionSelector",
-                        "start": 257,
-                        "end": 259
-                    },
-                    {
-                        "type": "TextQuoteSelector",
-                        "exact": "de",
-                        "prefix": "te verkopen, en ",
-                        "suffix": " Penningen daar van provenierende"
-                    }
-                ]
-            },
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000213",
-                "type": "Image",
-                "selector": {
-                    "type": "FragmentSelector",
-                    "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3705,1930,1778,188"
-                }
-            }
-        ]
-    },
-    {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a98c2c57-20fa-402e-b457-d1844a25e8b3",
-        "type": "Annotation",
-        "motivation": [
-            "classifying",
-            "editing"
-        ],
-        "generated": "2022-08-11T14:47:14.647054",
+        "generated": "2022-08-12T15:02:47.834344",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -621,13 +473,13 @@
             {
                 "type": "TextualBody",
                 "value": "penningen",
-                "modified": "2022-08-11T14:47:14.647045",
+                "modified": "2022-08-12T15:02:47.834317",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:14.647035",
+                "modified": "2022-08-12T15:02:47.834287",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -691,43 +543,32 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/282e0a09-3af2-4c47-a3ab-3a49dde618a7",
+        "id": "https://data.goldenagents.org/datasets/annotations/cda84a21-33ed-4a74-b625-5b74ed33ab4a",
         "type": "Annotation",
         "motivation": [
-            "classifying",
-            "editing"
+            "classifying"
         ],
-        "generated": "2022-08-11T14:47:15.773208",
+        "generated": "2022-08-12T15:02:47.834383",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "Here Mor",
-                "modified": "2022-08-11T14:47:15.773159",
-                "purpose": "editing"
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
             },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773176",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Here Mr",
-                "variant": "Here Mor",
-                "category": "person",
-                "seqnr": 1
-            }
-        ],
+            "type": [
+                "rpp:Observation",
+                "rpp:Object-entity"
+            ],
+            "label": "de penningen",
+            "modified": "2022-08-12T15:02:47.834389",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/abec3096-a194-42b0-af58-4f07b1a8f961"
+            ]
+        },
         "target": [
             {
                 "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
@@ -735,14 +576,14 @@
                 "selector": [
                     {
                         "type": "TextPositionSelector",
-                        "start": 432,
-                        "end": 439
+                        "start": 309,
+                        "end": 321
                     },
                     {
                         "type": "TextQuoteSelector",
-                        "exact": "Here Mr",
-                        "prefix": "",
-                        "suffix": ": Willem Huijghens Heve van Honcoop"
+                        "exact": "de Penningen",
+                        "prefix": "te verkopen, en ",
+                        "suffix": " daar van provenierende"
                     }
                 ]
             },
@@ -752,20 +593,20 @@
                 "selector": {
                     "type": "FragmentSelector",
                     "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3758,2357,1677,158"
+                    "value": "xywh=3705,1930,1778,188"
                 }
             }
         ]
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/cf79a630-b22f-4d3f-8095-d002f75c57bf",
+        "id": "https://data.goldenagents.org/datasets/annotations/f6fddbff-12b9-4070-802b-27d8d728d453",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:15.773237",
+        "generated": "2022-08-12T15:02:48.921789",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -775,69 +616,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773226",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Willem Huijghens",
-                "variant": "Willem Huijghens",
-                "category": "person",
-                "seqnr": 1
-            }
-        ],
-        "target": [
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
-                "type": "Text",
-                "selector": [
-                    {
-                        "type": "TextPositionSelector",
-                        "start": 441,
-                        "end": 457
-                    },
-                    {
-                        "type": "TextQuoteSelector",
-                        "exact": "Willem Huijghens",
-                        "prefix": "Here Mr: ",
-                        "suffix": " Heve van Honcoop"
-                    }
-                ]
-            },
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000213",
-                "type": "Image",
-                "selector": {
-                    "type": "FragmentSelector",
-                    "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3758,2357,1677,158"
-                }
-            }
-        ]
-    },
-    {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/7d77af86-3bb8-44d4-941b-ba9eb7e03b1f",
-        "type": "Annotation",
-        "motivation": [
-            "classifying",
-            "editing"
-        ],
-        "generated": "2022-08-11T14:47:15.773284",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
-        },
-        "body": [
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773258",
+                "modified": "2022-08-12T15:02:48.921729",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300024979",
                     "label": "person"
@@ -846,7 +625,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773270",
+                "modified": "2022-08-12T15:02:48.921756",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -910,13 +689,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/3295c727-a175-40b2-805b-be624014697d",
+        "id": "https://data.goldenagents.org/datasets/annotations/4a5ce56a-3989-410f-9317-88edd09c8042",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:15.773331",
+        "generated": "2022-08-12T15:02:48.921823",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -926,13 +705,13 @@
             {
                 "type": "TextualBody",
                 "value": "Mor",
-                "modified": "2022-08-11T14:47:15.773303",
+                "modified": "2022-08-12T15:02:48.921813",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773297",
+                "modified": "2022-08-12T15:02:48.921807",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -994,13 +773,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/bdcdc1cb-a10d-473b-948a-074ffb2bcc60",
+        "id": "https://data.goldenagents.org/datasets/annotations/a2b3949f-f4d0-4938-9669-9799f0d4e962",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:15.773371",
+        "generated": "2022-08-12T15:02:48.921854",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1010,7 +789,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773352",
+                "modified": "2022-08-12T15:02:48.921835",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300024979",
                     "label": "person"
@@ -1019,7 +798,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773359",
+                "modified": "2022-08-12T15:02:48.921842",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -1085,13 +864,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/3687b7e7-4ee2-4c6d-bb6e-befd9c5fe98d",
+        "id": "https://data.goldenagents.org/datasets/annotations/3b99e30b-f53b-4659-8bd6-591833a74ee7",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:15.773392",
+        "generated": "2022-08-12T15:02:48.921876",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1101,7 +880,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773381",
+                "modified": "2022-08-12T15:02:48.921866",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -1163,13 +942,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/c18f9d85-4f30-4e7a-a1b6-ea994d2a2ba9",
+        "id": "https://data.goldenagents.org/datasets/annotations/37c210b7-81ed-49a9-b0d8-3313f63ce81d",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:15.773420",
+        "generated": "2022-08-12T15:02:48.921907",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1179,13 +958,13 @@
             {
                 "type": "TextualBody",
                 "value": "Boscoop",
-                "modified": "2022-08-11T14:47:15.773412",
+                "modified": "2022-08-12T15:02:48.921899",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:15.773407",
+                "modified": "2022-08-12T15:02:48.921893",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -1219,6 +998,122 @@
                         "exact": "Honcoop",
                         "prefix": "Here Mr: Willem Huijghens Heve van ",
                         "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000213",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3758,2357,1677,158"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/5aa1116c-950f-437d-8c15-949ad21686ee",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-12T15:02:48.921939",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
+            },
+            "type": [
+                "rpp:Observation",
+                "rpp:Person"
+            ],
+            "label": "Here Mor",
+            "modified": "2022-08-12T15:02:48.921945",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/f6fddbff-12b9-4070-802b-27d8d728d453",
+                "https://data.goldenagents.org/datasets/annotations/4a5ce56a-3989-410f-9317-88edd09c8042"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 475,
+                        "end": 482
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Here Mr",
+                        "prefix": "",
+                        "suffix": ": Willem Huijghens Heve van Honcoop"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000213",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3758,2357,1677,158"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/e9a6af65-b5b7-4073-bce9-78b9f6b39fa9",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-12T15:02:48.921970",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
+            },
+            "type": [
+                "rpp:Observation",
+                "rpp:Person"
+            ],
+            "label": "Willem Huijghens",
+            "modified": "2022-08-12T15:02:48.921973",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/a2b3949f-f4d0-4938-9669-9799f0d4e962",
+                "https://data.goldenagents.org/datasets/annotations/3b99e30b-f53b-4659-8bd6-591833a74ee7"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000213",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 484,
+                        "end": 500
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Willem Huijghens",
+                        "prefix": "Here Mr: ",
+                        "suffix": " Heve van Honcoop"
                     }
                 ]
             },

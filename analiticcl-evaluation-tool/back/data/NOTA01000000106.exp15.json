@@ -1,13 +1,13 @@
 [
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/6ce094eb-99a0-4aaa-a116-3e06910dc729",
+        "id": "https://data.goldenagents.org/datasets/annotations/383d7f33-fcaa-4a0d-b100-74f963a50ce2",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:38.110291",
+        "generated": "2022-08-12T15:03:11.321391",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,69 +17,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.110242",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Metje Hardevelt",
-                "variant": "Metje Hardevelt",
-                "category": "person",
-                "seqnr": 1
-            }
-        ],
-        "target": [
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/texts/NOTA01000000106",
-                "type": "Text",
-                "selector": [
-                    {
-                        "type": "TextPositionSelector",
-                        "start": 72,
-                        "end": 87
-                    },
-                    {
-                        "type": "TextQuoteSelector",
-                        "exact": "Metje Hardevelt",
-                        "prefix": "",
-                        "suffix": " wed."
-                    }
-                ]
-            },
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/scans/NOTA01000000106",
-                "type": "Image",
-                "selector": {
-                    "type": "FragmentSelector",
-                    "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3085,1142,694,186"
-                }
-            }
-        ]
-    },
-    {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/88ca85f2-6bcf-49c0-9731-41f3a9302fa0",
-        "type": "Annotation",
-        "motivation": [
-            "classifying",
-            "editing"
-        ],
-        "generated": "2022-08-11T14:47:38.110352",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
-        },
-        "body": [
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.110320",
+                "modified": "2022-08-12T15:03:11.321327",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300024979",
                     "label": "person"
@@ -88,7 +26,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.110334",
+                "modified": "2022-08-12T15:03:11.321357",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -150,13 +88,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/b8f4184e-ee5a-4681-8431-d58459790832",
+        "id": "https://data.goldenagents.org/datasets/annotations/dc77a495-770a-4942-a97b-669bc7a4ac13",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:38.110381",
+        "generated": "2022-08-12T15:03:11.321429",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -166,7 +104,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.110367",
+                "modified": "2022-08-12T15:03:11.321414",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -228,43 +166,33 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/f10e7b7a-5237-4872-80f0-b04bb7d91fde",
+        "id": "https://data.goldenagents.org/datasets/annotations/8f8a42bc-187a-4f20-985c-fa3d1d5d0eaf",
         "type": "Annotation",
         "motivation": [
-            "classifying",
-            "editing"
+            "classifying"
         ],
-        "generated": "2022-08-11T14:47:38.254198",
+        "generated": "2022-08-12T15:03:11.321468",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "aarde boer",
-                "modified": "2022-08-11T14:47:38.254146",
-                "purpose": "editing"
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
             },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.254162",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300311889",
-                    "label": "object-entity"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Eertde Boer",
-                "variant": "aarde boer",
-                "category": "object-entity",
-                "seqnr": 1
-            }
-        ],
+            "type": [
+                "rpp:Observation",
+                "rpp:Person"
+            ],
+            "label": "Metje Hardevelt",
+            "modified": "2022-08-12T15:03:11.321474",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/383d7f33-fcaa-4a0d-b100-74f963a50ce2",
+                "https://data.goldenagents.org/datasets/annotations/dc77a495-770a-4942-a97b-669bc7a4ac13"
+            ]
+        },
         "target": [
             {
                 "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/texts/NOTA01000000106",
@@ -273,13 +201,13 @@
                     {
                         "type": "TextPositionSelector",
                         "start": 93,
-                        "end": 104
+                        "end": 108
                     },
                     {
                         "type": "TextQuoteSelector",
-                        "exact": "Eertde Boer",
+                        "exact": "Metje Hardevelt",
                         "prefix": "",
-                        "suffix": ""
+                        "suffix": " wed."
                     }
                 ]
             },
@@ -289,115 +217,20 @@
                 "selector": {
                     "type": "FragmentSelector",
                     "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3169,1261,402,117"
+                    "value": "xywh=3085,1142,694,186"
                 }
             }
         ]
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/96505573-52f7-4b4d-95d7-112da7fbf310",
+        "id": "https://data.goldenagents.org/datasets/annotations/5740d4b0-cb38-4485-b35e-4fae48253be2",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-11T14:47:38.254261",
-        "generator": {
-            "id": "https://github.com/knaw-huc/golden-agents-htr",
-            "type": "Software",
-            "name": "GoldenAgentsNER"
-        },
-        "body": [
-            {
-                "type": "TextualBody",
-                "value": "aarde",
-                "modified": "2022-08-11T14:47:38.254248",
-                "purpose": "editing"
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.254226",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300010358",
-                    "label": "material"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.254240",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300311889",
-                    "label": "object-entity"
-                }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Eertde",
-                "variant": "aarde",
-                "score": 0.526749487300836,
-                "source": [
-                    "material_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "material",
-                "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Eertde",
-                "variant": "aarde",
-                "score": 0.526749487300836,
-                "source": [
-                    "material_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 1
-            }
-        ],
-        "target": [
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/texts/NOTA01000000106",
-                "type": "Text",
-                "selector": [
-                    {
-                        "type": "TextPositionSelector",
-                        "start": 93,
-                        "end": 99
-                    },
-                    {
-                        "type": "TextQuoteSelector",
-                        "exact": "Eertde",
-                        "prefix": "",
-                        "suffix": " Boer"
-                    }
-                ]
-            },
-            {
-                "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/scans/NOTA01000000106",
-                "type": "Image",
-                "selector": {
-                    "type": "FragmentSelector",
-                    "conformsTo": "http://www.w3.org/TR/media-frags/",
-                    "value": "xywh=3169,1261,402,117"
-                }
-            }
-        ]
-    },
-    {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/48abc8cb-0582-4dce-a154-b9423ab4e10e",
-        "type": "Annotation",
-        "motivation": [
-            "classifying",
-            "editing"
-        ],
-        "generated": "2022-08-11T14:47:38.254295",
+        "generated": "2022-08-12T15:03:11.481689",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -407,13 +240,13 @@
             {
                 "type": "TextualBody",
                 "value": "boer",
-                "modified": "2022-08-11T14:47:38.254286",
+                "modified": "2022-08-12T15:03:11.481662",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-11T14:47:38.254275",
+                "modified": "2022-08-12T15:03:11.481648",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -460,6 +293,63 @@
                         "type": "TextQuoteSelector",
                         "exact": "Boer",
                         "prefix": "Eertde ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/scans/NOTA01000000106",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3169,1261,402,117"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/b9a9fc05-7086-4bec-8400-8e5d2af6a4b9",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-12T15:03:11.481719",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/",
+                "prov": "http://www.w3.org/ns/prov#"
+            },
+            "type": [
+                "rpp:Observation",
+                "rpp:Object-entity"
+            ],
+            "label": "aarde boer",
+            "modified": "2022-08-12T15:03:11.481725",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/5740d4b0-cb38-4485-b35e-4fae48253be2"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/ef13479703d78b7fb0c2a67e2dfab539/texts/NOTA01000000106",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 105,
+                        "end": 116
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Eertde Boer",
+                        "prefix": "",
                         "suffix": ""
                     }
                 ]

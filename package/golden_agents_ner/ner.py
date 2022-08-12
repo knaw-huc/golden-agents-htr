@@ -15,6 +15,8 @@ VARIANT_MATCHING_CONTEXT = "https://brambg.github.io/ns/variant-matching.jsonld"
 HTR_CORRECTIONS = 'htr_corrections'
 ARCHIVE_IDENTIFIERS = 'archive_identifiers'
 
+class NoResourceIDError(Exception):
+    pass
 
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
@@ -144,9 +146,9 @@ class NER:
         scan.text_pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/texts/{base_name}"
         return self.create_web_annotations(scan)
 
-    def create_web_annotation_multispan(self, ner_results, text_line: PageXMLTextLine, line_offset: int,
+    def create_web_annotation_observation(self, ner_results, text_line: PageXMLTextLine, line_offset: int,
                                         text_pid: str, scan_pid: str):
-        """Extract larger tagged entities from NER results and creates web annotations for them."""
+        """Extract larger tagged entities, which we call 'observations' from NER results and creates web annotations for them."""
         for i, ner_result in enumerate(ner_results):
             if ner_result['variants']:
                 for (tag, seqnr) in zip(ner_result.get('tag', []), ner_result.get('seqnr', [])):
@@ -155,6 +157,10 @@ class NER:
                         # find beginning of sequence, skip otherwise
                         continue
                     length = 1
+                    if 'annotations' in ner_result:
+                        provenance = deepcopy(ner_result['annotations'])
+                    else:
+                        provenance = []
                     # find the rest of the sequence; aggregate text of the top variants
                     variant_text = ner_result['variants'][0]['text']
                     last_ner_result = ner_result
@@ -167,32 +173,16 @@ class NER:
                             length += 1
                             variant_text += " " + ner_result2['variants'][0]['text']
                             last_ner_result = ner_result2
-                        else:
-                            break
+                            if 'annotations' in ner_result2:
+                                provenance += ner_result2['annotations']
                     if length > 1:
                         xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
-                        body = []
-                        if variant_text != text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']]:
-                            #only add TextualBody (purpose 'editing') if the text is changed
-                            body.append({
-                                    "type": "TextualBody",
-                                    "value": variant_text,
-                                    "modified": now(),
-                                    "purpose": "editing"
-                            })
-                        body.append(self.tagging_body(label=tag))
-                        body.append(self.variantmatch_body(phrase=text_line.text[ner_result['offset']['begin']:last_ner_result['offset']['end']],
-                                                       variant=variant_text,
-                                                       score=None,
-                                                       lexicons=[],
-                                                       category=tag, seqnr=seqnr))
                         yield {
                             "@context": "http://www.w3.org/ns/anno.jsonld",
                             "id": random_annotation_id(),
                             "type": "Annotation",
                             "motivation": [
                                 "classifying",
-                                "editing"
                             ],
                             "generated": now(),
                             "generator": {
@@ -200,7 +190,7 @@ class NER:
                                 "type": "Software",
                                 "name": "GoldenAgentsNER"
                             },
-                            "body": body,
+                            "body": self.observation_body(type=tag, label=variant_text, provenance=provenance),
                             "target": [
                                 {
                                     "source": text_pid,
@@ -242,11 +232,6 @@ class NER:
             if hasattr(self, 'htr_corrector') and self.htr_corrector:
                 text = self.htr_corrector.correct(text)
             ner_results = self.model.find_all_matches(text, self.params)
-            if self.has_contextrules:
-                for entity_wa in self.create_web_annotation_multispan(ner_results=ner_results, text_line=tl,
-                                                                      line_offset=len(plain_text),
-                                                                      scan_pid=scan.pid, text_pid=scan.text_pid):
-                    annotations.append(entity_wa)
             for result in ner_results:
                 raw_results.append(result)
                 if (
@@ -254,11 +239,23 @@ class NER:
                         and result['variants'][0]['score'] >= self.config.get('score-threshold', 0)
                 ):
                     xywh = f"{tl.coords.x},{tl.coords.y},{tl.coords.w},{tl.coords.h}"
-                    annotations += list(
-                        self.create_web_annotation(text_line=tl, ner_result=result, scan_pid=scan.pid, xywh=xywh,
-                                                   text_pid=scan.text_pid,
-                                                   line_offset=len(plain_text)))
+                    try:
+                        new_annotations = list(
+                            self.create_web_annotation(text_line=tl, ner_result=result, scan_pid=scan.pid, xywh=xywh,
+                                                       text_pid=scan.text_pid,
+                                                       line_offset=len(plain_text)))
+                    except NoResourceIDError as e:
+                        print("INFO: ", str(e), file=sys.stderr)
+                        continue
+                    annotations += new_annotations
+                    result['annotations'] = [ x['id'] for x in new_annotations ]
             plain_text += f"{text}\n"
+            if self.has_contextrules:
+                #observations are annotations ofmulti-span entitities from the context rules (see https://github.com/knaw-huc/golden-agents-htr/issues/22 for discussion)
+                for entity_wa in self.create_web_annotation_observation(ner_results=ner_results, text_line=tl,
+                                                                      line_offset=len(plain_text),
+                                                                      scan_pid=scan.pid, text_pid=scan.text_pid):
+                    annotations.append(entity_wa)
         return annotations, plain_text, raw_results
 
     def create_web_annotation(self, text_line: PageXMLTextLine, ner_result, scan_pid, xywh, text_pid, line_offset: int):
@@ -366,7 +363,7 @@ class NER:
         str, Any]:
         if self.has_resource_ids:
             if label not in self.resource_ids:
-                raise Exception(f"no resourceid defined for '{label}': check config file.")
+                raise NoResourceIDError(f"no resourceid defined for '{label}': check config file.")
             body = {
                 "type": "SpecificResource",
                 "purpose": "tagging",
@@ -388,6 +385,18 @@ class NER:
                 "modified": now(),
                 "purpose": "tagging"
             }
+
+    def observation_body(self, type: str, label: str, provenance: Optional[list] = None) -> Dict[str, Any]:
+        return {
+            "@context": {
+                "rpp": "https://data.goldenagents.org/ontology/rpp/", #TODO: doesn't exist yet!
+                "prov": "http://www.w3.org/ns/prov#", 
+            },
+            "type": [ "rpp:Observation", "rpp:" + type[0].upper() + type[1:] ],
+            "label": label,
+            "modified": now(),
+            "prov:wasDerivedFrom": provenance,
+        }
 
     def variantmatch_body(self, phrase:str, variant: str, score: Optional[float], lexicons: list, category: Optional[str], seqnr: Optional[int]) -> Dict:
         d = {

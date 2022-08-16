@@ -1,13 +1,13 @@
 [
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/b8f02923-d5b2-4014-8022-a9d4ec61bc4f",
+        "id": "https://data.goldenagents.org/datasets/annotations/1c5662d6-4a50-48b5-8f83-4df27883e572",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:37.041908",
+        "generated": "2022-08-16T14:27:08.849695",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,34 +17,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.041848",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.041876",
+                "modified": "2022-08-16T14:27:08.849641",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Gerrit",
-                "variant": "Gerrit",
-                "score": 1.0,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -92,13 +69,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/df2c7c4a-dce1-4869-8f15-a75a14d6a024",
+        "id": "https://data.goldenagents.org/datasets/annotations/6c3eac44-b2f8-46f0-a349-3cea13cdcb9c",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:37.041939",
+        "generated": "2022-08-16T14:27:08.849726",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -108,29 +85,17 @@
             {
                 "type": "TextualBody",
                 "value": "Vermaten",
-                "modified": "2022-08-12T15:04:37.041930",
+                "modified": "2022-08-16T14:27:08.849717",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.041925",
+                "modified": "2022-08-16T14:27:08.849710",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Wermaten",
-                "variant": "Vermaten",
-                "score": 0.5987284894837476,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -175,32 +140,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/3d5f1f1c-ed0c-4074-844b-2c5895c5b690",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/412e184e-08da-4286-8f6c-45733e320760",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:37.041978",
+        "generated": "2022-08-16T14:27:08.849766",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Gerrit Vermaten",
-            "modified": "2022-08-12T15:04:37.041984",
+            "modified": "2022-08-16T14:27:08.849770",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/b8f02923-d5b2-4014-8022-a9d4ec61bc4f",
-                "https://data.goldenagents.org/datasets/annotations/df2c7c4a-dce1-4869-8f15-a75a14d6a024"
+                "https://data.goldenagents.org/datasets/annotations/1c5662d6-4a50-48b5-8f83-4df27883e572",
+                "https://data.goldenagents.org/datasets/annotations/6c3eac44-b2f8-46f0-a349-3cea13cdcb9c"
             ]
         },
         "target": [
@@ -234,13 +197,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/371a8c76-f813-4f67-8c0d-e82768887fd6",
+        "id": "https://data.goldenagents.org/datasets/annotations/05167260-f19d-4284-81b2-689cdadde0b1",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:37.674672",
+        "generated": "2022-08-16T14:27:09.479527",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -250,38 +213,17 @@
             {
                 "type": "TextualBody",
                 "value": "Catarina",
-                "modified": "2022-08-12T15:04:37.674644",
+                "modified": "2022-08-16T14:27:09.479497",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.674610",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.674637",
+                "modified": "2022-08-16T14:27:09.479469",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Botarina",
-                "variant": "Catarina",
-                "score": 0.5221893655421351,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -327,13 +269,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/da140302-6169-43a8-b5f4-d1c61d9647f2",
+        "id": "https://data.goldenagents.org/datasets/annotations/a03919bf-0983-4060-a4df-0be6d3e4dd90",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:37.674707",
+        "generated": "2022-08-16T14:27:09.479561",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -343,30 +285,17 @@
             {
                 "type": "TextualBody",
                 "value": "Menslage",
-                "modified": "2022-08-12T15:04:37.674698",
+                "modified": "2022-08-16T14:27:09.479551",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.674692",
+                "modified": "2022-08-16T14:27:09.479543",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Meuslage",
-                "variant": "Menslage",
-                "score": 0.5778534704370181,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv",
-                    "locations_lexicon.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -412,32 +341,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a5a4c1bb-0b3a-475c-83f2-def8dda4c710",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/cc6ad083-a0e7-4269-81eb-2676ab43fe4c",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:37.674737",
+        "generated": "2022-08-16T14:27:09.479592",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Catarina Menslage",
-            "modified": "2022-08-12T15:04:37.674743",
+            "modified": "2022-08-16T14:27:09.479597",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/371a8c76-f813-4f67-8c0d-e82768887fd6",
-                "https://data.goldenagents.org/datasets/annotations/da140302-6169-43a8-b5f4-d1c61d9647f2"
+                "https://data.goldenagents.org/datasets/annotations/05167260-f19d-4284-81b2-689cdadde0b1",
+                "https://data.goldenagents.org/datasets/annotations/a03919bf-0983-4060-a4df-0be6d3e4dd90"
             ]
         },
         "target": [
@@ -471,13 +398,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/8462aef5-9fc3-477c-a9b9-ee905745797c",
+        "id": "https://data.goldenagents.org/datasets/annotations/870868e5-7ba8-476c-8e0c-1ff0841f0d20",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:37.861650",
+        "generated": "2022-08-16T14:27:09.665670",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -487,38 +414,17 @@
             {
                 "type": "TextualBody",
                 "value": "Meindert",
-                "modified": "2022-08-12T15:04:37.861624",
+                "modified": "2022-08-16T14:27:09.665640",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.861591",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.861617",
+                "modified": "2022-08-16T14:27:09.665612",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Meundent",
-                "variant": "Meindert",
-                "score": 0.4202305948064925,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -564,13 +470,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/99338648-4288-44e1-a3d3-686dcfd7619b",
+        "id": "https://data.goldenagents.org/datasets/annotations/39071c3a-a3e8-42a1-af6f-a73e9288d7d8",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:37.861683",
+        "generated": "2022-08-16T14:27:09.665701",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -580,29 +486,17 @@
             {
                 "type": "TextualBody",
                 "value": "Talen",
-                "modified": "2022-08-12T15:04:37.861673",
+                "modified": "2022-08-16T14:27:09.665692",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:37.861667",
+                "modified": "2022-08-16T14:27:09.665685",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Talel",
-                "variant": "Talen",
-                "score": 0.5440433944069432,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -647,32 +541,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/ccc8a1ef-31cc-496d-9c75-80e32f8e1e4c",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/afc2f670-68f4-4c18-bb43-17a7452d3916",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:37.861712",
+        "generated": "2022-08-16T14:27:09.665732",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Meindert Talen",
-            "modified": "2022-08-12T15:04:37.861717",
+            "modified": "2022-08-16T14:27:09.665736",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/8462aef5-9fc3-477c-a9b9-ee905745797c",
-                "https://data.goldenagents.org/datasets/annotations/99338648-4288-44e1-a3d3-686dcfd7619b"
+                "https://data.goldenagents.org/datasets/annotations/870868e5-7ba8-476c-8e0c-1ff0841f0d20",
+                "https://data.goldenagents.org/datasets/annotations/39071c3a-a3e8-42a1-af6f-a73e9288d7d8"
             ]
         },
         "target": [
@@ -706,13 +598,86 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/27a21ff2-96ae-4bfb-8ca3-3defb682f0f9",
+        "id": "https://data.goldenagents.org/datasets/annotations/4c439e30-36f7-4628-96e6-a2a7b21fd674",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:38.274296",
+        "generated": "2022-08-16T14:27:10.075423",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "een",
+                "modified": "2022-08-16T14:27:10.075394",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-16T14:27:10.075365",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300055665",
+                    "label": "quantifier"
+                }
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Een",
+                "variant": "een",
+                "score": 0.9297633841068935,
+                "source": [
+                    "quantifier_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "quantifier",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/cff8977c8348a1383928328ff8a01056/texts/NOTD00244000028",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 121,
+                        "end": 124
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Een",
+                        "prefix": "",
+                        "suffix": " bouwesten"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/cff8977c8348a1383928328ff8a01056/scans/NOTD00244000028",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=1118,575,882,150"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/92b70307-5fb7-4b62-a945-41e87b7afe0b",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-16T14:27:10.075456",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -722,13 +687,13 @@
             {
                 "type": "TextualBody",
                 "value": "bouwen",
-                "modified": "2022-08-12T15:04:38.274260",
+                "modified": "2022-08-16T14:27:10.075447",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:38.274238",
+                "modified": "2022-08-16T14:27:10.075439",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -746,19 +711,6 @@
                 ],
                 "category": "object",
                 "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "bouwesten",
-                "variant": "bouwen",
-                "score": 0.502351504704446,
-                "source": [
-                    "object_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 2
             }
         ],
         "target": [
@@ -791,31 +743,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/6f03dba0-e8b3-498a-bfa8-4f79537728f9",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/91e3a73d-9691-48d8-9c26-f274195241a0",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:38.274324",
+        "generated": "2022-08-16T14:27:10.075487",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Object-entity"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
             "label": "een bouwen",
-            "modified": "2022-08-12T15:04:38.274330",
+            "modified": "2022-08-16T14:27:10.075491",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/27a21ff2-96ae-4bfb-8ca3-3defb682f0f9"
+                "https://data.goldenagents.org/datasets/annotations/4c439e30-36f7-4628-96e6-a2a7b21fd674",
+                "https://data.goldenagents.org/datasets/annotations/92b70307-5fb7-4b62-a945-41e87b7afe0b"
             ]
         },
         "target": [
@@ -849,13 +800,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/f1451742-7f96-4b78-96c8-7fe39f010f5f",
+        "id": "https://data.goldenagents.org/datasets/annotations/17a78d66-ede7-49d8-9bf6-78af617fb7ca",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:38.490164",
+        "generated": "2022-08-16T14:27:10.291446",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -865,40 +816,17 @@
             {
                 "type": "TextualBody",
                 "value": "Johannes",
-                "modified": "2022-08-12T15:04:38.490138",
+                "modified": "2022-08-16T14:27:10.291417",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:38.490101",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:38.490129",
+                "modified": "2022-08-16T14:27:10.291388",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Jehannes",
-                "variant": "Johannes",
-                "score": 0.78,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -946,13 +874,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/ba14627f-ef82-4794-b18c-538b66067efd",
+        "id": "https://data.goldenagents.org/datasets/annotations/be2b625e-d212-4578-9850-c7b25aeb591e",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:38.490315",
+        "generated": "2022-08-16T14:27:10.291475",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -962,23 +890,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:38.490300",
+                "modified": "2022-08-16T14:27:10.291461",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Boots",
-                "variant": "Boots",
-                "score": 0.8066336420417833,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1023,32 +939,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/bc3633ff-bf6c-4933-8040-37f641b52ec1",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/9b4ce700-c36d-4a60-b362-b6095ed61f4e",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:38.490345",
+        "generated": "2022-08-16T14:27:10.291631",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Johannes Boots",
-            "modified": "2022-08-12T15:04:38.490350",
+            "modified": "2022-08-16T14:27:10.291636",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/f1451742-7f96-4b78-96c8-7fe39f010f5f",
-                "https://data.goldenagents.org/datasets/annotations/ba14627f-ef82-4794-b18c-538b66067efd"
+                "https://data.goldenagents.org/datasets/annotations/17a78d66-ede7-49d8-9bf6-78af617fb7ca",
+                "https://data.goldenagents.org/datasets/annotations/be2b625e-d212-4578-9850-c7b25aeb591e"
             ]
         },
         "target": [
@@ -1082,13 +996,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/ea83279c-94ff-4b14-8812-71920c7f95dc",
+        "id": "https://data.goldenagents.org/datasets/annotations/5727c90b-7706-4418-9137-92548a75558c",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:40.301546",
+        "generated": "2022-08-16T14:27:12.117116",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1098,39 +1012,17 @@
             {
                 "type": "TextualBody",
                 "value": "Joannes",
-                "modified": "2022-08-12T15:04:40.301517",
+                "modified": "2022-08-16T14:27:12.117086",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:40.301475",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:40.301507",
+                "modified": "2022-08-16T14:27:12.117058",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Joannea",
-                "variant": "Joannes",
-                "score": 0.5906034353968634,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1177,13 +1069,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/ece1f8c6-0cc4-472b-be10-35978b6f1a3e",
+        "id": "https://data.goldenagents.org/datasets/annotations/8244f69a-a38c-49ab-b10e-cda7b8f6bf7a",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:40.301584",
+        "generated": "2022-08-16T14:27:12.117146",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1193,24 +1085,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:40.301569",
+                "modified": "2022-08-16T14:27:12.117131",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Homma",
-                "variant": "Homma",
-                "score": 0.8015833333333333,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1256,32 +1135,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/bf69c42e-9aa0-43c6-870d-24624b0ee196",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/1c8739fe-7338-42f1-bd50-6837e3fe67c1",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:40.301616",
+        "generated": "2022-08-16T14:27:12.117177",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Joannes Homma",
-            "modified": "2022-08-12T15:04:40.301622",
+            "modified": "2022-08-16T14:27:12.117181",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/ea83279c-94ff-4b14-8812-71920c7f95dc",
-                "https://data.goldenagents.org/datasets/annotations/ece1f8c6-0cc4-472b-be10-35978b6f1a3e"
+                "https://data.goldenagents.org/datasets/annotations/5727c90b-7706-4418-9137-92548a75558c",
+                "https://data.goldenagents.org/datasets/annotations/8244f69a-a38c-49ab-b10e-cda7b8f6bf7a"
             ]
         },
         "target": [
@@ -1315,13 +1192,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/daa7caf5-3164-4e70-a9fa-ca7c534b652f",
+        "id": "https://data.goldenagents.org/datasets/annotations/978a6367-9ac1-4c67-b01e-528a17bc5e83",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:40.922340",
+        "generated": "2022-08-16T14:27:12.709143",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1331,32 +1208,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:40.922276",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:40.922305",
+                "modified": "2022-08-16T14:27:12.709083",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Johanna",
-                "variant": "Johanna",
-                "score": 0.8174707372081595,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1402,13 +1258,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/6f895729-652d-4993-8898-a99a471b4e14",
+        "id": "https://data.goldenagents.org/datasets/annotations/8e8141b7-7df2-4a38-8404-ef7c714b63ab",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:40.922377",
+        "generated": "2022-08-16T14:27:12.709184",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1418,24 +1274,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:40.922362",
+                "modified": "2022-08-16T14:27:12.709163",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Homma",
-                "variant": "Homma",
-                "score": 0.8015833333333333,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1481,32 +1324,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/7b88c4d7-375d-4f0f-83d4-d867b28f6709",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/cbd5dd28-0a91-4352-9d50-60d97faaa9c1",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:40.922420",
+        "generated": "2022-08-16T14:27:12.709230",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Johanna Homma",
-            "modified": "2022-08-12T15:04:40.922426",
+            "modified": "2022-08-16T14:27:12.709235",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/daa7caf5-3164-4e70-a9fa-ca7c534b652f",
-                "https://data.goldenagents.org/datasets/annotations/6f895729-652d-4993-8898-a99a471b4e14"
+                "https://data.goldenagents.org/datasets/annotations/978a6367-9ac1-4c67-b01e-528a17bc5e83",
+                "https://data.goldenagents.org/datasets/annotations/8e8141b7-7df2-4a38-8404-ef7c714b63ab"
             ]
         },
         "target": [
@@ -1540,13 +1381,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/48809f5d-9cd8-4506-91c6-67cdd6e9d385",
+        "id": "https://data.goldenagents.org/datasets/annotations/7598192c-17ad-4817-920f-f6998d903a8e",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:41.500777",
+        "generated": "2022-08-16T14:27:13.282361",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1556,33 +1397,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:41.500622",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:41.500733",
+                "modified": "2022-08-16T14:27:13.282308",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Hendrick",
-                "variant": "Hendrick",
-                "score": 0.8351611393304786,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1629,13 +1448,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/4343d605-244a-4bd4-8ff6-aa81b45b226c",
+        "id": "https://data.goldenagents.org/datasets/annotations/225369d6-78a5-4cbc-9f34-65328f798baf",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:41.500815",
+        "generated": "2022-08-16T14:27:13.282928",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1645,23 +1464,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:41.500800",
+                "modified": "2022-08-16T14:27:13.282376",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Klerck",
-                "variant": "Klerck",
-                "score": 0.8025331724969844,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -1706,32 +1513,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/c99491b1-4bf9-4ce9-ae14-39f2243733cd",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/a404417f-de7f-4de3-ba55-8df750c097c7",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:41.500854",
+        "generated": "2022-08-16T14:27:13.282970",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Hendrick Klerck",
-            "modified": "2022-08-12T15:04:41.500860",
+            "modified": "2022-08-16T14:27:13.282974",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/48809f5d-9cd8-4506-91c6-67cdd6e9d385",
-                "https://data.goldenagents.org/datasets/annotations/4343d605-244a-4bd4-8ff6-aa81b45b226c"
+                "https://data.goldenagents.org/datasets/annotations/7598192c-17ad-4817-920f-f6998d903a8e",
+                "https://data.goldenagents.org/datasets/annotations/225369d6-78a5-4cbc-9f34-65328f798baf"
             ]
         },
         "target": [
@@ -1765,13 +1570,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/289da081-77b2-4ac5-b479-d01fbc30678b",
+        "id": "https://data.goldenagents.org/datasets/annotations/a024c425-091e-44a1-955a-f8ecdb476c33",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:44.106663",
+        "generated": "2022-08-16T14:27:15.860626",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1781,13 +1586,13 @@
             {
                 "type": "TextualBody",
                 "value": "testament",
-                "modified": "2022-08-12T15:04:44.106629",
+                "modified": "2022-08-16T14:27:15.860596",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:44.106591",
+                "modified": "2022-08-16T14:27:15.860567",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -1805,19 +1610,6 @@
                 ],
                 "category": "object",
                 "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Testamente",
-                "variant": "testament",
-                "score": 0.8188295165394402,
-                "source": [
-                    "object_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 2
             }
         ],
         "target": [
@@ -1850,31 +1642,29 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/3d221aee-15ac-4c48-a789-4c88efb71344",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/0c6f56bb-968d-4469-94a2-d507af1e625e",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:44.106698",
+        "generated": "2022-08-16T14:27:15.860659",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Object-entity"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
             "label": "de testament",
-            "modified": "2022-08-12T15:04:44.106706",
+            "modified": "2022-08-16T14:27:15.860664",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/289da081-77b2-4ac5-b479-d01fbc30678b"
+                "https://data.goldenagents.org/datasets/annotations/a024c425-091e-44a1-955a-f8ecdb476c33"
             ]
         },
         "target": [
@@ -1908,13 +1698,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/1f78f4a1-0c03-4745-a839-0815c6bb962c",
+        "id": "https://data.goldenagents.org/datasets/annotations/f704a942-55ce-4623-a374-9d1034f10b33",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:46.298751",
+        "generated": "2022-08-16T14:27:18.057435",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1924,13 +1714,13 @@
             {
                 "type": "TextualBody",
                 "value": "testament",
-                "modified": "2022-08-12T15:04:46.298723",
+                "modified": "2022-08-16T14:27:18.057407",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:46.298693",
+                "modified": "2022-08-16T14:27:18.057379",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -1981,13 +1771,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/62e51176-1ff5-4fad-b341-8e75796755f7",
+        "id": "https://data.goldenagents.org/datasets/annotations/2ac8507f-ffc2-4119-b356-d24bafd034c8",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:47.098520",
+        "generated": "2022-08-16T14:27:18.873569",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -1997,13 +1787,13 @@
             {
                 "type": "TextualBody",
                 "value": "testament",
-                "modified": "2022-08-12T15:04:47.098491",
+                "modified": "2022-08-16T14:27:18.873537",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:47.098462",
+                "modified": "2022-08-16T14:27:18.873506",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -2054,13 +1844,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/13efabfa-e076-4628-883a-9b9bebd1306b",
+        "id": "https://data.goldenagents.org/datasets/annotations/23bd8140-be16-43d8-9258-b99edcba1ec9",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:50.709780",
+        "generated": "2022-08-16T14:27:22.500074",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2070,39 +1860,17 @@
             {
                 "type": "TextualBody",
                 "value": "Mette",
-                "modified": "2022-08-12T15:04:50.709753",
+                "modified": "2022-08-16T14:27:22.500045",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:50.709721",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:50.709746",
+                "modified": "2022-08-16T14:27:22.500017",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "metter",
-                "variant": "Mette",
-                "score": 0.5667524352141151,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -2149,13 +1917,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/186f090e-1ba6-4123-99e8-3e14577263a9",
+        "id": "https://data.goldenagents.org/datasets/annotations/8b08af9c-6967-4fa5-a5b4-511dc335ca14",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:50.709812",
+        "generated": "2022-08-16T14:27:22.500104",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2165,29 +1933,17 @@
             {
                 "type": "TextualBody",
                 "value": "Doot",
-                "modified": "2022-08-12T15:04:50.709802",
+                "modified": "2022-08-16T14:27:22.500094",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:50.709797",
+                "modified": "2022-08-16T14:27:22.500087",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "doot",
-                "variant": "Doot",
-                "score": 0.8004326250159053,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -2232,32 +1988,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/36837f36-6145-4a60-9e3e-6c3e5afeccd2",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/e6cf7146-703f-4ea5-88eb-1130a05ba4db",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:50.709846",
+        "generated": "2022-08-16T14:27:22.500137",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Mette Doot",
-            "modified": "2022-08-12T15:04:50.709851",
+            "modified": "2022-08-16T14:27:22.500141",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/13efabfa-e076-4628-883a-9b9bebd1306b",
-                "https://data.goldenagents.org/datasets/annotations/186f090e-1ba6-4123-99e8-3e14577263a9"
+                "https://data.goldenagents.org/datasets/annotations/23bd8140-be16-43d8-9258-b99edcba1ec9",
+                "https://data.goldenagents.org/datasets/annotations/8b08af9c-6967-4fa5-a5b4-511dc335ca14"
             ]
         },
         "target": [
@@ -2291,13 +2045,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/bbb7780f-b346-49e4-adbd-c0e04b878a1a",
+        "id": "https://data.goldenagents.org/datasets/annotations/a54946e2-e889-4e4a-ae1f-bf6eaea0e0a9",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:51.009897",
+        "generated": "2022-08-16T14:27:22.809977",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2307,39 +2061,17 @@
             {
                 "type": "TextualBody",
                 "value": "Laurentius",
-                "modified": "2022-08-12T15:04:51.009869",
+                "modified": "2022-08-16T14:27:22.809946",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:51.009834",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:51.009861",
+                "modified": "2022-08-16T14:27:22.809916",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "rentius",
-                "variant": "Laurentius",
-                "score": 0.49383203241238816,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -2386,13 +2118,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/b0bbe349-cd19-442e-91e5-132b88e7a67d",
+        "id": "https://data.goldenagents.org/datasets/annotations/f8c257c1-01ca-4205-9e0a-0f99f6fbad39",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:51.009928",
+        "generated": "2022-08-16T14:27:22.810008",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2402,23 +2134,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:51.009915",
+                "modified": "2022-08-16T14:27:22.809993",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Somma",
-                "variant": "Somma",
-                "score": 0.8002589555459647,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -2463,32 +2183,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/08c701b7-ca6f-48ef-97cd-2dff5ba8f882",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/7345a6f4-6cb7-4898-94ec-0ed20976a72a",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:51.009966",
+        "generated": "2022-08-16T14:27:22.810049",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Laurentius Somma",
-            "modified": "2022-08-12T15:04:51.009971",
+            "modified": "2022-08-16T14:27:22.810054",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/bbb7780f-b346-49e4-adbd-c0e04b878a1a",
-                "https://data.goldenagents.org/datasets/annotations/b0bbe349-cd19-442e-91e5-132b88e7a67d"
+                "https://data.goldenagents.org/datasets/annotations/a54946e2-e889-4e4a-ae1f-bf6eaea0e0a9",
+                "https://data.goldenagents.org/datasets/annotations/f8c257c1-01ca-4205-9e0a-0f99f6fbad39"
             ]
         },
         "target": [
@@ -2522,13 +2240,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/cf2b6f53-d234-4d70-8f3b-2c2b48ed38b7",
+        "id": "https://data.goldenagents.org/datasets/annotations/6ac05b6f-5f73-4e99-821e-93ef3817a242",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:52.597309",
+        "generated": "2022-08-16T14:27:24.405854",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2538,39 +2256,17 @@
             {
                 "type": "TextualBody",
                 "value": "Jacob",
-                "modified": "2022-08-12T15:04:52.597272",
+                "modified": "2022-08-16T14:27:24.405824",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:52.597236",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:52.597264",
+                "modified": "2022-08-16T14:27:24.405795",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Jacobus",
-                "variant": "Jacob",
-                "score": 0.6857142857142857,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -2617,13 +2313,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a04d53f2-4a95-4d12-9b32-6a216b00bccb",
+        "id": "https://data.goldenagents.org/datasets/annotations/9e08e736-3270-4316-b311-6d2a018915cd",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:52.597352",
+        "generated": "2022-08-16T14:27:24.405885",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2633,29 +2329,17 @@
             {
                 "type": "TextualBody",
                 "value": "Clercquius",
-                "modified": "2022-08-12T15:04:52.597332",
+                "modified": "2022-08-16T14:27:24.405875",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:52.597327",
+                "modified": "2022-08-16T14:27:24.405869",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Klercquius",
-                "variant": "Clercquius",
-                "score": 0.7210909090909092,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -2700,32 +2384,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/10bc7416-54d8-47f2-96ae-0d08419646c6",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/283fcf9f-46e4-4225-af0c-499ae1c00b66",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:52.597383",
+        "generated": "2022-08-16T14:27:24.405916",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Jacob Clercquius",
-            "modified": "2022-08-12T15:04:52.597388",
+            "modified": "2022-08-16T14:27:24.405920",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/cf2b6f53-d234-4d70-8f3b-2c2b48ed38b7",
-                "https://data.goldenagents.org/datasets/annotations/a04d53f2-4a95-4d12-9b32-6a216b00bccb"
+                "https://data.goldenagents.org/datasets/annotations/6ac05b6f-5f73-4e99-821e-93ef3817a242",
+                "https://data.goldenagents.org/datasets/annotations/9e08e736-3270-4316-b311-6d2a018915cd"
             ]
         },
         "target": [
@@ -2759,13 +2441,86 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/d6233c7f-c534-4759-bf81-35399ba3ed17",
+        "id": "https://data.goldenagents.org/datasets/annotations/0a5eefb6-e2bc-437f-a103-eed2d74e04df",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:54.682063",
+        "generated": "2022-08-16T14:27:26.478174",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "een",
+                "modified": "2022-08-16T14:27:26.478144",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-16T14:27:26.478080",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300055665",
+                    "label": "quantifier"
+                }
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "en",
+                "variant": "een",
+                "score": 0.9879641485275288,
+                "source": [
+                    "quantifier_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "quantifier",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/cff8977c8348a1383928328ff8a01056/texts/NOTD00244000028",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 2217,
+                        "end": 2219
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "en",
+                        "prefix": "bijden haerln. in haer Sterff ",
+                        "suffix": " laets villing, Onder dese voortraerde ende wilde ende"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/cff8977c8348a1383928328ff8a01056/scans/NOTD00244000028",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=304,2673,1799,166"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/fab3662b-2eeb-4d57-ad30-dac883a970ce",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-16T14:27:26.478205",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2775,13 +2530,13 @@
             {
                 "type": "TextualBody",
                 "value": "laten",
-                "modified": "2022-08-12T15:04:54.682037",
+                "modified": "2022-08-16T14:27:26.478196",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:54.682024",
+                "modified": "2022-08-16T14:27:26.478189",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -2799,19 +2554,6 @@
                 ],
                 "category": "object",
                 "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "laets",
-                "variant": "laten",
-                "score": 0.8000068745058948,
-                "source": [
-                    "object_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 2
             }
         ],
         "target": [
@@ -2844,31 +2586,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/df1e552f-731b-4ea4-a240-d50feec3dbcd",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/b902a800-ffc7-4ae5-9df5-c0b4ef4e36a9",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:54.682113",
+        "generated": "2022-08-16T14:27:26.478258",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Object-entity"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
             "label": "een laten",
-            "modified": "2022-08-12T15:04:54.682119",
+            "modified": "2022-08-16T14:27:26.478262",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/d6233c7f-c534-4759-bf81-35399ba3ed17"
+                "https://data.goldenagents.org/datasets/annotations/0a5eefb6-e2bc-437f-a103-eed2d74e04df",
+                "https://data.goldenagents.org/datasets/annotations/fab3662b-2eeb-4d57-ad30-dac883a970ce"
             ]
         },
         "target": [
@@ -2902,13 +2643,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a256aabf-918a-471a-ab84-d3f48b9c2ecf",
+        "id": "https://data.goldenagents.org/datasets/annotations/0b69b616-e668-4405-8523-9d812d0ed366",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:55.304374",
+        "generated": "2022-08-16T14:27:27.059975",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2918,13 +2659,13 @@
             {
                 "type": "TextualBody",
                 "value": "huis",
-                "modified": "2022-08-12T15:04:55.304344",
+                "modified": "2022-08-16T14:27:27.059943",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:55.304315",
+                "modified": "2022-08-16T14:27:27.059913",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300133704",
                     "label": "room"
@@ -2975,13 +2716,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/9bc67728-0a1e-46a7-8e15-1ac216a18698",
+        "id": "https://data.goldenagents.org/datasets/annotations/82442c04-10b2-464c-9040-ad4dd6db6c95",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:57.156154",
+        "generated": "2022-08-16T14:27:28.877576",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -2991,13 +2732,13 @@
             {
                 "type": "TextualBody",
                 "value": "erve",
-                "modified": "2022-08-12T15:04:57.156123",
+                "modified": "2022-08-16T14:27:28.877547",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:57.156092",
+                "modified": "2022-08-16T14:27:28.877519",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300133704",
                     "label": "room"
@@ -3048,13 +2789,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/34d00b3f-2edd-4a32-b51e-69407424fd9a",
+        "id": "https://data.goldenagents.org/datasets/annotations/71653c27-4ecf-4db1-972f-a44896c545cd",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:57.512471",
+        "generated": "2022-08-16T14:27:29.250620",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3064,33 +2805,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:57.512414",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:04:57.512440",
+                "modified": "2022-08-16T14:27:29.250567",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Laurentius",
-                "variant": "Laurentius",
-                "score": 0.8025350684468482,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -3137,13 +2856,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/146b2780-6f43-422f-b11f-6cd6a5ba0790",
+        "id": "https://data.goldenagents.org/datasets/annotations/6849a784-d884-4a92-8264-b2161fc4da38",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:57.512502",
+        "generated": "2022-08-16T14:27:29.250649",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3153,24 +2872,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:57.512489",
+                "modified": "2022-08-16T14:27:29.250634",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Homma",
-                "variant": "Homma",
-                "score": 0.8015833333333333,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -3216,32 +2922,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/efe53194-9d8a-4f92-b50f-fa10dfe07d43",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/6fabce4e-8fa6-4045-aa28-d0040c5ab798",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:57.512544",
+        "generated": "2022-08-16T14:27:29.250693",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Laurentius Homma",
-            "modified": "2022-08-12T15:04:57.512549",
+            "modified": "2022-08-16T14:27:29.250697",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/34d00b3f-2edd-4a32-b51e-69407424fd9a",
-                "https://data.goldenagents.org/datasets/annotations/146b2780-6f43-422f-b11f-6cd6a5ba0790"
+                "https://data.goldenagents.org/datasets/annotations/71653c27-4ecf-4db1-972f-a44896c545cd",
+                "https://data.goldenagents.org/datasets/annotations/6849a784-d884-4a92-8264-b2161fc4da38"
             ]
         },
         "target": [
@@ -3275,13 +2979,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/82b1e8e7-9f83-4057-9d65-a152a7f090ad",
+        "id": "https://data.goldenagents.org/datasets/annotations/9d4e2a98-63de-4b99-96c0-41ef0538ade3",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:58.144672",
+        "generated": "2022-08-16T14:27:29.864743",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3291,13 +2995,13 @@
             {
                 "type": "TextualBody",
                 "value": "Lier",
-                "modified": "2022-08-12T15:04:58.144634",
+                "modified": "2022-08-16T14:27:29.864714",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:58.144577",
+                "modified": "2022-08-16T14:27:29.864686",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -3348,13 +3052,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a6d6017f-6b7c-42cf-88a7-798680c69e28",
+        "id": "https://data.goldenagents.org/datasets/annotations/5bae7f27-f1a8-4b67-957e-8cd6876d21c6",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:58.144777",
+        "generated": "2022-08-16T14:27:29.864781",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3364,13 +3068,13 @@
             {
                 "type": "TextualBody",
                 "value": "reken",
-                "modified": "2022-08-12T15:04:58.144761",
+                "modified": "2022-08-16T14:27:29.864772",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:58.144742",
+                "modified": "2022-08-16T14:27:29.864763",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -3388,19 +3092,6 @@
                 ],
                 "category": "object",
                 "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "gebreeckende",
-                "variant": "reken",
-                "score": 0.5121052631578947,
-                "source": [
-                    "object_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 2
             }
         ],
         "target": [
@@ -3433,31 +3124,29 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/05f14bba-041f-41a1-92e0-77ee35515216",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/0e8a57b6-525b-4da5-9885-63870a13a793",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:04:58.144851",
+        "generated": "2022-08-16T14:27:29.864825",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Object-entity"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
             "label": "de reken",
-            "modified": "2022-08-12T15:04:58.144859",
+            "modified": "2022-08-16T14:27:29.864830",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/a6d6017f-6b7c-42cf-88a7-798680c69e28"
+                "https://data.goldenagents.org/datasets/annotations/5bae7f27-f1a8-4b67-957e-8cd6876d21c6"
             ]
         },
         "target": [
@@ -3491,13 +3180,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/d5bda7e6-3ae4-42b3-82fc-de44f915a38a",
+        "id": "https://data.goldenagents.org/datasets/annotations/dfe9b48d-401c-4ecb-a2cc-e0cfac1620fa",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:58.818203",
+        "generated": "2022-08-16T14:27:30.506483",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3507,13 +3196,13 @@
             {
                 "type": "TextualBody",
                 "value": "weg",
-                "modified": "2022-08-12T15:04:58.818175",
+                "modified": "2022-08-16T14:27:30.506452",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:58.818146",
+                "modified": "2022-08-16T14:27:30.506422",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -3564,13 +3253,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/f36c1856-0bb4-4714-9a89-b5a698ecc897",
+        "id": "https://data.goldenagents.org/datasets/annotations/2ecb1bf8-cfac-40b4-b4fd-f0453eaf5a96",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:58.879636",
+        "generated": "2022-08-16T14:27:30.578889",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3580,13 +3269,13 @@
             {
                 "type": "TextualBody",
                 "value": "Rade",
-                "modified": "2022-08-12T15:04:58.879607",
+                "modified": "2022-08-16T14:27:30.578859",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:58.879578",
+                "modified": "2022-08-16T14:27:30.578829",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -3637,13 +3326,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/391fc863-ea79-44cc-80a5-74380659ad50",
+        "id": "https://data.goldenagents.org/datasets/annotations/32cd9d66-bfc7-433a-8d4f-43db54558d53",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:04:59.879536",
+        "generated": "2022-08-16T14:27:31.592088",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3653,13 +3342,13 @@
             {
                 "type": "TextualBody",
                 "value": "Waveren",
-                "modified": "2022-08-12T15:04:59.879509",
+                "modified": "2022-08-16T14:27:31.592061",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:04:59.879482",
+                "modified": "2022-08-16T14:27:31.592033",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -3709,13 +3398,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a29e7132-5a8e-4e80-abbb-44f5f7864ec3",
+        "id": "https://data.goldenagents.org/datasets/annotations/13f86fe3-5285-4ded-a9cc-805bcf360875",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:02.557807",
+        "generated": "2022-08-16T14:27:34.255047",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3725,7 +3414,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:02.557745",
+                "modified": "2022-08-16T14:27:34.254993",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -3776,13 +3465,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/ccd2036d-4f56-4fd5-96b0-262d42d3eab0",
+        "id": "https://data.goldenagents.org/datasets/annotations/3ea57e4c-1a93-4390-9d1e-1ee4a720c097",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:06.262625",
+        "generated": "2022-08-16T14:27:37.947511",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3792,13 +3481,13 @@
             {
                 "type": "TextualBody",
                 "value": "kleden",
-                "modified": "2022-08-12T15:05:06.262583",
+                "modified": "2022-08-16T14:27:37.947482",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:06.262536",
+                "modified": "2022-08-16T14:27:37.947454",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -3849,13 +3538,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/d5127785-2513-4f01-85b5-7538a7e0695c",
+        "id": "https://data.goldenagents.org/datasets/annotations/378a5370-93ed-4dbf-8b9a-f0ef13fc8793",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:06.881617",
+        "generated": "2022-08-16T14:27:38.494431",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3865,13 +3554,13 @@
             {
                 "type": "TextualBody",
                 "value": "Werden",
-                "modified": "2022-08-12T15:05:06.881590",
+                "modified": "2022-08-16T14:27:38.494357",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:06.881561",
+                "modified": "2022-08-16T14:27:38.494329",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -3921,13 +3610,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/cc252c8e-f297-4968-b774-89fb83aa2929",
+        "id": "https://data.goldenagents.org/datasets/annotations/0c1ac380-55f7-4ae5-b1f8-c120534fe161",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:08.057993",
+        "generated": "2022-08-16T14:27:39.681627",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -3937,13 +3626,13 @@
             {
                 "type": "TextualBody",
                 "value": "erf",
-                "modified": "2022-08-12T15:05:08.057966",
+                "modified": "2022-08-16T14:27:39.681599",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:08.057893",
+                "modified": "2022-08-16T14:27:39.681572",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300133704",
                     "label": "room"
@@ -3994,13 +3683,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/e2f60d3c-d1cd-40bb-88a0-dcfb4c570f74",
+        "id": "https://data.goldenagents.org/datasets/annotations/c5f028bc-d8f8-461d-8541-82ad91d15e6b",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:08.195761",
+        "generated": "2022-08-16T14:27:39.813035",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4010,7 +3699,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:08.195708",
+                "modified": "2022-08-16T14:27:39.812976",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -4062,13 +3751,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/bc39bc75-8765-4780-bab5-59ebe60b78fd",
+        "id": "https://data.goldenagents.org/datasets/annotations/813f3262-996f-47e7-91c4-6d3b1cc68154",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:08.386560",
+        "generated": "2022-08-16T14:27:40.007336",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4078,13 +3767,13 @@
             {
                 "type": "TextualBody",
                 "value": "Rade",
-                "modified": "2022-08-12T15:05:08.386529",
+                "modified": "2022-08-16T14:27:40.007304",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:08.386497",
+                "modified": "2022-08-16T14:27:40.007271",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -4135,13 +3824,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/2681ff98-0bfd-4a4e-9845-4af61bf578dc",
+        "id": "https://data.goldenagents.org/datasets/annotations/ae1f44ac-d93b-45cf-b941-df985bc87ce0",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:12.390535",
+        "generated": "2022-08-16T14:27:43.950895",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4151,7 +3840,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:12.390476",
+                "modified": "2022-08-16T14:27:43.950841",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -4202,13 +3891,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/7699c287-8776-40a9-af96-f1d89975823f",
+        "id": "https://data.goldenagents.org/datasets/annotations/70ea53ab-097f-4cdc-9175-b69c41d9a0f4",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:13.024046",
+        "generated": "2022-08-16T14:27:44.600800",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4218,34 +3907,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:13.023980",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:05:13.024012",
+                "modified": "2022-08-16T14:27:44.600743",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Johannes",
-                "variant": "Johannes",
-                "score": 1.0,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -4293,13 +3959,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/dc6301cf-0c5e-48e5-a685-ada1399b40bc",
+        "id": "https://data.goldenagents.org/datasets/annotations/9234f1d8-a0b9-4d97-bb57-e40637f9069d",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:13.024085",
+        "generated": "2022-08-16T14:27:44.600836",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4309,29 +3975,17 @@
             {
                 "type": "TextualBody",
                 "value": "Boots",
-                "modified": "2022-08-12T15:05:13.024074",
+                "modified": "2022-08-16T14:27:44.600825",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:13.024068",
+                "modified": "2022-08-16T14:27:44.600817",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "boots",
-                "variant": "Boots",
-                "score": 0.8066336420417833,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -4376,32 +4030,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/3f6ca0ba-1787-4166-9303-417f6045eccd",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/f68e5260-2164-4baf-8f1e-75edaab410a6",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:05:13.024127",
+        "generated": "2022-08-16T14:27:44.600877",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Johannes Boots",
-            "modified": "2022-08-12T15:05:13.024132",
+            "modified": "2022-08-16T14:27:44.600882",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/7699c287-8776-40a9-af96-f1d89975823f",
-                "https://data.goldenagents.org/datasets/annotations/dc6301cf-0c5e-48e5-a685-ada1399b40bc"
+                "https://data.goldenagents.org/datasets/annotations/70ea53ab-097f-4cdc-9175-b69c41d9a0f4",
+                "https://data.goldenagents.org/datasets/annotations/9234f1d8-a0b9-4d97-bb57-e40637f9069d"
             ]
         },
         "target": [
@@ -4435,13 +4087,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/2d272ebe-56d8-47a9-8dc6-5f85d3fcd4b9",
+        "id": "https://data.goldenagents.org/datasets/annotations/fdb1b785-6e17-4bf2-a212-440bb9aaad98",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:14.482662",
+        "generated": "2022-08-16T14:27:46.041457",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4451,33 +4103,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:14.482604",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:05:14.482633",
+                "modified": "2022-08-16T14:27:46.041379",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Laurentius",
-                "variant": "Laurentius",
-                "score": 0.8025350684468482,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -4524,13 +4154,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/a6c17a8d-6ef4-4927-9592-6785b1cf4704",
+        "id": "https://data.goldenagents.org/datasets/annotations/626f1f09-25a4-499a-b2e3-6959f11d5267",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:14.482697",
+        "generated": "2022-08-16T14:27:46.041516",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4540,29 +4170,17 @@
             {
                 "type": "TextualBody",
                 "value": "Momma",
-                "modified": "2022-08-12T15:05:14.482688",
+                "modified": "2022-08-16T14:27:46.041498",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:14.482682",
+                "modified": "2022-08-16T14:27:46.041485",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Komma",
-                "variant": "Momma",
-                "score": 0.5621700474751835,
-                "source": [
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -4608,13 +4226,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/8e6982bb-812f-481b-ab09-552b4a5bff77",
+        "id": "https://data.goldenagents.org/datasets/annotations/cc448a99-f793-45c2-8cfe-31f53fdd98e5",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:14.482759",
+        "generated": "2022-08-16T14:27:46.041580",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4624,13 +4242,13 @@
             {
                 "type": "TextualBody",
                 "value": "reken",
-                "modified": "2022-08-12T15:05:14.482747",
+                "modified": "2022-08-16T14:27:46.041564",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:14.482737",
+                "modified": "2022-08-16T14:27:46.041551",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -4648,19 +4266,6 @@
                 ],
                 "category": "object",
                 "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "gebreeckende",
-                "variant": "reken",
-                "score": 0.5121052631578947,
-                "source": [
-                    "object_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 2
             }
         ],
         "target": [
@@ -4693,32 +4298,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/6f7d1001-4bc3-4762-b98c-2e59aea4ed70",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/88b1eb54-9893-4474-9e92-2860b095f0ed",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:05:14.482795",
+        "generated": "2022-08-16T14:27:46.041638",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Laurentius Momma",
-            "modified": "2022-08-12T15:05:14.482801",
+            "modified": "2022-08-16T14:27:46.041646",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/2d272ebe-56d8-47a9-8dc6-5f85d3fcd4b9",
-                "https://data.goldenagents.org/datasets/annotations/a6c17a8d-6ef4-4927-9592-6785b1cf4704"
+                "https://data.goldenagents.org/datasets/annotations/fdb1b785-6e17-4bf2-a212-440bb9aaad98",
+                "https://data.goldenagents.org/datasets/annotations/626f1f09-25a4-499a-b2e3-6959f11d5267"
             ]
         },
         "target": [
@@ -4751,31 +4354,29 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/90cdf638-dbdf-4e0d-bafa-3d17d30ae5c3",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/09ef2052-337a-4667-9767-8a8d95ed4294",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:05:14.482825",
+        "generated": "2022-08-16T14:27:46.041685",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Object-entity"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
             "label": "de reken",
-            "modified": "2022-08-12T15:05:14.482829",
+            "modified": "2022-08-16T14:27:46.041692",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/8e6982bb-812f-481b-ab09-552b4a5bff77"
+                "https://data.goldenagents.org/datasets/annotations/cc448a99-f793-45c2-8cfe-31f53fdd98e5"
             ]
         },
         "target": [
@@ -4809,13 +4410,86 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/20c39f58-f2e8-4683-a830-acb3baa48ebf",
+        "id": "https://data.goldenagents.org/datasets/annotations/f0ada5dc-2727-4ed1-83c8-4a8f926d42f7",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:15.108630",
+        "generated": "2022-08-16T14:27:46.675661",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "vijf",
+                "modified": "2022-08-16T14:27:46.675632",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-16T14:27:46.675602",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300055665",
+                    "label": "quantifier"
+                }
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "vijffes",
+                "variant": "vijf",
+                "score": 0.5493866020984665,
+                "source": [
+                    "quantifier_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "quantifier",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/cff8977c8348a1383928328ff8a01056/texts/NOTD00244000028",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 5533,
+                        "end": 5540
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "vijffes",
+                        "prefix": "ao. xiC. ",
+                        "suffix": " kraned of"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/cff8977c8348a1383928328ff8a01056/scans/NOTD00244000028",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=2192,2745,396,79"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/1cce96f8-1481-4c00-84e2-de034c5e3446",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-16T14:27:46.675693",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4825,13 +4499,13 @@
             {
                 "type": "TextualBody",
                 "value": "kranen",
-                "modified": "2022-08-12T15:05:15.108604",
+                "modified": "2022-08-16T14:27:46.675683",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:15.108590",
+                "modified": "2022-08-16T14:27:46.675676",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300311889",
                     "label": "object"
@@ -4849,19 +4523,6 @@
                 ],
                 "category": "object",
                 "seqnr": 1
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "kraned",
-                "variant": "kranen",
-                "score": 0.5667563424247472,
-                "source": [
-                    "object_variants.freq.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "object-entity",
-                "seqnr": 2
             }
         ],
         "target": [
@@ -4894,31 +4555,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/b9b0df11-c764-4781-916a-479dee2a3a73",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/000d120d-1069-4f00-b41b-48497066a77a",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:05:15.108668",
+        "generated": "2022-08-16T14:27:46.675732",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Object-entity"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
             "label": "vijf kranen",
-            "modified": "2022-08-12T15:05:15.108674",
+            "modified": "2022-08-16T14:27:46.675737",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/20c39f58-f2e8-4683-a830-acb3baa48ebf"
+                "https://data.goldenagents.org/datasets/annotations/f0ada5dc-2727-4ed1-83c8-4a8f926d42f7",
+                "https://data.goldenagents.org/datasets/annotations/1cce96f8-1481-4c00-84e2-de034c5e3446"
             ]
         },
         "target": [
@@ -4952,13 +4612,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/1bc53536-1ae7-484d-a61b-b6bf40fbb5ab",
+        "id": "https://data.goldenagents.org/datasets/annotations/cb6b9bb6-b810-4c4a-8482-2fa23d38f9bc",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:15.424047",
+        "generated": "2022-08-16T14:27:46.988637",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -4968,40 +4628,17 @@
             {
                 "type": "TextualBody",
                 "value": "Johannes",
-                "modified": "2022-08-12T15:05:15.424020",
+                "modified": "2022-08-16T14:27:46.988608",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:15.423980",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:05:15.424010",
+                "modified": "2022-08-16T14:27:46.988578",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Johianne",
-                "variant": "Johannes",
-                "score": 0.635,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -5049,13 +4686,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/8f8445d9-1db8-4cdf-9b38-cab622b45907",
+        "id": "https://data.goldenagents.org/datasets/annotations/07f42b2a-6703-491e-82a5-0cc752013a90",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:15.424092",
+        "generated": "2022-08-16T14:27:46.988675",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -5065,30 +4702,17 @@
             {
                 "type": "TextualBody",
                 "value": "Homma",
-                "modified": "2022-08-12T15:05:15.424081",
+                "modified": "2022-08-16T14:27:46.988664",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:15.424074",
+                "modified": "2022-08-16T14:27:46.988655",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "homma",
-                "variant": "Homma",
-                "score": 0.8015833333333333,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -5134,32 +4758,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/4b4e0a6b-9a37-49bc-8e2e-61f394e41e2c",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/d38bc111-4654-4c72-8fdf-a48b4f33f898",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:05:15.424155",
+        "generated": "2022-08-16T14:27:46.988733",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Johannes Homma",
-            "modified": "2022-08-12T15:05:15.424161",
+            "modified": "2022-08-16T14:27:46.988738",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/1bc53536-1ae7-484d-a61b-b6bf40fbb5ab",
-                "https://data.goldenagents.org/datasets/annotations/8f8445d9-1db8-4cdf-9b38-cab622b45907"
+                "https://data.goldenagents.org/datasets/annotations/cb6b9bb6-b810-4c4a-8482-2fa23d38f9bc",
+                "https://data.goldenagents.org/datasets/annotations/07f42b2a-6703-491e-82a5-0cc752013a90"
             ]
         },
         "target": [

@@ -1,13 +1,13 @@
 [
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/0e4d8d60-b173-4e16-ad63-e1a3dadd01f7",
+        "id": "https://data.goldenagents.org/datasets/annotations/98287d9c-cb15-4619-95b3-a8437e8556fb",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:16.421350",
+        "generated": "2022-08-16T14:27:47.955126",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,33 +17,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:16.421283",
-                "source": {
-                    "id": "http://vocab.getty.edu/aat/300024979",
-                    "label": "person"
-                }
-            },
-            {
-                "type": "SpecificResource",
-                "purpose": "tagging",
-                "modified": "2022-08-12T15:05:16.421314",
+                "modified": "2022-08-16T14:27:47.955071",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Bruijn",
-                "variant": "Bruijn",
-                "score": 0.8141832162009942,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv"
-                ],
-                "category": "person",
-                "seqnr": 1
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -90,13 +68,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/c6db6fbb-f574-4f3f-8e53-328dbbacd8fd",
+        "id": "https://data.goldenagents.org/datasets/annotations/e42f21f9-a651-4887-bba0-9e4ed69f47a3",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-12T15:05:16.421392",
+        "generated": "2022-08-16T14:27:47.955160",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -106,25 +84,11 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-12T15:05:16.421376",
+                "modified": "2022-08-16T14:27:47.955143",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
                 }
-            },
-            {
-                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
-                "type": "Match",
-                "phrase": "Jan",
-                "variant": "Jan",
-                "score": 1.0,
-                "source": [
-                    "first_names_lexicon.sanitized.tsv",
-                    "family_names_lexicon.sanitized.tsv",
-                    "int_historisch_lexicon_variants.freq.tsv"
-                ],
-                "category": "person",
-                "seqnr": 2
             },
             {
                 "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
@@ -171,32 +135,30 @@
         ]
     },
     {
-        "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/46545e5f-33c2-4b48-ab9c-eb2623742f78",
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/1270539e-4e62-40aa-8012-3bf11324f7df",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-12T15:05:16.421432",
+        "generated": "2022-08-16T14:27:47.955199",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
             "name": "GoldenAgentsNER"
         },
         "body": {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/",
-                "prov": "http://www.w3.org/ns/prov#"
-            },
-            "type": [
-                "rpp:Observation",
-                "rpp:Person"
-            ],
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Bruijn Jan",
-            "modified": "2022-08-12T15:05:16.421438",
+            "modified": "2022-08-16T14:27:47.955203",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/0e4d8d60-b173-4e16-ad63-e1a3dadd01f7",
-                "https://data.goldenagents.org/datasets/annotations/c6db6fbb-f574-4f3f-8e53-328dbbacd8fd"
+                "https://data.goldenagents.org/datasets/annotations/98287d9c-cb15-4619-95b3-a8437e8556fb",
+                "https://data.goldenagents.org/datasets/annotations/e42f21f9-a651-4887-bba0-9e4ed69f47a3"
             ]
         },
         "target": [

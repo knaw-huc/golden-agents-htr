@@ -18,6 +18,7 @@ ARCHIVE_IDENTIFIERS = 'archive_identifiers'
 class NoResourceIDError(Exception):
     pass
 
+
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
 
@@ -110,6 +111,12 @@ class NER:
         else:
             self.has_resource_ids = False
 
+        if 'observationids' in self.config:
+            self.observation_ids = self.config['observationids']
+            self.has_observation_ids = True
+        else:
+            self.has_observation_ids = False
+
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
@@ -156,11 +163,17 @@ class NER:
                     if seqnr > 0:
                         # find beginning of sequence, skip otherwise
                         continue
+
+                    if tag not in self.observation_ids:
+                        #only process tags that can be observations
+                        continue
+
                     length = 1
                     if 'annotations' in ner_result:
                         provenance = deepcopy(ner_result['annotations'])
                     else:
                         provenance = []
+
                     # find the rest of the sequence; aggregate text of the top variants
                     variant_text = ner_result['variants'][0]['text']
                     last_ner_result = ner_result
@@ -178,7 +191,7 @@ class NER:
                     if length > 1:
                         xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
                         yield {
-                            "@context": "http://www.w3.org/ns/anno.jsonld",
+                            "@context": [ "http://www.w3.org/ns/anno.jsonld", { "prov": "http://www.w3.org/ns/prov#" } ],
                             "id": random_annotation_id(),
                             "type": "Annotation",
                             "motivation": [
@@ -239,19 +252,15 @@ class NER:
                         and result['variants'][0]['score'] >= self.config.get('score-threshold', 0)
                 ):
                     xywh = f"{tl.coords.x},{tl.coords.y},{tl.coords.w},{tl.coords.h}"
-                    try:
-                        new_annotations = list(
-                            self.create_web_annotation(text_line=tl, ner_result=result, scan_pid=scan.pid, xywh=xywh,
-                                                       text_pid=scan.text_pid,
-                                                       line_offset=len(plain_text)))
-                    except NoResourceIDError as e:
-                        print("INFO: ", str(e), file=sys.stderr)
-                        continue
+                    new_annotations = list(
+                        self.create_web_annotation(text_line=tl, ner_result=result, scan_pid=scan.pid, xywh=xywh,
+                                                   text_pid=scan.text_pid,
+                                                   line_offset=len(plain_text)))
                     annotations += new_annotations
                     result['annotations'] = [ x['id'] for x in new_annotations ]
             plain_text += f"{text}\n"
             if self.has_contextrules:
-                #observations are annotations ofmulti-span entitities from the context rules (see https://github.com/knaw-huc/golden-agents-htr/issues/22 for discussion)
+                #observations are annotations of multi-span entitities from the context rules (see https://github.com/knaw-huc/golden-agents-htr/issues/22 for discussion)
                 for entity_wa in self.create_web_annotation_observation(ner_results=ner_results, text_line=tl,
                                                                       line_offset=len(plain_text),
                                                                       scan_pid=scan.pid, text_pid=scan.text_pid):
@@ -277,24 +286,15 @@ class NER:
             tag_bodies = []
             variantmatch_bodies = []
             if ner_result.get('tag'):
-                if isinstance(ner_result['tag'],str) and ner_result['seqnr'] == 0:
-                    # new style: tag set by analiticcl < 0.4.2 via contextrules  , one tag only (for backward compatibility only)
-                    tag_bodies.append(self.tagging_body(label=ner_result['tag']))
-                    variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=ner_result['tag'], seqnr=0))
-                else:
-                    # new style: tag set by analiticcl >= 0.4.2 via contextrules  , supports multiple tags, each will get a body
-                    for tag, seqnr in zip(ner_result.get('tag',[]), ner_result.get('seqnr',[])):
-                        if seqnr == 0:
+                # new style: tag set by analiticcl >= 0.4.2 via contextrules  , supports multiple tags, each will get a separate body 
+                for tag, seqnr in zip(ner_result.get('tag',[]), ner_result.get('seqnr',[])):
+                    if tag not in self.observation_ids or tag in self.resource_ids: #skip tags that are observations, unless it's explicitly in the resource_ids as well
+                        try:
                             tag_bodies.append(self.tagging_body(label=tag))
-                        variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
-            elif not self.has_contextrules:
-                # old style: tag derived directly from lexicon , no context rules used
-                if not categories:
-                    continue
-                for cat in categories:
-                    body = self.tagging_body(label=cat)
-                    tag_bodies.append(body)
-                    variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=cat,seqnr=None))
+                            variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
+                        except NoResourceIDError as e:
+                            print("INFO: ", str(e), file=sys.stderr)
+                            continue
             elif not categories:
                 # background lexicon match only, don't output
                 continue
@@ -387,18 +387,20 @@ class NER:
             }
 
     def observation_body(self, type: str, label: str, provenance: Optional[list] = None) -> Dict[str, Any]:
+        if not self.has_observation_ids or type not in self.observation_ids:
+            raise ValueError(f"no observationid defined for '{type}': check config file.")
+        type = self.observation_ids[type]
         return {
-            "@context": {
-                "rpp": "https://data.goldenagents.org/ontology/rpp/", #TODO: doesn't exist yet!
-                "prov": "http://www.w3.org/ns/prov#", 
-            },
-            "type": [ "rpp:Observation", "rpp:" + type[0].upper() + type[1:] ],
+            "type": type,
             "label": label,
             "modified": now(),
             "prov:wasDerivedFrom": provenance,
         }
 
     def variantmatch_body(self, phrase:str, variant: str, score: Optional[float], lexicons: list, category: Optional[str], seqnr: Optional[int]) -> Dict:
+        if self.has_resource_ids:
+            if category and category not in self.resource_ids:
+                raise NoResourceIDError(f"no resourceid defined for '{category}': check config file.")
         d = {
             "@context": VARIANT_MATCHING_CONTEXT,
             "type": "Match",

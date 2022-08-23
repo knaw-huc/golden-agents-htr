@@ -16,20 +16,20 @@ mijnheer|mevrouw|genaamd ; @first_names_lexicon.sanitized.tsv ; @family_names_le
 @property_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;property;object-entity	1:;0:1;0:
 @material_variants.freq.tsv ; @object_variants.freq.tsv	1.2	object;material;object-entity	1:;0:1;0:
 @quantifier_variants.freq.tsv ; @object_variants.freq.tsv	1.1	object;quantifier;object-entity	1:;0:1;0:
-in|aan|langs|tegenover ; de ; @streetnames_lexicon.tsv	1.1	street	2:
-in|uit|van|naar|richting|te|stad|dorp ; @locations_lexicon.freq.tsv	1.1	location	1:
-in|uit|van|op|aan|voor|achter|langs|naast|tegenover ; de|het|een ; @room_variants.freq.tsv	1.1	room	2:
+in|aan|langs|tegenover ; de ; @streetnames_lexicon.tsv	1.1	location-entity;street	0:;2:
+in|uit|van|naar|richting|te|stad|dorp ; @locations_lexicon.freq.tsv	1.1	location-entity;location	0:;1:
+in|uit|van|op|aan|voor|achter|langs|naast|tegenover ; de|het|een ; @room_variants.freq.tsv	1.1	location-entity;room	0:;2:
 de|het|een ; @object_variants.freq.tsv	1.1	object;object-entity	1:;0:
 een ; dito ; ?	1.1	object;object-entity	2:;0:
 @object_variants.freq.tsv ; van|uit ;  @material_variants.freq.tsv	1.1	object;material;object-entity	0:1;2:3;0:
 			
 # Retain singleton objects			
 			
-@object_variants.freq.tsv	1	object	
+@object_variants.freq.tsv	1	object;object-entity	0:;0:
 			
 # Retain singleton rooms			
 			
-@room_variants.freq.tsv	1	room	
+@room_variants.freq.tsv	1	room;location-entity	0:;0:
 			
 # Penalize names in isolation:			
 			

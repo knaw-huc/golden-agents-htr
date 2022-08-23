@@ -1,13 +1,13 @@
 [
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/26c39929-c4de-4337-9391-552fd2c1f6f4",
+        "id": "https://data.goldenagents.org/datasets/annotations/a5ea0248-e9b1-48f2-8c05-ba63c8532031",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:24:25.255620",
+        "generated": "2022-08-23T14:06:25.946522",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,7 +17,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:24:25.255566",
+                "modified": "2022-08-23T14:06:25.946458",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -67,14 +67,69 @@
         ]
     },
     {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/f9ebba68-2b7c-4402-a58f-668c7be2bbb6",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-23T14:06:25.946572",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Location",
+            "label": "in Amsterdam",
+            "modified": "2022-08-23T14:06:25.946578",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/a5ea0248-e9b1-48f2-8c05-ba63c8532031"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000201",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 194,
+                        "end": 206
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "in Amsterdam",
+                        "prefix": "Gepasseert ",
+                        "suffix": " ter presentie"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000201",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=1144,1125,1879,337"
+                }
+            }
+        ]
+    },
+    {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/ff7b3d9f-56e9-4b61-b6f6-620bcc6a4088",
+        "id": "https://data.goldenagents.org/datasets/annotations/98daad20-6c53-4042-9070-8f350bbd1d3c",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:24:25.309211",
+        "generated": "2022-08-23T14:06:26.008321",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -84,7 +139,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:24:25.309154",
+                "modified": "2022-08-23T14:06:26.008261",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -135,13 +190,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/4cf333f9-7f64-448a-a2a0-2c231f458833",
+        "id": "https://data.goldenagents.org/datasets/annotations/43511c27-a628-4ddf-8ef3-30f77eabfbe8",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:24:25.309248",
+        "generated": "2022-08-23T14:06:26.008359",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -151,7 +206,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:24:25.309229",
+                "modified": "2022-08-23T14:06:26.008339",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -208,12 +263,12 @@
                 "prov": "http://www.w3.org/ns/prov#"
             }
         ],
-        "id": "https://data.goldenagents.org/datasets/annotations/b3ac0530-e966-4e1f-9436-5c2c87f8bd4f",
+        "id": "https://data.goldenagents.org/datasets/annotations/1c205568-925e-4e6e-8405-8477090fc0eb",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-16T14:24:25.309285",
+        "generated": "2022-08-23T14:06:26.008395",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -222,10 +277,10 @@
         "body": {
             "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Anthonij Maas",
-            "modified": "2022-08-16T14:24:25.309290",
+            "modified": "2022-08-23T14:06:26.008400",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/ff7b3d9f-56e9-4b61-b6f6-620bcc6a4088",
-                "https://data.goldenagents.org/datasets/annotations/4cf333f9-7f64-448a-a2a0-2c231f458833"
+                "https://data.goldenagents.org/datasets/annotations/98daad20-6c53-4042-9070-8f350bbd1d3c",
+                "https://data.goldenagents.org/datasets/annotations/43511c27-a628-4ddf-8ef3-30f77eabfbe8"
             ]
         },
         "target": [
@@ -259,13 +314,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/8c324ce0-39e4-4d5d-b6e3-ef58de6a7a6d",
+        "id": "https://data.goldenagents.org/datasets/annotations/dafb8189-885d-4970-9c4e-5f1624709422",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:24:25.373202",
+        "generated": "2022-08-23T14:06:26.076041",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -275,13 +330,13 @@
             {
                 "type": "TextualBody",
                 "value": "Hoorn",
-                "modified": "2022-08-16T14:24:25.373144",
+                "modified": "2022-08-23T14:06:26.076011",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:24:25.373088",
+                "modified": "2022-08-23T14:06:26.075979",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -316,6 +371,61 @@
                         "type": "TextQuoteSelector",
                         "exact": "n",
                         "prefix": "HDvanHoor",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000201",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=2104,2158,789,186"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/14e085ca-4e26-489c-aa98-0a66ebf614f7",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-23T14:06:26.076080",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Location",
+            "label": "van Hoorn",
+            "modified": "2022-08-23T14:06:26.076085",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/dafb8189-885d-4970-9c4e-5f1624709422"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000201",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 256,
+                        "end": 265
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Hoorn",
+                        "prefix": "HDvan",
                         "suffix": ""
                     }
                 ]

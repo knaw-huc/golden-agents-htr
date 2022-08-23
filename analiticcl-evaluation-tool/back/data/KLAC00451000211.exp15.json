@@ -1,13 +1,13 @@
 [
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/0a4d173f-4c27-4e3d-b19f-674efdd87ef5",
+        "id": "https://data.goldenagents.org/datasets/annotations/57f23131-185a-41b0-971d-e1d059e0d4fe",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:25:07.763899",
+        "generated": "2022-08-23T14:07:09.179039",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -17,7 +17,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:25:07.763839",
+                "modified": "2022-08-23T14:07:09.178983",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300248479",
                     "label": "location"
@@ -66,14 +66,197 @@
         ]
     },
     {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/7d7b4902-b45f-4212-996c-5b505e842ea3",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-23T14:07:09.179075",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Location",
+            "label": "te Baaren",
+            "modified": "2022-08-23T14:07:09.179080",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/57f23131-185a-41b0-971d-e1d059e0d4fe"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000211",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 104,
+                        "end": 114
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "tee Baaren",
+                        "prefix": "",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000211",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=1054,1175,336,92"
+                }
+            }
+        ]
+    },
+    {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/d9a5728e-33d6-4231-9d66-69aa44996378",
+        "id": "https://data.goldenagents.org/datasets/annotations/2169add3-a6f8-4720-b99e-d61d95d75647",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:25:08.838347",
+        "generated": "2022-08-23T14:07:09.312686",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Graven",
+                "modified": "2022-08-23T14:07:09.312655",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-08-23T14:07:09.312625",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300248479",
+                    "label": "location"
+                }
+            },
+            {
+                "@context": "https://brambg.github.io/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Javen",
+                "variant": "Graven",
+                "score": 0.4560125996950874,
+                "source": [
+                    "family_names_lexicon.sanitized.tsv",
+                    "locations_lexicon.freq.tsv"
+                ],
+                "category": "location",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000211",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 127,
+                        "end": 132
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Javen",
+                        "prefix": "ttn ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000211",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=1050,1422,355,103"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/c1b6e604-9cd4-40a9-ab5b-e7e4dd54ee30",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-08-23T14:07:09.312723",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Location",
+            "label": "te Graven",
+            "modified": "2022-08-23T14:07:09.312728",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/2169add3-a6f8-4720-b99e-d61d95d75647"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000211",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 133,
+                        "end": 142
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "ttn Javen",
+                        "prefix": "",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000211",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=1050,1422,355,103"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/2fd6c256-ed97-4660-b5e3-09e9b06ade4a",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-08-23T14:07:10.287082",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -83,13 +266,13 @@
             {
                 "type": "TextualBody",
                 "value": "Caspar",
-                "modified": "2022-08-16T14:25:08.838319",
+                "modified": "2022-08-23T14:07:10.287051",
                 "purpose": "editing"
             },
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:25:08.838292",
+                "modified": "2022-08-23T14:07:10.287021",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300404651",
                     "label": "firstname"
@@ -140,13 +323,13 @@
     },
     {
         "@context": "http://www.w3.org/ns/anno.jsonld",
-        "id": "https://data.goldenagents.org/datasets/annotations/bb25ed50-4dfa-4fce-8322-d12d34b4f6d3",
+        "id": "https://data.goldenagents.org/datasets/annotations/c5b2ac4e-830c-4790-ab8e-a3850270295a",
         "type": "Annotation",
         "motivation": [
             "classifying",
             "editing"
         ],
-        "generated": "2022-08-16T14:25:08.838375",
+        "generated": "2022-08-23T14:07:10.287117",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -156,7 +339,7 @@
             {
                 "type": "SpecificResource",
                 "purpose": "tagging",
-                "modified": "2022-08-16T14:25:08.838362",
+                "modified": "2022-08-23T14:07:10.287100",
                 "source": {
                     "id": "http://vocab.getty.edu/aat/300435247",
                     "label": "familyname"
@@ -211,12 +394,12 @@
                 "prov": "http://www.w3.org/ns/prov#"
             }
         ],
-        "id": "https://data.goldenagents.org/datasets/annotations/b23e7ffb-fd80-4867-b13b-4812204188a8",
+        "id": "https://data.goldenagents.org/datasets/annotations/21d8765e-e56f-4baf-911c-f11c8f0be457",
         "type": "Annotation",
         "motivation": [
             "classifying"
         ],
-        "generated": "2022-08-16T14:25:08.838423",
+        "generated": "2022-08-23T14:07:10.287170",
         "generator": {
             "id": "https://github.com/knaw-huc/golden-agents-htr",
             "type": "Software",
@@ -225,10 +408,10 @@
         "body": {
             "type": "https://data.goldenagents.org/ontology/rpp/Person",
             "label": "Caspar Beels",
-            "modified": "2022-08-16T14:25:08.838428",
+            "modified": "2022-08-23T14:07:10.287175",
             "prov:wasDerivedFrom": [
-                "https://data.goldenagents.org/datasets/annotations/d9a5728e-33d6-4231-9d66-69aa44996378",
-                "https://data.goldenagents.org/datasets/annotations/bb25ed50-4dfa-4fce-8322-d12d34b4f6d3"
+                "https://data.goldenagents.org/datasets/annotations/2fd6c256-ed97-4660-b5e3-09e9b06ade4a",
+                "https://data.goldenagents.org/datasets/annotations/c5b2ac4e-830c-4790-ab8e-a3850270295a"
             ]
         },
         "target": [

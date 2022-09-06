@@ -5,7 +5,8 @@ import sys
 import uuid
 from copy import deepcopy
 from datetime import datetime
-from typing import List, Dict, Any, Optional, Tuple
+from typing import List, Dict, Any, Optional, Tuple, Generator
+from collections import defaultdict
 
 from analiticcl import VariantModel, Weights, SearchParameters
 from golden_agents_ner.corrections import Corrector
@@ -80,6 +81,9 @@ class NER:
         print("Debug: ", self.config.get('debug', 0), file=sys.stderr)
         self.model = VariantModel(abcfile, weights, debug=self.config.get('debug', 0))
 
+
+            
+
         if 'lexicons' in self.config:
             for filepath in self.config['lexicons'].values():
                 filepath = fixpath(filepath, configfile)
@@ -117,6 +121,10 @@ class NER:
         else:
             self.has_observation_ids = False
 
+        if self.config.get('boedeltermen'):
+            self.read_boedeltermen(self.config['boedeltermen'])
+                
+
         self.model.build()
         if HTR_CORRECTIONS in self.config:
             corrections_file = self.config[HTR_CORRECTIONS]
@@ -134,6 +142,18 @@ class NER:
         else:
             raise Exception(f"config file should have an '{ARCHIVE_IDENTIFIERS}' entry linking to a file like "
                             f"resources/archive_identifiers.tsv.")
+
+    def read_boedeltermen(self, filename: str):
+        #Reads boedeltermen.csv , maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
+        self.boedeltermen = defaultdict(list) #maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
+        BOEDELTERMEN_URI, BOEDELTERMEN_LEMMA, BOEDELTERMEN_TYPE, BOEDELTERMEN_NORMWORDFORM, BOEDERTERMEN_VARWORDFORM = range(0,5)
+        with open(self.config['boedeltermen'], 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line:
+                    fields = line.split(",")
+                    self.boedeltermen[(fields[BOEDELTERMEN_TYPE], fields[BOEDELTERMEN_NORMWORDFORM])].append((fields[BOEDELTERMEN_URI], fields[BOEDELTERMEN_LEMMA]))
+            
 
     def process_pagexml(self, file: str) -> Tuple[list, str, list]:
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
@@ -290,7 +310,9 @@ class NER:
                 for tag, seqnr in zip(ner_result.get('tag',[]), ner_result.get('seqnr',[])):
                     if tag not in self.observation_ids or tag in self.resource_ids: #skip tags that are observations, unless it's explicitly in the resource_ids as well
                         try:
-                            tag_bodies.append(self.tagging_body(label=tag))
+                            tag_bodies.append(self.category_tagging_body(label=tag))
+                            for b in self.resource_tagging_body(variant=top_variant['text'], category=tag):
+                                tag_bodies.append(b) #multiple bodies allowed in case of ambiguity
                             variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
                         except NoResourceIDError as e:
                             print("INFO: ", str(e), file=sys.stderr)
@@ -359,8 +381,9 @@ class NER:
                 # no need to consider further top variants
                 break
 
-    def tagging_body(self, label: str, confidence: Optional[float] = None, provenance: Optional[str] = None) -> Dict[
+    def category_tagging_body(self, label: str, confidence: Optional[float] = None, provenance: Optional[str] = None) -> Dict[
         str, Any]:
+        """Tags the category (e.g. object, material)"""
         if self.has_resource_ids:
             if label not in self.resource_ids:
                 raise NoResourceIDError(f"no resourceid defined for '{label}': check config file.")
@@ -385,6 +408,25 @@ class NER:
                 "modified": now(),
                 "purpose": "tagging"
             }
+
+    def resource_tagging_body(self, variant: str, category: str, confidence: Optional[float] = None, provenance: Optional[str] = None) -> Generator[Dict[ str, Any],None,None]:
+        """Tags with specific resource URIs from boedeltermen"""
+        if (variant, category) in self.boedeltermen:
+            for (uri, lemma) in self.boedeltermen[(variant,category)]:
+                body = {
+                    "type": "SpecificResource",
+                    "purpose": "tagging",
+                    "modified": now(),
+                    "source": {
+                        "id": uri,
+                        "label": lemma
+                    }
+                }
+                if confidence:
+                    body['confidence'] = confidence
+                if provenance:
+                    body['provenance'] = provenance
+                yield body
 
     def observation_body(self, type: str, label: str, provenance: Optional[list] = None) -> Dict[str, Any]:
         if not self.has_observation_ids or type not in self.observation_ids:

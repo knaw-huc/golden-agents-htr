@@ -48,73 +48,73 @@ boedeltermen.autoexpanded.csv: boedeltermen.csv
 
 object_variants.tsv: boedeltermen.autoexpanded.csv
 	#Curated object lexicon (variant list) from curated boedeltermen
-	awk -F"," '($$2 == "voorwerp") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "voorwerp") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 object_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "voorwerp") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 occupation_variants.tsv: boedeltermen.autoexpanded.csv
 	#Curated occupation lexicon (variant list) from curated boedeltermen
-	awk -F"," '($$2 == "beroep") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "beroep") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 occupation_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "beroep") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "beroep") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 room_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "vertrek") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "vertrek") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 room_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "vertrek") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "vertrek") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 material_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "stofnaam") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "stofnaam") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 material_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "stofnaam") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "stofnaam") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 property_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "eigenschap") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "eigenschap") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 property_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "eigenschap") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "eigenschap") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 picture_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "voorstelling") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "voorstelling") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 picture_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "voorstelling") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "voorstelling") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 category_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "categorie") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "categorie") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 category_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "categorie") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "categorie") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 currency_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "munt") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "munt") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 currency_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "munt") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "munt") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 quantifier_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "eenheid") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "eenheid") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 quantifier_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "eenheid") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "eenheid") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 animal_variants.tsv: boedeltermen.autoexpanded.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "dier") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "dier") { print $$4"\t"$$5 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
 animal_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "dier") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+	awk -F"," '($$3 == "dier") { print $$4"\n"$$5 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 object_uncurated_lexicon.tsv:
 	#Uncurated object lexicon (obsolete!)

@@ -21,8 +21,8 @@ with open("boedeltermen.csv", 'r', encoding='utf-8') as f:
     for line in f:
         if line.strip():
             fields = [x.strip() for x in line.split(",")]
-            if fields[0]:
-                boedellemmas[fields[0]].append(tuple(fields[1:]))
+            if fields[1]:
+                boedellemmas[fields[1]].append(tuple(fields[2:]))
 
 LEMMA = 4
 POS = 5

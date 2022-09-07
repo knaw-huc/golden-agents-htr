@@ -11,9 +11,10 @@ from analiticcl import VariantModel, Weights, SearchParameters
 from golden_agents_ner.corrections import Corrector
 from pagexml.parser import PageXMLTextLine, parse_pagexml_file
 
-VARIANT_MATCHING_CONTEXT = "https://brambg.github.io/ns/variant-matching.jsonld"
+VARIANT_MATCHING_CONTEXT = "https://humanities.knaw.nl/ns/variant-matching.jsonld"
 HTR_CORRECTIONS = 'htr_corrections'
 ARCHIVE_IDENTIFIERS = 'archive_identifiers'
+
 
 class NoResourceIDError(Exception):
     pass
@@ -137,8 +138,8 @@ class NER:
 
     def process_pagexml(self, file: str) -> Tuple[list, str, list]:
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
-        if os.path.islink(file): 
-            #deference symbolic links, we need the full path info
+        if os.path.islink(file):
+            # deference symbolic links, we need the full path info
             file = os.path.realpath(file)
         scan = parse_pagexml_file(file)
         if not scan.id:
@@ -154,8 +155,9 @@ class NER:
         return self.create_web_annotations(scan)
 
     def create_web_annotation_observation(self, ner_results, text_line: PageXMLTextLine, line_offset: int,
-                                        text_pid: str, scan_pid: str):
-        """Extract larger tagged entities, which we call 'observations' from NER results and creates web annotations for them."""
+                                          text_pid: str, scan_pid: str):
+        """Extract larger tagged entities, which we call 'observations' from NER results
+         and creates web annotations for them."""
         for i, ner_result in enumerate(ner_results):
             if ner_result['variants']:
                 for (tag, seqnr) in zip(ner_result.get('tag', []), ner_result.get('seqnr', [])):
@@ -165,7 +167,7 @@ class NER:
                         continue
 
                     if tag not in self.observation_ids:
-                        #only process tags that can be observations
+                        # only process tags that can be observations
                         continue
 
                     length = 1
@@ -191,7 +193,7 @@ class NER:
                     if length > 1:
                         xywh = f"{text_line.coords.x},{text_line.coords.y},{text_line.coords.w},{text_line.coords.h}"
                         yield {
-                            "@context": [ "http://www.w3.org/ns/anno.jsonld", { "prov": "http://www.w3.org/ns/prov#" } ],
+                            "@context": ["http://www.w3.org/ns/anno.jsonld", {"prov": "http://www.w3.org/ns/prov#"}],
                             "id": random_annotation_id(),
                             "type": "Annotation",
                             "motivation": [
@@ -257,13 +259,14 @@ class NER:
                                                    text_pid=scan.text_pid,
                                                    line_offset=len(plain_text)))
                     annotations += new_annotations
-                    result['annotations'] = [ x['id'] for x in new_annotations ]
+                    result['annotations'] = [x['id'] for x in new_annotations]
             plain_text += f"{text}\n"
             if self.has_contextrules:
-                #observations are annotations of multi-span entitities from the context rules (see https://github.com/knaw-huc/golden-agents-htr/issues/22 for discussion)
+                # observations are annotations of multi-span entitities from the context rules
+                # (see https://github.com/knaw-huc/golden-agents-htr/issues/22 for discussion)
                 for entity_wa in self.create_web_annotation_observation(ner_results=ner_results, text_line=tl,
-                                                                      line_offset=len(plain_text),
-                                                                      scan_pid=scan.pid, text_pid=scan.text_pid):
+                                                                        line_offset=len(plain_text),
+                                                                        scan_pid=scan.pid, text_pid=scan.text_pid):
                     annotations.append(entity_wa)
         return annotations, plain_text, raw_results
 
@@ -286,12 +289,17 @@ class NER:
             tag_bodies = []
             variantmatch_bodies = []
             if ner_result.get('tag'):
-                # new style: tag set by analiticcl >= 0.4.2 via contextrules  , supports multiple tags, each will get a separate body 
-                for tag, seqnr in zip(ner_result.get('tag',[]), ner_result.get('seqnr',[])):
-                    if tag not in self.observation_ids or tag in self.resource_ids: #skip tags that are observations, unless it's explicitly in the resource_ids as well
+                # new style: tag set by analiticcl >= 0.4.2 via contextrules  , supports multiple tags,
+                # each will get a separate body
+                for tag, seqnr in zip(ner_result.get('tag', []), ner_result.get('seqnr', [])):
+                    if tag not in self.observation_ids or tag in self.resource_ids:
+                        # skip tags that are observations, unless it's explicitly in the resource_ids as well
                         try:
                             tag_bodies.append(self.tagging_body(label=tag))
-                            variantmatch_bodies.append(self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'], score=top_variant['score'], lexicons=top_variant['lexicons'], category=tag, seqnr=seqnr))
+                            variantmatch_bodies.append(
+                                self.variantmatch_body(phrase=ner_result['input'], variant=top_variant['text'],
+                                                       score=top_variant['score'], lexicons=top_variant['lexicons'],
+                                                       category=tag, seqnr=seqnr))
                         except NoResourceIDError as e:
                             print("INFO: ", str(e), file=sys.stderr)
                             continue
@@ -302,12 +310,12 @@ class NER:
                 continue
             bodies = []
             if top_variant['text'] != text_line.text[ner_result['offset']['begin']:ner_result['offset']['end']]:
-                #only add TextualBody (purpose 'editing') if the text is changed
+                # only add TextualBody (purpose 'editing') if the text is changed
                 bodies.append({
-                        "type": "TextualBody",
-                        "value": top_variant['text'],
-                        "modified": now(),
-                        "purpose": "editing",
+                    "type": "TextualBody",
+                    "value": top_variant['text'],
+                    "modified": now(),
+                    "purpose": "editing",
                 })
             bodies += tag_bodies
             bodies += variantmatch_bodies
@@ -359,8 +367,8 @@ class NER:
                 # no need to consider further top variants
                 break
 
-    def tagging_body(self, label: str, confidence: Optional[float] = None, provenance: Optional[str] = None) -> Dict[
-        str, Any]:
+    def tagging_body(self, label: str, confidence: Optional[float] = None, provenance: Optional[str] = None) \
+            -> Dict[str, Any]:
         if self.has_resource_ids:
             if label not in self.resource_ids:
                 raise NoResourceIDError(f"no resourceid defined for '{label}': check config file.")
@@ -397,7 +405,8 @@ class NER:
             "prov:wasDerivedFrom": provenance,
         }
 
-    def variantmatch_body(self, phrase:str, variant: str, score: Optional[float], lexicons: list, category: Optional[str], seqnr: Optional[int]) -> Dict:
+    def variantmatch_body(self, phrase: str, variant: str, score: Optional[float], lexicons: list,
+                          category: Optional[str], seqnr: Optional[int]) -> Dict:
         if self.has_resource_ids:
             if category and category not in self.resource_ids:
                 raise NoResourceIDError(f"no resourceid defined for '{category}': check config file.")

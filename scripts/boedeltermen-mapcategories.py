@@ -2,7 +2,7 @@
 
 from sys import stdin, stderr
 
-URI,LEMMA,TYPE = range(0,2)
+LEMMA,TYPE = range(0,2)
 
 typemap = {
     "voorwerp": "object",

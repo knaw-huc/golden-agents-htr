@@ -21,8 +21,8 @@ with open("boedeltermen.csv", 'r', encoding='utf-8') as f:
     for line in f:
         if line.strip():
             fields = [x.strip() for x in line.split(",")]
-            if fields[1]:
-                boedellemmas[fields[1]].append(tuple(fields[2:]))
+            if fields[0]:
+                boedellemmas[fields[0]].append(tuple(fields[1:]))
 
 LEMMA = 4
 POS = 5
@@ -44,7 +44,14 @@ for lemma, entries in boedellemmas.items():
     if lemma in intlemmas:
         types = {x[0] for x in entries}
         normforms = {x[1] for x in entries}
-        observedforms = {x[2] for x in entries if len(x) >= 3}
+        if entries[2] and len(entries[2]) >= 3:
+            observedforms = {entries[2]}
+        else:
+            observedforms = set()
+        if len(entries) >= 4:
+            uri = entries[3]
+        else:
+            uri = ""
         model = VariantModel(abcfile, weights)
         for normform in normforms:
             model.add_to_vocabulary(normform, 1, vocabparams)
@@ -56,6 +63,6 @@ for lemma, entries in boedellemmas.items():
                 if results:
                     result = results[0]['text']
                     for t in types:
-                        print(f"{lemma},{t},{result},{intobservedform}")
+                        print(f"{lemma},{t},{result},{intobservedform},{uri}")
                 else:
                     print(f"Unable to match {intobservedform}", file=sys.stderr)

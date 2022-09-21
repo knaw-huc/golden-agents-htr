@@ -9,8 +9,8 @@ data = set()
 with open(filename, 'r', encoding="utf-8") as f:
     for line in f:
         fields = line.strip().split(delimiter)
-        cat = fields[2]
-        word = fields[3]
+        cat = fields[1]
+        word = fields[2]
         if word and cat != "eigennaam":
             print(word.lower(), file=sys.stderr)
             data.add(word.lower())

@@ -16,7 +16,9 @@ typemap = {
     "eenheid": "quantifier",
     "onbepaald voornaamwoord": "quantifier",
     "eigennaam": "name", #not used!
-    "dier": "animal"
+    "dier": "animal",
+    "vee": "cattle",
+    "rest": "misc"
 }
 
 for line in stdin.readlines():

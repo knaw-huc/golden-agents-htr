@@ -119,6 +119,20 @@ animal_variants.tsv: boedeltermen.mappedcategories.csv
 animal_wordforms.lst: boedeltermen.mappedcategories.csv
 	awk -F"," '($$2 == "animal") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
+cattle_variants.tsv: boedeltermen.mappedcategories.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "cattle") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+
+cattle_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "cattle") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+
+misc_variants.tsv: boedeltermen.mappedcategories.csv
+	#from curated boedeltermen
+	awk -F"," '($$2 == "misc") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+
+misc_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "misc") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+
 object_uncurated_lexicon.tsv:
 	#Uncurated object lexicon (obsolete!)
 	cut -d "," -f 1 "$(RESOURCEDIR)/objects.csv" | tr '[:upper:]' '[:lower:]' | tail -n +2 > "$@" || (rm "$@" && false)
@@ -185,7 +199,7 @@ regions.freq.tsv: lexicons/regions.lst
 all: first_names_lexicon.sanitized.tsv family_names_lexicon.sanitized.tsv streetnames_lexicon.tsv buildings_lexicon.tsv object_uncurated_lexicon.tsv int_historisch_lexicon_variants.tsv int_historisch_lexicon_variants.freq.tsv boedeltermen boedelindex.csv
 
 .PHONY: boedeltermen
-boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv animal_variants.freq.tsv animal_wordforms.freq.tsv quantifier_variants.freq.tsv quantifier_wordforms.freq.tsv locations_lexicon.freq.tsv countries.freq.tsv regions.freq.tsv
+boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_variants.freq.tsv property_wordforms.freq.tsv material_variants.freq.tsv material_wordforms.freq.tsv picture_variants.freq.tsv picture_wordforms.freq.tsv category_variants.freq.tsv category_wordforms.freq.tsv room_variants.freq.tsv room_wordforms.freq.tsv currency_variants.freq.tsv currency_wordforms.freq.tsv animal_variants.freq.tsv animal_wordforms.freq.tsv cattle_variants.freq.tsv cattle_wordforms.freq.tsv misc_variants.freq.tsv misc_wordforms.freq.tsv quantifier_variants.freq.tsv quantifier_wordforms.freq.tsv locations_lexicon.freq.tsv countries.freq.tsv regions.freq.tsv
 
 .PHONY: clean
 clean:

@@ -34,6 +34,7 @@ def main():
         parsefiles(ner, out_root, args, *[x for x in args.pagexmlfiles])
 
 
+
 def parsefiles(ner, out_root: str, args, *files):
     for pagexmlfile in sorted(files):
         if pagexmlfile.endswith(".lst") or pagexmlfile.endswith(".index"):

@@ -46,75 +46,78 @@ boedeltermen.autoexpanded.csv: boedeltermen.csv
 	cp -f "$<" "$@" || (rm "$@" && false)
 	"$(REPOROOT)/scripts/expandwithinthistlex.py" >> "$@" || (rm "$@" && false)
 
-object_variants.tsv: boedeltermen.autoexpanded.csv
+boedeltermen.mappedcategories.csv: boedeltermen.autoexpanded.csv
+	"$(REPOROOT)/scripts/boedeltermen-mapcategories.py" < "$<" > "$@" || (rm "$@" && false)
+
+object_variants.tsv: boedeltermen.mappedcategories.csv
 	#Curated object lexicon (variant list) from curated boedeltermen
-	awk -F"," '($$2 == "voorwerp") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "object") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-object_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "voorwerp") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+object_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "object") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-occupation_variants.tsv: boedeltermen.autoexpanded.csv
+occupation_variants.tsv: boedeltermen.mappedcategories.csv
 	#Curated occupation lexicon (variant list) from curated boedeltermen
-	awk -F"," '($$2 == "beroep") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "occupation") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-occupation_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "beroep") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+occupation_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "occupation") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-room_variants.tsv: boedeltermen.autoexpanded.csv
+room_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "vertrek") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "room") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-room_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "vertrek") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+room_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "room") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-material_variants.tsv: boedeltermen.autoexpanded.csv
+material_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "stofnaam") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "material") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-material_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "stofnaam") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+material_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "material") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-property_variants.tsv: boedeltermen.autoexpanded.csv
+property_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "eigenschap") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "property") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-property_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "eigenschap") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+property_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "property") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-picture_variants.tsv: boedeltermen.autoexpanded.csv
+picture_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "voorstelling") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "picture") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-picture_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "voorstelling") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+picture_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "picture") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-category_variants.tsv: boedeltermen.autoexpanded.csv
+category_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "categorie") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "category") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-category_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "categorie") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+category_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "category") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-currency_variants.tsv: boedeltermen.autoexpanded.csv
+currency_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "munt") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "currency") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-currency_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "munt") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+currency_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "currency") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-quantifier_variants.tsv: boedeltermen.autoexpanded.csv
+quantifier_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "eenheid") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "quantifier") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-quantifier_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "eenheid") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+quantifier_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "quantifier") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
-animal_variants.tsv: boedeltermen.autoexpanded.csv
+animal_variants.tsv: boedeltermen.mappedcategories.csv
 	#from curated boedeltermen
-	awk -F"," '($$2 == "dier") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
+	awk -F"," '($$2 == "animal") { print $$3"\t"$$4 }' < "$<" | "$(REPOROOT)/scripts/merge-tsv-rows.py" > "$@" || (rm "$@" && false)
 
-animal_wordforms.lst: boedeltermen.autoexpanded.csv
-	awk -F"," '($$2 == "dier") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
+animal_wordforms.lst: boedeltermen.mappedcategories.csv
+	awk -F"," '($$2 == "animal") { print $$3"\n"$$4 }' < "$<" | sort | uniq > "$@" || (rm "$@" && false)
 
 object_uncurated_lexicon.tsv:
 	#Uncurated object lexicon (obsolete!)
@@ -186,7 +189,7 @@ boedeltermen: object_variants.freq.tsv object_wordforms.freq.tsv property_varian
 
 .PHONY: clean
 clean:
-	rm boedeltermen.autoexpanded.csv *_variants.tsv *.sanitized.tsv *_lexicon.tsv *_lexicon.lst *.freq.tsv *.freq.lst *_wordforms* || true
+	rm boedeltermen.autoexpanded.csv boedeltermen.mappedcategories.csv *_variants.tsv *.sanitized.tsv *_lexicon.tsv *_lexicon.lst *.freq.tsv *.freq.lst *_wordforms* || true
 	[ -e int_historisch_lexicon_2022_02_04.txt ] && ln -s int_historisch_lexicon_2022_02_04.txt int_historisch_lexicon.tsv
 
 .PHONY: checkdeps

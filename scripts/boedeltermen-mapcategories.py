@@ -17,7 +17,7 @@ typemap = {
     "onbepaald voornaamwoord": "quantifier",
     "eigennaam": "name", #not used!
     "dier": "animal",
-    "vee": "cattle",
+    "vee": "livestock",
     "rest": "misc"
 }
 

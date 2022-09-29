@@ -146,14 +146,15 @@ class NER:
 
     def read_boedeltermen(self, filename: str):
         #Reads boedeltermen.csv , maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
-        self.boedeltermen = defaultdict(list) #maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
+        self.boedeltermen = defaultdict(set) #maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
         BOEDELTERMEN_LEMMA, BOEDELTERMEN_TYPE, BOEDELTERMEN_NORMWORDFORM, BOEDELTERMEN_VARWORDFORM, BOEDELTERMEN_URI = range(0,5)
         with open(self.config['boedeltermen'], 'r', encoding='utf-8') as f:
             for line in f:
                 line = line.strip()
                 if line:
                     fields = line.split(",")
-                    self.boedeltermen[(fields[BOEDELTERMEN_NORMWORDFORM], fields[BOEDELTERMEN_TYPE])].append((fields[BOEDELTERMEN_URI], fields[BOEDELTERMEN_LEMMA]))
+                    if fields[BOEDELTERMEN_URI] and fields[BOEDELTERMEN_LEMMA]:
+                        self.boedeltermen[(fields[BOEDELTERMEN_NORMWORDFORM], fields[BOEDELTERMEN_TYPE])].add((fields[BOEDELTERMEN_URI], fields[BOEDELTERMEN_LEMMA]))
         print(f"Loaded {len(self.boedeltermen)} boedeltermen",file=sys.stderr)
             
 

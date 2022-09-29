@@ -15,26 +15,28 @@ from analiticcl import VariantModel, Weights, SearchParameters, VocabParams
 
 abcfile = "simple.alphabet.tsv"
 
+BOEDELTERMEN_LEMMA, BOEDELTERMEN_TYPE, BOEDELTERMEN_NORMWORDFORM, BOEDELTERMEN_VARWORDFORM, BOEDELTERMEN_URI = range(0,5)
 boedellemmas = defaultdict(list)
 
 with open("boedeltermen.csv", 'r', encoding='utf-8') as f:
     for line in f:
         if line.strip():
             fields = [x.strip() for x in line.split(",")]
-            if fields[0]:
-                boedellemmas[fields[0]].append(tuple(fields[1:]))
+            if fields[BOEDELTERMEN_LEMMA]:
+                boedellemmas[fields[BOEDELTERMEN_LEMMA]].append(tuple(fields[BOEDELTERMEN_TYPE:]))
 
-LEMMA = 4
-POS = 5
-WORD = 6
+
+INT_LEMMA = 4
+INT_POS = 5
+INT_WORD = 6
 intlemmas = defaultdict(set)
 
 with open("int_historisch_lexicon.tsv", 'r', encoding='utf-8') as f:
     for line in f:
         if line.strip():
             fields = [x.strip() for x in line.split("\t")]
-            if fields[POS] in ("NOU-C", "AA"):
-                intlemmas[fields[LEMMA]].add(fields[WORD])
+            if fields[INT_POS] in ("NOU-C", "AA"):
+                intlemmas[fields[INT_LEMMA]].add(fields[INT_WORD])
 
 weights = Weights(suffix=0.25, case=0)  # stronger weight to suffix match, ignore case
 params = SearchParameters(max_anagram_distance=0.5, max_edit_distance=0.5)
@@ -42,16 +44,10 @@ vocabparams = VocabParams()
 
 for lemma, entries in boedellemmas.items():
     if lemma in intlemmas:
-        types = {x[0] for x in entries}
-        normforms = {x[1] for x in entries}
-        if len(entries) >= 3 and entries[2] and len(entries[2]) >= 3:
-            observedforms = {entries[2]}
-        else:
-            observedforms = set()
-        if len(entries) >= 4:
-            uri = entries[3]
-        else:
-            uri = ""
+        types = {x[BOEDELTERMEN_TYPE-1] for x in entries}
+        normforms = {x[BOEDELTERMEN_NORMWORDFORM-1] for x in entries}
+        observedforms = {x[BOEDELTERMEN_VARWORDFORM-1] for x in entries}
+        uris = { x[BOEDELTERMEN_TYPE-1]: x[BOEDELTERMEN_URI-1] for x in entries}
         model = VariantModel(abcfile, weights)
         for normform in normforms:
             model.add_to_vocabulary(normform, 1, vocabparams)
@@ -63,6 +59,7 @@ for lemma, entries in boedellemmas.items():
                 if results:
                     result = results[0]['text']
                     for t in types:
+                        uri = uris.get(t,"")
                         print(f"{lemma},{t},{result},{intobservedform},{uri}")
                 else:
                     print(f"Unable to match {intobservedform}", file=sys.stderr)

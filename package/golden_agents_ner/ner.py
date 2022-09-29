@@ -208,7 +208,10 @@ class NER:
                             break
                         if ner_result2.get('seqnr', [])[idx] == j + 1:
                             length += 1
-                            variant_text += " " + ner_result2['variants'][0]['text']
+                            if 'variants' in ner_result2 and ner_result2['variants']:
+                                variant_text += " " + ner_result2['variants'][0]['text']
+                            else:
+                                print(f"WARNING: Did not find text for seqnr {j}, tag {tag} (variant_text buffer={variant_text})", file=sys.stderr)
                             last_ner_result = ner_result2
                             if 'annotations' in ner_result2:
                                 provenance += ner_result2['annotations']

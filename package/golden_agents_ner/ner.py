@@ -153,7 +153,8 @@ class NER:
                 line = line.strip()
                 if line:
                     fields = line.split(",")
-                    self.boedeltermen[(fields[BOEDELTERMEN_TYPE], fields[BOEDELTERMEN_NORMWORDFORM])].append((fields[BOEDELTERMEN_URI], fields[BOEDELTERMEN_LEMMA]))
+                    self.boedeltermen[(fields[BOEDELTERMEN_NORMWORDFORM], fields[BOEDELTERMEN_TYPE])].append((fields[BOEDELTERMEN_URI], fields[BOEDELTERMEN_LEMMA]))
+        print(f"Loaded {len(self.boedeltermen)} boedeltermen",file=sys.stderr)
             
 
     def process_pagexml(self, file: str) -> Tuple[list, str, list]:
@@ -436,7 +437,7 @@ class NER:
                     body['provenance'] = provenance
                 yield body
         else:
-            print(f"No URIs for ({variant},{category}",file=sys.stderr)
+            print(f"No URIs for {variant},{category}",file=sys.stderr)
 
     def observation_body(self, type: str, label: str, provenance: Optional[list] = None) -> Dict[str, Any]:
         if not self.has_observation_ids or type not in self.observation_ids:

@@ -44,7 +44,7 @@ for lemma, entries in boedellemmas.items():
     if lemma in intlemmas:
         types = {x[0] for x in entries}
         normforms = {x[1] for x in entries}
-        if entries[2] and len(entries[2]) >= 3:
+        if len(entries) >= 3 and entries[2] and len(entries[2]) >= 3:
             observedforms = {entries[2]}
         else:
             observedforms = set()

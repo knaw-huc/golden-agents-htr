@@ -147,7 +147,7 @@ class NER:
     def read_boedeltermen(self, filename: str):
         #Reads boedeltermen.csv , maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
         self.boedeltermen = defaultdict(list) #maps (type,wordform) tuples to (uri, lemma) pairs (may be multiple because of ambiguity)
-        BOEDELTERMEN_URI, BOEDELTERMEN_LEMMA, BOEDELTERMEN_TYPE, BOEDELTERMEN_NORMWORDFORM, BOEDERTERMEN_VARWORDFORM = range(0,5)
+        BOEDELTERMEN_LEMMA, BOEDELTERMEN_TYPE, BOEDELTERMEN_NORMWORDFORM, BOEDELTERMEN_VARWORDFORM, BOEDELTERMEN_URI = range(0,5)
         with open(self.config['boedeltermen'], 'r', encoding='utf-8') as f:
             for line in f:
                 line = line.strip()
@@ -435,6 +435,8 @@ class NER:
                 if provenance:
                     body['provenance'] = provenance
                 yield body
+        else:
+            print(f"No URIs for ({variant},{category}",file=sys.stderr)
 
     def observation_body(self, type: str, label: str, provenance: Optional[list] = None) -> Dict[str, Any]:
         if not self.has_observation_ids or type not in self.observation_ids:

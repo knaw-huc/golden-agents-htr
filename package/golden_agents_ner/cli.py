@@ -4,7 +4,7 @@ import json
 import os.path
 import sys
 
-from golden_agents_ner.ner import NER
+from golden_agents_ner.ner import NER, NoArchiveIDError
 
 
 def main():
@@ -45,7 +45,11 @@ def parsefiles(ner, out_root: str, args, *files):
                     if line.strip(): morefiles.append(line.strip())
             parsefiles(ner, out_root, args, *morefiles)
         else:
-            (annotations, plain_text, raw_results) = ner.process_pagexml(pagexmlfile)
+            try:
+                (annotations, plain_text, raw_results) = ner.process_pagexml(pagexmlfile)
+            except NoArchiveIDError:
+                print(f"ERROR: Unable to process {pagexmlfile}, does not have an archive identifier! Skipping...", file=sys.stderr)
+                continue
             basename = os.path.splitext(os.path.basename(pagexmlfile))[0]
 
             if args.rawout:

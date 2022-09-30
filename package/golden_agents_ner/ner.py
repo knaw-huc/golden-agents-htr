@@ -20,6 +20,9 @@ ARCHIVE_IDENTIFIERS = 'archive_identifiers'
 class NoResourceIDError(Exception):
     pass
 
+class NoArchiveIDError(Exception):
+    pass
+
 
 def text_line_urn(archive_id: str, scan_id: str, textline_id: str):
     return f"urn:golden-agents:{archive_id}:scan={scan_id}:textline={textline_id}"
@@ -158,7 +161,7 @@ class NER:
         print(f"Loaded {len(self.boedeltermen)} boedeltermen",file=sys.stderr)
             
 
-    def process_pagexml(self, file: str) -> Tuple[list, str, list]:
+    def process_pagexml(self, file: str) -> Optional[Tuple[list, str, list]]:
         """Runs the NER tagging on a PageXML file, returns a list of web annotations"""
         if os.path.islink(file):
             # deference symbolic links, we need the full path info
@@ -170,7 +173,11 @@ class NER:
         # scan.transkribus_uri = "https://files.transkribus.eu/iiif/2/MOQMINPXXPUTISCRFIRKIOIX/full/max/0/default.jpg"
         path_parts = file.split('/')
         archive_title = path_parts[-2]
-        inv_num = self.archive_identifier[archive_title]
+        if ARCHIVE_IDENTIFIERS in self.config:
+            if archive_title in self.archive_identifier:
+                inv_num = self.archive_identifier[archive_title]
+            else:
+                raise NoArchiveIDError
         base_name = path_parts[-1].split('.')[0]
         scan.pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/scans/{base_name}"
         scan.text_pid = f"https://data.goldenagents.org/datasets/saa/ead/{inv_num}/texts/{base_name}"

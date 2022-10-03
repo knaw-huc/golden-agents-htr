@@ -2,7 +2,7 @@ REPOROOT := $(shell git rev-parse --show-toplevel)
 RESOURCEDIR := $(REPOROOT)/resources/
 DATADIR =
 TMPDIR = /tmp
-
+BOEDELINDEX = "boedel.index"
 
 # -------------------- File Indices -------------------------
 
@@ -251,7 +251,7 @@ ifeq ($(strip $(OUTDIR)),)
 	@false
 endif
 	mkdir -p "$(OUTDIR)"
-	golden-agents-ner --destinationdir "$(OUTDIR)" --config "nerconfig.$(EXP).json" "boedel.index"
+	golden-agents-ner --destinationdir "$(OUTDIR)" --config "nerconfig.$(EXP).json" "$(BOEDELINDEX)"
 
 .PHONY: lexicons
 lexicons:

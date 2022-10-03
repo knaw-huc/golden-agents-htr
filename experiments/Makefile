@@ -2,7 +2,7 @@ REPOROOT := $(shell git rev-parse --show-toplevel)
 RESOURCEDIR := $(REPOROOT)/resources/
 DATADIR =
 TMPDIR = /tmp
-BOEDELINDEX = "boedel.index"
+BOEDELINDEX = boedel.index
 
 # -------------------- File Indices -------------------------
 

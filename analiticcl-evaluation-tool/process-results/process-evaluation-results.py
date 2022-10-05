@@ -108,7 +108,7 @@ def print_comparison_table(eval_data, eval_keys, ref_data):
 
 
 def extract_categories(annotation: dict) -> List[str]:
-    return [extract_category(b) for b in annotation['body'] if isinstance(b, dict) and b.get('purpose') == 'tagging' and 'source' in b and not b['source']['id'].startswith("https://data.goldenagents.org/boedellexicon/") ]
+    return [extract_category(b) for b in annotation['body'] if isinstance(b, dict) and b.get('purpose') == 'tagging' and 'source' in b and not b['source']['id'].startswith("https://data.goldenagents.org/boedellexicon/") and not b['source']['id'].startswith("https://www.vondel.humanities.uva.nl/ecartico/occupations/") ]
 
 
 def extract_category(annotation_body: dict) -> str:

@@ -14,7 +14,7 @@ from prettytable.colortable import ColorTable, Themes
 from tabulate import tabulate
 
 # Selection of categories that we are actually interested in (only used for computation of SUBTOTAL)
-CAT_SELECTION = ("object", "person", "location", "street", "room")
+CAT_SELECTION = ("object", "firstname","familyname", "location", "street", "room")
 
 
 @dataclass_json

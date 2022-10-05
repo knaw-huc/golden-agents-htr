@@ -234,7 +234,7 @@ endif
 	mkdir -p "$(TMPDIR)/evalout/"
 	cp *0*.$(EXP).json "$(TMPDIR)/evalout/"
 	../analiticcl-evaluation-tool/process-results/process-evaluation-results.py -e "$(TMPDIR)/evalout/" -r ../analiticcl-evaluation-tool/process-results/ground-truth/ -o "evaluation.$(EXP).tsv" > "evaluation.$(EXP).log"
-	grep -A 1 "ontology/rpp" /tmp/evalout/*.json | sed 's|/tmp/evallout/||g' > "observations.exp16.log"
+	grep -A 1 "ontology/rpp" /tmp/evalout/*.json | sed 's|/tmp/evallout/||g' > "observations.$(EXP).log"
 
 .PHONY: boedels
 boedels: lexicons boedel.index

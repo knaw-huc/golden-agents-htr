@@ -22,14 +22,24 @@ in|uit|van|op|aan|voor|achter|langs|naast|tegenover ; de|het|een ; @room_variant
 de|het|een ; @object_variants.freq.tsv	1.1	object;object-entity	1:;0:
 een ; dito ; ?	1.1	object;object-entity	2:;0:
 @object_variants.freq.tsv ; van|uit ;  @material_variants.freq.tsv	1.1	object;material;object-entity	0:1;2:3;0:
+een ; @picture_variants.freq.tsv	1.0	painting	1:
 			
-# Retain singleton objects			
+# Retain singleton objects and rooms			
 			
 @object_variants.freq.tsv	1	object;object-entity	0:;0:
-			
-# Retain singleton rooms			
-			
 @room_variants.freq.tsv	1	room;location-entity	0:;0:
+			
+# Retain other singletons with small penalty 
+            
+@occupation_variants.freq.tsv	0.95	occupation	0:
+@livestock_variants.freq.tsv	0.95	livestock	0:
+@locations_lexicon.freq.tsv	0.9	location	0:
+@streetnames_lexicon.tsv	0.9	street	0:
+@picture_variants.freq.tsv	0.9	painting	0:
+@currency_variants.freq.tsv	0.9	currency	0:
+@material_variants.freq.tsv	0.9	material	0:
+@property_variants.freq.tsv	0.9	property	0:
+@animal_variants.freq.tsv	0.9	animal	0:
 			
 # Penalize names in isolation:			
 			

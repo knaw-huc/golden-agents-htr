@@ -10,7 +10,7 @@ typemap = {
     "beroep": "occupation",
     "vertrek": "room",
     "eigenschap": "property",
-    "voorstelling": "picture",
+    "voorstelling": "painting",
     "categorie": "category",
     "munt": "currency",
     "eenheid": "quantifier",

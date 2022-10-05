@@ -13,7 +13,7 @@ from dataclasses_json import dataclass_json
 from prettytable.colortable import ColorTable, Themes
 from tabulate import tabulate
 
-# Selection of categories that we are actually interested in
+# Selection of categories that we are actually interested in (only used for computation of SUBTOTAL)
 CAT_SELECTION = ("object", "person", "location", "street", "room")
 
 
@@ -108,7 +108,7 @@ def print_comparison_table(eval_data, eval_keys, ref_data):
 
 
 def extract_categories(annotation: dict) -> List[str]:
-    return [extract_category(b) for b in annotation['body'] if b.get('purpose') == 'tagging']
+    return [extract_category(b) for b in annotation['body'] if isinstance(b, dict) and b.get('purpose') == 'tagging' and 'source' in b and not b['source']['id'].startswith("https://data.goldenagents.org/boedellexicon/") ]
 
 
 def extract_category(annotation_body: dict) -> str:
@@ -119,7 +119,7 @@ def extract_category(annotation_body: dict) -> str:
 
 
 def extract_normalizations(annotation: dict) -> List[str]:
-    return [b['value'] for b in annotation['body'] if b.get('purpose') in {'commenting', 'editing'}]
+    return [b['value'] for b in annotation['body'] if isinstance(b, dict) and b.get('purpose') in {'commenting', 'editing'}]
 
 
 @dataclass
@@ -134,6 +134,7 @@ class Row:
 
 
 def extract_persons(evaluation_rows: Dict[str, Row]):
+    """Extract persons from reference data (no longer used)"""
     firstname_start = defaultdict(dict)
     lastname_start = defaultdict(dict)
     for row in evaluation_rows.values():
@@ -217,22 +218,7 @@ def print_categorization_table(eval_data, keys, ref_data, outfile: str):
                     normalized_ref=normalizations,
                     categories_ref=normalized_categories(categories)
                 )
-    extract_persons(evaluation_rows)
-    # for k in sorted(evaluation_rows.keys()):
-    #     r = evaluation_rows[k]
-    #     diff = r.normalized_ref != r.normalized_eval or r.categories_ref != r.categories_eval
-    #     diff_str = "X" if diff else ""
-    #     table.add_row([
-    #         r.page_id,
-    #         r.range,
-    #         r.term,
-    #         '|'.join(r.normalized_eval),
-    #         '|'.join(r.categories_eval),
-    #         '|'.join(r.normalized_ref),
-    #         '|'.join(r.categories_ref),
-    #         diff_str
-    #     ])
-    # print(table)
+    #extract_persons(evaluation_rows)
     headers = ["Page ID", "Range", "Term",
                "Normalized (eval)", "Normalized (ref)", "Normalization mismatch",
                "Category (eval)", "Category (ref)", "Category mismatch"]
@@ -335,7 +321,7 @@ def print_per_category(headers, table):
             ref_cats = r[7].split("|")
             cat_in_eval = cat in eval_cats
             cat_in_ref = cat in ref_cats
-            if match_category(ref_cats, eval_cats) and cat not in ('firstname', 'familyname'):
+            if match_category(ref_cats, eval_cats):
                 type_groups[true_positive].append(r)
                 if norm_match:
                     type_groups[strict_true_positive].append(r)
@@ -418,9 +404,8 @@ def match_category_row(row: Row) -> bool:
 
 def match_category(categories_ref: Union[List[str], Set[str]], categories_eval: Union[List[str], Set[str]]) -> bool:
     return categories_ref == categories_eval \
-           or ('person' in categories_eval and ('firstname' in categories_ref or 'familyname' in categories_ref)) \
            or bool(set(categories_ref).intersection(set(categories_eval)))
-
+           #or ('firstname' in categories_eval and ('firstname' in categories_ref or 'familyname' in categories_ref)) \
 
 def table_row(row):
     n_mismatch = "" if match_normalization_row(row) else "X"
@@ -437,6 +422,7 @@ def table_row(row):
 
 
 def normalized_category(raw_category: str):
+    """normalize category names from the reference data so it equals the categories in the system output"""
     if raw_category == 'curr':
         return 'currency'
     if raw_category == 'family':

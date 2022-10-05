@@ -1,0 +1,1417 @@
+[
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/531d2798-488e-4928-a03e-06e49caaaaae",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:09.002687",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Sieuert",
+                "modified": "2022-10-05T12:59:09.002637",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:09.002587",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "sieurs",
+                "variant": "Sieuert",
+                "score": 0.4534420815208636,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 409,
+                        "end": 415
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "sieurs",
+                        "prefix": "",
+                        "suffix": " Gilles van Eij¬"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3150,1499,846,104"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/af0e418c-d921-4bdd-bdf9-a423633c1bb6",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:09.002736",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:09.002703",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Gilles",
+                "variant": "Gilles",
+                "score": 0.8056830791323077,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 416,
+                        "end": 422
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Gilles",
+                        "prefix": "sieurs ",
+                        "suffix": " van Eij¬"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3150,1499,846,104"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/6769b6d0-2ddc-4330-a860-be86efd547a9",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T12:59:09.002788",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
+            "label": "Sieuert Gilles",
+            "modified": "2022-10-05T12:59:09.002792",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/531d2798-488e-4928-a03e-06e49caaaaae",
+                "https://data.goldenagents.org/datasets/annotations/af0e418c-d921-4bdd-bdf9-a423633c1bb6"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 432,
+                        "end": 445
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "sieurs Gilles",
+                        "prefix": "",
+                        "suffix": " van Eij¬"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3150,1499,846,104"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/30caf3fa-d038-4e4a-8f2b-7e95b8214423",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:09.769885",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:09.769769",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Pieter",
+                "variant": "Pieter",
+                "score": 1.0,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 508,
+                        "end": 514
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Pieter",
+                        "prefix": "de voornoemde ",
+                        "suffix": " Corff"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,1911,885,116"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/59cdd086-de31-4647-ba45-84df35555726",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:09.769996",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:09.769921",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Corff",
+                "variant": "Corff",
+                "score": 0.8020826857320484,
+                "source": [
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 515,
+                        "end": 520
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Corff",
+                        "prefix": "de voornoemde Pieter ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,1911,885,116"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/fb0816b1-dd04-452e-88e3-dca5abcc774c",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T12:59:09.770061",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
+            "label": "Pieter Corff",
+            "modified": "2022-10-05T12:59:09.770077",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/30caf3fa-d038-4e4a-8f2b-7e95b8214423",
+                "https://data.goldenagents.org/datasets/annotations/59cdd086-de31-4647-ba45-84df35555726"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 535,
+                        "end": 547
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Pieter Corff",
+                        "prefix": "de voornoemde ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,1911,885,116"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/e4dae8e5-9211-4b4f-8533-d4e5908b3bad",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:10.049006",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.048910",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "lieden",
+                "variant": "lieden",
+                "score": 0.8003928064363464,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 546,
+                        "end": 552
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "lieden",
+                        "prefix": "",
+                        "suffix": " bj Codieil op den 27"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3159,2069,864,125"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/d902358c-97fb-47c9-ad18-7ffae7d5fdd7",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:10.348927",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "notaris",
+                "modified": "2022-10-05T12:59:10.348896",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.348858",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300263369",
+                    "label": "occupation"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.348876",
+                "source": {
+                    "id": "https://www.vondel.humanities.uva.nl/ecartico/occupations/168",
+                    "label": "notaris"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Notaris",
+                "variant": "notaris",
+                "score": 0.943703007518797,
+                "source": [
+                    "occupation_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "occupation",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 607,
+                        "end": 614
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Notaris",
+                        "prefix": "voor de ",
+                        "suffix": " Jan Ardinois"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,2231,879,87"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/3e006b36-de36-43e7-b323-9a86ee585f18",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:10.348988",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.348944",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Jan",
+                "variant": "Jan",
+                "score": 1.0,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 615,
+                        "end": 618
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan",
+                        "prefix": "voor de Notaris ",
+                        "suffix": " Ardinois"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,2231,879,87"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/bd540def-832c-4d70-9438-8caf31d18224",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:10.349029",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.349003",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Ardinois",
+                "variant": "Ardinois",
+                "score": 0.9353570396068228,
+                "source": [
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 619,
+                        "end": 627
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Ardinois",
+                        "prefix": "voor de Notaris Jan ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,2231,879,87"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/b3c97f30-6fbf-4551-88f9-d672194f4b48",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T12:59:10.349074",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
+            "label": "Jan Ardinois",
+            "modified": "2022-10-05T12:59:10.349077",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/3e006b36-de36-43e7-b323-9a86ee585f18",
+                "https://data.goldenagents.org/datasets/annotations/bd540def-832c-4d70-9438-8caf31d18224"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 644,
+                        "end": 656
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan Ardinois",
+                        "prefix": "voor de Notaris ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3165,2231,879,87"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/5bdde3b6-e5e5-45e1-b241-5a52a489cabc",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:10.683954",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "passeren",
+                "modified": "2022-10-05T12:59:10.683924",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.683861",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "gepasseert",
+                "variant": "passeren",
+                "score": 0.8349157733537519,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 658,
+                        "end": 668
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "gepasseert",
+                        "prefix": "stad ",
+                        "suffix": " gesteld zijn"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3157,2389,883,119"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/f3add02a-6843-4308-b934-625f46a9f692",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:10.684001",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "stellen",
+                "modified": "2022-10-05T12:59:10.683989",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:10.683970",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "gesteld",
+                "variant": "stellen",
+                "score": 0.8059027254931486,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "quantifier_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 669,
+                        "end": 676
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "gesteld",
+                        "prefix": "stad gepasseert ",
+                        "suffix": " zijn"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3157,2389,883,119"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/0eae4f36-ba41-4ad5-ae69-cfb49473ee2d",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:11.054895",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "testament",
+                "modified": "2022-10-05T12:59:11.054864",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.054823",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.054843",
+                "source": {
+                    "id": "https://data.goldenagents.org/boedellexicon/voorwerp/testament",
+                    "label": "testament"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Testament",
+                "variant": "testament",
+                "score": 0.9402095084609187,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 709,
+                        "end": 718
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Testament",
+                        "prefix": "",
+                        "suffix": " door deselve"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3156,2576,795,91"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/505ccfaf-a658-4afb-8906-d485c2951263",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:11.087023",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.086935",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Pieter",
+                "variant": "Pieter",
+                "score": 1.0,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 732,
+                        "end": 738
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Pieter",
+                        "prefix": "",
+                        "suffix": " Corff en Anna van"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3122,2643,900,118"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/eec4fbec-e742-4d31-accb-3de2b3d3034d",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:11.087085",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.087049",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Corff",
+                "variant": "Corff",
+                "score": 0.8020826857320484,
+                "source": [
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 739,
+                        "end": 744
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Corff",
+                        "prefix": "Pieter ",
+                        "suffix": " en Anna van"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3122,2643,900,118"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/64a98523-64af-47bf-944d-362d7fa445c8",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T12:59:11.087141",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
+            "label": "Pieter Corff",
+            "modified": "2022-10-05T12:59:11.087148",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/505ccfaf-a658-4afb-8906-d485c2951263",
+                "https://data.goldenagents.org/datasets/annotations/eec4fbec-e742-4d31-accb-3de2b3d3034d"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 757,
+                        "end": 769
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Pieter Corff",
+                        "prefix": "",
+                        "suffix": " en Anna van"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3122,2643,900,118"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/871a0d39-e70d-4694-8e69-569aadb04933",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:11.261803",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "notaris",
+                "modified": "2022-10-05T12:59:11.261764",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.261712",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300263369",
+                    "label": "occupation"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.261738",
+                "source": {
+                    "id": "https://www.vondel.humanities.uva.nl/ecartico/occupations/168",
+                    "label": "notaris"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Notaris",
+                "variant": "notaris",
+                "score": 0.943703007518797,
+                "source": [
+                    "occupation_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "occupation",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 823,
+                        "end": 830
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Notaris",
+                        "prefix": "deselve ",
+                        "suffix": " Jan Ardinois"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3163,2892,899,81"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/3d7aa321-96ee-469c-a2e9-a77ec81eb8d6",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:11.261897",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.261826",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Jan",
+                "variant": "Jan",
+                "score": 1.0,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 831,
+                        "end": 834
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan",
+                        "prefix": "deselve Notaris ",
+                        "suffix": " Ardinois"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3163,2892,899,81"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/61e6790e-4351-4677-a2b3-868899302233",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T12:59:11.261966",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T12:59:11.261916",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Ardinois",
+                "variant": "Ardinois",
+                "score": 0.9353570396068228,
+                "source": [
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 835,
+                        "end": 843
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Ardinois",
+                        "prefix": "deselve Notaris Jan ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3163,2892,899,81"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/e25b0311-cea7-4acd-b64d-b11b20c40cb6",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T12:59:11.262035",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
+            "label": "Jan Ardinois",
+            "modified": "2022-10-05T12:59:11.262051",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/3d7aa321-96ee-469c-a2e9-a77ec81eb8d6",
+                "https://data.goldenagents.org/datasets/annotations/61e6790e-4351-4677-a2b3-868899302233"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/texts/A33456000286",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 860,
+                        "end": 872
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan Ardinois",
+                        "prefix": "deselve Notaris ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/03eafec360299d6cc32ff15cb29f4b33/scans/A33456000286",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3163,2892,899,81"
+                }
+            }
+        ]
+    }
+]

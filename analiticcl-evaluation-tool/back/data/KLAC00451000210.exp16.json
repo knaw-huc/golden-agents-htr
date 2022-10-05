@@ -1,0 +1,1159 @@
+[
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/55309b74-412e-4d49-bb82-83f0b6116e57",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:52.172358",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "thee",
+                "modified": "2022-10-05T13:02:52.172329",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:52.172290",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:52.172309",
+                "source": {
+                    "id": "https://data.goldenagents.org/boedellexicon/voorwerp/thee",
+                    "label": "thee"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "tee",
+                "variant": "thee",
+                "score": 0.8000631836670221,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 177,
+                        "end": 180
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "tee",
+                        "prefix": "",
+                        "suffix": " Jaren"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=1041,1306,305,98"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/c879bcf3-ba8f-496a-bafd-3b62c7847a92",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:52.533789",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:52.533695",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300248479",
+                    "label": "location"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Heel",
+                "variant": "Heel",
+                "score": 0.9172514619883041,
+                "source": [
+                    "locations_lexicon.freq.tsv"
+                ],
+                "category": "location",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 704,
+                        "end": 708
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Heel",
+                        "prefix": "Jan de Nots. H. van ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3347,499,823,115"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/7248537c-d7af-489a-b3cd-dd95cf1ca18a",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T13:02:52.533828",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Location",
+            "label": "van Heel",
+            "modified": "2022-10-05T13:02:52.533833",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/c879bcf3-ba8f-496a-bafd-3b62c7847a92"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 725,
+                        "end": 733
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "van Heel",
+                        "prefix": "Jan de Nots. H. ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3347,499,823,115"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/72334bcc-b543-4f00-98f2-2e442f157ad8",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:53.715780",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:53.715697",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "reken",
+                "variant": "reken",
+                "score": 0.8001002059789567,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 816,
+                        "end": 821
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "reken",
+                        "prefix": "aan de gecommett: ot opnem en der ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3342,763,1254,146"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/8495fee6-3b8c-4b31-8c97-22b499f47e53",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T13:02:53.715835",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
+            "label": "de reken",
+            "modified": "2022-10-05T13:02:53.715843",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/72334bcc-b543-4f00-98f2-2e442f157ad8"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 852,
+                        "end": 861
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "der reken",
+                        "prefix": "aan de gecommett: ot opnem en ",
+                        "suffix": ""
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3342,763,1254,146"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/c60ddc4a-0808-4463-83b9-9a62674323d2",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:54.238650",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.238588",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300055665",
+                    "label": "quantifier"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.238607",
+                "source": {
+                    "id": "https://data.goldenagents.org/boedellexicon/eenheid/een",
+                    "label": "een"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "een",
+                "variant": "een",
+                "score": 0.9297633841068935,
+                "source": [
+                    "quantifier_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "quantifier",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 864,
+                        "end": 867
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "een",
+                        "prefix": "aan gekogt ",
+                        "suffix": " abligatie 1ood: a ƒ 36 Jaf: P."
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3343,1058,1404,148"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/192f244c-3c25-4967-9c37-ddb5a188a8fa",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:54.238690",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "obligatie",
+                "modified": "2022-10-05T13:02:54.238680",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.238666",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.238671",
+                "source": {
+                    "id": "https://data.goldenagents.org/boedellexicon/voorwerp/obligatie",
+                    "label": "obligatie"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "abligatie",
+                "variant": "obligatie",
+                "score": 0.8044444444444444,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 868,
+                        "end": 877
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "abligatie",
+                        "prefix": "aan gekogt een ",
+                        "suffix": " 1ood: a ƒ 36 Jaf: P."
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3343,1058,1404,148"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/a05dc737-7096-457d-a253-692f06384f39",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T13:02:54.238740",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
+            "label": "een obligatie",
+            "modified": "2022-10-05T13:02:54.238744",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/c60ddc4a-0808-4463-83b9-9a62674323d2",
+                "https://data.goldenagents.org/datasets/annotations/192f244c-3c25-4967-9c37-ddb5a188a8fa"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 910,
+                        "end": 923
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "een abligatie",
+                        "prefix": "aan gekogt ",
+                        "suffix": " 1ood: a ƒ 36 Jaf: P."
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3343,1058,1404,148"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/b9a3f4e0-4873-49f6-8bc1-6071a5863ae8",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:54.614314",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "rekken",
+                "modified": "2022-10-05T13:02:54.614285",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.614246",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300311889",
+                    "label": "object"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.614266",
+                "source": {
+                    "id": "https://data.goldenagents.org/boedellexicon/voorwerp/rek",
+                    "label": "rek"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "rek",
+                "variant": "rekken",
+                "score": 0.8000199501246883,
+                "source": [
+                    "object_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "object",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 932,
+                        "end": 935
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "rek",
+                        "prefix": "wande gecommittstot onnen en der ",
+                        "suffix": " in te"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3339,1148,1370,144"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/719ede67-44ba-4761-ab7e-9f915967d8bd",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T13:02:54.614363",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Object",
+            "label": "de rekken",
+            "modified": "2022-10-05T13:02:54.614367",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/b9a3f4e0-4873-49f6-8bc1-6071a5863ae8"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 971,
+                        "end": 978
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "der rek",
+                        "prefix": "wande gecommittstot onnen en ",
+                        "suffix": " in te"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3339,1148,1370,144"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/12df1a88-a156-49b6-a2ad-d2ab935753c0",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:54.971050",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "makelaar",
+                "modified": "2022-10-05T13:02:54.971022",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.970982",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300263369",
+                    "label": "occupation"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:54.971002",
+                "source": {
+                    "id": "https://www.vondel.humanities.uva.nl/ecartico/occupations/147",
+                    "label": "makelaar"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "de cmakelaar",
+                "variant": "makelaar",
+                "score": 0.6533333333333334,
+                "source": [
+                    "occupation_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "occupation",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 946,
+                        "end": 958
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "de cmakelaar",
+                        "prefix": "aan ",
+                        "suffix": "  van arrewijne"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3351,1383,1117,127"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/8ab663c2-e05c-4d58-8b60-26609ab174b9",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:55.243407",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:55.243338",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300010358",
+                    "label": "material"
+                }
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:55.243359",
+                "source": {
+                    "id": "https://data.goldenagents.org/boedellexicon/stofnaam/papier",
+                    "label": "papier"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "papier",
+                "variant": "papier",
+                "score": 0.8003528763095019,
+                "source": [
+                    "material_variants.freq.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "material",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 1031,
+                        "end": 1037
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "papier",
+                        "prefix": "voon een Roos tot berging der ",
+                        "suffix": " z"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3348,1550,1175,121"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/509473a9-f38a-4ac0-be3e-a4bdde803c5b",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:56.308274",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:56.308190",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300404651",
+                    "label": "firstname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Jan",
+                "variant": "Jan",
+                "score": 1.0,
+                "source": [
+                    "first_names_lexicon.sanitized.tsv",
+                    "family_names_lexicon.sanitized.tsv",
+                    "int_historisch_lexicon_variants.freq.tsv"
+                ],
+                "category": "firstname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 1196,
+                        "end": 1199
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan",
+                        "prefix": "i den ",
+                        "suffix": " Fag, 17oo 17oj 1762 & 1763, tij Somma"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3548,2065,1321,151"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/a51c40d1-235a-4c45-9f41-aa03eb796f3f",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:56.308332",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "Fago",
+                "modified": "2022-10-05T13:02:56.308317",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:56.308294",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300435247",
+                    "label": "familyname"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "Fag",
+                "variant": "Fago",
+                "score": 0.5335734293717487,
+                "source": [
+                    "family_names_lexicon.sanitized.tsv"
+                ],
+                "category": "familyname",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 1200,
+                        "end": 1203
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Fag",
+                        "prefix": "i den Jan ",
+                        "suffix": ", 17oo 17oj 1762 & 1763, tij Somma"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3548,2065,1321,151"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/82ff525c-8f59-4e22-9e08-8a3ccee92759",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T13:02:56.308385",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Person",
+            "label": "Jan Fago",
+            "modified": "2022-10-05T13:02:56.308390",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/509473a9-f38a-4ac0-be3e-a4bdde803c5b",
+                "https://data.goldenagents.org/datasets/annotations/a51c40d1-235a-4c45-9f41-aa03eb796f3f"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 1244,
+                        "end": 1251
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "Jan Fag",
+                        "prefix": "i den ",
+                        "suffix": ", 17oo 17oj 1762 & 1763, tij Somma"
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3548,2065,1321,151"
+                }
+            }
+        ]
+    },
+    {
+        "@context": "http://www.w3.org/ns/anno.jsonld",
+        "id": "https://data.goldenagents.org/datasets/annotations/7dcbe330-b48b-42ac-9b17-37e076f5af9f",
+        "type": "Annotation",
+        "motivation": [
+            "classifying",
+            "editing"
+        ],
+        "generated": "2022-10-05T13:02:56.958331",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": [
+            {
+                "type": "TextualBody",
+                "value": "de Lap",
+                "modified": "2022-10-05T13:02:56.958299",
+                "purpose": "editing"
+            },
+            {
+                "type": "SpecificResource",
+                "purpose": "tagging",
+                "modified": "2022-10-05T13:02:56.958246",
+                "source": {
+                    "id": "http://vocab.getty.edu/aat/300248479",
+                    "label": "location"
+                }
+            },
+            {
+                "@context": "https://humanities.knaw.nl/ns/variant-matching.jsonld",
+                "type": "Match",
+                "phrase": "de Lar",
+                "variant": "de Lap",
+                "score": 0.5666690329705001,
+                "source": [
+                    "locations_lexicon.freq.tsv"
+                ],
+                "category": "location",
+                "seqnr": 1
+            }
+        ],
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 1318,
+                        "end": 1324
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "de Lar",
+                        "prefix": "Capitael in ",
+                        "suffix": " 789 1P:c."
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3584,2319,1008,108"
+                }
+            }
+        ]
+    },
+    {
+        "@context": [
+            "http://www.w3.org/ns/anno.jsonld",
+            {
+                "prov": "http://www.w3.org/ns/prov#"
+            }
+        ],
+        "id": "https://data.goldenagents.org/datasets/annotations/49d0e472-9975-4d37-98f7-3250ef4a3d52",
+        "type": "Annotation",
+        "motivation": [
+            "classifying"
+        ],
+        "generated": "2022-10-05T13:02:56.958428",
+        "generator": {
+            "id": "https://github.com/knaw-huc/golden-agents-htr",
+            "type": "Software",
+            "name": "GoldenAgentsNER"
+        },
+        "body": {
+            "type": "https://data.goldenagents.org/ontology/rpp/Location",
+            "label": "in de Lap",
+            "modified": "2022-10-05T13:02:56.958434",
+            "prov:wasDerivedFrom": [
+                "https://data.goldenagents.org/datasets/annotations/7dcbe330-b48b-42ac-9b17-37e076f5af9f"
+            ]
+        },
+        "target": [
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/texts/KLAC00451000210",
+                "type": "Text",
+                "selector": [
+                    {
+                        "type": "TextPositionSelector",
+                        "start": 1344,
+                        "end": 1353
+                    },
+                    {
+                        "type": "TextQuoteSelector",
+                        "exact": "in de Lar",
+                        "prefix": "Capitael ",
+                        "suffix": " 789 1P:c."
+                    }
+                ]
+            },
+            {
+                "source": "https://data.goldenagents.org/datasets/saa/ead/75444096e6e96bf83d5ade8358c44cb3/scans/KLAC00451000210",
+                "type": "Image",
+                "selector": {
+                    "type": "FragmentSelector",
+                    "conformsTo": "http://www.w3.org/TR/media-frags/",
+                    "value": "xywh=3584,2319,1008,108"
+                }
+            }
+        ]
+    }
+]

@@ -112,14 +112,11 @@ def extract_categories(annotation: dict) -> List[str]:
 
 
 def extract_category(annotation_body: dict) -> str:
-    if "value" in annotation_body:
-        return annotation_body["value"]
-    else:
-        return annotation_body["source"]["label"]
+    return annotation_body["source"]["label"]
 
 
 def extract_normalizations(annotation: dict) -> List[str]:
-    return [b['value'] for b in annotation['body'] if isinstance(b, dict) and b.get('purpose') in {'commenting', 'editing'}]
+    return [b['value'] for b in annotation['body'] if isinstance(b, dict) and b.get('purpose') == 'editing']
 
 
 @dataclass

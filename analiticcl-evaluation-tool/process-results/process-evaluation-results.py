@@ -171,53 +171,57 @@ def extract_persons(evaluation_rows: Dict[str, Row]):
                         )
                     print(f"(Extracted person '{normalized_ref}' in ground truth: {key})")
 
+def is_observation(a: dict) -> bool:
+    return a.get('motivation') == ["classifying"]
 
 def print_categorization_table(eval_data, keys, ref_data, outfile: str):
     evaluation_rows = {}
     for page_id in keys:
         annotations = eval_data[page_id]
         for a in annotations:
-            target = extract_target(a['target'])
-            range_str = f"{target.start}-{target.end}"
-            key = f"{page_id}.{target.start:05d}-{target.end:05d}"
-            categories = sorted(extract_categories(a))
-            normalizations = sorted(extract_normalizations(a))
-            if not normalizations:
-                # no normalizations outputted by system, copy input term
-                normalizations = [target.exact]
-            evaluation_rows[key] = Row(
-                page_id=page_id,
-                range=range_str,
-                term=target.exact,
-                normalized_eval=normalizations,
-                categories_eval=normalized_categories(categories),
-                normalized_ref=[],
-                categories_ref=[]
-            )
-    for page_id in keys:
-        annotations = ref_data[page_id]
-        for a in annotations:
-            target = extract_target(a['target'])
-            range_str = f"{target.start}-{target.end}"
-            key = f"{page_id}.{target.start:05d}-{target.end:05d}"
-            categories = sorted(extract_categories(a))
-            normalizations = sorted(extract_normalizations(a))
-            if not normalizations:
-                # no normalizations provided by annotator, copy input term
-                normalizations = [target.exact]
-            if key in evaluation_rows:
-                evaluation_rows[key].normalized_ref = normalizations
-                evaluation_rows[key].categories_ref = categories
-            else:
+            if not is_observation(a):
+                target = extract_target(a['target'])
+                range_str = f"{target.start}-{target.end}"
+                key = f"{page_id}.{target.start:05d}-{target.end:05d}"
+                categories = sorted(extract_categories(a))
+                normalizations = sorted(extract_normalizations(a))
+                if not normalizations:
+                    # no normalizations outputted by system, copy input term
+                    normalizations = [target.exact]
                 evaluation_rows[key] = Row(
                     page_id=page_id,
                     range=range_str,
                     term=target.exact,
-                    normalized_eval=[],
-                    categories_eval=[],
-                    normalized_ref=normalizations,
-                    categories_ref=normalized_categories(categories)
+                    normalized_eval=normalizations,
+                    categories_eval=normalized_categories(categories),
+                    normalized_ref=[],
+                    categories_ref=[]
                 )
+    for page_id in keys:
+        annotations = ref_data[page_id]
+        for a in annotations:
+            if not is_observation(a):
+                target = extract_target(a['target'])
+                range_str = f"{target.start}-{target.end}"
+                key = f"{page_id}.{target.start:05d}-{target.end:05d}"
+                categories = sorted(extract_categories(a))
+                normalizations = sorted(extract_normalizations(a))
+                if not normalizations:
+                    # no normalizations provided by annotator, copy input term
+                    normalizations = [target.exact]
+                if key in evaluation_rows:
+                    evaluation_rows[key].normalized_ref = normalizations
+                    evaluation_rows[key].categories_ref = categories
+                else:
+                    evaluation_rows[key] = Row(
+                        page_id=page_id,
+                        range=range_str,
+                        term=target.exact,
+                        normalized_eval=[],
+                        categories_eval=[],
+                        normalized_ref=normalizations,
+                        categories_ref=normalized_categories(categories)
+                    )
     #extract_persons(evaluation_rows)
     headers = ["Page ID", "Range", "Term",
                "Normalized (eval)", "Normalized (ref)", "Normalization mismatch",

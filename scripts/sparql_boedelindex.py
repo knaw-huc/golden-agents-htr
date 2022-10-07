@@ -15,7 +15,7 @@ if __name__ == "__main__":
     PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
     PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
     SELECT DISTINCT ?akteIndex ?eventTypeLabel ?scanNaam ?inventoryNumber WHERE {
-      GRAPH <https://data.goldenagents.org/datasets/u692bc364e9d7fa97b3510c6c0c8f2bb9a0e5123b/na_20210715> {
+      GRAPH <https://data.goldenagents.org/datasets/u692bc364e9d7fa97b3510c6c0c8f2bb9a0e5123b/na_20220216> {
         
         # Index op een akte (URI = Stadsarchief)
         ?akteIndex a roar:IndexDocument ;
@@ -47,7 +47,11 @@ if __name__ == "__main__":
                         rdfs:label ?inventoryName .
       
         # Alleen boedelscheidingen en boedelinventarissen
-        FILTER(REGEX(?eventTypeLabel, 'boedel', 'i'))
+        FILTER(
+            REGEX(?eventTypeLabel, 'boedel', 'i') || 
+            ?eventTypeLabel = "Huwelijkse Voorwaarden" || 
+            ?eventTypeLabel = "Testament" 
+        )
         
       }
     }

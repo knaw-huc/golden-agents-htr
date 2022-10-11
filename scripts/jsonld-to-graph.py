@@ -4,9 +4,10 @@ import argparse
 import gzip
 import json
 import sys
-from typing import List, Union
+from http.client import RemoteDisconnected
 
 from rdflib import Graph, URIRef
+from typing import List, Union
 
 export_formats = ("hext", "json-ld", "longturtle", "n3", "nt", "pretty-xml", "trig", "turtle", "xml")
 
@@ -25,7 +26,7 @@ def main():
     parser.add_argument('-f', '--format',
                         help=f"set the export format (options: {sorted_formats})",
                         action='store', required=False, default='turtle')
-    parser.add_argument('-v', '--vocab', help="add default vocabulary", action='store', required=False)
+    parser.add_argument('-v', '--vocab', help="add default vocabulary uri", action='store', required=False)
 
     args = parser.parse_args()
     if args.format not in export_formats:
@@ -58,13 +59,21 @@ def setup_graph(jsonld_files: List[str], vocab: Union[str, None] = None):
     g.namespace_manager.bind("rpp", URIRef("https://data.goldenagents.org/ontology/rpp/"))
     g.namespace_manager.bind("vm", URIRef("https://humanities.knaw.nl/ns/variant-matching#"))
 
-    for jf in jsonld_files:
+    total = len(jsonld_files)
+    missed_files = []
+    for i, jf in enumerate(jsonld_files):
+        print(f"loading {jf} ({i + 1}/{total}) ...", file=sys.stderr)
         with open(jf) as f:
             jsonld = f.read()
         if vocab:
             g.namespace_manager.bind("", URIRef(vocab))
             jsonld = add_default_vocabulary_to_context(vocab, json.loads(jsonld))
-        g.parse(data=jsonld, format='json-ld')
+        try:
+            g.parse(data=jsonld, format='json-ld')
+        except (RemoteDisconnected, ConnectionResetError):
+            print("error, skipping...", file=sys.stderr)
+            missed_files.append(jf)
+    print(missed_files, file=sys.stderr)
     return g
 
 

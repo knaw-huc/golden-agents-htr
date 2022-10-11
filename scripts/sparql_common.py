@@ -19,6 +19,6 @@ def query(q, endpoint, OFFSET=0, LIMIT=10000):
         time.sleep(1)
 
         new_df = query(q, endpoint, OFFSET, LIMIT)
-        df = df.append(new_df)
+        df = pd.concat([df, new_df])
 
     return df
